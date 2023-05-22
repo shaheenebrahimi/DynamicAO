@@ -285,6 +285,30 @@ src/MatrixStack.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.s
 .PHONY : src/MatrixStack.cpp.s
 
+src/Object.o: src/Object.cpp.o
+.PHONY : src/Object.o
+
+# target to build an object file
+src/Object.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Object.cpp.o
+.PHONY : src/Object.cpp.o
+
+src/Object.i: src/Object.cpp.i
+.PHONY : src/Object.i
+
+# target to preprocess a source file
+src/Object.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Object.cpp.i
+.PHONY : src/Object.cpp.i
+
+src/Object.s: src/Object.cpp.s
+.PHONY : src/Object.s
+
+# target to generate assembly for a file
+src/Object.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Object.cpp.s
+.PHONY : src/Object.cpp.s
+
 src/Program.o: src/Program.cpp.o
 .PHONY : src/Program.o
 
@@ -382,6 +406,9 @@ help:
 	@echo "... src/MatrixStack.o"
 	@echo "... src/MatrixStack.i"
 	@echo "... src/MatrixStack.s"
+	@echo "... src/Object.o"
+	@echo "... src/Object.i"
+	@echo "... src/Object.s"
 	@echo "... src/Program.o"
 	@echo "... src/Program.i"
 	@echo "... src/Program.s"

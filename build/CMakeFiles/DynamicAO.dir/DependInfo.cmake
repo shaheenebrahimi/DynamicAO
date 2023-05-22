@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Camera.cpp" "CMakeFiles/DynamicAO.dir/src/Camera.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Camera.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/GLSL.cpp" "CMakeFiles/DynamicAO.dir/src/GLSL.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/GLSL.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/MatrixStack.cpp" "CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o.d"
+  "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Object.cpp" "CMakeFiles/DynamicAO.dir/src/Object.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Object.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Program.cpp" "CMakeFiles/DynamicAO.dir/src/Program.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Program.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Shape.cpp" "CMakeFiles/DynamicAO.dir/src/Shape.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Shape.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/main.cpp" "CMakeFiles/DynamicAO.dir/src/main.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/main.cpp.o.d"

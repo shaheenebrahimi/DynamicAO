@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/DynamicAO.dir/src/GLSL.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o"
   "CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o.d"
+  "CMakeFiles/DynamicAO.dir/src/Object.cpp.o"
+  "CMakeFiles/DynamicAO.dir/src/Object.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/Program.cpp.o"
   "CMakeFiles/DynamicAO.dir/src/Program.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/Shape.cpp.o"
