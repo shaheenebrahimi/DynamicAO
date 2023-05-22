@@ -213,6 +213,30 @@ glfw/fast:
 	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/build
 .PHONY : glfw/fast
 
+src/Camera.o: src/Camera.cpp.o
+.PHONY : src/Camera.o
+
+# target to build an object file
+src/Camera.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Camera.cpp.o
+.PHONY : src/Camera.cpp.o
+
+src/Camera.i: src/Camera.cpp.i
+.PHONY : src/Camera.i
+
+# target to preprocess a source file
+src/Camera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Camera.cpp.i
+.PHONY : src/Camera.cpp.i
+
+src/Camera.s: src/Camera.cpp.s
+.PHONY : src/Camera.s
+
+# target to generate assembly for a file
+src/Camera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Camera.cpp.s
+.PHONY : src/Camera.cpp.s
+
 src/GLSL.o: src/GLSL.cpp.o
 .PHONY : src/GLSL.o
 
@@ -236,6 +260,78 @@ src/GLSL.s: src/GLSL.cpp.s
 src/GLSL.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/GLSL.cpp.s
 .PHONY : src/GLSL.cpp.s
+
+src/MatrixStack.o: src/MatrixStack.cpp.o
+.PHONY : src/MatrixStack.o
+
+# target to build an object file
+src/MatrixStack.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o
+.PHONY : src/MatrixStack.cpp.o
+
+src/MatrixStack.i: src/MatrixStack.cpp.i
+.PHONY : src/MatrixStack.i
+
+# target to preprocess a source file
+src/MatrixStack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.i
+.PHONY : src/MatrixStack.cpp.i
+
+src/MatrixStack.s: src/MatrixStack.cpp.s
+.PHONY : src/MatrixStack.s
+
+# target to generate assembly for a file
+src/MatrixStack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.s
+.PHONY : src/MatrixStack.cpp.s
+
+src/Program.o: src/Program.cpp.o
+.PHONY : src/Program.o
+
+# target to build an object file
+src/Program.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Program.cpp.o
+.PHONY : src/Program.cpp.o
+
+src/Program.i: src/Program.cpp.i
+.PHONY : src/Program.i
+
+# target to preprocess a source file
+src/Program.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Program.cpp.i
+.PHONY : src/Program.cpp.i
+
+src/Program.s: src/Program.cpp.s
+.PHONY : src/Program.s
+
+# target to generate assembly for a file
+src/Program.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Program.cpp.s
+.PHONY : src/Program.cpp.s
+
+src/Shape.o: src/Shape.cpp.o
+.PHONY : src/Shape.o
+
+# target to build an object file
+src/Shape.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Shape.cpp.o
+.PHONY : src/Shape.cpp.o
+
+src/Shape.i: src/Shape.cpp.i
+.PHONY : src/Shape.i
+
+# target to preprocess a source file
+src/Shape.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Shape.cpp.i
+.PHONY : src/Shape.cpp.i
+
+src/Shape.s: src/Shape.cpp.s
+.PHONY : src/Shape.s
+
+# target to generate assembly for a file
+src/Shape.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Shape.cpp.s
+.PHONY : src/Shape.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -277,9 +373,21 @@ help:
 	@echo "... update_mappings"
 	@echo "... DynamicAO"
 	@echo "... glfw"
+	@echo "... src/Camera.o"
+	@echo "... src/Camera.i"
+	@echo "... src/Camera.s"
 	@echo "... src/GLSL.o"
 	@echo "... src/GLSL.i"
 	@echo "... src/GLSL.s"
+	@echo "... src/MatrixStack.o"
+	@echo "... src/MatrixStack.i"
+	@echo "... src/MatrixStack.s"
+	@echo "... src/Program.o"
+	@echo "... src/Program.i"
+	@echo "... src/Program.s"
+	@echo "... src/Shape.o"
+	@echo "... src/Shape.i"
+	@echo "... src/Shape.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

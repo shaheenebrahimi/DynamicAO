@@ -69,10 +69,24 @@ include CMakeFiles/DynamicAO.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/DynamicAO.dir/flags.make
 
+CMakeFiles/DynamicAO.dir/src/Camera.cpp.o: CMakeFiles/DynamicAO.dir/flags.make
+CMakeFiles/DynamicAO.dir/src/Camera.cpp.o: /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Camera.cpp
+CMakeFiles/DynamicAO.dir/src/Camera.cpp.o: CMakeFiles/DynamicAO.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DynamicAO.dir/src/Camera.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DynamicAO.dir/src/Camera.cpp.o -MF CMakeFiles/DynamicAO.dir/src/Camera.cpp.o.d -o CMakeFiles/DynamicAO.dir/src/Camera.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Camera.cpp
+
+CMakeFiles/DynamicAO.dir/src/Camera.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DynamicAO.dir/src/Camera.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Camera.cpp > CMakeFiles/DynamicAO.dir/src/Camera.cpp.i
+
+CMakeFiles/DynamicAO.dir/src/Camera.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DynamicAO.dir/src/Camera.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Camera.cpp -o CMakeFiles/DynamicAO.dir/src/Camera.cpp.s
+
 CMakeFiles/DynamicAO.dir/src/GLSL.cpp.o: CMakeFiles/DynamicAO.dir/flags.make
 CMakeFiles/DynamicAO.dir/src/GLSL.cpp.o: /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/GLSL.cpp
 CMakeFiles/DynamicAO.dir/src/GLSL.cpp.o: CMakeFiles/DynamicAO.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DynamicAO.dir/src/GLSL.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DynamicAO.dir/src/GLSL.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DynamicAO.dir/src/GLSL.cpp.o -MF CMakeFiles/DynamicAO.dir/src/GLSL.cpp.o.d -o CMakeFiles/DynamicAO.dir/src/GLSL.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/GLSL.cpp
 
 CMakeFiles/DynamicAO.dir/src/GLSL.cpp.i: cmake_force
@@ -83,10 +97,52 @@ CMakeFiles/DynamicAO.dir/src/GLSL.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DynamicAO.dir/src/GLSL.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/GLSL.cpp -o CMakeFiles/DynamicAO.dir/src/GLSL.cpp.s
 
+CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o: CMakeFiles/DynamicAO.dir/flags.make
+CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o: /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/MatrixStack.cpp
+CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o: CMakeFiles/DynamicAO.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o -MF CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o.d -o CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/MatrixStack.cpp
+
+CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/MatrixStack.cpp > CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.i
+
+CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/MatrixStack.cpp -o CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.s
+
+CMakeFiles/DynamicAO.dir/src/Program.cpp.o: CMakeFiles/DynamicAO.dir/flags.make
+CMakeFiles/DynamicAO.dir/src/Program.cpp.o: /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Program.cpp
+CMakeFiles/DynamicAO.dir/src/Program.cpp.o: CMakeFiles/DynamicAO.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DynamicAO.dir/src/Program.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DynamicAO.dir/src/Program.cpp.o -MF CMakeFiles/DynamicAO.dir/src/Program.cpp.o.d -o CMakeFiles/DynamicAO.dir/src/Program.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Program.cpp
+
+CMakeFiles/DynamicAO.dir/src/Program.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DynamicAO.dir/src/Program.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Program.cpp > CMakeFiles/DynamicAO.dir/src/Program.cpp.i
+
+CMakeFiles/DynamicAO.dir/src/Program.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DynamicAO.dir/src/Program.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Program.cpp -o CMakeFiles/DynamicAO.dir/src/Program.cpp.s
+
+CMakeFiles/DynamicAO.dir/src/Shape.cpp.o: CMakeFiles/DynamicAO.dir/flags.make
+CMakeFiles/DynamicAO.dir/src/Shape.cpp.o: /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Shape.cpp
+CMakeFiles/DynamicAO.dir/src/Shape.cpp.o: CMakeFiles/DynamicAO.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/DynamicAO.dir/src/Shape.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DynamicAO.dir/src/Shape.cpp.o -MF CMakeFiles/DynamicAO.dir/src/Shape.cpp.o.d -o CMakeFiles/DynamicAO.dir/src/Shape.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Shape.cpp
+
+CMakeFiles/DynamicAO.dir/src/Shape.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DynamicAO.dir/src/Shape.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Shape.cpp > CMakeFiles/DynamicAO.dir/src/Shape.cpp.i
+
+CMakeFiles/DynamicAO.dir/src/Shape.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DynamicAO.dir/src/Shape.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Shape.cpp -o CMakeFiles/DynamicAO.dir/src/Shape.cpp.s
+
 CMakeFiles/DynamicAO.dir/src/main.cpp.o: CMakeFiles/DynamicAO.dir/flags.make
 CMakeFiles/DynamicAO.dir/src/main.cpp.o: /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/main.cpp
 CMakeFiles/DynamicAO.dir/src/main.cpp.o: CMakeFiles/DynamicAO.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DynamicAO.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/DynamicAO.dir/src/main.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DynamicAO.dir/src/main.cpp.o -MF CMakeFiles/DynamicAO.dir/src/main.cpp.o.d -o CMakeFiles/DynamicAO.dir/src/main.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/main.cpp
 
 CMakeFiles/DynamicAO.dir/src/main.cpp.i: cmake_force
@@ -99,19 +155,27 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.s: cmake_force
 
 # Object files for target DynamicAO
 DynamicAO_OBJECTS = \
+"CMakeFiles/DynamicAO.dir/src/Camera.cpp.o" \
 "CMakeFiles/DynamicAO.dir/src/GLSL.cpp.o" \
+"CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o" \
+"CMakeFiles/DynamicAO.dir/src/Program.cpp.o" \
+"CMakeFiles/DynamicAO.dir/src/Shape.cpp.o" \
 "CMakeFiles/DynamicAO.dir/src/main.cpp.o"
 
 # External object files for target DynamicAO
 DynamicAO_EXTERNAL_OBJECTS =
 
+DynamicAO: CMakeFiles/DynamicAO.dir/src/Camera.cpp.o
 DynamicAO: CMakeFiles/DynamicAO.dir/src/GLSL.cpp.o
+DynamicAO: CMakeFiles/DynamicAO.dir/src/MatrixStack.cpp.o
+DynamicAO: CMakeFiles/DynamicAO.dir/src/Program.cpp.o
+DynamicAO: CMakeFiles/DynamicAO.dir/src/Shape.cpp.o
 DynamicAO: CMakeFiles/DynamicAO.dir/src/main.cpp.o
 DynamicAO: CMakeFiles/DynamicAO.dir/build.make
 DynamicAO: /Users/shaheen/CppLib/glfw-3.3.8/debug/src/libglfw3.a
 DynamicAO: /Users/shaheen/CppLib/glew-2.1.0/lib/libGLEW.a
 DynamicAO: CMakeFiles/DynamicAO.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable DynamicAO"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable DynamicAO"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DynamicAO.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

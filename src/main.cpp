@@ -17,17 +17,27 @@
 #include "stb_image_write.h"
 
 #include "GLSL.h"
+#include "Camera.h"
+#include "MatrixStack.h"
+#include "Program.h"
+#include "Shape.h"
 
 using namespace std;
 
 GLFWwindow *window; // Main application window
-string RESOURCE_DIR = "./"; // Where the resources are loaded from
+string RES_DIR = "../resources/"; // Where the resources are loaded from
 bool OFFLINE = false;
 
 const int windowWidth = 1024;
 const int windowHeight = 1024;
 
+shared_ptr<Program> phong_prog;
+
+shared_ptr<Camera> camera;
+shared_ptr<Shape> cube;
+
 bool keyToggles[256] = {false}; // only for English keyboards!
+
 
 // This function is called when a GLFW error occurs
 static void error_callback(int error, const char *description) {
@@ -122,12 +132,43 @@ static void init() {
 	glfwSetTime(0.0); // Initialize time.
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set background color.
 	glEnable(GL_DEPTH_TEST); // Enable z-buffer test.
+
+	// Create Blinn-Phong Shader Program
+	phong_prog = make_shared<Program>();
+	phong_prog->setVerbose(true);
+	phong_prog->setShaderNames(RES_DIR + "shaders/phong_vert.glsl", RES_DIR + "shaders/phong_frag.glsl");
+	phong_prog->init();
+	phong_prog->addUniform("P");
+	phong_prog->addUniform("MV");
+	phong_prog->addUniform("inverse");
+	phong_prog->addUniform("lightPos");
+	phong_prog->addUniform("ka");
+	phong_prog->addUniform("kd");
+	phong_prog->addUniform("ks");
+	phong_prog->addUniform("s");
+	phong_prog->addAttribute("aPos");
+	phong_prog->addAttribute("aNor");
+	phong_prog->setVerbose(false);
+
+	// Initialize Camera
+	camera = make_shared<Camera>();
+	camera->setInitDistance(0.0f); // Camera's initial Z translation
+
+	// Initialize Meshes
+	cube = make_shared<Shape>();
+	cube->loadMesh(RES_DIR + "models/cube.obj");
+	cube->init();
+
+	// Initialize Scene
+
 	
 	GLSL::checkError(GET_FILE_LINE);
 }
 
 // This function is called every frame to draw the scene.
 static void render() {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	if(keyToggles[(unsigned)'c']) {
 		glEnable(GL_CULL_FACE);
 	} else {
@@ -139,6 +180,41 @@ static void render() {
 	} else {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
+
+	int width, height;
+	glfwGetFramebufferSize(window, &width, &height);
+	camera->setAspect((float)width/(float)height);
+
+	glViewport(0, 0, width, height);
+
+	// Create matrix stacks
+	auto P = make_shared<MatrixStack>();
+	auto MV = make_shared<MatrixStack>();
+
+	// Apply camera transforms
+	P->pushMatrix();
+	camera->applyProjectionMatrix(P);
+
+	// Apply modelview transforms
+	MV->pushMatrix();
+	camera->applyViewMatrix(MV);
+
+	// Draw Scene
+	phong_prog->bind();
+	MV->pushMatrix();
+		MV->translate(0.0f, 0.0f, 10.0f);
+		glUniformMatrix4fv(phong_prog->getUniform("P"), 1, GL_FALSE, glm::value_ptr(P->topMatrix()));
+		glUniformMatrix4fv(phong_prog->getUniform("MV"), 1, GL_FALSE, glm::value_ptr(MV->topMatrix()));
+		glUniformMatrix4fv(phong_prog->getUniform("inverse"), 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(glm::mat4(MV->topMatrix())))));
+		glUniform3f(phong_prog->getUniform("ka"), 0.75f, 0.75f, 0.75f);
+		glUniform3f(phong_prog->getUniform("kd"), 0.0f, 0.0f, 0.0f);
+		glUniform3f(phong_prog->getUniform("ks"), 0.5f, 0.5f, 0.5f);
+		glUniform1f(phong_prog->getUniform("s"), 250.0f);
+		glUniform3f(phong_prog->getUniform("lightPos"), 0.0f, 3.0f, 3.0f);
+		cube->draw(phong_prog);
+	MV->popMatrix();
+	phong_prog->unbind();
+
 
 	GLSL::checkError(GET_FILE_LINE);
 	

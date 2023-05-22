@@ -678,4 +678,15 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Users/shaheen/CppLib/glm-master/glm/gtc/type_ptr.inl \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/stb_image_write.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/GLSL.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/sstream
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/sstream \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Camera.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/MatrixStack.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/stack \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/deque \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Program.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/map \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__functional/is_transparent.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__node_handle \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/optional \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__tree \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Shape.h
