@@ -61,19 +61,19 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/glfw3Config.cmake"
-  "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/glfw3ConfigVersion.cmake"
-  "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/glfw_config.h"
-  "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/glfw3.pc"
-  "/Users/shaheen/CppLib/glfw-3.3.8/debug/cmake_uninstall.cmake"
-  "/Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "/Users/shaheen/CppLib/glfw-3.3.8/release/src/glfw3Config.cmake"
+  "/Users/shaheen/CppLib/glfw-3.3.8/release/src/glfw3ConfigVersion.cmake"
+  "/Users/shaheen/CppLib/glfw-3.3.8/release/src/glfw_config.h"
+  "/Users/shaheen/CppLib/glfw-3.3.8/release/src/glfw3.pc"
+  "/Users/shaheen/CppLib/glfw-3.3.8/release/cmake_uninstall.cmake"
+  "/Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "/Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/DynamicAO.dir/DependInfo.cmake"
-  "/Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/DependInfo.cmake"
-  "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/DependInfo.cmake"
-  "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/DependInfo.cmake"
+  "/Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/DependInfo.cmake"
+  "/Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/DependInfo.cmake"
+  "/Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/DependInfo.cmake"
   )
