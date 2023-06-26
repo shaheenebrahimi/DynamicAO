@@ -184,7 +184,7 @@ uninstall: cmake_check_build_system
 
 # fast build rule for target.
 uninstall/fast:
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/build
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
 
 #=============================================================================
@@ -197,7 +197,7 @@ update_mappings: cmake_check_build_system
 
 # fast build rule for target.
 update_mappings/fast:
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/build
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
 
 #=============================================================================
@@ -210,8 +210,32 @@ glfw: cmake_check_build_system
 
 # fast build rule for target.
 glfw/fast:
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/build
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/build
 .PHONY : glfw/fast
+
+src/AABB.o: src/AABB.cpp.o
+.PHONY : src/AABB.o
+
+# target to build an object file
+src/AABB.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/AABB.cpp.o
+.PHONY : src/AABB.cpp.o
+
+src/AABB.i: src/AABB.cpp.i
+.PHONY : src/AABB.i
+
+# target to preprocess a source file
+src/AABB.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/AABB.cpp.i
+.PHONY : src/AABB.cpp.i
+
+src/AABB.s: src/AABB.cpp.s
+.PHONY : src/AABB.s
+
+# target to generate assembly for a file
+src/AABB.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/AABB.cpp.s
+.PHONY : src/AABB.cpp.s
 
 src/BlinnPhong.o: src/BlinnPhong.cpp.o
 .PHONY : src/BlinnPhong.o
@@ -517,6 +541,9 @@ help:
 	@echo "... update_mappings"
 	@echo "... DynamicAO"
 	@echo "... glfw"
+	@echo "... src/AABB.o"
+	@echo "... src/AABB.i"
+	@echo "... src/AABB.s"
 	@echo "... src/BlinnPhong.o"
 	@echo "... src/BlinnPhong.i"
 	@echo "... src/BlinnPhong.s"

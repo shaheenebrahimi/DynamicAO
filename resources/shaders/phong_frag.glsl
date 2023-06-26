@@ -11,17 +11,11 @@ uniform float s;
 
 varying vec3 vPos; // vertex position in camera space
 varying vec3 vNor; // vertex normal in camera space
+// varying vec3 vTex; // vertex texture
     
 void main()
 {
-    // vec2 tex;
-    // tex.x = gl_FragCoord.x/windowSize.x;
-    // tex.y = gl_FragCoord.y/windowSize.y;
-    
-    // // Fetch shading data
-    // vec3 aoFactor = texture2D(aoTexture, tex).rgb;
-    
-    // // Indirect Lighting Approximation (Ambient Occlusion)
+
     // vec3 fragColor = ka * aoFactor;
     vec3 fragColor = ka;
 

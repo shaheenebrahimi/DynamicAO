@@ -2,41 +2,39 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#include <string>
+#define GLM_FORCE_RADIANS
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
+#include "Ray.h"
+#include "Hit.h"
+#include "Material.h"
+
 #include <vector>
-#include <memory>
+#include <iostream>
 
-class Program;
 
-/**
- * A shape defined by a list of triangles
- * - posBuf should be of length 3*ntris
- * - norBuf should be of length 3*ntris (if normals are available)
- * - texBuf should be of length 2*ntris (if texture coords are available)
- * posBufID, norBufID, and texBufID are OpenGL buffer identifiers.
- */
-class Shape
-{
+class Shape {
 public:
-	float yMin; // top of mesh
-	float yMax; // bottom of mesh
+    glm::vec3 position;
+    glm::vec4 rotation;
+    glm::vec3 scale;
+    glm::mat4 transform;
+    Material* mat;
 
-	Shape();
-	virtual ~Shape();
-	void loadMesh(const std::string &meshName);
-	void loadBall();
-	void loadSurface();
-	void fitToUnitBox();
-	void init();
-	void draw(const std::shared_ptr<Program> prog) const;
-	
-private:
-	std::vector<float> posBuf;
-	std::vector<float> norBuf;
-	std::vector<float> texBuf;
-	unsigned posBufID;
-	unsigned norBufID;
-	unsigned texBufID;
+    virtual Hit* collider(Ray& ray) = 0;
+
+    glm::mat4 getTransformationMatrix() {
+        glm::mat4 T = glm::translate(glm::mat4(1.0f), position);
+        glm::mat4 R = glm::rotate(glm::mat4(1.0f), rotation[0], glm::vec3(rotation[1], rotation[2], rotation[3]));
+        glm::mat4 S = glm::scale(glm::mat4(1.0f), scale);
+        return T * R * S;
+    }
+
+    virtual glm::vec3 getMinBound() = 0;
+    virtual glm::vec3 getMaxBound() = 0;
+
 };
 
 #endif
+

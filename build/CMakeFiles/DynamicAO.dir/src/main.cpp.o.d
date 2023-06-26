@@ -608,6 +608,7 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Plane.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Mesh.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Triangle.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/AABB.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Sphere.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/random \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/numeric

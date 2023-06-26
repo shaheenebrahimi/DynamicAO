@@ -1,54 +1,35 @@
-#pragma  once
+#pragma once
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <memory>
-
 #define GLM_FORCE_RADIANS
 #include <glm/glm.hpp>
+#include "Ray.h"
 
-class MatrixStack;
-
-class Camera
-{
+class Camera {
 public:
-	enum {
-		ROTATE = 0,
-		TRANSLATE,
-		SCALE
-	};
-	
+	glm::vec3 position; // eye or origin
+	glm::vec3 lookat;
+	glm::vec3 up;
+	float fov;
+	float focalDist;
+	int resolution;
+
 	Camera();
+	Camera(glm::vec3 position, glm::vec3 lookat, glm::vec3 up, float fov);
 	virtual ~Camera();
-	void setInitDistance(float z) { translations.z = -std::abs(z); }
-	void setAspect(float a) { aspect = a; };
-	void setRotationFactor(float f) { rfactor = f; };
-	void setTranslationFactor(float f) { tfactor = f; };
-	void setScaleFactor(float f) { sfactor = f; };
-	void mouseClicked(float x, float y, bool shift, bool ctrl, bool alt);
-	void mouseMoved(float x, float y);
-	void applyProjectionMatrix(std::shared_ptr<MatrixStack> P) const;
-	void applyViewMatrix(std::shared_ptr<MatrixStack> MV) const;
-	void moveForward();
-	void moveBackward();
-	void moveLeft();
-	void moveRight();
-	void zoomIn();
-	void zoomOut();
-	float getFOV();
+
+	Ray getRay(int r, int c);
+	void setResolution(int resolution);
+	void init();
 	
 private:
-	float aspect;
-	float fovy;
-	float znear;
-	float zfar;
-	glm::vec2 rotations;
-	glm::vec3 translations;
-	glm::vec2 mousePrev;
-	int state;
-	float rfactor;
-	float tfactor;
-	float sfactor;
+	glm::vec3 screen;
+	glm::vec3 axis1;
+	glm::vec3 axis2;
+	glm::vec3 startBound;
+	float stepSize;
+	float offset;
 };
 
 #endif

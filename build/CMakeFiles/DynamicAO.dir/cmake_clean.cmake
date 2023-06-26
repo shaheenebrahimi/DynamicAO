@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/DynamicAO.dir/src/AABB.cpp.o"
+  "CMakeFiles/DynamicAO.dir/src/AABB.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/BlinnPhong.cpp.o"
   "CMakeFiles/DynamicAO.dir/src/BlinnPhong.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/Camera.cpp.o"
