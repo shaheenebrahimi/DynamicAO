@@ -69,7 +69,8 @@ glm::vec3 Scene::computeColor(Ray& ray, int depth) {
             std::vector<Light*> activeLights;
             for (Light* l : lights) {
                 glm::vec3 l_vec = l->position - fragPos;
-                Ray sray (fragPos, normalize(l_vec));
+                glm::vec3 offset = 0.005f * fragNor;
+                Ray sray (fragPos + offset, normalize(l_vec));
                 Collision* scol = shootRay(sray);
                 if (!scol || length(scol->hit->pos - fragPos) > length(l_vec)) { // if not occluded
                     activeLights.push_back(l);
