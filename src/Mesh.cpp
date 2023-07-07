@@ -16,31 +16,71 @@ Mesh::Mesh(const string& meshName, glm::vec3 position, glm::vec4 rotation, glm::
 }
 
 Hit* Mesh::collider(Ray& ray) {
-    Hit* closestHit = nullptr;
+	static constexpr bool should_permute = true;
+	static constexpr size_t invalid_id = std::numeric_limits<size_t>::max();
+    static constexpr size_t stack_size = 64;
+    static constexpr bool use_robust_traversal = false;
 
-	glm::vec3 p_prime = inverse(transform) * glm::vec4(ray.p, 1.0f);
-    glm::vec3 v_prime = normalize(inverse(transform) * glm::vec4(ray.v, 0.0f));
-	Ray pray (p_prime, v_prime);
+    auto prim_id = invalid_id;
+    Scalar u, v;
+	Ray3 r = Ray3 {
+        Vec3(ray.p.x, ray.p.y,ray.p.z),   // Ray origin
+        Vec3(ray.v.x, ray.v.y,ray.v.z),   // Ray direction
+        0.0f,    						  // Minimum intersection distance
+        100.0f   						  // Maximum intersection distance
+    };
 
-	if (box->collider(pray)) { // determine if intersects bounding shape
-        for (Triangle* tri : triangles) {
-            Hit* hit_prime = tri->collider(pray);
-			if (hit_prime) {
-				glm::vec3 x = transform * glm::vec4(hit_prime->pos, 1.0f);
-				glm::vec3 n = normalize(inverse(transpose(transform)) * glm::vec4(hit_prime->nor, 0.0f));
-				float t = length(x - ray.p);
-				if (dot(ray.v, x - ray.p) < 0) t *= -1;
-				if (t > 0) {
-					Hit* hit = new Hit(x, n, hit_prime->tex, t);
-					if (closestHit == nullptr || t < closestHit->t) {
-						closestHit = hit;
-					}
-				}
+    // Traverse the BVH and get the u, v coordinates of the closest intersection.
+    bvh::v2::SmallStack<BVH::Index, stack_size> stack;
+    bvh.intersect<false, use_robust_traversal>(r, this->bvh.get_root().index, stack,
+        [&] (size_t begin, size_t end) {
+            for (size_t i = begin; i < end; ++i) {
+                size_t j = should_permute ? i : this->bvh.prim_ids[i];
+                if (auto hit = precomputed_tris[j].intersect(r)) {
+                    prim_id = i;
+                    std::tie(u, v) = *hit;
+                }
             }
-        }
-		return closestHit;
-	}
-    return nullptr;
+            return prim_id != invalid_id;
+        });
+
+    if (prim_id != invalid_id) {
+		Triangle* tri = triangles[bvh.prim_ids[prim_id]];
+		return tri->collider(ray);
+		// // auto ptri = precomputed_tris[prim_id];
+		// Scalar w = 1.0f - u - v;
+		// glm::vec3 x = w * tri->vert0 + u * tri->vert1 + v * tri->vert2;
+		// glm::vec3 n = normalize(w * tri->nor0 + u * tri->nor1 + v * tri->nor2);
+        // return new Hit(x, n, glm::vec2(0), r.tmax);
+    } else {
+        return nullptr;
+    }
+
+    // Hit* closestHit = nullptr;
+
+	// glm::vec3 p_prime = inverse(transform) * glm::vec4(ray.p, 1.0f);
+    // glm::vec3 v_prime = normalize(inverse(transform) * glm::vec4(ray.v, 0.0f));
+	// Ray pray (p_prime, v_prime);
+
+	// if (box->collider(pray)) { // determine if intersects bounding shape
+    //     for (Triangle* tri : triangles) {
+    //         Hit* hit_prime = tri->collider(pray);
+	// 		if (hit_prime) {
+	// 			glm::vec3 x = transform * glm::vec4(hit_prime->pos, 1.0f);
+	// 			glm::vec3 n = normalize(inverse(transpose(transform)) * glm::vec4(hit_prime->nor, 0.0f));
+	// 			float t = length(x - ray.p);
+	// 			if (dot(ray.v, x - ray.p) < 0) t *= -1;
+	// 			if (t > 0) {
+	// 				Hit* hit = new Hit(x, n, hit_prime->tex, t);
+	// 				if (closestHit == nullptr || t < closestHit->t) {
+	// 					closestHit = hit;
+	// 				}
+	// 			}
+    //         }
+    //     }
+	// 	return closestHit;
+	// }
+    // return nullptr;
 }
 
 void Mesh::loadMesh(const string& meshName) {
@@ -88,6 +128,7 @@ void Mesh::loadMesh(const string& meshName) {
 		}
         bufToTriangles(posBuf, norBuf, texBuf);
 		computeBounds(posBuf);
+		initializeBVH();
 		this->box = new AABB(this->minBound, this->maxBound);
 	}
 }
@@ -122,4 +163,42 @@ void Mesh::computeBounds(vector<float>& posBuf) {
 	}
 	this->minBound = minBound;
 	this->maxBound = maxBound;
+}
+
+void Mesh::initializeBVH() {
+    bvh::v2::ThreadPool thread_pool;
+    bvh::v2::ParallelExecutor executor(thread_pool);
+
+    // Get triangle centers and bounding boxes (required for BVH builder)
+    std::vector<BBox> bboxes(triangles.size());
+    std::vector<Vec3> centers(triangles.size());
+    executor.for_each(0, triangles.size(), [&] (size_t begin, size_t end) {
+        for (size_t i = begin; i < end; ++i) {
+			Tri t = Tri(
+				Vec3(triangles[i]->vert0.x, triangles[i]->vert0.y, triangles[i]->vert0.z),
+				Vec3(triangles[i]->vert1.x, triangles[i]->vert1.y, triangles[i]->vert1.z),
+				Vec3(triangles[i]->vert2.x, triangles[i]->vert2.y, triangles[i]->vert2.z));
+            bboxes[i]  = t.get_bbox();
+            centers[i] = t.get_center();
+        }
+    });
+
+    typename bvh::v2::DefaultBuilder<Node>::Config config;
+    config.quality = bvh::v2::DefaultBuilder<Node>::Quality::High;
+    this->bvh = bvh::v2::DefaultBuilder<Node>::build(thread_pool, bboxes, centers, config);
+
+    // Permuting the primitive data allows to remove indirections during traversal, which makes it faster.
+    static constexpr bool should_permute = true;
+
+    // This precomputes some data to speed up traversal further.
+    this->precomputed_tris = std::vector<PrecomputedTri>(triangles.size());
+    executor.for_each(0, triangles.size(), [&] (size_t begin, size_t end) {
+        for (size_t i = begin; i < end; ++i) {
+            auto j = should_permute ? this->bvh.prim_ids[i] : i;
+            precomputed_tris[i] = Tri(
+				Vec3(triangles[j]->vert0.x, triangles[j]->vert0.y, triangles[j]->vert0.z),
+				Vec3(triangles[j]->vert1.x, triangles[j]->vert1.y, triangles[j]->vert1.z),
+				Vec3(triangles[j]->vert2.x, triangles[j]->vert2.y, triangles[j]->vert2.z));;
+        }
+    });
 }

@@ -607,8 +607,35 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/BlinnPhong.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Plane.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Mesh.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bvh.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/node.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/utils.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/platform.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/vec.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/numeric \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bbox.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/ray.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stream.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/array \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/stack \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/deque \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/default_builder.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/mini_tree_builder.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/sweep_sah_builder.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/top_down_sah_builder.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/split_heuristic.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/span \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/optional \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/binned_sah_builder.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/thread_pool.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/thread \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/condition_variable \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/queue \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/executor.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/reinsertion_optimizer.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stack.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/tri.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Triangle.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/AABB.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Sphere.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/random \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/numeric
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/random

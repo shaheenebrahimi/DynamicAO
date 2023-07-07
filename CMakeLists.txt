@@ -1,4 +1,8 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.10)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.21)
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    add_compile_options(-Wall -Wextra -pedantic -march=native)
+endif()
 
 # Name of the project
 PROJECT(DynamicAO)
@@ -18,6 +22,10 @@ ENDIF()
 
 # Set the executable.
 ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ${SOURCES} ${HEADERS} ${GLSL})
+
+# Add bvh subproject to main project
+ADD_SUBDIRECTORY(contrib/bvh)
+TARGET_LINK_LIBRARIES(DynamicAO bvh)
 
 # Get the GLM environment variable. Since GLM is a header-only library, we
 # just need to add it to the include directory.
@@ -103,8 +111,8 @@ ELSE()
 	TARGET_LINK_LIBRARIES(${CMAKE_PROJECT_NAME} ${GLEW_DIR}/lib/libGLEW.a)
 ENDIF()
 
-# Use c++17
-SET_TARGET_PROPERTIES(${CMAKE_PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
+# Use c++20
+SET_TARGET_PROPERTIES(${CMAKE_PROJECT_NAME} PROPERTIES CXX_STANDARD 20)
 SET_TARGET_PROPERTIES(${CMAKE_PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 # OS specific options and libraries

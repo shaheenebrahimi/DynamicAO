@@ -65,7 +65,7 @@ void genOclusionTexture(int samples, float radius, Mesh* target, int textureReso
 	// optimization: iterate through bounding box of each triangle in mesh
 
 	for (int ty = 0; ty < textureResolution; ++ty) { // texels 0 0 bottom left
-		cout << ty << endl;
+		// cout << ty << endl;
 		for (int tx = 0; tx < textureResolution; ++tx) {
 			glm::vec2 texel (tx, ty);
 			glm::vec2 texCoord = texel / (float) textureResolution;
@@ -106,6 +106,7 @@ void raytrace() {
     scn.setCamResolution(resolution);
 	for (int r = 0; r < resolution; r++) { // iterate through pixels
 		for (int c = 0; c < resolution; c++) {
+			// cout << r << " " << c << endl;
 			Ray ray = scn.cam.getRay(r, c);
 			glm::vec3 fragColor = 255.0f * scn.computeColor(ray);
 
