@@ -213,54 +213,6 @@ glfw/fast:
 	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/build
 .PHONY : glfw/fast
 
-src/AABB.o: src/AABB.cpp.o
-.PHONY : src/AABB.o
-
-# target to build an object file
-src/AABB.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/AABB.cpp.o
-.PHONY : src/AABB.cpp.o
-
-src/AABB.i: src/AABB.cpp.i
-.PHONY : src/AABB.i
-
-# target to preprocess a source file
-src/AABB.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/AABB.cpp.i
-.PHONY : src/AABB.cpp.i
-
-src/AABB.s: src/AABB.cpp.s
-.PHONY : src/AABB.s
-
-# target to generate assembly for a file
-src/AABB.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/AABB.cpp.s
-.PHONY : src/AABB.cpp.s
-
-src/BlinnPhong.o: src/BlinnPhong.cpp.o
-.PHONY : src/BlinnPhong.o
-
-# target to build an object file
-src/BlinnPhong.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/BlinnPhong.cpp.o
-.PHONY : src/BlinnPhong.cpp.o
-
-src/BlinnPhong.i: src/BlinnPhong.cpp.i
-.PHONY : src/BlinnPhong.i
-
-# target to preprocess a source file
-src/BlinnPhong.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/BlinnPhong.cpp.i
-.PHONY : src/BlinnPhong.cpp.i
-
-src/BlinnPhong.s: src/BlinnPhong.cpp.s
-.PHONY : src/BlinnPhong.s
-
-# target to generate assembly for a file
-src/BlinnPhong.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/BlinnPhong.cpp.s
-.PHONY : src/BlinnPhong.cpp.s
-
 src/Camera.o: src/Camera.cpp.o
 .PHONY : src/Camera.o
 
@@ -285,29 +237,29 @@ src/Camera.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Camera.cpp.s
 .PHONY : src/Camera.cpp.s
 
-src/Ellipsoid.o: src/Ellipsoid.cpp.o
-.PHONY : src/Ellipsoid.o
+src/Hit.o: src/Hit.cpp.o
+.PHONY : src/Hit.o
 
 # target to build an object file
-src/Ellipsoid.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Ellipsoid.cpp.o
-.PHONY : src/Ellipsoid.cpp.o
+src/Hit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Hit.cpp.o
+.PHONY : src/Hit.cpp.o
 
-src/Ellipsoid.i: src/Ellipsoid.cpp.i
-.PHONY : src/Ellipsoid.i
+src/Hit.i: src/Hit.cpp.i
+.PHONY : src/Hit.i
 
 # target to preprocess a source file
-src/Ellipsoid.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Ellipsoid.cpp.i
-.PHONY : src/Ellipsoid.cpp.i
+src/Hit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Hit.cpp.i
+.PHONY : src/Hit.cpp.i
 
-src/Ellipsoid.s: src/Ellipsoid.cpp.s
-.PHONY : src/Ellipsoid.s
+src/Hit.s: src/Hit.cpp.s
+.PHONY : src/Hit.s
 
 # target to generate assembly for a file
-src/Ellipsoid.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Ellipsoid.cpp.s
-.PHONY : src/Ellipsoid.cpp.s
+src/Hit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Hit.cpp.s
+.PHONY : src/Hit.cpp.s
 
 src/Image.o: src/Image.cpp.o
 .PHONY : src/Image.o
@@ -357,6 +309,30 @@ src/Light.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Light.cpp.s
 .PHONY : src/Light.cpp.s
 
+src/Material.o: src/Material.cpp.o
+.PHONY : src/Material.o
+
+# target to build an object file
+src/Material.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Material.cpp.o
+.PHONY : src/Material.cpp.o
+
+src/Material.i: src/Material.cpp.i
+.PHONY : src/Material.i
+
+# target to preprocess a source file
+src/Material.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Material.cpp.i
+.PHONY : src/Material.cpp.i
+
+src/Material.s: src/Material.cpp.s
+.PHONY : src/Material.s
+
+# target to generate assembly for a file
+src/Material.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Material.cpp.s
+.PHONY : src/Material.cpp.s
+
 src/Mesh.o: src/Mesh.cpp.o
 .PHONY : src/Mesh.o
 
@@ -381,53 +357,77 @@ src/Mesh.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Mesh.cpp.s
 .PHONY : src/Mesh.cpp.s
 
-src/Plane.o: src/Plane.cpp.o
-.PHONY : src/Plane.o
+src/Object.o: src/Object.cpp.o
+.PHONY : src/Object.o
 
 # target to build an object file
-src/Plane.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Plane.cpp.o
-.PHONY : src/Plane.cpp.o
+src/Object.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Object.cpp.o
+.PHONY : src/Object.cpp.o
 
-src/Plane.i: src/Plane.cpp.i
-.PHONY : src/Plane.i
+src/Object.i: src/Object.cpp.i
+.PHONY : src/Object.i
 
 # target to preprocess a source file
-src/Plane.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Plane.cpp.i
-.PHONY : src/Plane.cpp.i
+src/Object.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Object.cpp.i
+.PHONY : src/Object.cpp.i
 
-src/Plane.s: src/Plane.cpp.s
-.PHONY : src/Plane.s
+src/Object.s: src/Object.cpp.s
+.PHONY : src/Object.s
 
 # target to generate assembly for a file
-src/Plane.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Plane.cpp.s
-.PHONY : src/Plane.cpp.s
+src/Object.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Object.cpp.s
+.PHONY : src/Object.cpp.s
 
-src/Reflective.o: src/Reflective.cpp.o
-.PHONY : src/Reflective.o
+src/Occluder.o: src/Occluder.cpp.o
+.PHONY : src/Occluder.o
 
 # target to build an object file
-src/Reflective.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Reflective.cpp.o
-.PHONY : src/Reflective.cpp.o
+src/Occluder.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Occluder.cpp.o
+.PHONY : src/Occluder.cpp.o
 
-src/Reflective.i: src/Reflective.cpp.i
-.PHONY : src/Reflective.i
+src/Occluder.i: src/Occluder.cpp.i
+.PHONY : src/Occluder.i
 
 # target to preprocess a source file
-src/Reflective.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Reflective.cpp.i
-.PHONY : src/Reflective.cpp.i
+src/Occluder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Occluder.cpp.i
+.PHONY : src/Occluder.cpp.i
 
-src/Reflective.s: src/Reflective.cpp.s
-.PHONY : src/Reflective.s
+src/Occluder.s: src/Occluder.cpp.s
+.PHONY : src/Occluder.s
 
 # target to generate assembly for a file
-src/Reflective.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Reflective.cpp.s
-.PHONY : src/Reflective.cpp.s
+src/Occluder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Occluder.cpp.s
+.PHONY : src/Occluder.cpp.s
+
+src/Raytracer.o: src/Raytracer.cpp.o
+.PHONY : src/Raytracer.o
+
+# target to build an object file
+src/Raytracer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.o
+.PHONY : src/Raytracer.cpp.o
+
+src/Raytracer.i: src/Raytracer.cpp.i
+.PHONY : src/Raytracer.i
+
+# target to preprocess a source file
+src/Raytracer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.i
+.PHONY : src/Raytracer.cpp.i
+
+src/Raytracer.s: src/Raytracer.cpp.s
+.PHONY : src/Raytracer.s
+
+# target to generate assembly for a file
+src/Raytracer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.s
+.PHONY : src/Raytracer.cpp.s
 
 src/Scene.o: src/Scene.cpp.o
 .PHONY : src/Scene.o
@@ -452,30 +452,6 @@ src/Scene.s: src/Scene.cpp.s
 src/Scene.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Scene.cpp.s
 .PHONY : src/Scene.cpp.s
-
-src/Sphere.o: src/Sphere.cpp.o
-.PHONY : src/Sphere.o
-
-# target to build an object file
-src/Sphere.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Sphere.cpp.o
-.PHONY : src/Sphere.cpp.o
-
-src/Sphere.i: src/Sphere.cpp.i
-.PHONY : src/Sphere.i
-
-# target to preprocess a source file
-src/Sphere.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Sphere.cpp.i
-.PHONY : src/Sphere.cpp.i
-
-src/Sphere.s: src/Sphere.cpp.s
-.PHONY : src/Sphere.s
-
-# target to generate assembly for a file
-src/Sphere.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Sphere.cpp.s
-.PHONY : src/Sphere.cpp.s
 
 src/Triangle.o: src/Triangle.cpp.o
 .PHONY : src/Triangle.o
@@ -541,39 +517,36 @@ help:
 	@echo "... update_mappings"
 	@echo "... DynamicAO"
 	@echo "... glfw"
-	@echo "... src/AABB.o"
-	@echo "... src/AABB.i"
-	@echo "... src/AABB.s"
-	@echo "... src/BlinnPhong.o"
-	@echo "... src/BlinnPhong.i"
-	@echo "... src/BlinnPhong.s"
 	@echo "... src/Camera.o"
 	@echo "... src/Camera.i"
 	@echo "... src/Camera.s"
-	@echo "... src/Ellipsoid.o"
-	@echo "... src/Ellipsoid.i"
-	@echo "... src/Ellipsoid.s"
+	@echo "... src/Hit.o"
+	@echo "... src/Hit.i"
+	@echo "... src/Hit.s"
 	@echo "... src/Image.o"
 	@echo "... src/Image.i"
 	@echo "... src/Image.s"
 	@echo "... src/Light.o"
 	@echo "... src/Light.i"
 	@echo "... src/Light.s"
+	@echo "... src/Material.o"
+	@echo "... src/Material.i"
+	@echo "... src/Material.s"
 	@echo "... src/Mesh.o"
 	@echo "... src/Mesh.i"
 	@echo "... src/Mesh.s"
-	@echo "... src/Plane.o"
-	@echo "... src/Plane.i"
-	@echo "... src/Plane.s"
-	@echo "... src/Reflective.o"
-	@echo "... src/Reflective.i"
-	@echo "... src/Reflective.s"
+	@echo "... src/Object.o"
+	@echo "... src/Object.i"
+	@echo "... src/Object.s"
+	@echo "... src/Occluder.o"
+	@echo "... src/Occluder.i"
+	@echo "... src/Occluder.s"
+	@echo "... src/Raytracer.o"
+	@echo "... src/Raytracer.i"
+	@echo "... src/Raytracer.s"
 	@echo "... src/Scene.o"
 	@echo "... src/Scene.i"
 	@echo "... src/Scene.s"
-	@echo "... src/Sphere.o"
-	@echo "... src/Sphere.i"
-	@echo "... src/Sphere.s"
 	@echo "... src/Triangle.o"
 	@echo "... src/Triangle.i"
 	@echo "... src/Triangle.s"

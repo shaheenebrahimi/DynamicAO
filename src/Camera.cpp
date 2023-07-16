@@ -21,7 +21,6 @@ Camera::Camera(glm::vec3 position, glm::vec3 lookat, glm::vec3 up, float fov) {
 	this->up = normalize(up);
 	this->fov = fov;
 	this->focalDist = 1.0f;
-	this->resolution = resolution;
 	this->init();
 }
 

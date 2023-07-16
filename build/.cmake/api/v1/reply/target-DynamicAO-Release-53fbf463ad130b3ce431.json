@@ -144,8 +144,7 @@
 				8,
 				9,
 				10,
-				11,
-				12
+				11
 			]
 		}
 	],
@@ -226,14 +225,14 @@
 				8,
 				9,
 				10,
-				11,
-				12
+				11
 			]
 		},
 		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
+				12,
 				13,
 				14,
 				15,
@@ -248,40 +247,24 @@
 				24,
 				25,
 				26,
-				27,
-				28,
-				29,
-				30,
-				31
+				27
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
+				28,
+				29,
+				30,
+				31,
 				32,
-				33,
-				34,
-				35,
-				36,
-				37
+				33
 			]
 		}
 	],
 	"sources" : 
 	[
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/AABB.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/BlinnPhong.cpp",
-			"sourceGroupIndex" : 0
-		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
@@ -291,7 +274,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/Ellipsoid.cpp",
+			"path" : "src/Hit.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -309,31 +292,37 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "src/Material.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "src/Mesh.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/Plane.cpp",
+			"path" : "src/Object.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/Reflective.cpp",
+			"path" : "src/Occluder.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Raytracer.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/Scene.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/Sphere.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -350,27 +339,12 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/AABB.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/BlinnPhong.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
 			"path" : "src/Camera.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"path" : "src/Collision.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/Ellipsoid.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -400,7 +374,12 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/Plane.h",
+			"path" : "src/Object.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Occluder.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -410,7 +389,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/Reflective.h",
+			"path" : "src/Raytracer.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -421,11 +400,6 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/Shape.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/Sphere.h",
 			"sourceGroupIndex" : 1
 		},
 		{

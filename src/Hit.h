@@ -3,17 +3,25 @@
 #define HIT_H
 
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
+#include "Triangle.h"
 
 class Hit {
 public:
-    glm::vec3 pos; // position
-    glm::vec3 nor; // normal
-    glm::vec2 tex; // normal
-    float t;
+    float t; // distance along ray
+    float w; // bary
+    float u;
+    float v;
+    Triangle* intersected; // change to primitive later -> sphere triangle
 
-    Hit(glm::vec3 pos, glm::vec3 nor, glm::vec2 tex, float t) {
-        this->pos = pos; this->nor = nor; this->tex = tex; this->t = t;
-    }
+    Hit();
+    Hit(float t, Triangle* intersected);
+    Hit(float t, float w, float u, float v, Triangle* intersected);
+
+    glm::vec3 computePos();
+    glm::vec3 computeNor();
+    glm::vec2 computeTex();
 };
 
 #endif

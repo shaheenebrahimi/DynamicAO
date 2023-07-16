@@ -1,23 +1,13 @@
 [
 {
   "directory": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",
-  "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/AABB.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/AABB.cpp",
-  "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/AABB.cpp"
-},
-{
-  "directory": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",
-  "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/BlinnPhong.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/BlinnPhong.cpp",
-  "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/BlinnPhong.cpp"
-},
-{
-  "directory": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",
   "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/Camera.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Camera.cpp",
   "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Camera.cpp"
 },
 {
   "directory": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",
-  "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/Ellipsoid.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Ellipsoid.cpp",
-  "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Ellipsoid.cpp"
+  "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/Hit.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Hit.cpp",
+  "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Hit.cpp"
 },
 {
   "directory": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",
@@ -31,28 +21,33 @@
 },
 {
   "directory": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",
+  "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/Material.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Material.cpp",
+  "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Material.cpp"
+},
+{
+  "directory": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",
   "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/Mesh.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Mesh.cpp",
   "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Mesh.cpp"
 },
 {
   "directory": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",
-  "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/Plane.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Plane.cpp",
-  "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Plane.cpp"
+  "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/Object.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Object.cpp",
+  "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Object.cpp"
 },
 {
   "directory": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",
-  "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/Reflective.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Reflective.cpp",
-  "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Reflective.cpp"
+  "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/Occluder.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Occluder.cpp",
+  "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Occluder.cpp"
+},
+{
+  "directory": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",
+  "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Raytracer.cpp",
+  "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Raytracer.cpp"
 },
 {
   "directory": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",
   "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/Scene.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Scene.cpp",
   "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Scene.cpp"
-},
-{
-  "directory": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",
-  "command": "/usr/bin/clang++  -I/Users/shaheen/CppLib/glm-master -I/Users/shaheen/CppLib/glfw-3.3.8/include -I/Users/shaheen/CppLib/glew-2.1.0/include -I/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../..  -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -std=gnu++20 -o CMakeFiles/DynamicAO.dir/src/Sphere.cpp.o -c /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Sphere.cpp",
-  "file": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Sphere.cpp"
 },
 {
   "directory": "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",

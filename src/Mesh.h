@@ -2,9 +2,23 @@
 #ifndef MESH_H
 #define MESH_H
 
+#define GLM_FORCE_RADIANS
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+#include "Triangle.h"
+#include "Shape.h"
+#include "Hit.h"
+#include "Ray.h"
+// #include "Hit.h"
+#include "Material.h"
+
 #include <bvh/v2/bvh.h>
 #include <bvh/v2/vec.h>
-// #include <bvh/v2/ray.h>
 #include <bvh/v2/node.h>
 #include <bvh/v2/default_builder.h>
 #include <bvh/v2/thread_pool.h>
@@ -12,41 +26,41 @@
 #include <bvh/v2/stack.h>
 #include <bvh/v2/tri.h>
 
-#include <iostream>
-
 using Scalar  = float;
-using Vec3    = bvh::v2::Vec<Scalar, 3>;
-using BBox    = bvh::v2::BBox<Scalar, 3>;
-using Tri     = bvh::v2::Tri<Scalar, 3>;
-using Node    = bvh::v2::Node<Scalar, 3>;
-using BVH     = bvh::v2::Bvh<Node>;
-using Ray3    = bvh::v2::Ray<Scalar, 3>;
+using Vec3D   = bvh::v2::Vec<Scalar, 3>;
+using BBox2D  = bvh::v2::BBox<Scalar, 2>;
+using BBox3D  = bvh::v2::BBox<Scalar, 3>;
+using Tri3D   = bvh::v2::Tri<Scalar, 3>;
+using Node3D  = bvh::v2::Node<Scalar, 3>;
+using Bvh3D   = bvh::v2::Bvh<Node3D>;
+using Ray3D   = bvh::v2::Ray<Scalar, 3>;
 using PrecomputedTri = bvh::v2::PrecomputedTri<Scalar>;
 
-#include <string>
-#include "Triangle.h"
-#include "AABB.h"
+#define NO_ROTATION glm::vec4(0.0f, 1.0f, 0.0f, 0.0f);
 
-
-class Mesh : public Shape {
+class Mesh {
 public:
-    BVH bvh;
-    AABB* box;
-    std::vector<Triangle*> triangles;
-    
-    Mesh(const std::string& objPath, glm::vec3 position, glm::vec4 rotation, glm::vec3 scale, Material* mat);
-    void loadMesh(const std::string& meshName);
-    void bufToTriangles(std::vector<float>& posBuf, std::vector<float>& norBuf, std::vector<float>& texBuf);
-    void computeBounds(std::vector<float>& posBuf);
-    void initializeBVH();
-    glm::vec3 getMinBound() { return minBound; }
-    glm::vec3 getMaxBound() { return maxBound; }
-    Hit* collider(Ray& ray);
+    glm::mat4 transform;
 
+    Mesh(const std::string& objPath);
+    Mesh(const std::string& objPath, Material mat);
+    ~Mesh();
+    void loadMesh(const std::string& meshName);
+    void constructBVH();
+    void setTransform(glm::mat4 transform) { this->transform = transform; }
+    Hit collider(Ray& ray);
 private:
-    glm::vec3 minBound;
-    glm::vec3 maxBound;
-    std::vector<PrecomputedTri> precomputed_tris;
+    static constexpr bool should_permute = true;
+    static constexpr bool use_robust_traversal = false;
+    static constexpr size_t stack_size = 64;
+    static constexpr size_t invalid_id = std::numeric_limits<size_t>::max();
+
+    Bvh3D accel;
+    std::vector<Triangle> triangles;
+    std::vector<Triangle> transformed;
+    std::vector<PrecomputedTri> precomputed;
+
+    void bufToTriangles(std::vector<float>& posBuf, std::vector<float>& norBuf, std::vector<float>& texBuf);
 };
 
 #endif

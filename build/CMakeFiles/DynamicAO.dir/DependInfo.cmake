@@ -8,17 +8,16 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/AABB.cpp" "CMakeFiles/DynamicAO.dir/src/AABB.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/AABB.cpp.o.d"
-  "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/BlinnPhong.cpp" "CMakeFiles/DynamicAO.dir/src/BlinnPhong.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/BlinnPhong.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Camera.cpp" "CMakeFiles/DynamicAO.dir/src/Camera.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Camera.cpp.o.d"
-  "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Ellipsoid.cpp" "CMakeFiles/DynamicAO.dir/src/Ellipsoid.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Ellipsoid.cpp.o.d"
+  "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Hit.cpp" "CMakeFiles/DynamicAO.dir/src/Hit.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Hit.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Image.cpp" "CMakeFiles/DynamicAO.dir/src/Image.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Image.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Light.cpp" "CMakeFiles/DynamicAO.dir/src/Light.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Light.cpp.o.d"
+  "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Material.cpp" "CMakeFiles/DynamicAO.dir/src/Material.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Material.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Mesh.cpp" "CMakeFiles/DynamicAO.dir/src/Mesh.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Mesh.cpp.o.d"
-  "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Plane.cpp" "CMakeFiles/DynamicAO.dir/src/Plane.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Plane.cpp.o.d"
-  "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Reflective.cpp" "CMakeFiles/DynamicAO.dir/src/Reflective.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Reflective.cpp.o.d"
+  "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Object.cpp" "CMakeFiles/DynamicAO.dir/src/Object.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Object.cpp.o.d"
+  "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Occluder.cpp" "CMakeFiles/DynamicAO.dir/src/Occluder.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Occluder.cpp.o.d"
+  "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Raytracer.cpp" "CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Scene.cpp" "CMakeFiles/DynamicAO.dir/src/Scene.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Scene.cpp.o.d"
-  "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Sphere.cpp" "CMakeFiles/DynamicAO.dir/src/Sphere.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Sphere.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Triangle.cpp" "CMakeFiles/DynamicAO.dir/src/Triangle.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Triangle.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/main.cpp" "CMakeFiles/DynamicAO.dir/src/main.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/main.cpp.o.d"
   )

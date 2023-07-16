@@ -1,9 +1,11 @@
 #include "Triangle.h"
 
+/* PUBLIC */
+
 Triangle::Triangle() {
-    this->vert0 = glm::vec3(0);
-    this->vert1 = glm::vec3(0);
-    this->vert2 = glm::vec3(0);
+    this->pos0 = glm::vec3(0);
+    this->pos1 = glm::vec3(0);
+    this->pos2 = glm::vec3(0);
     this->nor0 = glm::vec3(0);
     this->nor1 = glm::vec3(0);
     this->nor2 = glm::vec3(0);
@@ -14,10 +16,10 @@ Triangle::Triangle() {
     this->area = 0.0f;
 }
 
-Triangle::Triangle(glm::vec3 vert0, glm::vec3 vert1, glm::vec3 vert2, glm::vec3 nor0, glm::vec3 nor1, glm::vec3 nor2, glm::vec2 tex0, glm::vec2 tex1, glm::vec2 tex2, Material* mat) {
-    this->vert0 = vert0;
-    this->vert1 = vert1;
-    this->vert2 = vert2;
+Triangle::Triangle(glm::vec3 pos0, glm::vec3 pos1, glm::vec3 pos2, glm::vec3 nor0, glm::vec3 nor1, glm::vec3 nor2, glm::vec2 tex0, glm::vec2 tex1, glm::vec2 tex2, Material* mat) {
+    this->pos0 = pos0;
+    this->pos1 = pos1;
+    this->pos2 = pos2;
     this->nor0 = nor0;
     this->nor1 = nor1;
     this->nor2 = nor2;
@@ -26,7 +28,6 @@ Triangle::Triangle(glm::vec3 vert0, glm::vec3 vert1, glm::vec3 vert2, glm::vec3 
     this->tex2 = tex2;
     this->mat = mat;
     this->area = computeArea(this->tex0, this->tex1, this->tex2);
-    this->box = BoundingBox(this->tex0, this->tex1, this->tex2);
 }
 
 glm::vec3 Triangle::computeBarycentric(glm::vec2 pos) {
@@ -38,11 +39,12 @@ glm::vec3 Triangle::computeBarycentric(glm::vec2 pos) {
     return glm::vec3(a, b, c);
 }
 
-Hit* Triangle::collider(Ray& ray) {
+
+Hit Triangle::collider(Ray& ray) {
     float epsilon = 0.0001f;
 
-    glm::vec3 edge1 = vert1 - vert0;
-    glm::vec3 edge2 = vert2 - vert0;
+    glm::vec3 edge1 = pos1 - pos0;
+    glm::vec3 edge2 = pos2 - pos0;
 
     glm::vec3 p_vec = glm::cross(ray.v, edge2);
 
@@ -52,7 +54,7 @@ Hit* Triangle::collider(Ray& ray) {
     float inv_det = 1.0f / det;
 
     // calculate U parameter and test bounds
-    glm::vec3 t_vec = ray.p - vert0;
+    glm::vec3 t_vec = ray.p - pos0;
     float u = dot(t_vec, p_vec) * inv_det;
     if (u < 0.0f || u > 1.0f) // barycentric
         return nullptr;
@@ -73,13 +75,43 @@ Hit* Triangle::collider(Ray& ray) {
         return nullptr;
 
     // compute barycentric
-    glm::vec3 pos = w * vert0 + u * vert1 + v * vert2;
-    glm::vec3 nor = normalize(w * nor0 + u * nor1 + v * nor2);
-    glm::vec2 tex = w * tex0 + u * tex1 + v * tex2;
+    // glm::vec3 pos = w * pos0 + u * pos1 + v * pos2;
+    // glm::vec3 nor = normalize(w * nor0 + u * nor1 + v * nor2);
+    // glm::vec2 tex = w * tex0 + u * tex1 + v * tex2;
 
-    return new Hit(pos, nor, tex, t);
+    return Hit(t, w, u, v, this);
 }
 
-float Triangle::computeArea(glm::vec2 v0, glm::vec2 v1, glm::vec2 v2) {
-    return 0.5*((v1.x-v0.x)*(v2.y-v0.y)-(v2.x-v0.x)*(v1.y-v0.y));
+Triangle Triangle::applyTransformation(glm::mat4 matrix) {
+    return Triangle (
+        glm::vec3(matrix * glm::vec4(pos0, 1.0f)),
+        glm::vec3(matrix * glm::vec4(pos1, 1.0f)),
+        glm::vec3(matrix * glm::vec4(pos2, 1.0f)),
+        glm::vec3(inverse(transpose(matrix)) * glm::vec4(nor0, 0.0f)),
+        glm::vec3(inverse(transpose(matrix)) * glm::vec4(nor1, 0.0f)),
+        glm::vec3(inverse(transpose(matrix)) * glm::vec4(nor2, 0.0f)),
+        tex0, tex1, tex2, mat
+    );
+}
+
+Tri3D Triangle::convertPosToTri() {
+    return Tri3D(
+		Vec3D(pos0.x, pos0.y, pos0.z),
+		Vec3D(pos1.x, pos1.y, pos1.z),
+		Vec3D(pos2.x, pos2.y, pos2.z)
+	);
+}
+
+Tri3D Triangle::convertTexToTri() {
+    return Tri3D(
+		Vec3D(tex0.x, tex0.y, 0),
+		Vec3D(tex1.x, tex1.y, 0),
+		Vec3D(tex2.x, tex2.y, 0)
+	);
+}
+
+/* PRIVATE */
+
+float Triangle::computeArea(glm::vec2 p0, glm::vec2 p1, glm::vec2 p2) {
+    return 0.5*((p1.x-p0.x)*(p2.y-p0.y)-(p2.x-p0.x)*(p1.y-p0.y));
 }

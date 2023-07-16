@@ -510,32 +510,6 @@ CMakeFiles/DynamicAO.dir/src/BlinnPhong.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__algorithm/unique_copy.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__algorithm/unique.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__split_buffer \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Collision.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Hit.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Shape.h \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/matrix_transform.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/../mat4x4.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/../vec2.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/../vec3.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/../vec4.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/matrix_projection.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/./ext/../gtc/constants.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/scalar_constants.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/./ext/scalar_constants.inl \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/constants.inl \
-  /Users/shaheen/CppLib/glm-master/glm/./ext/../geometric.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/./ext/../trigonometric.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/./ext/../matrix.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/./ext/matrix_projection.inl \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/matrix_clip_space.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/./ext/../ext/scalar_constants.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/./ext/matrix_clip_space.inl \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/matrix_transform.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/./ext/matrix_transform.inl \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/matrix_transform.inl \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/../geometric.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/../trigonometric.hpp \
-  /Users/shaheen/CppLib/glm-master/glm/gtc/../matrix.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/ios \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__locale \

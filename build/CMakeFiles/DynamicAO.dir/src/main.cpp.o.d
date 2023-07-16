@@ -602,11 +602,6 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/sys/_types/_fsfilcnt_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Collision.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Ellipsoid.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/BlinnPhong.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Plane.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Mesh.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bvh.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/node.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/utils.h \
@@ -635,7 +630,10 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/reinsertion_optimizer.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stack.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/tri.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Collision.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/BlinnPhong.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Mesh.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Triangle.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/AABB.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Sphere.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Raytracer.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Occluder.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/random

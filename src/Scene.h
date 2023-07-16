@@ -7,39 +7,31 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-#include "Shape.h"
+#include "Object.h"
 #include "Light.h"
 #include "Ray.h"
-#include "Collision.h"
+#include "Hit.h"
 #include "Camera.h"
 
 
 class Scene {
 public:
     Camera cam;
-    glm::vec3 background;
-    std::vector<Shape*> shapes;
-    std::vector<Light*> lights;
+    glm::vec3 bkgColor;
+    std::vector<Object> shapes;
+    std::vector<Light> lights;
+    int maxBounces = 4;
 
-    Scene();
+    Scene() { this->bkgColor = glm::vec3(0.0f, 0.0f, 0.0f); }
+    ~Scene() { shapes.clear(); lights.clear(); }
     // void loadScene(string filename);
 
-    void setBackground(glm::vec3 background) { this->background = background; }
-    void setCamResolution(int resolution) { this->cam.resolution = resolution; }
+    void setBkgColor(glm::vec3 bkgColor) { this->bkgColor = bkgColor; }
+    void setMaxBounces(int bounces) { this->maxBounces = bounces; }
 
-    void addShape(Shape* obj) { shapes.push_back(obj); }
-    void addLight(Light* l) { lights.push_back(l); }
-    std::vector<Shape*> getShapes() { return shapes; }
-    std::vector<Light*> getLights() { return lights; }
-
-    Collision* shootRay(Ray& ray);
-    glm::vec3 computeColor(Ray& ray, int depth = 0);
-    float computeRayAmbientOcclusion(Ray& ray, std::vector<glm::vec3>& kernel, std::vector<glm::vec3>& noise, float radius);
-    float computePointAmbientOcclusion(glm::vec3 pos, glm::vec3 nor, std::vector<glm::vec3>& kernel, std::vector<glm::vec3>& noise, float radius);
-
-private:
-    const std::string RESOURCE_DIR = "../resources/";
-    const int MAX_BOUNCES = 4;
+    void addShape(Object obj) { shapes.push_back(obj); }
+    void addLight(Light l) { lights.push_back(l); }
+    
 };
 
 #endif
