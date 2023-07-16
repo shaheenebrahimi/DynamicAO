@@ -1,0 +1,56 @@
+#pragma once
+#ifndef OCCLUDER_H
+#define OCCLUDER_H
+
+#define GLM_FORCE_RADIANS
+#define DEG_TO_RAD M_PI / 180.0f
+
+#include <glm/glm.hpp>
+#include <memory>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <random>
+
+#include "Object.h"
+#include "Light.h"
+// #include "Hit.h"
+#include "Ray.h"
+#include "Camera.h"
+#include "Scene.h"
+#include "Image.h"
+#include "Mesh.h"
+
+class Occluder {
+public:
+    Occluder();
+    Occluder(std::string& filename, int resolution);
+    ~Occluder();
+    void setFilename(std::string& filename) { this->filename = filename; }
+    void setResolution(int resolution) { this->resolution = resolution; init(); }
+    void setScene(Scene& scn) { this->scn = scn; init(); }
+    void setSamples(int samples) { this->samples = samples; init(); }
+    void setRadius(float radius) { this->radius = radius; init(); }
+    void init();
+    void render();
+    void renderTexture(Mesh* target);
+
+private:
+    Scene scn;
+    int resolution;
+    std::string filename;
+    std::shared_ptr<Image> img;
+
+    int samples;
+    float radius;
+    std::vector<glm::vec3> kernel; // ao kernel
+	std::vector<glm::vec3> noise; // ao noise
+
+    Hit* shootRay(Ray& ray);
+    void genOcclusionHemisphere();
+    float computeRayOcclusion(Ray& ray);
+    float computePointOcclusion(glm::vec3 pos, glm::vec3 nor);
+};
+
+
+#endif

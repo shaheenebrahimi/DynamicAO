@@ -381,6 +381,30 @@ src/Mesh.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Mesh.cpp.s
 .PHONY : src/Mesh.cpp.s
 
+src/Occluder.o: src/Occluder.cpp.o
+.PHONY : src/Occluder.o
+
+# target to build an object file
+src/Occluder.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Occluder.cpp.o
+.PHONY : src/Occluder.cpp.o
+
+src/Occluder.i: src/Occluder.cpp.i
+.PHONY : src/Occluder.i
+
+# target to preprocess a source file
+src/Occluder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Occluder.cpp.i
+.PHONY : src/Occluder.cpp.i
+
+src/Occluder.s: src/Occluder.cpp.s
+.PHONY : src/Occluder.s
+
+# target to generate assembly for a file
+src/Occluder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Occluder.cpp.s
+.PHONY : src/Occluder.cpp.s
+
 src/Plane.o: src/Plane.cpp.o
 .PHONY : src/Plane.o
 
@@ -404,6 +428,30 @@ src/Plane.s: src/Plane.cpp.s
 src/Plane.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Plane.cpp.s
 .PHONY : src/Plane.cpp.s
+
+src/Raytracer.o: src/Raytracer.cpp.o
+.PHONY : src/Raytracer.o
+
+# target to build an object file
+src/Raytracer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.o
+.PHONY : src/Raytracer.cpp.o
+
+src/Raytracer.i: src/Raytracer.cpp.i
+.PHONY : src/Raytracer.i
+
+# target to preprocess a source file
+src/Raytracer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.i
+.PHONY : src/Raytracer.cpp.i
+
+src/Raytracer.s: src/Raytracer.cpp.s
+.PHONY : src/Raytracer.s
+
+# target to generate assembly for a file
+src/Raytracer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.s
+.PHONY : src/Raytracer.cpp.s
 
 src/Reflective.o: src/Reflective.cpp.o
 .PHONY : src/Reflective.o
@@ -562,9 +610,15 @@ help:
 	@echo "... src/Mesh.o"
 	@echo "... src/Mesh.i"
 	@echo "... src/Mesh.s"
+	@echo "... src/Occluder.o"
+	@echo "... src/Occluder.i"
+	@echo "... src/Occluder.s"
 	@echo "... src/Plane.o"
 	@echo "... src/Plane.i"
 	@echo "... src/Plane.s"
+	@echo "... src/Raytracer.o"
+	@echo "... src/Raytracer.i"
+	@echo "... src/Raytracer.s"
 	@echo "... src/Reflective.o"
 	@echo "... src/Reflective.i"
 	@echo "... src/Reflective.s"
