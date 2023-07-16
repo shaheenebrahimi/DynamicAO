@@ -8,7 +8,7 @@ class Hit {
 public:
     glm::vec3 pos; // position
     glm::vec3 nor; // normal
-    glm::vec2 tex; // normal
+    glm::vec2 tex; // tex
     float t;
 
     Hit(glm::vec3 pos, glm::vec3 nor, glm::vec2 tex, float t) {

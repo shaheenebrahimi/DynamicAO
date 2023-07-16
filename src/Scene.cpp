@@ -9,7 +9,7 @@
 #include <iostream>
 #include <random>
 
-Scene::Scene() { this->background = glm::vec3(0.0f, 0.0f, 0.0f); }
+Scene::Scene() { this->bkgColor = glm::vec3(0.0f, 0.0f, 0.0f); }
 
 
 Collision* Scene::shootRay(Ray& ray) {
@@ -82,15 +82,15 @@ glm::vec3 Scene::computeColor(Ray& ray, int depth) {
         }
         else if (col->obj->mat->type == Material::REFLECTIVE) {
             if (depth == Scene::MAX_BOUNCES) {
-                return background;
+                return bkgColor;
             }
             glm::vec3 reflection = glm::reflect(ray.v, fragNor);
             Ray rray (fragPos, reflection);
             return computeColor(rray, depth+1);
         }
-        return background;
+        return bkgColor;
     }
     else {
-        return background;
+        return bkgColor;
     }
 }

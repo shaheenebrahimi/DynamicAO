@@ -17,14 +17,14 @@
 class Scene {
 public:
     Camera cam;
-    glm::vec3 background;
+    glm::vec3 bkgColor;
     std::vector<Shape*> shapes;
     std::vector<Light*> lights;
 
     Scene();
     // void loadScene(string filename);
 
-    void setBackground(glm::vec3 background) { this->background = background; }
+    void setBkgColor(glm::vec3 bkgColor) { this->bkgColor = bkgColor; }
     void setCamResolution(int resolution) { this->cam.resolution = resolution; }
 
     void addShape(Shape* obj) { shapes.push_back(obj); }
@@ -36,10 +36,6 @@ public:
     glm::vec3 computeColor(Ray& ray, int depth = 0);
     float computeRayAmbientOcclusion(Ray& ray, std::vector<glm::vec3>& kernel, std::vector<glm::vec3>& noise, float radius);
     float computePointAmbientOcclusion(glm::vec3 pos, glm::vec3 nor, std::vector<glm::vec3>& kernel, std::vector<glm::vec3>& noise, float radius);
-
-private:
-    const std::string RESOURCE_DIR = "../resources/";
-    const int MAX_BOUNCES = 4;
 };
 
 #endif

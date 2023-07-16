@@ -12,7 +12,7 @@
 #include <vector>
 #include <random>
 
-#include "Object.h"
+#include "Shape.h"
 #include "Light.h"
 // #include "Hit.h"
 #include "Ray.h"

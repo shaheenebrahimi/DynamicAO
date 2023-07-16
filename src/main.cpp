@@ -26,10 +26,39 @@ const string RES_DIR = "../resources/";
 
 Mesh* target;
 
-int main(int argc, char **argv)
-{
-	string filename = (argc >= 2) ? argv[1] : "aoTexture.png"; // optional name of output file
-	int resolution = (argc >= 3) ? atoi(argv[2]) : 1024; // optional size of output file
-	
+void createScene(Scene& scn) {
+	// Lights
+	scn.addLight(Light(glm::vec3(1.0f, 2.0f, 2.0f), 0.5f));
+	scn.addLight(Light(glm::vec3(-1.0f, 2.0f, -1.0f), 0.5f));
+
+	// Objects
+	target = new Mesh(RES_DIR + "models/sphere2.obj");
+	Mesh* floor = new Mesh(RES_DIR + "models/square.obj");
+	// floor.position = glm::vec3(0, -1)
+
+	// Add to scene
+    scn.addShape(target);
+	scn.addShape(floor);
+}
+
+
+int main(int argc, char **argv) {
+	string filename = (argc >= 2) ? argv[1] : "out.png"; // optional name of output file
+	int resolution = (argc >= 3) ? atoi(argv[2]) : 512; // optional size of output file
+
+	// Create Scene
+	Scene scn;
+	createScene(scn);
+
+	// Initialize Raytracer
+	Raytracer tracer (filename, resolution);
+	tracer.setScene(scn);
+	tracer.render();
+
+	// Initialize Occluder
+	// Occluder occluder (filename, resolution);
+	// occluder.setScene(scn);
+	// occluder.render();
+	// occluder.renderTexture();
 	return 0;
 }

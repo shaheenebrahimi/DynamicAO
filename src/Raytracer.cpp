@@ -39,7 +39,7 @@ Collision* Raytracer::shootRay(Ray& ray) {
     for (Shape* obj : scn.shapes) {
         Hit* hit = obj->collider(ray);
         if (hit) {
-            if (!closestHit || hit.t < closestHit.t) {
+            if (!closestHit || hit->t < closestHit->t) {
                 closestHit = hit;
                 closestObj = obj;
             }
@@ -52,15 +52,15 @@ Collision* Raytracer::shootRay(Ray& ray) {
 glm::vec3 Raytracer::computeColor(Ray& ray) {
     Collision* col = shootRay(ray);
     if (col) { // if ray intersects
-        glm::vec3 fragPos = col->hit->x;
-        glm::vec3 fragNor = col->hit->n;
+        glm::vec3 fragPos = col->hit->pos;
+        glm::vec3 fragNor = col->hit->nor;
         std::vector<Light> activeLights;
-        for (Light l : scn.lights) { // determine visible lights from hit
+        for (Light* l : scn.lights) { // determine visible lights from hit
             glm::vec3 l_vec = l.position - fragPos;
             glm::vec3 offset = 0.005f * fragNor;
             Ray sray (fragPos + offset, normalize(l_vec));
             Collision* scol = shootRay(sray);
-            if (!scol || length(scol->hit->x - fragPos) > length(l_vec)) { // if not occluded
+            if (!scol || length(scol->hit->pos - fragPos) > length(l_vec)) { // if not occluded
                 activeLights.push_back(l);
             }
         }

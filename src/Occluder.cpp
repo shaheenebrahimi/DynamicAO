@@ -74,7 +74,7 @@ Hit* Occluder::shootRay(Ray& ray) {
     for (Shape* obj : scn.shapes) {
         Hit* hit = obj->collider(ray);
         if (hit) {
-            if (!closestHit || hit.t < closestHit.t) { // no intersection
+            if (!closestHit || hit->t < closestHit->t) { // no intersection
                 closestHit = hit;
             }
         }
@@ -124,7 +124,7 @@ float Occluder::computePointOcclusion(glm::vec3 pos, glm::vec3 nor) {
         Ray oray (pos + offset, sampleDir);
         Hit* hit = shootRay(oray);
         if (hit) {
-            if (length(hit->x - pos) <= radius) {
+            if (length(hit->pos - pos) <= radius) {
                 occlusionCount++;
             }
         }
@@ -135,7 +135,7 @@ float Occluder::computePointOcclusion(glm::vec3 pos, glm::vec3 nor) {
 float Occluder::computeRayOcclusion(Ray& ray) {
     Hit* hit = shootRay(ray);
     if (hit) { // if ray intersects
-        return computePointOcclusion(hit->x, hit->n);
+        return computePointOcclusion(hit->pos, hit->nor);
     }
     return 1.0f; // white -- no occlusion
 }
