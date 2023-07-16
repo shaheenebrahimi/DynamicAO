@@ -477,30 +477,6 @@ src/Reflective.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Reflective.cpp.s
 .PHONY : src/Reflective.cpp.s
 
-src/Scene.o: src/Scene.cpp.o
-.PHONY : src/Scene.o
-
-# target to build an object file
-src/Scene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Scene.cpp.o
-.PHONY : src/Scene.cpp.o
-
-src/Scene.i: src/Scene.cpp.i
-.PHONY : src/Scene.i
-
-# target to preprocess a source file
-src/Scene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Scene.cpp.i
-.PHONY : src/Scene.cpp.i
-
-src/Scene.s: src/Scene.cpp.s
-.PHONY : src/Scene.s
-
-# target to generate assembly for a file
-src/Scene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Scene.cpp.s
-.PHONY : src/Scene.cpp.s
-
 src/Sphere.o: src/Sphere.cpp.o
 .PHONY : src/Sphere.o
 
@@ -622,9 +598,6 @@ help:
 	@echo "... src/Reflective.o"
 	@echo "... src/Reflective.i"
 	@echo "... src/Reflective.s"
-	@echo "... src/Scene.o"
-	@echo "... src/Scene.i"
-	@echo "... src/Scene.s"
 	@echo "... src/Sphere.o"
 	@echo "... src/Sphere.i"
 	@echo "... src/Sphere.s"

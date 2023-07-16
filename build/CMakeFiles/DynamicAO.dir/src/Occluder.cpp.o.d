@@ -635,4 +635,5 @@ CMakeFiles/DynamicAO.dir/src/Occluder.cpp.o: \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stack.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/tri.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Triangle.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/BlinnPhong.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/AABB.h

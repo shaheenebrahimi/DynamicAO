@@ -19,7 +19,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Plane.cpp" "CMakeFiles/DynamicAO.dir/src/Plane.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Plane.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Raytracer.cpp" "CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Reflective.cpp" "CMakeFiles/DynamicAO.dir/src/Reflective.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Reflective.cpp.o.d"
-  "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Scene.cpp" "CMakeFiles/DynamicAO.dir/src/Scene.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Scene.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Sphere.cpp" "CMakeFiles/DynamicAO.dir/src/Sphere.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Sphere.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Triangle.cpp" "CMakeFiles/DynamicAO.dir/src/Triangle.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/Triangle.cpp.o.d"
   "/Users/shaheen/Documents/Coding/Masters/DynamicAO/src/main.cpp" "CMakeFiles/DynamicAO.dir/src/main.cpp.o" "gcc" "CMakeFiles/DynamicAO.dir/src/main.cpp.o.d"

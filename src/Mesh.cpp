@@ -6,6 +6,24 @@
 
 using namespace std;
 
+Mesh::Mesh(const std::string& meshName) {
+    this->position = glm::vec3(0);
+	this->rotation = glm::vec4(0, 1, 0, 0);
+	this->scale = glm::vec3(1,1,1);
+	this->mat = new BlinnPhong();
+	this->transform = getTransformationMatrix();
+    loadMesh(meshName); // load obj and populate the triangles
+}
+
+Mesh::Mesh(const std::string& meshName, Material* mat) {
+    this->position = glm::vec3(0);
+	this->rotation = glm::vec4(0, 1, 0, 0);
+	this->scale = glm::vec3(1,1,1);
+	this->mat = mat;
+	this->transform = getTransformationMatrix();
+    loadMesh(meshName); // load obj and populate the triangles
+}
+
 Mesh::Mesh(const string& meshName, glm::vec3 position, glm::vec4 rotation, glm::vec3 scale, Material* mat) {
     this->position = position;
 	this->rotation = rotation;

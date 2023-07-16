@@ -28,17 +28,17 @@ Mesh* target;
 
 void createScene(Scene& scn) {
 	// Lights
-	scn.addLight(Light(glm::vec3(1.0f, 2.0f, 2.0f), 0.5f));
-	scn.addLight(Light(glm::vec3(-1.0f, 2.0f, -1.0f), 0.5f));
+	scn.addLight(new Light(glm::vec3(1.0f, 2.0f, 2.0f), 0.5f));
+	scn.addLight(new Light(glm::vec3(-1.0f, 2.0f, -1.0f), 0.5f));
 
 	// Objects
-	target = new Mesh(RES_DIR + "models/sphere2.obj");
-	Mesh* floor = new Mesh(RES_DIR + "models/square.obj");
+	target = new Mesh(RES_DIR + "models/sphere2.obj", new BlinnPhong(glm::vec3(0,0,1),glm::vec3(0.1,0.1,0.1),glm::vec3(0.1,0.1,0.1),100));
+	// Mesh* floor = new Mesh(RES_DIR + "models/square.obj");
 	// floor.position = glm::vec3(0, -1)
 
 	// Add to scene
     scn.addShape(target);
-	scn.addShape(floor);
+	// scn.addShape(floor);
 }
 
 

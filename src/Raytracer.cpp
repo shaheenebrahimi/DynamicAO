@@ -54,9 +54,9 @@ glm::vec3 Raytracer::computeColor(Ray& ray) {
     if (col) { // if ray intersects
         glm::vec3 fragPos = col->hit->pos;
         glm::vec3 fragNor = col->hit->nor;
-        std::vector<Light> activeLights;
+        std::vector<Light*> activeLights;
         for (Light* l : scn.lights) { // determine visible lights from hit
-            glm::vec3 l_vec = l.position - fragPos;
+            glm::vec3 l_vec = l->position - fragPos;
             glm::vec3 offset = 0.005f * fragNor;
             Ray sray (fragPos + offset, normalize(l_vec));
             Collision* scol = shootRay(sray);
@@ -64,7 +64,7 @@ glm::vec3 Raytracer::computeColor(Ray& ray) {
                 activeLights.push_back(l);
             }
         }
-        return hit->mat->computeFrag(ray.v, fragPos, fragNor, activeLights);
+        return col->obj->mat->computeFrag(ray.v, fragPos, fragNor, activeLights);
     }
     else {
         return scn.bkgColor;

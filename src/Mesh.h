@@ -25,6 +25,7 @@ using PrecomputedTri = bvh::v2::PrecomputedTri<Scalar>;
 
 #include <string>
 #include "Triangle.h"
+#include "BlinnPhong.h"
 #include "AABB.h"
 
 
@@ -34,6 +35,8 @@ public:
     AABB* box;
     std::vector<Triangle*> triangles;
     
+    Mesh(const std::string& meshName);
+    Mesh(const std::string& meshName, Material* mat);
     Mesh(const std::string& objPath, glm::vec3 position, glm::vec4 rotation, glm::vec3 scale, Material* mat);
     void loadMesh(const std::string& meshName);
     void bufToTriangles(std::vector<float>& posBuf, std::vector<float>& norBuf, std::vector<float>& texBuf);

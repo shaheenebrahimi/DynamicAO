@@ -629,6 +629,8 @@ CMakeFiles/DynamicAO.dir/src/Mesh.cpp.o: \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Hit.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Material.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Light.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/BlinnPhong.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Collision.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/AABB.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/tiny_obj_loader.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/map \

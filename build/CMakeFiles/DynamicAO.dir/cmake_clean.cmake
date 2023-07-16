@@ -21,8 +21,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/Reflective.cpp.o"
   "CMakeFiles/DynamicAO.dir/src/Reflective.cpp.o.d"
-  "CMakeFiles/DynamicAO.dir/src/Scene.cpp.o"
-  "CMakeFiles/DynamicAO.dir/src/Scene.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/Sphere.cpp.o"
   "CMakeFiles/DynamicAO.dir/src/Sphere.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/Triangle.cpp.o"

@@ -3,9 +3,9 @@
 #include <iostream>
 
 BlinnPhong::BlinnPhong() {
-    this->kd = glm::vec3(1.0f);
-    this->ks = glm::vec3(1.0f);
-    this->ka = glm::vec3(1.0f);
+    this->kd = glm::vec3(0.0f);
+    this->ks = glm::vec3(0.0f);
+    this->ka = glm::vec3(0.0f);
     this->s = 100.0f;
     this->type = BLINN_PHONG;
 }
