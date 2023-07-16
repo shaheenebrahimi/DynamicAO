@@ -33,7 +33,6 @@ class Mesh : public Shape {
 public:
     BVH bvh;
     AABB* box;
-    std::vector<Triangle*> triangles;
     
     Mesh(const std::string& meshName);
     Mesh(const std::string& meshName, Material* mat);
@@ -47,8 +46,7 @@ public:
     Hit* collider(Ray& ray);
 
 private:
-    glm::vec3 minBound;
-    glm::vec3 maxBound;
+    std::vector<Triangle*> triangles;
     std::vector<PrecomputedTri> precomputed_tris;
 };
 

@@ -51,14 +51,14 @@ int main(int argc, char **argv) {
 	createScene(scn);
 
 	// Initialize Raytracer
-	Raytracer tracer (filename, resolution);
-	tracer.setScene(scn);
-	tracer.render();
+	// Raytracer tracer (filename, resolution);
+	// tracer.setScene(scn);
+	// tracer.render();
 
 	// Initialize Occluder
-	// Occluder occluder (filename, resolution);
-	// occluder.setScene(scn);
-	// occluder.render();
+	Occluder occluder (filename, resolution);
+	occluder.setScene(scn);
+	occluder.render();
 	// occluder.renderTexture();
 	return 0;
 }
