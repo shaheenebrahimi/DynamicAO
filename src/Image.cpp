@@ -16,6 +16,10 @@ Image::Image(int w, int h) :
 
 Image::~Image() {}
 
+void Image::setWhite() {
+	memset(&pixels[0], 255, sizeof(pixels[0]) * pixels.size());
+}
+
 void Image::setPixel(int x, int y, unsigned char r, unsigned char g, unsigned char b)
 {
 	// The pixel data is laid out row by row. Each row consists of 'width'

@@ -10,6 +10,7 @@ class Image
 public:
 	Image(int width, int height);
 	virtual ~Image();
+	void setWhite();
 	void setPixel(int x, int y, unsigned char r, unsigned char g, unsigned char b);
 	void writeToFile(const std::string &filename);
 	int getWidth() const { return width; }

@@ -55,8 +55,8 @@ int main(int argc, char **argv) {
 
 	while((opt = getopt(argc, argv, "f:r:")) != -1) { 
 		switch(opt) {
-			case 'f': filename = optarg;
-			case 'r': resolution = atoi(optarg);
+			case 'f': filename = optarg; break;
+			case 'r': resolution = atoi(optarg); break;
 		}
 	}
 
