@@ -42,27 +42,6 @@ void Occluder::render() {
 }
 
 void Occluder::renderTexture(std::shared_ptr<Object> target) {
-	// for (int ty = 0; ty < resolution; ++ty) { // texels 0 0 bottom left
-	// 	// std::cout << ty << std::endl;
-	// 	for (int tx = 0; tx < resolution; ++tx) {
-	// 		glm::vec2 texel (tx, ty);
-	// 		glm::vec2 texCoord = texel / (float) resolution;
-	// 		img->setPixel(tx, ty, 255, 255, 255); // default white
-			
-	// 		for (std::shared_ptr<Triangle> tri : target->mesh->getTriangles()) { // does this texel intersect any triangles? 
-	// 			glm::vec3 bary = tri->computeBarycentric(texCoord); // x = a, y = b, z = c
-	// 			if (bary.x >= 0 && bary.x <= 1 && bary.y >= 0 && bary.y <= 1 && bary.z >= 0 && bary.z <= 1) {
-	// 				glm::vec3 pos = (bary.x * tri->pos0 + bary.y * tri->pos1 + bary.z * tri->pos2);
-	// 				glm::vec3 nor = (bary.x * tri->nor0 + bary.y * tri->nor1 + bary.z * tri->nor2);
-	// 				glm::vec3 worldPos = glm::vec3(glm::vec4(pos, 1.0f) * target->transform);
-	// 				glm::vec3 worldNor = glm::vec3(glm::vec4(nor, 0.0f) * inverse(transpose(target->transform)));
-	// 				float ao = computePointOcclusion(worldPos, worldNor);
-	// 				img->setPixel(tx, ty, 255*ao, 255*ao, 255*ao); // bottom left to top right image
-	// 				break;
-	// 			}
-	// 		}
-	// 	}
-	// }
 	std::vector<std::vector<bool>> cache (resolution, std::vector<bool> (resolution, false));
 	float texelStep = 1.0f / (float) resolution;
 	for (std::shared_ptr<Triangle> tri : target->mesh->getTriangles()) {
@@ -87,6 +66,31 @@ void Occluder::renderTexture(std::shared_ptr<Object> target) {
 					glm::vec3 worldNor = glm::vec3(glm::vec4(nor, 0.0f) * inverse(transpose(target->transform)));
 					float ao = computePointOcclusion(worldPos, worldNor);
 					img->setPixel(texel.x, texel.y, 255*ao, 255*ao, 255*ao); // bottom left to top right image
+				}
+			}
+		}
+	}
+    img->writeToFile(filename);
+}
+
+void Occluder::renderTextureLegacy(std::shared_ptr<Object> target) {
+	for (int ty = 0; ty < resolution; ++ty) { // texels 0 0 bottom left
+		// std::cout << ty << std::endl;
+		for (int tx = 0; tx < resolution; ++tx) {
+			glm::vec2 texel (tx, ty);
+			glm::vec2 texCoord = texel / (float) resolution;
+			img->setPixel(tx, ty, 255, 255, 255); // default white
+			
+			for (std::shared_ptr<Triangle> tri : target->mesh->getTriangles()) { // does this texel intersect any triangles? 
+				glm::vec3 bary = tri->computeBarycentric(texCoord); // x = a, y = b, z = c
+				if (bary.x >= 0 && bary.x <= 1 && bary.y >= 0 && bary.y <= 1 && bary.z >= 0 && bary.z <= 1) {
+					glm::vec3 pos = (bary.x * tri->pos0 + bary.y * tri->pos1 + bary.z * tri->pos2);
+					glm::vec3 nor = (bary.x * tri->nor0 + bary.y * tri->nor1 + bary.z * tri->nor2);
+					glm::vec3 worldPos = glm::vec3(glm::vec4(pos, 1.0f) * target->transform);
+					glm::vec3 worldNor = glm::vec3(glm::vec4(nor, 0.0f) * inverse(transpose(target->transform)));
+					float ao = computePointOcclusion(worldPos, worldNor);
+					img->setPixel(tx, ty, 255*ao, 255*ao, 255*ao); // bottom left to top right image
+					break;
 				}
 			}
 		}

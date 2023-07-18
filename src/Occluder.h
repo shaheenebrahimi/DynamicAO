@@ -46,6 +46,7 @@ public:
     void init();
     void render();
     void renderTexture(std::shared_ptr<Object> target);
+    void renderTextureLegacy(std::shared_ptr<Object> target);
 
 private:
     Scene scn;
