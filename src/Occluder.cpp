@@ -4,7 +4,7 @@
 Occluder::Occluder() { 
     this->filename = "out.png";
     this->resolution = 1024;
-    this->samples = 500;
+    this->samples = 200;
     this->radius = 1.0f;
     init();
 }
@@ -12,7 +12,7 @@ Occluder::Occluder() {
 Occluder::Occluder(const std::string& filename, int resolution) {
     this->filename = filename;
     this->resolution = resolution;
-    this->samples = 500;
+    this->samples = 200;
     this->radius = 1.0f;
     init();
 }
@@ -40,31 +40,57 @@ void Occluder::render() {
     img->writeToFile(filename);
 }
 
-void Occluder::renderTexture(Mesh* target) {
-	// float texelStep = 1.0f / (float) textureResolution;
-	// optimization: iterate through bounding box of each triangle in mesh
+void Occluder::renderTexture(std::shared_ptr<Object> target) {
 	for (int ty = 0; ty < resolution; ++ty) { // texels 0 0 bottom left
-		// cout << ty << endl;
+		// std::cout << ty << std::endl;
 		for (int tx = 0; tx < resolution; ++tx) {
 			glm::vec2 texel (tx, ty);
 			glm::vec2 texCoord = texel / (float) resolution;
 			img->setPixel(tx, ty, 255, 255, 255); // default white
-			// Ray voxel (glm::vec3(texel, 0), glm::vec3(0,0,1));
 			
-			// for (Triangle* tri : target->triangles) { // does this texel intersect any triangles? 
-			// 	glm::vec3 bary = tri->computeBarycentric(texCoord); // x = a, y = b, z = c
-			// 	if (bary.x >= 0 && bary.x <= 1 && bary.y >= 0 && bary.y <= 1 && bary.z >= 0 && bary.z <= 1) {
-			// 		glm::vec3 pos = (bary.x * tri->vert0 + bary.y * tri->vert1 + bary.z * tri->vert2);
-			// 		glm::vec3 nor = (bary.x * tri->nor0 + bary.y * tri->nor1 + bary.z * tri->nor2);
-			// 		glm::vec3 worldPos = glm::vec3(glm::vec4(pos, 1.0f) * target->transform);
-			// 		glm::vec3 worldNor = glm::vec3(glm::vec4(nor, 0.0f) * inverse(transpose(target->transform)));
-			// 		float ao = scn.computePointAmbientOcclusion(worldPos, worldNor, kernel, noise, radius);
-			// 		img->setPixel(tx, ty, 255*ao, 255*ao, 255*ao); // bottom left to top right image
-			// 		break;
-			// 	}
-			// }
+			for (std::shared_ptr<Triangle> tri : target->mesh->getTriangles()) { // does this texel intersect any triangles? 
+				glm::vec3 bary = tri->computeBarycentric(texCoord); // x = a, y = b, z = c
+				if (bary.x >= 0 && bary.x <= 1 && bary.y >= 0 && bary.y <= 1 && bary.z >= 0 && bary.z <= 1) {
+					glm::vec3 pos = (bary.x * tri->pos0 + bary.y * tri->pos1 + bary.z * tri->pos2);
+					glm::vec3 nor = (bary.x * tri->nor0 + bary.y * tri->nor1 + bary.z * tri->nor2);
+					glm::vec3 worldPos = glm::vec3(glm::vec4(pos, 1.0f) * target->transform);
+					glm::vec3 worldNor = glm::vec3(glm::vec4(nor, 0.0f) * inverse(transpose(target->transform)));
+					float ao = computePointOcclusion(worldPos, worldNor);
+					img->setPixel(tx, ty, 255*ao, 255*ao, 255*ao); // bottom left to top right image
+					break;
+				}
+			}
 		}
 	}
+	// std::vector<Triangle> triList = target->mesh->getTriangles();
+	// std::vector<std::vector<bool>> cache (triList.size(), std::vector<bool> (triList.size(), false));
+	// float texelStep = 1.0f / (float) resolution;
+	// for (Triangle tri : triList) {
+	// 	// Get bounding box
+	// 	Tri2D t = tri->convertTexToTri();
+	// 	BBox2D box = BBox2D(t.p0).extend(t.p1).extend(t.p2);
+	// 	// Iterate bouning box
+	// 	for (float y = box.min[1]; y <= box.max[1]; y += texelStep) {
+	// 		for (float x = box.min[0]; x <= box.max[0]; x += texelStep) {
+	// 			glm::vec2 texCoord (x, y);
+	// 			glm::vec2 texel = glm::vec2(int(texCoord.x * resolution), int(texCoord.y * resolution));
+	// 			if (cache[texel.y][texel.x]) continue;
+	// 			img->setPixel(texel.x, texel.y, 255, 255, 255); // set default to white
+	// 			// std::cout << texel.x << " " << texel.y << std::endl;
+	// 			// Compute barycentric
+	// 			glm::vec3 bary = tri->computeBarycentric(texCoord);
+	// 			if (bary.x >= 0 && bary.x <= 1 && bary.y >= 0 && bary.y <= 1 && bary.z >= 0 && bary.z <= 1) {
+	// 				glm::vec3 pos = (bary.x * tri->pos0 + bary.y * tri->pos1 + bary.z * tri->pos2);
+	// 				glm::vec3 nor = (bary.x * tri->nor0 + bary.y * tri->nor1 + bary.z * tri->nor2);
+	// 				glm::vec3 worldPos = glm::vec3(glm::vec4(pos, 1.0f) * target->transform);
+	// 				glm::vec3 worldNor = glm::vec3(glm::vec4(nor, 0.0f) * inverse(transpose(target->transform)));
+	// 				float ao = computePointOcclusion(worldPos, worldNor);
+	// 				img->setPixel(texel.x, texel.y, 255*ao, 255*ao, 255*ao); // bottom left to top right image
+	// 			}
+	// 			cache[texel.y][texel.x] = true;
+	// 		}
+	// 	}
+	// }
     img->writeToFile(filename);
 }
 

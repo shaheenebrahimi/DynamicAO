@@ -80,8 +80,8 @@ void Mesh::constructBVH() {
     std::vector<Vec> centers(triangles.size());
     executor.for_each(0, triangles.size(), [&] (size_t begin, size_t end) {
         for (size_t i = begin; i < end; ++i) {
-			this->transformed[i] = triangles[i].applyTransformation(transform);
-			Tri t = this->transformed[i].convertPosToTri();
+			this->transformed[i] = triangles[i]->applyTransformation(transform);
+			Tri t = this->transformed[i]->convertPosToTri();
             bboxes[i]  = t.get_bbox();
             centers[i] = t.get_center();
         }
@@ -96,7 +96,7 @@ void Mesh::constructBVH() {
     executor.for_each(0, triangles.size(), [&] (size_t begin, size_t end) {
         for (size_t i = begin; i < end; ++i) {
             auto j = should_permute ? this->accel.prim_ids[i] : i;
-            precomputed[i] = transformed[j].convertPosToTri();
+            precomputed[i] = transformed[j]->convertPosToTri();
         }
     });
 
@@ -127,10 +127,10 @@ std::optional<Hit> Mesh::collider(Ray& ray) {
         });
     if (prim_id != invalid_id) {
 		// size_t index = should_permute ?  this->accel.prim_ids[prim_id] : prim_id;
-		Triangle tri = transformed[this->accel.prim_ids[prim_id]];
+		shared_ptr<Triangle> tri = transformed[this->accel.prim_ids[prim_id]];
 		// auto ptri = precomputed[prim_id];
 		Scalar w = 1.0f - u - v;
-        return Hit(r.tmax, tri.interpolatePos(w,u,v), tri.interpolateNor(w,u,v), tri.interpolateTex(w,u,v));
+        return Hit(r.tmax, tri->interpolatePos(w,u,v), tri->interpolateNor(w,u,v), tri->interpolateTex(w,u,v));
     } 
 
     return std::nullopt;
@@ -149,7 +149,7 @@ void Mesh::bufToTriangles(vector<float>& posBuf, vector<float>& norBuf, vector<f
 		glm::vec2 tex0 (texBuf[6*i], texBuf[6*i+1]);
         glm::vec2 tex1 (texBuf[6*i+2], texBuf[6*i+3]);
         glm::vec2 tex2 (texBuf[6*i+4], texBuf[6*i+5]);
-        Triangle tri (pos0, pos1, pos2, nor0, nor1, nor2, tex0, tex1, tex2);
+        shared_ptr<Triangle> tri = std::make_shared<Triangle>(pos0, pos1, pos2, nor0, nor1, nor2, tex0, tex1, tex2);
         triangles.push_back(tri);
     }
 }

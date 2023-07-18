@@ -14,6 +14,7 @@ class Object {
 public:
     std::shared_ptr<Mesh> mesh; // all meshes should have a collider
     std::shared_ptr<Material> mat;
+    glm::mat4 transform;
 
     Object();
     Object(const std::string& objPath);
@@ -30,7 +31,6 @@ public:
     void setScale(glm::vec3 scale);
 
 private:
-    glm::mat4 transform;
     glm::mat4 T;
     glm::mat4 R;
     glm::mat4 S;

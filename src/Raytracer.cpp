@@ -46,7 +46,6 @@ std::optional<Collision> Raytracer::shootRay(Ray& ray) {
         }
     }
     if (closestHit) {
-        // std::cout << "col" << std::endl;
         return Collision(*closestHit, closestObj);
     }
     return std::nullopt;

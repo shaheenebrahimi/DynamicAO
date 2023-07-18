@@ -20,7 +20,9 @@
 
 
 using Scalar  = float;
+using Vec2   = bvh::v2::Vec<Scalar, 2>;
 using Vec   = bvh::v2::Vec<Scalar, 3>;
+using Tri2D   = bvh::v2::Tri<Scalar, 2>;
 using Tri   = bvh::v2::Tri<Scalar, 3>;
 using PrecomputedTri = bvh::v2::PrecomputedTri<Scalar>;
 
@@ -49,9 +51,9 @@ public:
     glm::vec3 interpolatePos(float w, float u, float v);
     glm::vec3 interpolateNor(float w, float u, float v);
     glm::vec2 interpolateTex(float w, float u, float v);
-    Triangle applyTransformation(glm::mat4 matrix);
+    std::shared_ptr<Triangle> applyTransformation(glm::mat4 matrix);
     Tri convertPosToTri();
-
+    Tri2D convertTexToTri();
 
 private:
     float computeArea(glm::vec2 pos0, glm::vec2 pos1, glm::vec2 pos2);

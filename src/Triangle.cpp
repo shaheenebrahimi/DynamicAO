@@ -81,8 +81,8 @@ Hit Triangle::collider(Ray& ray) {
     return Hit();
 }
 
-Triangle Triangle::applyTransformation(glm::mat4 matrix) {
-    return Triangle (
+std::shared_ptr<Triangle> Triangle::applyTransformation(glm::mat4 matrix) {
+    return std::make_shared<Triangle> (
         glm::vec3(matrix * glm::vec4(pos0, 1.0f)),
         glm::vec3(matrix * glm::vec4(pos1, 1.0f)),
         glm::vec3(matrix * glm::vec4(pos2, 1.0f)),
@@ -98,6 +98,14 @@ Tri Triangle::convertPosToTri() {
 		Vec(pos0.x, pos0.y, pos0.z),
 		Vec(pos1.x, pos1.y, pos1.z),
 		Vec(pos2.x, pos2.y, pos2.z)
+	);
+}
+
+Tri2D Triangle::convertTexToTri() {
+    return Tri2D(
+		Vec2(tex0.x, tex0.y),
+		Vec2(tex1.x, tex1.y),
+		Vec2(tex2.x, tex2.y)
 	);
 }
 

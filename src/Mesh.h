@@ -48,6 +48,7 @@ public:
     void loadMesh(const std::string& meshName);
     void constructBVH();
     void setTransform(glm::mat4 transform) { this->transform = transform; constructBVH(); }
+    std::vector<std::shared_ptr<Triangle>> getTriangles() { return transformed; } // return transformed tris
     std::optional<Hit> collider(Ray& ray);
 private:
     static constexpr bool should_permute = true;
@@ -56,8 +57,8 @@ private:
     static constexpr size_t invalid_id = std::numeric_limits<size_t>::max();
 
     Bvh accel;
-    std::vector<Triangle> triangles;
-    std::vector<Triangle> transformed;
+    std::vector<std::shared_ptr<Triangle>> triangles;
+    std::vector<std::shared_ptr<Triangle>> transformed;
     std::vector<PrecomputedTri> precomputed;
 
     void bufToTriangles(std::vector<float>& posBuf, std::vector<float>& norBuf, std::vector<float>& texBuf);

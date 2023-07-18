@@ -10,6 +10,7 @@
 #include "Object.h"
 
 #include <glm/glm.hpp>
+#include <getopt.h>
 #include <memory>
 #include <iostream>
 #include <string>
@@ -22,7 +23,6 @@ const string RES_DIR = "../resources/";
 
 shared_ptr<Object> target;
 
-
 void createScene(Scene& scn) {
 	// Lights
 	std::shared_ptr<Light> l1 = make_shared<Light>(glm::vec3(1.0f, 2.0f, 2.0f), 0.5f);
@@ -33,23 +33,35 @@ void createScene(Scene& scn) {
 
 	// Objects
 	target = make_shared<Object>(RES_DIR + "models/sphere2.obj");
-	o1->setMaterial(glm::vec3(0,0,1), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
+	target->setMaterial(glm::vec3(0,0,1), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
 
-	std::shared_ptr<Object> o2 = make_shared<Object>(RES_DIR + "models/sphere2.obj");
-	o2->setMaterial(glm::vec3(1,0,0), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
-	o2->setPosition(glm::vec3(0.0f, -1.0f, 0.0f));
+	std::shared_ptr<Object> floor = make_shared<Object>(RES_DIR + "models/square.obj");
+	floor->setMaterial(glm::vec3(1,0,0), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
+	floor->setPosition(glm::vec3(0.0f, -1.0f, 0.0f));
+	floor->setRotation(glm::vec4(-M_PI_2, 1.0f, 0.0f, 0.0f));
+	floor->setScale(glm::vec3(3.0f, 3.0f, 3.0f));
 
 	// Add to scene
 	scn.addObject(target);
-	scn.addObject(o2);
+	scn.addObject(floor);
 }
 
 
 int main(int argc, char **argv) {
-	string filename = (argc >= 2) ? argv[1] : "out.png"; // optional name of output file
-	int resolution = (argc >= 3) ? atoi(argv[2]) : 512; // optional size of output file
+	/* Get Arguments */
+	int opt;
+	string filename = "out.png"; // optional name of output file
+	int resolution = 512; // optional size of output file
 
-	// Create Scene
+	while((opt = getopt(argc, argv, "f:r:")) != -1) { 
+		switch(opt) {
+			case 'f': filename = optarg;
+			case 'r': resolution = atoi(optarg);
+		}
+	}
+
+	/* Initializations */
+	// Initialize Scene
 	Scene scn;
 	createScene(scn);
 
@@ -61,7 +73,7 @@ int main(int argc, char **argv) {
 	// Initialize Occluder
 	Occluder occluder (filename, resolution);
 	occluder.setScene(scn);
-	occluder.render();
-	// occluder.renderTexture();
+	// occluder.render();
+	occluder.renderTexture(target);
 	return 0;
 }

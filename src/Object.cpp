@@ -4,6 +4,7 @@ Object::Object() {
     this->T = glm::mat4(1);
     this->R = glm::mat4(1);
     this->S = glm::mat4(1);
+    this->transform = glm::mat4(1);
 }
 
 Object::Object(const std::string& objPath) {
@@ -12,6 +13,7 @@ Object::Object(const std::string& objPath) {
     this->T = glm::mat4(1);
     this->R = glm::mat4(1);
     this->S = glm::mat4(1);
+    this->transform = glm::mat4(1);
 }
 
 Object::Object(const std::string& objPath, std::shared_ptr<Material> mat) { 
@@ -20,6 +22,7 @@ Object::Object(const std::string& objPath, std::shared_ptr<Material> mat) {
     this->T = glm::mat4(1);
     this->R = glm::mat4(1);
     this->S = glm::mat4(1);
+    this->transform = glm::mat4(1);
 }
 
 Object::Object(const std::string& objPath, glm::vec3 pos, glm::vec4 rot, glm::vec3 sc, std::shared_ptr<Material> mat) { 
@@ -28,7 +31,8 @@ Object::Object(const std::string& objPath, glm::vec3 pos, glm::vec4 rot, glm::ve
     setPosition(pos);
     setRotation(rot);
     setScale(sc);
-    mesh->setTransform(computeTransform());
+    this->transform = computeTransform();
+    mesh->setTransform(this->transform);
 }
 
 void Object::translate(glm::vec3 translation) {
