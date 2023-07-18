@@ -2,7 +2,7 @@
 #include "Camera.h"
 #include "Scene.h"
 #include "Ray.h"
-#include "BlinnPhong.h"
+// #include "BlinnPhong.h"
 #include "Material.h"
 #include "Mesh.h"
 #include "Raytracer.h"
@@ -20,22 +20,28 @@ using namespace std;
 
 const string RES_DIR = "../resources/";
 
-Object target;
+shared_ptr<Object> target;
 
 
 void createScene(Scene& scn) {
 	// Lights
-	scn.addLight(Light(glm::vec3(1.0f, 2.0f, 2.0f), 0.5f));
-	scn.addLight(Light(glm::vec3(-1.0f, 2.0f, -1.0f), 0.5f));
+	std::shared_ptr<Light> l1 = make_shared<Light>(glm::vec3(1.0f, 2.0f, 2.0f), 0.5f);
+	std::shared_ptr<Light> l2 = make_shared<Light>(glm::vec3(-1.0f, 2.0f, -1.0f), 0.5f);
+
+	scn.addLight(l1);
+	scn.addLight(l2);
 
 	// Objects
-	target = Object(RES_DIR + "models/sphere2.obj");
-	Object floor (RES_DIR + "models/square.obj");
-	floor.move(glm::vec3(0.0f, -1.0f, 0.0f));
+	target = make_shared<Object>(RES_DIR + "models/sphere2.obj");
+	o1->setMaterial(glm::vec3(0,0,1), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
+
+	std::shared_ptr<Object> o2 = make_shared<Object>(RES_DIR + "models/sphere2.obj");
+	o2->setMaterial(glm::vec3(1,0,0), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
+	o2->setPosition(glm::vec3(0.0f, -1.0f, 0.0f));
 
 	// Add to scene
-    scn.addShape(target);
-	scn.addShape(floor);
+	scn.addObject(target);
+	scn.addObject(o2);
 }
 
 

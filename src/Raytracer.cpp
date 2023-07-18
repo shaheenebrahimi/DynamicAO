@@ -33,35 +33,41 @@ void Raytracer::render() {
 }
 
 /* PRIVATE */
-Hit Raytracer::shootRay(Ray& ray) {
-    Hit closestHit;
-    for (Object obj : scn.shapes) {
-        Hit hit = obj.mesh.collider(ray);
-        if (hit.intersected) {
-            if (!closestHit.intersected|| hit.t < closestHit.t) {
+std::optional<Collision> Raytracer::shootRay(Ray& ray) {
+    std::optional<Hit> closestHit = std::nullopt;
+    std::shared_ptr<Object> closestObj;
+    for (std::shared_ptr<Object> obj : scn.objects) {   
+        auto hit = obj->mesh->collider(ray);
+        if (hit) {
+            if (!closestHit || hit->t < closestHit->t) {
                 closestHit = hit;
+                closestObj = obj;
             }
         }
     }
-    return closestHit;
+    if (closestHit) {
+        // std::cout << "col" << std::endl;
+        return Collision(*closestHit, closestObj);
+    }
+    return std::nullopt;
 }
 
 glm::vec3 Raytracer::computeColor(Ray& ray) {
-    Hit hit = shootRay(ray);
-    if (hit.intersected) { // if ray intersects
-        glm::vec3 fragPos = hit.computePos();
-        glm::vec3 fragNor = hit.computeNor();
-        std::vector<Light> activeLights;
-        for (Light l : scn.lights) { // determine visible lights from hit
-            glm::vec3 l_vec = l.position - fragPos;
+    auto col = shootRay(ray);
+    if (col) { // if ray intersects
+        glm::vec3 fragPos = col->hit.pos;
+        glm::vec3 fragNor = col->hit.nor;
+        std::vector<std::shared_ptr<Light>> activeLights;
+        for (std::shared_ptr<Light> l : scn.lights) { // determine visible lights from hit
+            glm::vec3 l_vec = l->position - fragPos;
             glm::vec3 offset = 0.005f * fragNor;
             Ray sray (fragPos + offset, normalize(l_vec));
-            Hit shadow = shootRay(sray);
-            if (!shadow.intersected || length(shadow.computePos() - fragPos) > length(l_vec)) { // if not occluded
+            auto scol = shootRay(sray);
+            if (!scol || length((*scol).hit.pos - fragPos) > length(l_vec)) { // if not occluded
                 activeLights.push_back(l);
             }
         }
-        return hit.intersected->mat.computeFrag(ray.v, fragPos, fragNor, activeLights);
+        return col->obj->mat->computeFrag(ray.v, fragPos, fragNor, activeLights);
     }
     else {
         return scn.bkgColor;

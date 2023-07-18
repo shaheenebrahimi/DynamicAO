@@ -596,6 +596,7 @@ CMakeFiles/DynamicAO.dir/src/Object.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/vector \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__split_buffer \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/optional \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Triangle.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bvh.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/node.h \
@@ -615,7 +616,6 @@ CMakeFiles/DynamicAO.dir/src/Object.cpp.o: \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/top_down_sah_builder.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/split_heuristic.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/span \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/optional \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/binned_sah_builder.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/thread_pool.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/thread \
@@ -625,8 +625,8 @@ CMakeFiles/DynamicAO.dir/src/Object.cpp.o: \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/reinsertion_optimizer.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stack.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/tri.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Material.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Light.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Shape.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Hit.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Ray.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Hit.h
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Shape.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Material.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Light.h

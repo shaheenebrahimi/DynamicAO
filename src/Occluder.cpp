@@ -9,7 +9,7 @@ Occluder::Occluder() {
     init();
 }
 
-Occluder::Occluder(std::string& filename, int resolution) {
+Occluder::Occluder(const std::string& filename, int resolution) {
     this->filename = filename;
     this->resolution = resolution;
     this->samples = 500;
@@ -69,17 +69,17 @@ void Occluder::renderTexture(Mesh* target) {
 }
 
 /* PRIVATE */
-Hit Occluder::shootRay(Ray& ray) {
-    Hit closestHit;
-    for (Object obj : scn.shapes) {
-        Hit hit = obj.mesh.collider(ray);
-        if (hit.intersected) {
-            if (!closestHit.intersected || hit.t < closestHit.t) { // no intersection
+std::optional<Hit> Occluder::shootRay(Ray& ray) {
+    std::optional<Hit> closestHit = std::nullopt;
+    for (std::shared_ptr<Object> obj : scn.objects) {
+        auto hit = obj->mesh->collider(ray);
+        if (hit) {
+            if (!closestHit || hit->t < closestHit->t) { // no intersection
                 closestHit = hit;
             }
         }
     }
-    return closestHit;
+	return closestHit;
 }
 
 void Occluder::genOcclusionHemisphere() {
@@ -122,9 +122,9 @@ float Occluder::computePointOcclusion(glm::vec3 pos, glm::vec3 nor) {
         glm::vec3 sampleDir = normalize(TBN * kernel[i]);
         glm::vec3 offset = 0.005f * normal;
         Ray oray (pos + offset, sampleDir);
-        Hit hit = shootRay(oray);
-        if (hit.intersected) {
-            if (length(hit.computePos() - pos) <= radius) {
+        auto hit = shootRay(oray);
+        if (hit) {
+            if (length(hit->pos - pos) <= radius) {
                 occlusionCount++;
             }
         }
@@ -133,9 +133,9 @@ float Occluder::computePointOcclusion(glm::vec3 pos, glm::vec3 nor) {
 }
 
 float Occluder::computeRayOcclusion(Ray& ray) {
-    Hit hit = shootRay(ray);
-    if (hit.intersected) { // if ray intersects
-        return computePointOcclusion(hit.computePos(), hit.computeNor());
+    auto hit = shootRay(ray);
+    if (hit) { // if ray intersects
+        return computePointOcclusion(hit->pos, hit->nor);
     }
     return 1.0f; // white -- no occlusion
 }

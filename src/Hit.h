@@ -10,18 +10,23 @@
 class Hit {
 public:
     float t; // distance along ray
-    float w; // bary
-    float u;
-    float v;
-    Triangle* intersected; // change to primitive later -> sphere triangle
+    glm::vec3 pos;
+    glm::vec3 nor;
+    glm::vec2 tex;
 
-    Hit();
-    Hit(float t, Triangle* intersected);
-    Hit(float t, float w, float u, float v, Triangle* intersected);
+    Hit() {
+        this->t = 0;
+        this->pos = glm::vec3(0);
+        this->nor = glm::vec3(0);
+        this->tex = glm::vec2(0);
+    }
 
-    glm::vec3 computePos();
-    glm::vec3 computeNor();
-    glm::vec2 computeTex();
+    Hit(float t, glm::vec3 pos, glm::vec3 nor, glm::vec2 tex) {
+        this->t = t;
+        this->pos = pos;
+        this->nor = nor;
+        this->tex = tex;
+    }
 };
 
 #endif

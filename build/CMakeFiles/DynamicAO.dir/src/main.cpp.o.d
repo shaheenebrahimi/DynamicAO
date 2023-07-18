@@ -521,7 +521,7 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Users/shaheen/CppLib/glm-master/glm/detail/func_integer.inl \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Ray.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Scene.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Shape.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Object.h \
   /Users/shaheen/CppLib/glm-master/glm/gtc/matrix_transform.hpp \
   /Users/shaheen/CppLib/glm-master/glm/gtc/../mat4x4.hpp \
   /Users/shaheen/CppLib/glm-master/glm/gtc/../vec2.hpp \
@@ -545,9 +545,7 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Users/shaheen/CppLib/glm-master/glm/gtc/../geometric.hpp \
   /Users/shaheen/CppLib/glm-master/glm/gtc/../trigonometric.hpp \
   /Users/shaheen/CppLib/glm-master/glm/gtc/../matrix.hpp \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Hit.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Material.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Light.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Mesh.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/ios \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__locale \
@@ -602,6 +600,8 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/sys/_types/_fsfilcnt_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/optional \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Triangle.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bvh.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/node.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/utils.h \
@@ -620,7 +620,6 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/top_down_sah_builder.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/split_heuristic.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/span \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/optional \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/binned_sah_builder.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/thread_pool.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/thread \
@@ -630,10 +629,11 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/reinsertion_optimizer.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stack.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/tri.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Collision.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/BlinnPhong.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Mesh.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Triangle.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Hit.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Shape.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Material.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Light.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Raytracer.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Collision.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Occluder.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/random

@@ -1,8 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/DynamicAO.dir/src/Camera.cpp.o"
   "CMakeFiles/DynamicAO.dir/src/Camera.cpp.o.d"
-  "CMakeFiles/DynamicAO.dir/src/Hit.cpp.o"
-  "CMakeFiles/DynamicAO.dir/src/Hit.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/Image.cpp.o"
   "CMakeFiles/DynamicAO.dir/src/Image.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/Light.cpp.o"
@@ -17,8 +15,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/DynamicAO.dir/src/Occluder.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.o"
   "CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.o.d"
-  "CMakeFiles/DynamicAO.dir/src/Scene.cpp.o"
-  "CMakeFiles/DynamicAO.dir/src/Scene.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/Triangle.cpp.o"
   "CMakeFiles/DynamicAO.dir/src/Triangle.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/main.cpp.o"

@@ -24,9 +24,9 @@
 class Occluder {
 public:
     Occluder();
-    Occluder(std::string& filename, int resolution);
+    Occluder(const std::string& filename, int resolution);
     ~Occluder();
-    void setFilename(std::string& filename) { this->filename = filename; }
+    void setFilename(const std::string& filename) { this->filename = filename; }
     void setResolution(int resolution) { this->resolution = resolution; init(); }
     void setScene(Scene& scn) { this->scn = scn; init(); }
     void setSamples(int samples) { this->samples = samples; init(); }
@@ -46,7 +46,7 @@ private:
     std::vector<glm::vec3> kernel; // ao kernel
 	std::vector<glm::vec3> noise; // ao noise
 
-    Hit shootRay(Ray& ray);
+    std::optional<Hit> shootRay(Ray& ray);
     void genOcclusionHemisphere();
     float computeRayOcclusion(Ray& ray);
     float computePointOcclusion(glm::vec3 pos, glm::vec3 nor);

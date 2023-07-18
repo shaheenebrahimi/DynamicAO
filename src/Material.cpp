@@ -16,11 +16,11 @@ Material::Material(glm::vec3 kd, glm::vec3 ks, glm::vec3 ka, float s) {
     this->s = s;
 }
 
-glm::vec3 Material::computeFrag(glm::vec3 ray, glm::vec3 pos, glm::vec3 nor, std::vector<Light>& lights) {
+glm::vec3 Material::computeFrag(glm::vec3 ray, glm::vec3 pos, glm::vec3 nor, std::vector<std::shared_ptr<Light>>& lights) {
     glm::vec3 fragColor = ka; // ambient
     
-    for (Light l : lights) {
-        glm::vec3 l_hat = normalize(l.position - pos);
+    for (std::shared_ptr<Light> l : lights) {
+        glm::vec3 l_hat = normalize(l->position - pos);
         glm::vec3 e_hat = normalize(-ray);
         glm::vec3 h_hat = normalize(l_hat + e_hat);
         glm::vec3 n_hat = normalize(nor);
@@ -29,7 +29,7 @@ glm::vec3 Material::computeFrag(glm::vec3 ray, glm::vec3 pos, glm::vec3 nor, std
         glm::vec3 specular = ks * std::pow(std::max(0.0f, dot(h_hat, n_hat)), s);
 
         glm::vec3 color = diffuse + specular;
-        fragColor += color * l.intensity;
+        fragColor += color * l->intensity;
     }
     
     return fragColor;

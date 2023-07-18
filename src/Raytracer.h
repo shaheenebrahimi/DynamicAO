@@ -15,6 +15,7 @@
 #include "Scene.h"
 #include "Image.h"
 #include "Hit.h"
+#include "Collision.h"
 
 class Raytracer {
 public:
@@ -32,7 +33,7 @@ private:
     std::string filename;
     std::shared_ptr<Image> img;
 
-    Hit shootRay(Ray& ray);
+    std::optional<Collision> shootRay(Ray& ray);
     glm::vec3 computeColor(Ray& ray);
 };
 

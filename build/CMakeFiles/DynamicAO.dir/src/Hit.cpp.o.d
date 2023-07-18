@@ -623,5 +623,4 @@ CMakeFiles/DynamicAO.dir/src/Hit.cpp.o: \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/reinsertion_optimizer.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stack.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/tri.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Material.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Light.h
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Ray.h

@@ -12,18 +12,19 @@
 class Object {
     // Transform
 public:
-    Mesh mesh; // all meshes should have a collider
-    Material mat;
+    std::shared_ptr<Mesh> mesh; // all meshes should have a collider
+    std::shared_ptr<Material> mat;
 
     Object();
-    Object(std::string& objPath);
-    Object(std::string& objPath, Material mat);
-    Object(std::string& objPath, glm::vec3 position, glm::vec4 rotation, glm::vec3 scale, Material mat);
+    Object(const std::string& objPath);
+    Object(const std::string& objPath, std::shared_ptr<Material> mat);
+    Object(const std::string& objPath, glm::vec3 position, glm::vec4 rotation, glm::vec3 scale,  std::shared_ptr<Material> mat);
 
     void translate(glm::vec3 translation);
     void rotate(glm::vec4 rotation);
     void scale(glm::vec3 scale);
 
+    void setMaterial(glm::vec3 kd, glm::vec3 ks, glm::vec3 ka, float s);
     void setPosition(glm::vec3 position);
     void setRotation(glm::vec4 rotation);
     void setScale(glm::vec3 scale);

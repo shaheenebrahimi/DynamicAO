@@ -15,11 +15,13 @@
 #include <bvh/v2/stack.h>
 #include <bvh/v2/tri.h>
 
-#include "Material.h"
+#include "Hit.h"
+#include "Ray.h"
 
 
 using Scalar  = float;
-using Tri3D   = bvh::v2::Tri<Scalar, 3>;
+using Vec   = bvh::v2::Vec<Scalar, 3>;
+using Tri   = bvh::v2::Tri<Scalar, 3>;
 using PrecomputedTri = bvh::v2::PrecomputedTri<Scalar>;
 
 class Triangle {
@@ -33,22 +35,23 @@ public:
     glm::vec2 tex0;
     glm::vec2 tex1;
     glm::vec2 tex2;
-    Material mat;
     float area;
 
     Triangle();
     Triangle(
         glm::vec3 pos0, glm::vec3 pos1, glm::vec3 pos2,
         glm::vec3 nor0, glm::vec3 nor1, glm::vec3 nor2,
-        glm::vec2 tex0, glm::vec2 tex1, glm::vec2 tex2,
-        Material mat
+        glm::vec2 tex0, glm::vec2 tex1, glm::vec2 tex2
     );
     ~Triangle() { }
     glm::vec3 computeBarycentric(glm::vec2 tex);
-    // Hit collider(Ray& ray);
+    Hit collider(Ray& ray);
+    glm::vec3 interpolatePos(float w, float u, float v);
+    glm::vec3 interpolateNor(float w, float u, float v);
+    glm::vec2 interpolateTex(float w, float u, float v);
     Triangle applyTransformation(glm::mat4 matrix);
-    Tri3D convertPosToTri();
-    Tri3D convertTexToTri();
+    Tri convertPosToTri();
+
 
 private:
     float computeArea(glm::vec2 pos0, glm::vec2 pos1, glm::vec2 pos2);

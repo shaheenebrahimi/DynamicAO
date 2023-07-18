@@ -237,30 +237,6 @@ src/Camera.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Camera.cpp.s
 .PHONY : src/Camera.cpp.s
 
-src/Hit.o: src/Hit.cpp.o
-.PHONY : src/Hit.o
-
-# target to build an object file
-src/Hit.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Hit.cpp.o
-.PHONY : src/Hit.cpp.o
-
-src/Hit.i: src/Hit.cpp.i
-.PHONY : src/Hit.i
-
-# target to preprocess a source file
-src/Hit.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Hit.cpp.i
-.PHONY : src/Hit.cpp.i
-
-src/Hit.s: src/Hit.cpp.s
-.PHONY : src/Hit.s
-
-# target to generate assembly for a file
-src/Hit.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Hit.cpp.s
-.PHONY : src/Hit.cpp.s
-
 src/Image.o: src/Image.cpp.o
 .PHONY : src/Image.o
 
@@ -429,30 +405,6 @@ src/Raytracer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.s
 .PHONY : src/Raytracer.cpp.s
 
-src/Scene.o: src/Scene.cpp.o
-.PHONY : src/Scene.o
-
-# target to build an object file
-src/Scene.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Scene.cpp.o
-.PHONY : src/Scene.cpp.o
-
-src/Scene.i: src/Scene.cpp.i
-.PHONY : src/Scene.i
-
-# target to preprocess a source file
-src/Scene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Scene.cpp.i
-.PHONY : src/Scene.cpp.i
-
-src/Scene.s: src/Scene.cpp.s
-.PHONY : src/Scene.s
-
-# target to generate assembly for a file
-src/Scene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Scene.cpp.s
-.PHONY : src/Scene.cpp.s
-
 src/Triangle.o: src/Triangle.cpp.o
 .PHONY : src/Triangle.o
 
@@ -520,9 +472,6 @@ help:
 	@echo "... src/Camera.o"
 	@echo "... src/Camera.i"
 	@echo "... src/Camera.s"
-	@echo "... src/Hit.o"
-	@echo "... src/Hit.i"
-	@echo "... src/Hit.s"
 	@echo "... src/Image.o"
 	@echo "... src/Image.i"
 	@echo "... src/Image.s"
@@ -544,9 +493,6 @@ help:
 	@echo "... src/Raytracer.o"
 	@echo "... src/Raytracer.i"
 	@echo "... src/Raytracer.s"
-	@echo "... src/Scene.o"
-	@echo "... src/Scene.i"
-	@echo "... src/Scene.s"
 	@echo "... src/Triangle.o"
 	@echo "... src/Triangle.i"
 	@echo "... src/Triangle.s"

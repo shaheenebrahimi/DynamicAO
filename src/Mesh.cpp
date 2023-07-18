@@ -8,16 +8,12 @@
 using namespace std;
 
 /* PUBLIC  */
+Mesh::Mesh() {
+    this->transform = glm::mat4(1);
+}
 
 Mesh::Mesh(const string& meshName) {
     this->transform = glm::mat4(1);
-    loadMesh(meshName); // load obj and populate the triangles
-	constructBVH();
-}
-
-Mesh::Mesh(const string& meshName, Material mat) {
-    this->transform = glm::mat4(1);
-	this->mat = mat;
     loadMesh(meshName); // load obj and populate the triangles
 	constructBVH();
 }
@@ -80,20 +76,20 @@ void Mesh::constructBVH() {
 
     // Get triangle centers and bounding boxes (required for BVH builder)
 	this->transformed.resize(triangles.size());
-    std::vector<BBox3D> bboxes(triangles.size());
-    std::vector<Vec3D> centers(triangles.size());
+    std::vector<BBox> bboxes(triangles.size());
+    std::vector<Vec> centers(triangles.size());
     executor.for_each(0, triangles.size(), [&] (size_t begin, size_t end) {
         for (size_t i = begin; i < end; ++i) {
 			this->transformed[i] = triangles[i].applyTransformation(transform);
-			Tri3D t = this->transformed[i].convertPosToTri();
+			Tri t = this->transformed[i].convertPosToTri();
             bboxes[i]  = t.get_bbox();
             centers[i] = t.get_center();
         }
     });
 
-    typename bvh::v2::DefaultBuilder<Node3D>::Config config;
-    config.quality = bvh::v2::DefaultBuilder<Node3D>::Quality::High;
-    this->accel = bvh::v2::DefaultBuilder<Node3D>::build(thread_pool, bboxes, centers, config);
+    typename bvh::v2::DefaultBuilder<Node>::Config config;
+    config.quality = bvh::v2::DefaultBuilder<Node>::Quality::High;
+    this->accel = bvh::v2::DefaultBuilder<Node>::build(thread_pool, bboxes, centers, config);
 
     // This precomputes some data to speed up traversal further.
     this->precomputed = std::vector<PrecomputedTri>(triangles.size());
@@ -103,21 +99,22 @@ void Mesh::constructBVH() {
             precomputed[i] = transformed[j].convertPosToTri();
         }
     });
+
 }
 
-Hit Mesh::collider(Ray& ray) {
+std::optional<Hit> Mesh::collider(Ray& ray) {
     auto prim_id = invalid_id;
     Scalar u, v;
-	Ray3D r = Ray3D {
-        Vec3D(ray.p.x, ray.p.y,ray.p.z),   // Ray origin
-        Vec3D(ray.v.x, ray.v.y,ray.v.z),   // Ray direction
+	BvhRay r = BvhRay {
+        Vec(ray.p.x, ray.p.y, ray.p.z),   // Ray origin
+        Vec(ray.v.x, ray.v.y, ray.v.z),   // Ray direction
         0.0f,    						  // Minimum intersection distance
         100.0f   						  // Maximum intersection distance
     };
 
     // Traverse the BVH and get the u, v coordinates of the closest intersection.
-    bvh::v2::SmallStack<Bvh3D::Index, stack_size> stack;
-    accel.intersect<false, use_robust_traversal>(r, this->accel.get_root().index, stack,
+    bvh::v2::SmallStack<Bvh::Index, stack_size> stack;
+    this->accel.intersect<false, use_robust_traversal>(r, this->accel.get_root().index, stack,
         [&] (size_t begin, size_t end) {
             for (size_t i = begin; i < end; ++i) {
                 size_t j = should_permute ? i : this->accel.prim_ids[i];
@@ -128,19 +125,15 @@ Hit Mesh::collider(Ray& ray) {
             }
             return prim_id != invalid_id;
         });
-
     if (prim_id != invalid_id) {
-		// size_t index = should_permute ?  this->bvh.prim_ids[prim_id] : prim_id;
+		// size_t index = should_permute ?  this->accel.prim_ids[prim_id] : prim_id;
 		Triangle tri = transformed[this->accel.prim_ids[prim_id]];
-		// return tri->collider(ray);
 		// auto ptri = precomputed[prim_id];
 		Scalar w = 1.0f - u - v;
-		glm::vec3 x = w * tri.pos0 + u * tri.pos1 + v * tri.pos2;
-		glm::vec3 n = normalize(w * tri.nor0 + u * tri.nor1 + v * tri.nor2);
-        return Hit(r.tmax, w, u, v, &tri);
-    } else {
-        return Hit();
-    }
+        return Hit(r.tmax, tri.interpolatePos(w,u,v), tri.interpolateNor(w,u,v), tri.interpolateTex(w,u,v));
+    } 
+
+    return std::nullopt;
 }
 
 /* PRIVATE */
@@ -156,7 +149,7 @@ void Mesh::bufToTriangles(vector<float>& posBuf, vector<float>& norBuf, vector<f
 		glm::vec2 tex0 (texBuf[6*i], texBuf[6*i+1]);
         glm::vec2 tex1 (texBuf[6*i+2], texBuf[6*i+3]);
         glm::vec2 tex2 (texBuf[6*i+4], texBuf[6*i+5]);
-        Triangle tri (pos0, pos1, pos2, nor0, nor1, nor2, tex0, tex1, tex2, mat);
+        Triangle tri (pos0, pos1, pos2, nor0, nor1, nor2, tex0, tex1, tex2);
         triangles.push_back(tri);
     }
 }
