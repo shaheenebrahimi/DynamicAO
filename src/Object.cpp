@@ -75,6 +75,14 @@ void Object::setScale(glm::vec3 scale) {
     this->mesh->setTransform(transform);
 }
 
+void Object::addTexture(const std::string& texPath) {
+    tex = std::make_shared<Texture>();
+	tex->setFilename(texPath);
+	tex->init();
+	tex->setUnit(0);
+	tex->setWrapModes(GL_REPEAT, GL_REPEAT);
+}
+
 glm::mat4 Object::computeTransform() {
     return T * R * S;
 }

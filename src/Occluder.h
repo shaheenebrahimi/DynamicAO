@@ -19,10 +19,8 @@
 #include <bvh/v2/tri.h>
 
 using Scalar  = float;
-using Vec2D   = bvh::v2::Vec<Scalar, 3>;
 using BBox2D  = bvh::v2::BBox<Scalar, 2>;
 using Tri2D   = bvh::v2::Tri<Scalar, 2>;
-
 
 #include "Object.h"
 #include "Light.h"

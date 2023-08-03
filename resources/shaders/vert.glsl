@@ -6,13 +6,16 @@ uniform mat4 itMV; // inverse transpose
 
 attribute vec4 aPos; // in object space
 attribute vec3 aNor; // in object space
+attribute vec2 aTex; // in texture space
 
 varying vec3 vPos; // vertex position
 varying vec3 vNor; // vertex normal
+varying vec2 vTex; // vertex texture coord
 
 void main()
 {
 	vPos = vec3(MV * aPos); // to view space
 	vNor = normalize(vec3(itMV * vec4(aNor, 0)));
+	vTex = aTex;
 	gl_Position = P * MV * aPos; // to clip space
 }

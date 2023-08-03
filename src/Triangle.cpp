@@ -37,50 +37,6 @@ glm::vec3 Triangle::computeBarycentric(glm::vec2 pos) {
     return glm::vec3(a, b, c);
 }
 
-
-Hit Triangle::collider(Ray& ray) {
-    // float epsilon = 0.0001f;
-
-    // glm::vec3 edge1 = pos1 - pos0;
-    // glm::vec3 edge2 = pos2 - pos0;
-
-    // glm::vec3 p_vec = glm::cross(ray.v, edge2);
-
-    // float det = dot(edge1, p_vec);
-    // if (det < epsilon && det > -epsilon) // lies in triangle plane
-    //     return nullptr;
-    // float inv_det = 1.0f / det;
-
-    // // calculate U parameter and test bounds
-    // glm::vec3 t_vec = ray.p - pos0;
-    // float u = dot(t_vec, p_vec) * inv_det;
-    // if (u < 0.0f || u > 1.0f) // barycentric
-    //     return nullptr;
-
-    // glm::vec3 q_vec = glm::cross(t_vec, edge1);
-
-    // // calculate V parameter and test bounds
-    // float v = dot(ray.v, q_vec) * inv_det;
-    // if (v < 0.0f || u + v > 1.0)
-    //     return nullptr;
-
-    // // calculate W parameter, ray intersects triangle
-    // float w = 1.0f - u - v;
-
-    // // calculate t'
-    // float t = dot(edge2, q_vec) * inv_det;
-    // if (t < epsilon)
-    //     return nullptr;
-
-    // // compute barycentric
-    // // glm::vec3 pos = w * pos0 + u * pos1 + v * pos2;
-    // // glm::vec3 nor = normalize(w * nor0 + u * nor1 + v * nor2);
-    // // glm::vec2 tex = w * tex0 + u * tex1 + v * tex2;
-
-    // return Hit(t, w, u, v, this);
-    return Hit();
-}
-
 std::shared_ptr<Triangle> Triangle::applyTransformation(glm::mat4 matrix) {
     return std::make_shared<Triangle> (
         glm::vec3(matrix * glm::vec4(pos0, 1.0f)),
@@ -103,9 +59,9 @@ Tri Triangle::convertPosToTri() {
 
 Tri2D Triangle::convertTexToTri() {
     return Tri2D(
-		Vec2(tex0.x, tex0.y),
-		Vec2(tex1.x, tex1.y),
-		Vec2(tex2.x, tex2.y)
+		Vec2D(tex0.x, tex0.y),
+		Vec2D(tex1.x, tex1.y),
+		Vec2D(tex2.x, tex2.y)
 	);
 }
 

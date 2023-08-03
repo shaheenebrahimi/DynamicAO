@@ -630,13 +630,104 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stack.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/tri.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Hit.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Shape.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Material.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Light.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Texture.h \
+  /Users/shaheen/CppLib/glew-2.1.0/include/GL/glew.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers/OpenGLAvailability.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/os/availability.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Raytracer.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Collision.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Occluder.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/random \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Rasterizer.h \
+  /Users/shaheen/CppLib/glfw-3.3.8/include/GLFW/glfw3.h \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/type_ptr.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../gtc/quaternion.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../gtc/constants.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../gtc/matrix_transform.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/vector_relational.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/../detail/qualifier.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/vector_relational.inl \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/../vector_relational.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/../common.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/../detail/type_float.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/quaternion_common.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/../ext/quaternion_geometric.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/../exponential.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/../ext/vector_relational.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/quaternion_geometric.inl \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/quaternion_common.inl \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/quaternion_float.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/../detail/type_quat.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/detail/../detail/type_mat3x3.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/detail/../detail/type_mat4x4.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/detail/../detail/type_vec3.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/detail/../detail/type_vec4.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/detail/../ext/vector_relational.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/detail/../ext/quaternion_relational.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/quaternion_relational.inl \
+  /Users/shaheen/CppLib/glm-master/glm/detail/../gtc/constants.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/detail/../gtc/matrix_transform.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/detail/type_quat.inl \
+  /Users/shaheen/CppLib/glm-master/glm/detail/../trigonometric.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/detail/../ext/quaternion_common.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/detail/../ext/quaternion_geometric.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/quaternion_float_precision.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/quaternion_double.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/quaternion_double_precision.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/quaternion_relational.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/quaternion_geometric.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/quaternion_trigonometric.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/scalar_constants.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/vector_relational.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/quaternion_trigonometric.inl \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/quaternion_transform.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/quaternion_transform.inl \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../detail/type_mat3x3.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../detail/type_mat4x4.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../detail/type_vec3.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../detail/type_vec4.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/quaternion.inl \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../exponential.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/epsilon.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../detail/setup.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../detail/qualifier.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/epsilon.inl \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../vector_relational.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../common.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../gtc/vec1.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/vector_bool1.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/../detail/type_vec1.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/vector_bool1_precision.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/vector_float1.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/vector_float1_precision.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/vector_double1.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/vector_double1_precision.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/vector_int1.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/vector_int1_sized.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/../ext/vector_int1.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/vector_uint1.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../ext/vector_uint1_sized.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/./ext/../ext/vector_uint1.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../mat2x2.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../mat2x3.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../mat2x4.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../mat3x2.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../mat3x3.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../mat3x4.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../mat4x2.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/../mat4x3.hpp \
+  /Users/shaheen/CppLib/glm-master/glm/gtc/type_ptr.inl \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/GLSL.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/sstream \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Program.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/map \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__functional/is_transparent.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__node_handle \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__tree \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/getopt.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/unistd.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/sys/unistd.h \

@@ -34,7 +34,7 @@ bool cameraMovable = false;
 shared_ptr<Program> prog;
 shared_ptr<Texture> texture0;
 shared_ptr<Camera> camera;
-shared_ptr<Shape> teapot;
+shared_ptr<Shape> sphere;
 Object obj;
 glm::vec3 lightPos;
 
@@ -116,7 +116,7 @@ static void init()
 	prog->addUniform("kd");
 	prog->addUniform("ks");
 	prog->addUniform("s");
-	prog->addUniform("texture");
+	prog->addUniform("texture0");
 	prog->setVerbose(false);
 
 	// Initialize Textures
@@ -127,17 +127,17 @@ static void init()
 	texture0->setWrapModes(GL_REPEAT, GL_REPEAT);
 
 	// Initialize Meshes
-	teapot = make_shared<Shape>();
-	teapot->loadMesh(RES_DIR + "models/teapot.obj");
-	teapot->fitToUnitBox();
-	teapot->init();
+	sphere = make_shared<Shape>();
+	sphere->loadMesh(RES_DIR + "models/sphere2.obj");
+	sphere->fitToUnitBox();
+	sphere->init();
 
 	// Initialize Scene
 	camera = make_shared<Camera>();
 	camera->setInitDistance(2.0f);
 	lightPos = glm::vec3(1.0f, 1.0f, 1.0f);
 	obj = Object(
-		teapot,
+		sphere,
 		glm::vec3(0.2f, 0.2f, 0.2f),
 		glm::vec3(0.8f, 0.7f, 0.7f),
 		glm::vec3(1.0f, 0.9f, 0.8f),

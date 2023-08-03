@@ -12,7 +12,6 @@
 #include <optional>
 
 #include "Triangle.h"
-#include "Shape.h"
 #include "Hit.h"
 #include "Ray.h"
 #include "Material.h"
@@ -28,7 +27,6 @@
 
 using Scalar  = float;
 using Vec   = bvh::v2::Vec<Scalar, 3>;
-// using BBox2D  = bvh::v2::BBox<Scalar, 2>;
 using BBox  = bvh::v2::BBox<Scalar, 3>;
 using Tri   = bvh::v2::Tri<Scalar, 3>;
 using Node  = bvh::v2::Node<Scalar, 3>;

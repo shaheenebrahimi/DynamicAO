@@ -8,11 +8,13 @@
 
 #include "Mesh.h"
 #include "Material.h"
+#include "Texture.h"
 
 class Object {
     // Transform
 public:
     std::shared_ptr<Mesh> mesh; // all meshes should have a collider
+    std::shared_ptr<Texture> tex; // all meshes should have a collider
     std::shared_ptr<Material> mat;
     glm::mat4 transform;
 
@@ -29,6 +31,8 @@ public:
     void setPosition(glm::vec3 position);
     void setRotation(glm::vec4 rotation);
     void setScale(glm::vec3 scale);
+
+    void addTexture(const std::string& texPath);
 
 private:
     glm::mat4 T;

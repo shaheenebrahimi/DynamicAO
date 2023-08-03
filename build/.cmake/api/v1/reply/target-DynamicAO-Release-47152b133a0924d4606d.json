@@ -142,7 +142,12 @@
 				6,
 				7,
 				8,
-				9
+				9,
+				10,
+				11,
+				12,
+				13,
+				14
 			]
 		}
 	],
@@ -221,18 +226,18 @@
 				6,
 				7,
 				8,
-				9
+				9,
+				10,
+				11,
+				12,
+				13,
+				14
 			]
 		},
 		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				10,
-				11,
-				12,
-				13,
-				14,
 				15,
 				16,
 				17,
@@ -243,19 +248,26 @@
 				22,
 				23,
 				24,
-				25
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				26,
-				27,
-				28,
-				29,
-				30,
-				31
+				37,
+				38
 			]
 		}
 	],
@@ -265,6 +277,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/Camera.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/GLSL.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -288,6 +306,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "src/MatrixStack.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "src/Mesh.cpp",
 			"sourceGroupIndex" : 0
 		},
@@ -306,7 +330,25 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "src/Program.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Rasterizer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "src/Raytracer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Texture.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -333,6 +375,11 @@
 		},
 		{
 			"backtrace" : 1,
+			"path" : "src/GLSL.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
 			"path" : "src/Hit.h",
 			"sourceGroupIndex" : 1
 		},
@@ -353,6 +400,11 @@
 		},
 		{
 			"backtrace" : 1,
+			"path" : "src/MatrixStack.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
 			"path" : "src/Mesh.h",
 			"sourceGroupIndex" : 1
 		},
@@ -368,6 +420,16 @@
 		},
 		{
 			"backtrace" : 1,
+			"path" : "src/Program.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Rasterizer.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
 			"path" : "src/Ray.h",
 			"sourceGroupIndex" : 1
 		},
@@ -378,17 +440,27 @@
 		},
 		{
 			"backtrace" : 1,
+			"path" : "src/Renderer.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
 			"path" : "src/Scene.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/Shape.h",
+			"path" : "src/Texture.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"path" : "src/Triangle.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/stb_image.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -403,27 +475,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "resources/shaders/ao_frag.glsl",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "resources/shaders/ao_vert.glsl",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
 			"path" : "resources/shaders/frag.glsl",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "resources/shaders/phong_frag.glsl",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "resources/shaders/phong_vert.glsl",
 			"sourceGroupIndex" : 2
 		},
 		{

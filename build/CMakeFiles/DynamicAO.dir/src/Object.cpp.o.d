@@ -627,6 +627,11 @@ CMakeFiles/DynamicAO.dir/src/Object.cpp.o: \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/tri.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Hit.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Ray.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Shape.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Material.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Light.h
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Light.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Texture.h \
+  /Users/shaheen/CppLib/glew-2.1.0/include/GL/glew.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers/OpenGLAvailability.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/os/availability.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl.h

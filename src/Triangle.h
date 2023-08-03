@@ -20,7 +20,7 @@
 
 
 using Scalar  = float;
-using Vec2   = bvh::v2::Vec<Scalar, 2>;
+using Vec2D   = bvh::v2::Vec<Scalar, 2>;
 using Vec   = bvh::v2::Vec<Scalar, 3>;
 using Tri2D   = bvh::v2::Tri<Scalar, 2>;
 using Tri   = bvh::v2::Tri<Scalar, 3>;
@@ -47,7 +47,6 @@ public:
     );
     ~Triangle() { }
     glm::vec3 computeBarycentric(glm::vec2 tex);
-    Hit collider(Ray& ray);
     glm::vec3 interpolatePos(float w, float u, float v);
     glm::vec3 interpolateNor(float w, float u, float v);
     glm::vec2 interpolateTex(float w, float u, float v);
