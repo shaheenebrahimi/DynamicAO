@@ -19,6 +19,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/DynamicAO.dir/src/Occluder.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/Program.cpp.o"
   "CMakeFiles/DynamicAO.dir/src/Program.cpp.o.d"
+  "CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o"
+  "CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/Rasterizer.cpp.o"
   "CMakeFiles/DynamicAO.dir/src/Rasterizer.cpp.o.d"
   "CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.o"

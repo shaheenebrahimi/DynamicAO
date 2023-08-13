@@ -5,32 +5,58 @@
 Rasterizer::Rasterizer() { 
     this->width = 512;
     this->height = 512;
-    init();
+    // init();
 }
 
 Rasterizer::Rasterizer(int width, int height) {
     this->width = width;
     this->height = height;
-    init();
+    // init();
 }
 
 Rasterizer::~Rasterizer() { }
 
-void Rasterizer::init() {
+int Rasterizer::init() {
+	// Set error callback.
+	// glfwSetErrorCallback(error_callback);
+	
+	// Initialize the library.
+	if(!glfwInit()) {
+		return -1;
+	}
+
     // Initialize Window
     window = glfwCreateWindow(this->width, this->height, "DynamicAO", NULL, NULL);
 	if(!window) {
 		glfwTerminate();
+		return -1;
 	}
-
     glfwMakeContextCurrent(window);
 
-    // Initialize GL
+	// Initiialize GLEW
+	glewExperimental = true;
+	if (glewInit() != GLEW_OK) {
+		std::cerr << "Failed to initialize GLEW" << std::endl;
+	}
+	
+	glGetError(); // A bug in glewInit() causes an error that we can safely ignore.
+	std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
+	std::cout << "GLSL version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
+	GLSL::checkVersion();
+
+	// Add Callbacks
+	// glfwSwapInterval(1); // Set vsync.
+	// glfwSetKeyCallback(window, key_callback); // Set keyboard callback.
+	// glfwSetCharCallback(window, char_callback); // Set char callback.
+	// glfwSetCursorPosCallback(window, cursor_position_callback); // Set cursor position callback.
+	// glfwSetMouseButtonCallback(window, mouse_button_callback); // Set mouse button callback.
+
+    // // Initialize GL
 	glfwSetTime(0.0); // Initialize time.
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // Set background color.
 	glEnable(GL_DEPTH_TEST); // Enable z-buffer test.
 
-	// Initialize Shaders
+	// // Initialize Shaders
 	prog = std::make_shared<Program>();
 	prog->setShaderNames(RES_DIR + "shaders/vert.glsl", RES_DIR + "shaders/frag.glsl"); // TODO: make dynamic?
 	prog->setVerbose(true);
@@ -49,25 +75,22 @@ void Rasterizer::init() {
 	prog->addUniform("texture0");
 	prog->setVerbose(false);
 
-	// // Initialize Meshes
-	// sphere = make_shared<Shape>();
-	// sphere->loadMesh(RES_DIR + "models/sphere2.obj");
-	// sphere->fitToUnitBox();
-	// sphere->init();
+	// Initialize Camera
+	camera = std::make_shared<RasterCam>();
+	camera->setInitDistance(-3.0f);
 
-	// // Initialize Scene
-	// camera = make_shared<Camera>();
-	// camera->setInitDistance(2.0f);
-	// lightPos = glm::vec3(1.0f, 1.0f, 1.0f);
-	// obj = Object(
-	// 	sphere,
-	// 	glm::vec3(0.2f, 0.2f, 0.2f),
-	// 	glm::vec3(0.8f, 0.7f, 0.7f),
-	// 	glm::vec3(1.0f, 0.9f, 0.8f),
-	// 	200.0f
-	// );
+	// Send Objects to GPU
+	for (auto obj : scn.objects) { // TODO texture issue
+		if (obj->tex) {
+			obj->tex->init();
+			obj->tex->setUnit(textureCount++);
+			obj->tex->setWrapModes(GL_REPEAT, GL_REPEAT);
+		}
+		obj->mesh->loadBuffers();
+	}
 	
 	GLSL::checkError(GET_FILE_LINE);
+	return 0;
 }
 
 void Rasterizer::render() {
@@ -85,28 +108,87 @@ void Rasterizer::render() {
 	// }
 	
 	// Get current frame buffer size.
-	// int w, h;
-	// glfwGetFramebufferSize(window, &w, &h); // TODO: use width height of class
-	// camera->setAspect((float)w/(float)h);
+	int w, h;
+	glfwGetFramebufferSize(window, &w, &h); // TODO: use width height of class
+	camera->setAspect((float)w/(float)h);
 	
 	// // Matrix stacks
-	// auto P = std::make_shared<MatrixStack>();
-	// auto MV = std::make_shared<MatrixStack>();
+	auto P = std::make_shared<MatrixStack>();
+	auto MV = std::make_shared<MatrixStack>();
 	
-	// // Apply camera transforms
-	// P->pushMatrix();
-	// camera->applyProjectionMatrix(P);
-	// MV->pushMatrix();
-	// camera->applyViewMatrix(MV);
+	// Apply camera transforms
+	P->pushMatrix();
+	camera->applyProjectionMatrix(P);
+	MV->pushMatrix();
+	camera->applyViewMatrix(MV);
 	
-	// // Draw scene
-	// prog->bind();
-	// 	glUniform3f(prog->getUniform("lightPos"), lightPos.x, lightPos.y, lightPos.z); // send light position to GPU
-	// 	obj.draw(prog, P, MV);
-	// prog->unbind();
+	// Draw scene
+	prog->bind();
+		auto light = scn.lights[0]; // TODO: more lights
+		glUniform3f(prog->getUniform("lightPos"), light->position.x, light->position.y, light->position.z); // send light position to GPU
+		for (auto obj : scn.objects) {
+			MV->pushMatrix();
+				MV->multMatrix(obj->transform);
+				obj->draw(prog, P, MV);
+			MV->popMatrix();
+		}
+	prog->unbind();
 	
-	// MV->popMatrix();
-	// P->popMatrix();
+	MV->popMatrix();
+	P->popMatrix();
 	
 	GLSL::checkError(GET_FILE_LINE);
 }
+
+void Rasterizer::run() {
+	while(!glfwWindowShouldClose(window)) {
+		// Render scene.
+		render();
+		// Swap front and back buffers.
+		glfwSwapBuffers(window);
+		// Poll for and process events.
+		glfwPollEvents();
+	}
+	
+	// Quit program.
+	glfwDestroyWindow(window);
+	glfwTerminate();
+}
+
+// void Rasterizer::key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
+// {
+// 	if(key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+// 		glfwSetWindowShouldClose(window, GL_TRUE);
+// 	}
+// }
+
+// void Rasterizer::mouse_button_callback(GLFWwindow *window, int button, int action, int mods)
+// {
+// 	// Get the current mouse position.
+// 	double xmouse, ymouse;
+// 	glfwGetCursorPos(window, &xmouse, &ymouse);
+// 	// Get current window size.
+// 	int width, height;
+// 	glfwGetWindowSize(window, &width, &height);
+// 	if(action == GLFW_PRESS) {
+// 		bool shift = (mods & GLFW_MOD_SHIFT) != 0;
+// 		bool ctrl  = (mods & GLFW_MOD_CONTROL) != 0;
+// 		bool alt   = (mods & GLFW_MOD_ALT) != 0;
+// 		camera->mouseClicked((float)xmouse, (float)ymouse, shift, ctrl, alt);
+// 	}
+// }
+
+// // This function is called when the mouse moves
+// void Rasterizer::cursor_position_callback(GLFWwindow* window, double xmouse, double ymouse)
+// {
+// 	int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+// 	if(state == GLFW_PRESS) {
+// 		camera->mouseMoved((float)xmouse, (float)ymouse);
+// 	}
+// }
+
+// // This function is for handling chars in key press
+// void Rasterizer::char_callback(GLFWwindow *window, unsigned int key)
+// {
+// 	keyToggles[key] = !keyToggles[key];
+// }

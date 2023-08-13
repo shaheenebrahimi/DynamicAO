@@ -12,7 +12,7 @@
 						3
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Release-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.21"
@@ -30,7 +30,7 @@
 					[
 						2
 					],
-					"jsonFile" : "directory-contrib.bvh-Release-342c6c8c4257a88567d0.json",
+					"jsonFile" : "directory-contrib.bvh-342c6c8c4257a88567d0.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.21"
@@ -41,7 +41,7 @@
 				},
 				{
 					"build" : "contrib/bvh/src/bvh/v2",
-					"jsonFile" : "directory-contrib.bvh.src.bvh.v2-Release-eea49798fb24fa3671f9.json",
+					"jsonFile" : "directory-contrib.bvh.src.bvh.v2-eea49798fb24fa3671f9.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.21"
@@ -51,13 +51,13 @@
 					"source" : "contrib/bvh/src/bvh/v2"
 				},
 				{
-					"build" : "/Users/shaheen/CppLib/glfw-3.3.8/release",
+					"build" : "/Users/shaheen/CppLib/glfw-3.3.8/debug",
 					"childIndexes" : 
 					[
 						4
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-Release-d98ec14054ccb461e4cb.json",
+					"jsonFile" : "directory-02e8d89f4bf6c277b34f.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.0"
@@ -71,9 +71,9 @@
 					]
 				},
 				{
-					"build" : "/Users/shaheen/CppLib/glfw-3.3.8/release/src",
+					"build" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-Release-40c47385b24e705dc071.json",
+					"jsonFile" : "directory-23775bbd5e0ff01422f4.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.0"
@@ -88,7 +88,7 @@
 					]
 				}
 			],
-			"name" : "Release",
+			"name" : "",
 			"projects" : 
 			[
 				{
@@ -137,28 +137,28 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "DynamicAO::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-DynamicAO-Release-47152b133a0924d4606d.json",
+					"jsonFile" : "target-DynamicAO-a093157097e4f7343904.json",
 					"name" : "DynamicAO",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 4,
-					"id" : "glfw::@fac0b0150d2f7915b985",
-					"jsonFile" : "target-glfw-Release-2d2689f3190299b837d4.json",
+					"id" : "glfw::@647e37bbaf33a0d5cfdf",
+					"jsonFile" : "target-glfw-6b4928453763478836c8.json",
 					"name" : "glfw",
 					"projectIndex" : 2
 				},
 				{
 					"directoryIndex" : 3,
-					"id" : "uninstall::@dfe4df815bb898c1fa76",
-					"jsonFile" : "target-uninstall-Release-eca4f8142e3195c98b83.json",
+					"id" : "uninstall::@c0a369ed319264de4d3d",
+					"jsonFile" : "target-uninstall-49783a1f71f3ebb6a989.json",
 					"name" : "uninstall",
 					"projectIndex" : 2
 				},
 				{
 					"directoryIndex" : 4,
-					"id" : "update_mappings::@fac0b0150d2f7915b985",
-					"jsonFile" : "target-update_mappings-Release-2c6290c2a571667ae885.json",
+					"id" : "update_mappings::@647e37bbaf33a0d5cfdf",
+					"jsonFile" : "target-update_mappings-5ee22365ead501e2ff9d.json",
 					"name" : "update_mappings",
 					"projectIndex" : 2
 				}

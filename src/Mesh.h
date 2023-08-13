@@ -2,6 +2,10 @@
 #ifndef MESH_H
 #define MESH_H
 
+#define GLEW_STATIC
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
 #define GLM_FORCE_RADIANS
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -11,10 +15,12 @@
 #include <vector>
 #include <optional>
 
+#include "GLSL.h"
 #include "Triangle.h"
 #include "Hit.h"
 #include "Ray.h"
 #include "Material.h"
+#include "Program.h"
 
 #include <bvh/v2/bvh.h>
 #include <bvh/v2/vec.h>
@@ -44,10 +50,12 @@ public:
     Mesh(const std::string& objPath);
     ~Mesh();
     void loadMesh(const std::string& meshName);
+    void loadBuffers(); // only for rasterization
     void constructBVH();
     void setTransform(glm::mat4 transform) { this->transform = transform; constructBVH(); }
     std::vector<std::shared_ptr<Triangle>> getTriangles() { return transformed; } // return transformed tris
     std::optional<Hit> collider(Ray& ray);
+    void drawMesh(std::shared_ptr<Program> prog);
 private:
     static constexpr bool should_permute = true;
     static constexpr bool use_robust_traversal = false;
@@ -59,7 +67,14 @@ private:
     std::vector<std::shared_ptr<Triangle>> transformed;
     std::vector<PrecomputedTri> precomputed;
 
-    void bufToTriangles(std::vector<float>& posBuf, std::vector<float>& norBuf, std::vector<float>& texBuf);
+    std::vector<float> posBuf;
+    std::vector<float> norBuf;
+    std::vector<float> texBuf;
+    unsigned posBufID;
+	unsigned norBufID;
+	unsigned texBufID;
+
+    void bufToTriangles();
 };
 
 #endif

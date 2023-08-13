@@ -120,6 +120,7 @@ void Shape::init()
 	
 	// Unbind the arrays
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
 	
 	GLSL::checkError(GET_FILE_LINE);
 }

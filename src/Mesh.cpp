@@ -25,10 +25,6 @@ Mesh::~Mesh() {
 }
 
 void Mesh::loadMesh(const string& meshName) {
-    vector<float> posBuf;
-    vector<float> norBuf;
-    vector<float> texBuf;
-
 	tinyobj::attrib_t attrib;
 	vector<tinyobj::shape_t> shapes;
 	vector<tinyobj::material_t> materials;
@@ -66,8 +62,35 @@ void Mesh::loadMesh(const string& meshName) {
 				index_offset += fv;
 			}
 		}
-        bufToTriangles(posBuf, norBuf, texBuf);
+        bufToTriangles();
 	}
+}
+
+void Mesh::loadBuffers() {
+	
+    // Send the position array to the GPU
+	glGenBuffers(1, &posBufID);
+	glBindBuffer(GL_ARRAY_BUFFER, posBufID);
+	glBufferData(GL_ARRAY_BUFFER, posBuf.size()*sizeof(float), &posBuf[0], GL_STATIC_DRAW);
+
+	// Send the normal array to the GPU
+	if(!norBuf.empty()) {
+		glGenBuffers(1, &norBufID);
+		glBindBuffer(GL_ARRAY_BUFFER, norBufID);
+		glBufferData(GL_ARRAY_BUFFER, norBuf.size()*sizeof(float), &norBuf[0], GL_STATIC_DRAW);
+	}
+	
+	// Send the texture array to the GPU
+	if(!texBuf.empty()) {
+		glGenBuffers(1, &texBufID);
+		glBindBuffer(GL_ARRAY_BUFFER, texBufID);
+		glBufferData(GL_ARRAY_BUFFER, texBuf.size()*sizeof(float), &texBuf[0], GL_STATIC_DRAW);
+	}
+
+	// Unbind the arrays
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	
+	GLSL::checkError(GET_FILE_LINE);
 }
 
 void Mesh::constructBVH() {
@@ -138,7 +161,7 @@ std::optional<Hit> Mesh::collider(Ray& ray) {
 
 /* PRIVATE */
 
-void Mesh::bufToTriangles(vector<float>& posBuf, vector<float>& norBuf, vector<float>& texBuf) {
+void Mesh::bufToTriangles() {
     for (int i = 0; i < posBuf.size()/9; i++) {
         glm::vec3 pos0 (posBuf[9*i], posBuf[9*i+1], posBuf[9*i+2]);
         glm::vec3 pos1 (posBuf[9*i+3], posBuf[9*i+4], posBuf[9*i+5]);
@@ -152,4 +175,44 @@ void Mesh::bufToTriangles(vector<float>& posBuf, vector<float>& norBuf, vector<f
         shared_ptr<Triangle> tri = std::make_shared<Triangle>(pos0, pos1, pos2, nor0, nor1, nor2, tex0, tex1, tex2);
         triangles.push_back(tri);
     }
+}
+
+void Mesh::drawMesh(std::shared_ptr<Program> prog) {
+    // Bind position buffer
+	int h_pos = prog->getAttribute("aPos");
+	glEnableVertexAttribArray(h_pos);
+	glBindBuffer(GL_ARRAY_BUFFER, posBufID);
+	glVertexAttribPointer(h_pos, 3, GL_FLOAT, GL_FALSE, 0, (const void *)0);
+	
+	// Bind normal buffer
+	int h_nor = prog->getAttribute("aNor");
+	if(h_nor != -1 && norBufID != 0) {
+		glEnableVertexAttribArray(h_nor);
+		glBindBuffer(GL_ARRAY_BUFFER, norBufID);
+		glVertexAttribPointer(h_nor, 3, GL_FLOAT, GL_FALSE, 0, (const void *)0);
+	}
+	
+	// Bind texcoords buffer
+	int h_tex = prog->getAttribute("aTex");
+	if(h_tex != -1 && texBufID != 0) {
+		glEnableVertexAttribArray(h_tex);
+		glBindBuffer(GL_ARRAY_BUFFER, texBufID);
+		glVertexAttribPointer(h_tex, 2, GL_FLOAT, GL_FALSE, 0, (const void *)0);
+	}
+
+	// Draw
+	int count = posBuf.size()/3; // number of indices to be rendered
+	glDrawArrays(GL_TRIANGLES, 0, count);
+	
+	// Disable and unbind
+	if(h_tex != -1) {
+		glDisableVertexAttribArray(h_tex);
+	}
+	if(h_nor != -1) {
+		glDisableVertexAttribArray(h_nor);
+	}
+	glDisableVertexAttribArray(h_pos);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	
+	GLSL::checkError(GET_FILE_LINE);
 }

@@ -58,8 +58,8 @@
 			"destination" : "lib/cmake/glfw3",
 			"paths" : 
 			[
-				"/Users/shaheen/CppLib/glfw-3.3.8/release/src/glfw3Config.cmake",
-				"/Users/shaheen/CppLib/glfw-3.3.8/release/src/glfw3ConfigVersion.cmake"
+				"/Users/shaheen/CppLib/glfw-3.3.8/debug/src/glfw3Config.cmake",
+				"/Users/shaheen/CppLib/glfw-3.3.8/debug/src/glfw3ConfigVersion.cmake"
 			],
 			"type" : "file"
 		},
@@ -71,13 +71,13 @@
 			"exportTargets" : 
 			[
 				{
-					"id" : "glfw::@fac0b0150d2f7915b985",
+					"id" : "glfw::@647e37bbaf33a0d5cfdf",
 					"index" : 1
 				}
 			],
 			"paths" : 
 			[
-				"/Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/Export/f367bd07922f2ecfc14cf5547f1f7c4e/glfw3Targets.cmake"
+				"/Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/Export/f367bd07922f2ecfc14cf5547f1f7c4e/glfw3Targets.cmake"
 			],
 			"type" : "export"
 		},
@@ -87,14 +87,14 @@
 			"destination" : "lib/pkgconfig",
 			"paths" : 
 			[
-				"/Users/shaheen/CppLib/glfw-3.3.8/release/src/glfw3.pc"
+				"/Users/shaheen/CppLib/glfw-3.3.8/debug/src/glfw3.pc"
 			],
 			"type" : "file"
 		}
 	],
 	"paths" : 
 	{
-		"build" : "/Users/shaheen/CppLib/glfw-3.3.8/release",
+		"build" : "/Users/shaheen/CppLib/glfw-3.3.8/debug",
 		"source" : "/Users/shaheen/CppLib/glfw-3.3.8"
 	}
 }

@@ -60,36 +60,36 @@ CMAKE_SOURCE_DIR = /Users/shaheen/Documents/Coding/Masters/DynamicAO
 CMAKE_BINARY_DIR = /Users/shaheen/Documents/Coding/Masters/DynamicAO/build
 
 #=============================================================================
-# Directory level rules for directory /Users/shaheen/CppLib/glfw-3.3.8/release
+# Directory level rules for directory /Users/shaheen/CppLib/glfw-3.3.8/debug
 
 # Recursive "all" directory target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/all: /Users/shaheen/CppLib/glfw-3.3.8/release/src/all
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/all
+/Users/shaheen/CppLib/glfw-3.3.8/debug/all: /Users/shaheen/CppLib/glfw-3.3.8/debug/src/all
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/all
 
 # Recursive "preinstall" directory target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/preinstall: /Users/shaheen/CppLib/glfw-3.3.8/release/src/preinstall
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/preinstall
+/Users/shaheen/CppLib/glfw-3.3.8/debug/preinstall: /Users/shaheen/CppLib/glfw-3.3.8/debug/src/preinstall
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/preinstall
 
 # Recursive "clean" directory target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/clean: /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/clean
-/Users/shaheen/CppLib/glfw-3.3.8/release/clean: /Users/shaheen/CppLib/glfw-3.3.8/release/src/clean
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/clean
+/Users/shaheen/CppLib/glfw-3.3.8/debug/clean: /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/clean
+/Users/shaheen/CppLib/glfw-3.3.8/debug/clean: /Users/shaheen/CppLib/glfw-3.3.8/debug/src/clean
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/clean
 
 #=============================================================================
-# Directory level rules for directory /Users/shaheen/CppLib/glfw-3.3.8/release/src
+# Directory level rules for directory /Users/shaheen/CppLib/glfw-3.3.8/debug/src
 
 # Recursive "all" directory target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/src/all: /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/all
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/src/all
+/Users/shaheen/CppLib/glfw-3.3.8/debug/src/all: /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/all
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/src/all
 
 # Recursive "preinstall" directory target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/src/preinstall:
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/src/preinstall
+/Users/shaheen/CppLib/glfw-3.3.8/debug/src/preinstall:
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/src/preinstall
 
 # Recursive "clean" directory target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/src/clean: /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/clean
-/Users/shaheen/CppLib/glfw-3.3.8/release/src/clean: /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/clean
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/src/clean
+/Users/shaheen/CppLib/glfw-3.3.8/debug/src/clean: /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/clean
+/Users/shaheen/CppLib/glfw-3.3.8/debug/src/clean: /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/clean
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/src/clean
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -97,18 +97,18 @@ CMAKE_BINARY_DIR = /Users/shaheen/Documents/Coding/Masters/DynamicAO/build
 # The main recursive "all" target.
 all: CMakeFiles/DynamicAO.dir/all
 all: contrib/bvh/all
-all: /Users/shaheen/CppLib/glfw-3.3.8/release/all
+all: /Users/shaheen/CppLib/glfw-3.3.8/debug/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: contrib/bvh/preinstall
-preinstall: /Users/shaheen/CppLib/glfw-3.3.8/release/preinstall
+preinstall: /Users/shaheen/CppLib/glfw-3.3.8/debug/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/DynamicAO.dir/clean
 clean: contrib/bvh/clean
-clean: /Users/shaheen/CppLib/glfw-3.3.8/release/clean
+clean: /Users/shaheen/CppLib/glfw-3.3.8/debug/clean
 .PHONY : clean
 
 #=============================================================================
@@ -145,15 +145,15 @@ contrib/bvh/src/bvh/v2/clean:
 # Target rules for target CMakeFiles/DynamicAO.dir
 
 # All Build rule for target.
-CMakeFiles/DynamicAO.dir/all: /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/all
+CMakeFiles/DynamicAO.dir/all: /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 "Built target DynamicAO"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Built target DynamicAO"
 .PHONY : CMakeFiles/DynamicAO.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/DynamicAO.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/DynamicAO.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles 0
 .PHONY : CMakeFiles/DynamicAO.dir/rule
@@ -168,82 +168,82 @@ CMakeFiles/DynamicAO.dir/clean:
 .PHONY : CMakeFiles/DynamicAO.dir/clean
 
 #=============================================================================
-# Target rules for target /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir
+# Target rules for target /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir
 
 # All Build rule for target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/all:
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/depend
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/build
+/Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/all:
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/depend
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num= "Built target uninstall"
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/all
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/all
 
 # Build rule for subdir invocation for target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/rule: cmake_check_build_system
+/Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles 0
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles 0
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/rule
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/rule
 
 # Convenience name for target.
-uninstall: /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/rule
+uninstall: /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/rule
 .PHONY : uninstall
 
 # clean rule for target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/clean:
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/clean
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/clean
+/Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/clean:
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/clean
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/clean
 
 #=============================================================================
-# Target rules for target /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir
+# Target rules for target /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir
 
 # All Build rule for target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/all:
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/depend
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=33 "Built target update_mappings"
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/all
+/Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/all:
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/depend
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=34 "Built target update_mappings"
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/all
 
 # Build rule for subdir invocation for target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/rule: cmake_check_build_system
+/Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles 1
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles 0
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/rule
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/rule
 
 # Convenience name for target.
-update_mappings: /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/rule
+update_mappings: /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/rule
 .PHONY : update_mappings
 
 # clean rule for target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/clean:
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/clean
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/clean
+/Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/clean:
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/clean
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/clean
 
 #=============================================================================
-# Target rules for target /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir
+# Target rules for target /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir
 
 # All Build rule for target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/all:
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/depend
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32 "Built target glfw"
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/all
+/Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/all:
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/depend
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles --progress-num=18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33 "Built target glfw"
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/all
 
 # Build rule for subdir invocation for target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/rule: cmake_check_build_system
+/Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles 16
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles 0
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/rule
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/rule
 
 # Convenience name for target.
-glfw: /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/rule
+glfw: /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/rule
 .PHONY : glfw
 
 # clean rule for target.
-/Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/clean:
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/clean
-.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/clean
+/Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/clean:
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/clean
+.PHONY : /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

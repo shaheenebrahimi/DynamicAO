@@ -5,10 +5,13 @@
 #define GLM_FORCE_RADIANS
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "Mesh.h"
 #include "Material.h"
 #include "Texture.h"
+#include "Program.h"
+#include "MatrixStack.h"
 
 class Object {
     // Transform
@@ -33,6 +36,8 @@ public:
     void setScale(glm::vec3 scale);
 
     void addTexture(const std::string& texPath);
+
+    void draw(std::shared_ptr<Program> prog, std::shared_ptr<MatrixStack> P, std::shared_ptr<MatrixStack> MV);
 
 private:
     glm::mat4 T;

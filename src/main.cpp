@@ -34,10 +34,10 @@ Scene createScene() {
 	// scn.addLight(l2);
 
 	// Objects
-	target = make_shared<Object>(RES_DIR + "models/sphere2.obj");
-	target->setMaterial(glm::vec3(0,0,1), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
-	target->addTexture(RES_DIR + "/textures/aoTexture.png");
-
+	shared_ptr<Object> sphere = make_shared<Object>(RES_DIR + "models/sphere2.obj");
+	sphere->setMaterial(glm::vec3(0,0,1), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
+	// target->addTexture(RES_DIR + "/textures/aoTexture.png");
+	
 	std::shared_ptr<Object> floor = make_shared<Object>(RES_DIR + "models/square.obj");
 	floor->setMaterial(glm::vec3(1,0,0), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
 	floor->setPosition(glm::vec3(0.0f, -1.0f, 0.0f));
@@ -45,8 +45,10 @@ Scene createScene() {
 	floor->setScale(glm::vec3(3.0f, 3.0f, 3.0f));
 
 	// Add to scene
-	scn.addObject(target);
+	scn.addObject(sphere);
 	scn.addObject(floor);
+
+	target = floor;
 
 	return scn;
 }
@@ -57,10 +59,11 @@ int main(int argc, char **argv) {
 	int opt;
 	string filename = "out.png"; // optional name of output file
 	int resolution = 512; // optional size of output file
-	// int renderer = 0; // renderer type (rasterizer, raytracer, occluder)
+	bool generate = false;
 
-	while((opt = getopt(argc, argv, "f:r:")) != -1) { 
+	while((opt = getopt(argc, argv, ":gf:r:")) != -1) { 
 		switch(opt) {
+			case 'g': generate = true; break;
 			case 'f': filename = optarg; break;
 			case 'r': resolution = atoi(optarg); break;
 		}
@@ -70,18 +73,23 @@ int main(int argc, char **argv) {
 	Scene scn = createScene();
 
 	// Initialize Raytracer
-	Raytracer tracer (filename, resolution);
-	tracer.setScene(scn);
-	tracer.render();
+	// Raytracer tracer (filename, resolution);
+	// tracer.setScene(scn);
+	// tracer.render();
 
-	// Initialize Occluder
-	// Occluder occluder (filename, resolution);
-	// occluder.setScene(scn);
-	// occluder.renderTexture(target);
-
-	// Initialize Rasterizer
-	// Rasterizer raster;
-	// raster.setScene(scn);
+	if (generate) { // generator
+		// Initialize Occluder
+		Occluder occluder (filename, resolution);
+		occluder.setScene(scn);
+		occluder.renderTexture(target);
+	}
+	else { // viewer
+		// Initialize Rasterizer
+		Rasterizer raster;
+		raster.setScene(scn);
+		raster.init();
+		raster.run();
+	}
 	
 	return 0;
 }

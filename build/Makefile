@@ -184,7 +184,7 @@ uninstall: cmake_check_build_system
 
 # fast build rule for target.
 uninstall/fast:
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.dir/build
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
 
 #=============================================================================
@@ -197,7 +197,7 @@ update_mappings: cmake_check_build_system
 
 # fast build rule for target.
 update_mappings/fast:
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/update_mappings.dir/build
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
 
 #=============================================================================
@@ -210,7 +210,7 @@ glfw: cmake_check_build_system
 
 # fast build rule for target.
 glfw/fast:
-	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/release/src/CMakeFiles/glfw.dir/build
+	$(MAKE) $(MAKESILENT) -f /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/build.make /Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/glfw.dir/build
 .PHONY : glfw/fast
 
 src/Camera.o: src/Camera.cpp.o
@@ -453,6 +453,30 @@ src/Program.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Program.cpp.s
 .PHONY : src/Program.cpp.s
 
+src/RasterCam.o: src/RasterCam.cpp.o
+.PHONY : src/RasterCam.o
+
+# target to build an object file
+src/RasterCam.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o
+.PHONY : src/RasterCam.cpp.o
+
+src/RasterCam.i: src/RasterCam.cpp.i
+.PHONY : src/RasterCam.i
+
+# target to preprocess a source file
+src/RasterCam.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.i
+.PHONY : src/RasterCam.cpp.i
+
+src/RasterCam.s: src/RasterCam.cpp.s
+.PHONY : src/RasterCam.s
+
+# target to generate assembly for a file
+src/RasterCam.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.s
+.PHONY : src/RasterCam.cpp.s
+
 src/Rasterizer.o: src/Rasterizer.cpp.o
 .PHONY : src/Rasterizer.o
 
@@ -619,6 +643,9 @@ help:
 	@echo "... src/Program.o"
 	@echo "... src/Program.i"
 	@echo "... src/Program.s"
+	@echo "... src/RasterCam.o"
+	@echo "... src/RasterCam.i"
+	@echo "... src/RasterCam.s"
 	@echo "... src/Rasterizer.o"
 	@echo "... src/Rasterizer.i"
 	@echo "... src/Rasterizer.s"

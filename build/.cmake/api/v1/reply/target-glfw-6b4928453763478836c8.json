@@ -3,7 +3,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/release/src/libglfw3.a"
+			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/libglfw3.a"
 		}
 	],
 	"backtrace" : 1,
@@ -88,7 +88,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -fPIC"
+					"fragment" : " -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -fPIC"
 				},
 				{
 					"backtrace" : 3,
@@ -121,7 +121,7 @@
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/Users/shaheen/CppLib/glfw-3.3.8/release/src"
+					"path" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src"
 				}
 			],
 			"language" : "C",
@@ -157,7 +157,7 @@
 	{
 		"name" : "GLFW3"
 	},
-	"id" : "glfw::@fac0b0150d2f7915b985",
+	"id" : "glfw::@647e37bbaf33a0d5cfdf",
 	"install" : 
 	{
 		"destinations" : 
@@ -176,7 +176,7 @@
 	"nameOnDisk" : "libglfw3.a",
 	"paths" : 
 	{
-		"build" : "/Users/shaheen/CppLib/glfw-3.3.8/release/src",
+		"build" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src",
 		"source" : "/Users/shaheen/CppLib/glfw-3.3.8/src"
 	},
 	"sourceGroups" : 
@@ -324,7 +324,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/release/src/glfw_config.h",
+			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/glfw_config.h",
 			"sourceGroupIndex" : 1
 		},
 		{

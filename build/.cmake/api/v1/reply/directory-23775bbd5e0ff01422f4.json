@@ -30,16 +30,16 @@
 			"destination" : "lib",
 			"paths" : 
 			[
-				"/Users/shaheen/CppLib/glfw-3.3.8/release/src/libglfw3.a"
+				"/Users/shaheen/CppLib/glfw-3.3.8/debug/src/libglfw3.a"
 			],
-			"targetId" : "glfw::@fac0b0150d2f7915b985",
+			"targetId" : "glfw::@647e37bbaf33a0d5cfdf",
 			"targetIndex" : 1,
 			"type" : "target"
 		}
 	],
 	"paths" : 
 	{
-		"build" : "/Users/shaheen/CppLib/glfw-3.3.8/release/src",
+		"build" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src",
 		"source" : "/Users/shaheen/CppLib/glfw-3.3.8/src"
 	}
 }

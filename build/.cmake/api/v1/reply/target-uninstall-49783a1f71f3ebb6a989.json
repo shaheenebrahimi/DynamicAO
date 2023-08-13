@@ -27,11 +27,11 @@
 	{
 		"name" : "GLFW3"
 	},
-	"id" : "uninstall::@dfe4df815bb898c1fa76",
+	"id" : "uninstall::@c0a369ed319264de4d3d",
 	"name" : "uninstall",
 	"paths" : 
 	{
-		"build" : "/Users/shaheen/CppLib/glfw-3.3.8/release",
+		"build" : "/Users/shaheen/CppLib/glfw-3.3.8/debug",
 		"source" : "/Users/shaheen/CppLib/glfw-3.3.8"
 	},
 	"sourceGroups" : 
@@ -56,13 +56,13 @@
 		{
 			"backtrace" : 1,
 			"isGenerated" : true,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall",
+			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/release/CMakeFiles/uninstall.rule",
+			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/uninstall.rule",
 			"sourceGroupIndex" : 1
 		}
 	],

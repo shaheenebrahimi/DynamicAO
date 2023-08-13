@@ -716,13 +716,14 @@ CMakeFiles/DynamicAO.dir/src/Rasterizer.cpp.o: \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Ray.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Material.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Light.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Texture.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Camera.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Scene.h \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Image.h \
   /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Program.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/map \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__functional/is_transparent.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__node_handle \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__tree \
-  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/MatrixStack.h
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Texture.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/MatrixStack.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Scene.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Camera.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/Image.h \
+  /Users/shaheen/Documents/Coding/Masters/DynamicAO/src/RasterCam.h

@@ -97,7 +97,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -pedantic -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6"
+					"fragment" : " -Wall -pedantic -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6"
 				},
 				{
 					"fragment" : "-std=gnu++20"
@@ -147,7 +147,8 @@
 				11,
 				12,
 				13,
-				14
+				14,
+				15
 			]
 		}
 	],
@@ -155,7 +156,7 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "glfw::@fac0b0150d2f7915b985"
+			"id" : "glfw::@647e37bbaf33a0d5cfdf"
 		}
 	],
 	"id" : "DynamicAO::@6890427a1f51a3e7e1df",
@@ -164,7 +165,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-Wall -pedantic -O3 -DNDEBUG",
+				"fragment" : "-Wall -pedantic",
 				"role" : "flags"
 			},
 			{
@@ -173,7 +174,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "/Users/shaheen/CppLib/glfw-3.3.8/release/src/libglfw3.a",
+				"fragment" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/libglfw3.a",
 				"role" : "libraries"
 			},
 			{
@@ -231,14 +232,14 @@
 				11,
 				12,
 				13,
-				14
+				14,
+				15
 			]
 		},
 		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				15,
 				16,
 				17,
 				18,
@@ -259,15 +260,17 @@
 				33,
 				34,
 				35,
-				36
+				36,
+				37,
+				38
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				37,
-				38
+				39,
+				40
 			]
 		}
 	],
@@ -331,6 +334,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/Program.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/RasterCam.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -421,6 +430,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/Program.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/RasterCam.h",
 			"sourceGroupIndex" : 1
 		},
 		{

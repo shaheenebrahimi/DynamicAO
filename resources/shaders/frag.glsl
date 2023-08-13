@@ -26,7 +26,7 @@ void main()
 	vec3 ambient = ka;
 	vec3 diffuse = kd * max(0, dot(l_hat, n_hat));
 	vec3 specular = ks * pow(max(0, dot(h_hat, n_hat)), s);
-	vec3 color = ambient + diffuse + specular;
+	vec3 color = ambient + diffuse + specular; 
 
-	gl_FragColor.rgb = color * texture2D(texture0, vTex).rgb;
+	gl_FragColor.rgb = color * texture2D(texture0, vTex).rgb; // no color added
 }
