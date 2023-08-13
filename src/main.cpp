@@ -36,13 +36,15 @@ Scene createScene() {
 	// Objects
 	shared_ptr<Object> sphere = make_shared<Object>(RES_DIR + "models/sphere2.obj");
 	sphere->setMaterial(glm::vec3(0,0,1), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
-	// target->addTexture(RES_DIR + "/textures/aoTexture.png");
+	sphere->addTexture(RES_DIR + "/textures/aoTexture.png");
 	
 	std::shared_ptr<Object> floor = make_shared<Object>(RES_DIR + "models/square.obj");
 	floor->setMaterial(glm::vec3(1,0,0), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
 	floor->setPosition(glm::vec3(0.0f, -1.0f, 0.0f));
 	floor->setRotation(glm::vec4(-M_PI_2, 1.0f, 0.0f, 0.0f));
 	floor->setScale(glm::vec3(3.0f, 3.0f, 3.0f));
+	floor->addTexture(RES_DIR + "/textures/tex.png");
+
 
 	// Add to scene
 	scn.addObject(sphere);
