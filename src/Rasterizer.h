@@ -37,6 +37,7 @@ public:
     int init();
     void run();
     void setScene(Scene& scn) { this->scn = scn; }
+    std::shared_ptr<RasterCam> getCam() { return camera; }
     
 private:
     void render();
@@ -47,14 +48,6 @@ private:
     std::shared_ptr<Program> prog;
     std::shared_ptr<RasterCam> camera;
     Scene scn;
-
-    // static void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods); // Set keyboard callback.
-	// static void char_callback(GLFWwindow *window, unsigned int key); // Set char callback.
-	// static void cursor_position_callback(GLFWwindow* window, double xmouse, double ymouse); // Set cursor position callback.
-	// static void mouse_button_callback(GLFWwindow *window, int button, int action, int mods); // Set mouse button callback.
-
-    // static bool keyToggles[256] = {false}; // only for English keyboards!
-
 };
 
 

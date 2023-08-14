@@ -92,7 +92,7 @@ void Object::draw(std::shared_ptr<Program> prog, std::shared_ptr<MatrixStack> P,
     glUniform3f(prog->getUniform("kd"), mat->kd.x, mat->kd.y, mat->kd.z);
     glUniform3f(prog->getUniform("ks"), mat->ks.x, mat->ks.y, mat->ks.z);
     glUniform1f(prog->getUniform("s"), mat->s);
-    tex->bind(prog->getUniform("texture0"));
+    tex->bind(prog->getUniform("aoTexture"));
     mesh->drawMesh(prog);
     tex->unbind();
 }

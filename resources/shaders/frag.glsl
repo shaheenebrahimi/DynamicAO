@@ -1,7 +1,6 @@
 #version 120
 
-uniform sampler2D texture0;
-// uniform vec2 windowSize;
+uniform sampler2D aoTexture;
 uniform vec3 lightPos;
 uniform vec3 ka;
 uniform vec3 kd;
@@ -15,9 +14,9 @@ varying vec2 vTex; // vertex texture coord
 void main()
 {
     // Fetch shading data
-    // vec3 aoFactor = texture2D(texture0, vTex);
+    vec3 occlusion = texture2D(aoTexture, vTex).rgb;
     
-    // // Indirect Lighting Approximation (Ambient Occlusion)
+    // Blinn Phong
 	vec3 l_hat = normalize(lightPos - vPos);
 	vec3 e_hat = normalize(-vPos);
 	vec3 h_hat = normalize(l_hat + e_hat);
@@ -28,5 +27,5 @@ void main()
 	vec3 specular = ks * pow(max(0, dot(h_hat, n_hat)), s);
 	vec3 color = ambient + diffuse + specular; 
 
-	gl_FragColor.rgb = color * texture2D(texture0, vTex).rgb; // no color added
+	gl_FragColor.rgb = color * occlusion;
 }

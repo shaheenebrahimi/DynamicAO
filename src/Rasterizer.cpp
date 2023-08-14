@@ -1,16 +1,63 @@
 #include "Rasterizer.h"
 #include "MatrixStack.h"
 
+bool keyToggles[256] = {false}; // only for English keyboards!
+Rasterizer* raster = nullptr;
+
+// This function is for handling key clicks
+void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
+{
+	if(key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+		glfwSetWindowShouldClose(window, GL_TRUE);
+	}
+}
+
+// This function is for handling mouse clicks
+void mouse_button_callback(GLFWwindow *window, int button, int action, int mods)
+{
+	// Get the current mouse position.
+	double xmouse, ymouse;
+	glfwGetCursorPos(window, &xmouse, &ymouse);
+	// Get current window size.
+	int width, height;
+	glfwGetWindowSize(window, &width, &height);
+	if (action == GLFW_PRESS) {
+		bool shift = (mods & GLFW_MOD_SHIFT) != 0;
+		bool ctrl  = (mods & GLFW_MOD_CONTROL) != 0;
+		bool alt   = (mods & GLFW_MOD_ALT) != 0;
+		raster->getCam()->mouseClicked((float)xmouse, (float)ymouse, shift, ctrl, alt);
+	}
+}
+
+// This function is called when the mouse moves
+void cursor_position_callback(GLFWwindow* window, double xmouse, double ymouse)
+{
+	int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+	if(state == GLFW_PRESS) {
+		raster->getCam()->mouseMoved((float)xmouse, (float)ymouse);
+	}
+}
+
+// This function is for handling chars in key press
+void char_callback(GLFWwindow *window, unsigned int key)
+{
+	keyToggles[key] = !keyToggles[key];
+}
+
+
 /* PUBLIC */
 Rasterizer::Rasterizer() { 
-    this->width = 512;
-    this->height = 512;
+    this->width = 1366;
+    this->height = 768;
+	raster = this;
     // init();
 }
 
 Rasterizer::Rasterizer(int width, int height) {
     this->width = width;
     this->height = height;
+	raster = this;
+
     // init();
 }
 
@@ -45,11 +92,11 @@ int Rasterizer::init() {
 	GLSL::checkVersion();
 
 	// Add Callbacks
-	// glfwSwapInterval(1); // Set vsync.
-	// glfwSetKeyCallback(window, key_callback); // Set keyboard callback.
-	// glfwSetCharCallback(window, char_callback); // Set char callback.
-	// glfwSetCursorPosCallback(window, cursor_position_callback); // Set cursor position callback.
-	// glfwSetMouseButtonCallback(window, mouse_button_callback); // Set mouse button callback.
+	glfwSwapInterval(1); // Set vsync.
+	glfwSetKeyCallback(window, key_callback); // Set keyboard callback.
+	glfwSetCharCallback(window, char_callback); // Set char callback.
+	glfwSetCursorPosCallback(window, cursor_position_callback); // Set cursor position callback.
+	glfwSetMouseButtonCallback(window, mouse_button_callback); // Set mouse button callback.
 
     // // Initialize GL
 	glfwSetTime(0.0); // Initialize time.
@@ -72,7 +119,7 @@ int Rasterizer::init() {
 	prog->addUniform("kd");
 	prog->addUniform("ks");
 	prog->addUniform("s");
-	prog->addUniform("texture0");
+	prog->addUniform("aoTexture");
 	prog->setVerbose(false);
 
 	// Initialize Camera
@@ -96,16 +143,16 @@ int Rasterizer::init() {
 void Rasterizer::render() {
 	// Clear framebuffer.
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	// if(keyToggles[(unsigned)'c']) {
-	// 	glEnable(GL_CULL_FACE);
-	// } else {
-	// 	glDisable(GL_CULL_FACE);
-	// }
-	// if(keyToggles[(unsigned)'z']) {
-	// 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	// } else {
-	// 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	// }
+	if(keyToggles[(unsigned)'c']) {
+		glEnable(GL_CULL_FACE);
+	} else {
+		glDisable(GL_CULL_FACE);
+	}
+	if(keyToggles[(unsigned)'z']) {
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	} else {
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
 	
 	// Get current frame buffer size.
 	int w, h;
@@ -154,41 +201,3 @@ void Rasterizer::run() {
 	glfwDestroyWindow(window);
 	glfwTerminate();
 }
-
-// void Rasterizer::key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
-// {
-// 	if(key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
-// 		glfwSetWindowShouldClose(window, GL_TRUE);
-// 	}
-// }
-
-// void Rasterizer::mouse_button_callback(GLFWwindow *window, int button, int action, int mods)
-// {
-// 	// Get the current mouse position.
-// 	double xmouse, ymouse;
-// 	glfwGetCursorPos(window, &xmouse, &ymouse);
-// 	// Get current window size.
-// 	int width, height;
-// 	glfwGetWindowSize(window, &width, &height);
-// 	if(action == GLFW_PRESS) {
-// 		bool shift = (mods & GLFW_MOD_SHIFT) != 0;
-// 		bool ctrl  = (mods & GLFW_MOD_CONTROL) != 0;
-// 		bool alt   = (mods & GLFW_MOD_ALT) != 0;
-// 		camera->mouseClicked((float)xmouse, (float)ymouse, shift, ctrl, alt);
-// 	}
-// }
-
-// // This function is called when the mouse moves
-// void Rasterizer::cursor_position_callback(GLFWwindow* window, double xmouse, double ymouse)
-// {
-// 	int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
-// 	if(state == GLFW_PRESS) {
-// 		camera->mouseMoved((float)xmouse, (float)ymouse);
-// 	}
-// }
-
-// // This function is for handling chars in key press
-// void Rasterizer::char_callback(GLFWwindow *window, unsigned int key)
-// {
-// 	keyToggles[key] = !keyToggles[key];
-// }
