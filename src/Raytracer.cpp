@@ -7,7 +7,7 @@ Raytracer::Raytracer() {
     init();
 }
 
-Raytracer::Raytracer(std::string& filename, int resolution) {
+Raytracer::Raytracer(std::string &filename, int resolution) {
     this->filename = filename;
     this->resolution = resolution;
     init();

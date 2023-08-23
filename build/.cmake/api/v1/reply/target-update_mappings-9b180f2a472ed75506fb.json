@@ -8,7 +8,7 @@
 		],
 		"files" : 
 		[
-			"/Users/shaheen/CppLib/glfw-3.3.8/src/CMakeLists.txt"
+			"/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -27,12 +27,12 @@
 	{
 		"name" : "GLFW3"
 	},
-	"id" : "update_mappings::@647e37bbaf33a0d5cfdf",
+	"id" : "update_mappings::@943bd3108fbf3ab0593a",
 	"name" : "update_mappings",
 	"paths" : 
 	{
-		"build" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src",
-		"source" : "/Users/shaheen/CppLib/glfw-3.3.8/src"
+		"build" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src",
+		"source" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src"
 	},
 	"sourceGroups" : 
 	[
@@ -63,24 +63,24 @@
 	[
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/mappings.h.in",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/mappings.h.in",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/CMake/GenerateMappings.cmake",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/CMake/GenerateMappings.cmake",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"isGenerated" : true,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src/CMakeFiles/update_mappings",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.rule",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src/CMakeFiles/update_mappings.rule",
 			"sourceGroupIndex" : 2
 		}
 	],

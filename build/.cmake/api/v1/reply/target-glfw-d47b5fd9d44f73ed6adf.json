@@ -3,7 +3,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/libglfw3.a"
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src/libglfw3.a"
 		}
 	],
 	"backtrace" : 1,
@@ -21,7 +21,7 @@
 		],
 		"files" : 
 		[
-			"/Users/shaheen/CppLib/glfw-3.3.8/src/CMakeLists.txt",
+			"/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/CMakeLists.txt",
 			"CMakeLists.txt"
 		],
 		"nodes" : 
@@ -88,14 +88,11 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6 -fPIC"
+					"fragment" : "-std=gnu99 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -fPIC"
 				},
 				{
 					"backtrace" : 3,
 					"fragment" : "-Wall"
-				},
-				{
-					"fragment" : "-std=gnu99"
 				}
 			],
 			"defines" : 
@@ -109,19 +106,19 @@
 			[
 				{
 					"backtrace" : 6,
-					"path" : "/Users/shaheen/CppLib/glm-master"
+					"path" : "/Users/shaheenebrahimi/Developer/Library/glm-master"
 				},
 				{
 					"backtrace" : 7,
-					"path" : "/Users/shaheen/CppLib/glfw-3.3.8/include"
+					"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/include"
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src"
+					"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src"
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src"
+					"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src"
 				}
 			],
 			"language" : "C",
@@ -157,7 +154,7 @@
 	{
 		"name" : "GLFW3"
 	},
-	"id" : "glfw::@647e37bbaf33a0d5cfdf",
+	"id" : "glfw::@943bd3108fbf3ab0593a",
 	"install" : 
 	{
 		"destinations" : 
@@ -176,8 +173,8 @@
 	"nameOnDisk" : "libglfw3.a",
 	"paths" : 
 	{
-		"build" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src",
-		"source" : "/Users/shaheen/CppLib/glfw-3.3.8/src"
+		"build" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src",
+		"source" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src"
 	},
 	"sourceGroups" : 
 	[
@@ -225,146 +222,146 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/context.c",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/context.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/init.c",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/init.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/input.c",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/input.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/monitor.c",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/monitor.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/vulkan.c",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/vulkan.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/window.c",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/window.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/cocoa_init.m",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/cocoa_init.m",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/cocoa_joystick.m",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/cocoa_joystick.m",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/cocoa_monitor.m",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/cocoa_monitor.m",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/cocoa_window.m",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/cocoa_window.m",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/cocoa_time.c",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/cocoa_time.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/posix_thread.c",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/posix_thread.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/nsgl_context.m",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/nsgl_context.m",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/egl_context.c",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/egl_context.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/osmesa_context.c",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/osmesa_context.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/internal.h",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/internal.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/mappings.h",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/mappings.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/glfw_config.h",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src/glfw_config.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/include/GLFW/glfw3.h",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/include/GLFW/glfw3.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/include/GLFW/glfw3native.h",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/include/GLFW/glfw3native.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/cocoa_platform.h",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/cocoa_platform.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/cocoa_joystick.h",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/cocoa_joystick.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/posix_thread.h",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/posix_thread.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/nsgl_context.h",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/nsgl_context.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/egl_context.h",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/egl_context.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "/Users/shaheen/CppLib/glfw-3.3.8/src/osmesa_context.h",
+			"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/osmesa_context.h",
 			"sourceGroupIndex" : 1
 		}
 	],

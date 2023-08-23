@@ -15,7 +15,7 @@ Triangle::Triangle() {
     this->area = 0.0f;
 }
 
-Triangle::Triangle(glm::vec3 pos0, glm::vec3 pos1, glm::vec3 pos2, glm::vec3 nor0, glm::vec3 nor1, glm::vec3 nor2, glm::vec2 tex0, glm::vec2 tex1, glm::vec2 tex2) {
+Triangle::Triangle(const glm::vec3 &pos0, const glm::vec3 &pos1, const glm::vec3 &pos2, const glm::vec3 &nor0, const glm::vec3 &nor1, const glm::vec3 &nor2, const glm::vec2 &tex0, const glm::vec2 &tex1, const glm::vec2 &tex2) {
     this->pos0 = pos0;
     this->pos1 = pos1;
     this->pos2 = pos2;
@@ -28,7 +28,7 @@ Triangle::Triangle(glm::vec3 pos0, glm::vec3 pos1, glm::vec3 pos2, glm::vec3 nor
     this->area = computeArea(this->tex0, this->tex1, this->tex2);
 }
 
-glm::vec3 Triangle::computeBarycentric(glm::vec2 pos) {
+glm::vec3 Triangle::computeBarycentric(const glm::vec2 &pos) {
     // tex0 = A, tex1 = B, tex2 = C
     float a = computeArea(pos, tex1, tex2) / this->area;
     float b = computeArea(pos, tex2, tex0) / this->area;
@@ -37,7 +37,7 @@ glm::vec3 Triangle::computeBarycentric(glm::vec2 pos) {
     return glm::vec3(a, b, c);
 }
 
-std::shared_ptr<Triangle> Triangle::applyTransformation(glm::mat4 matrix) {
+std::shared_ptr<Triangle> Triangle::applyTransformation(const glm::mat4 &matrix) {
     return std::make_shared<Triangle> (
         glm::vec3(matrix * glm::vec4(pos0, 1.0f)),
         glm::vec3(matrix * glm::vec4(pos1, 1.0f)),
@@ -79,6 +79,6 @@ glm::vec2 Triangle::interpolateTex(float w, float u, float v) {
 
 /* PRIVATE */
 
-float Triangle::computeArea(glm::vec2 p0, glm::vec2 p1, glm::vec2 p2) {
+float Triangle::computeArea(const glm::vec2 &p0, const glm::vec2 &p1, const glm::vec2 &p2) {
     return 0.5*((p1.x-p0.x)*(p2.y-p0.y)-(p2.x-p0.x)*(p1.y-p0.y));
 }

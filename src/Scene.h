@@ -28,7 +28,7 @@ public:
     ~Scene() { objects.clear(); lights.clear(); }
     // void loadScene(string filename);
 
-    void setBkgColor(glm::vec3 bkgColor) { this->bkgColor = bkgColor; }
+    void setBkgColor(const glm::vec3 &bkgColor) { this->bkgColor = bkgColor; }
     void setMaxBounces(int bounces) { this->maxBounces = bounces; }
 
     void addObject(std::shared_ptr<Object> obj) { objects.push_back(obj); }

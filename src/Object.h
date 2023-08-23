@@ -22,20 +22,20 @@ public:
     glm::mat4 transform;
 
     Object();
-    Object(const std::string& objPath);
-    Object(const std::string& objPath, std::shared_ptr<Material> mat);
-    Object(const std::string& objPath, glm::vec3 position, glm::vec4 rotation, glm::vec3 scale,  std::shared_ptr<Material> mat);
+    Object(const std::string &objPath);
+    Object(const std::string &objPath, std::shared_ptr<Material> mat);
+    Object(const std::string &objPath, const glm::vec3 &position, const glm::vec4 &rotation, const glm::vec3 &scale,  std::shared_ptr<Material> mat);
 
-    void translate(glm::vec3 translation);
-    void rotate(glm::vec4 rotation);
-    void scale(glm::vec3 scale);
+    void translate(const glm::vec3 &translation);
+    void rotate(const glm::vec4 &rotation);
+    void scale(const glm::vec3 &scale);
 
-    void setMaterial(glm::vec3 kd, glm::vec3 ks, glm::vec3 ka, float s);
-    void setPosition(glm::vec3 position);
-    void setRotation(glm::vec4 rotation);
-    void setScale(glm::vec3 scale);
+    void setMaterial(const glm::vec3 &kd, const glm::vec3 &ks, const glm::vec3 &ka, float s);
+    void setPosition(const glm::vec3 &position);
+    void setRotation(const glm::vec4 &rotation);
+    void setScale(const glm::vec3 &scale);
 
-    void addTexture(const std::string& texPath);
+    void addTexture(const std::string &texPath);
 
     void draw(std::shared_ptr<Program> prog, std::shared_ptr<MatrixStack> P, std::shared_ptr<MatrixStack> MV);
 

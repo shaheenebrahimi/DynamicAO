@@ -9,7 +9,7 @@ public:
     glm::vec3 p; // start point
     glm::vec3 v; // direction
 
-    Ray(glm::vec3 p, glm::vec3 v) { this->p = p; this->v = v; }
+    Ray(const glm::vec3 &p, const glm::vec3 &v) { this->p = p; this->v = v; }
 };
 
 #endif

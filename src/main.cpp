@@ -17,6 +17,7 @@
 #include <string>
 #include <vector>
 #include <random>
+#include <chrono>
 
 using namespace std;
 
@@ -55,7 +56,6 @@ Scene createScene() {
 	return scn;
 }
 
-
 int main(int argc, char **argv) {
 	/* Get Arguments */
 	int opt;
@@ -75,14 +75,22 @@ int main(int argc, char **argv) {
 	Scene scn = createScene();
 
 	if (generate) { // generator
-		// Initialize Occluder
-		Occluder occluder (filename, resolution);
+		chrono::time_point<chrono::system_clock> start, end; // Declare timers
+
+		Occluder occluder (filename, resolution); // Initialize Occluder
 		occluder.setScene(scn);
+		occluder.init();
+
+		start = chrono::system_clock::now();
 		occluder.renderTexture(target);
+		end = chrono::system_clock::now();
+
+		chrono::duration<double> elapsed = end - start;
+		cout << "Elapsed time: " << elapsed.count() << "s" << endl;
+
 	}
 	else { // viewer
-		// Initialize Rasterizer
-		Rasterizer raster;
+		Rasterizer raster; // Initialize Rasterizer
 		raster.setScene(scn);
 		raster.init();
 		raster.run();
@@ -90,11 +98,11 @@ int main(int argc, char **argv) {
 
 	/*
 		TODOS:
-		- Add callbacks to GLFW window
-		- Fix ao texture gen speed
-		- Up-sample textures for viewer (low-res)
+		- Fix ao texture gen speed (benchmark: 1:40)
+			- optimization bugs: pass by reference etc
+			- pthreads on outerloop
 		- Make textures better (noisy)
-		- Move occlusion factor to ambient calc
+			- bluenoise sampling
 	*/
 	
 	return 0;

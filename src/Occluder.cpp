@@ -9,7 +9,7 @@ Occluder::Occluder() {
     init();
 }
 
-Occluder::Occluder(const std::string& filename, int resolution) {
+Occluder::Occluder(const std::string &filename, int resolution) {
     this->filename = filename;
     this->resolution = resolution;
     this->samples = 200;
@@ -94,7 +94,7 @@ void Occluder::renderTextureLegacy(std::shared_ptr<Object> target) {
 }
 
 /* PRIVATE */
-std::optional<Hit> Occluder::shootRay(Ray& ray) {
+std::optional<Hit> Occluder::shootRay(const Ray& ray) {
     std::optional<Hit> closestHit = std::nullopt;
     for (std::shared_ptr<Object> obj : scn.objects) {
         auto hit = obj->mesh->collider(ray);
@@ -114,7 +114,7 @@ void Occluder::genOcclusionHemisphere() {
 	for (int i = 0; i < samples; ++i) {
 		// sample random vectors in unit hemisphere
 		glm::vec3 pointSample(
-			randomFloats(generator) * 2.0 - 1.0,
+			randomFloats(generator) * 2.0 - 1.0, // set range: [-1, 1]
 			randomFloats(generator) * 2.0 - 1.0,
 			randomFloats(generator) // ignore bottom half since not sphere
 		);
@@ -134,14 +134,14 @@ void Occluder::genOcclusionHemisphere() {
 	}
 }
 
-float Occluder::computePointOcclusion(glm::vec3 pos, glm::vec3 nor) {
-    glm::vec3 noiseSample = noise[rand() % noise.size()];
+float Occluder::computePointOcclusion(const glm::vec3 &pos, glm::vec3 &nor) {
+    // glm::vec3 noiseSample = noise[rand() % noise.size()];
     int occlusionCount = 0; // compute occlusion factor
     // std::cout << col->hit->nor.x << " " << col->hit->nor.y << " " << col->hit->nor.z << std::endl;
     for (int i = 0; i < kernel.size(); ++i) {
         // get normal at point for sphere
         glm::vec3 normal = normalize(nor);
-        glm::vec3 tangent = normalize(noiseSample - normal * dot(noiseSample, normal));
+        glm::vec3 tangent = normalize(noise[i] - normal * dot(noise[i], normal));
         glm::vec3 bitangent = cross(normal, tangent);
         glm::mat3 TBN = glm::mat3(tangent, bitangent, normal);
         glm::vec3 sampleDir = normalize(TBN * kernel[i]);
@@ -157,7 +157,7 @@ float Occluder::computePointOcclusion(glm::vec3 pos, glm::vec3 nor) {
     return 1.0f - (occlusionCount / (float) kernel.size());
 }
 
-float Occluder::computeRayOcclusion(Ray& ray) {
+float Occluder::computeRayOcclusion(const Ray& ray) {
     auto hit = shootRay(ray);
     if (hit) { // if ray intersects
         return computePointOcclusion(hit->pos, hit->nor);

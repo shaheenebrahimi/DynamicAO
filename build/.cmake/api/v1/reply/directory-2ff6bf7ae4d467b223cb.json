@@ -7,7 +7,7 @@
 		],
 		"files" : 
 		[
-			"/Users/shaheen/CppLib/glfw-3.3.8/src/CMakeLists.txt"
+			"/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -30,16 +30,16 @@
 			"destination" : "lib",
 			"paths" : 
 			[
-				"/Users/shaheen/CppLib/glfw-3.3.8/debug/src/libglfw3.a"
+				"/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src/libglfw3.a"
 			],
-			"targetId" : "glfw::@647e37bbaf33a0d5cfdf",
+			"targetId" : "glfw::@943bd3108fbf3ab0593a",
 			"targetIndex" : 1,
 			"type" : "target"
 		}
 	],
 	"paths" : 
 	{
-		"build" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src",
-		"source" : "/Users/shaheen/CppLib/glfw-3.3.8/src"
+		"build" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src",
+		"source" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src"
 	}
 }

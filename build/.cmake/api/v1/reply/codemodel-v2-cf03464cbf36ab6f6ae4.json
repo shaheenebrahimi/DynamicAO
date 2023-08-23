@@ -51,36 +51,36 @@
 					"source" : "contrib/bvh/src/bvh/v2"
 				},
 				{
-					"build" : "/Users/shaheen/CppLib/glfw-3.3.8/debug",
+					"build" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug",
 					"childIndexes" : 
 					[
 						4
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-02e8d89f4bf6c277b34f.json",
+					"jsonFile" : "directory-5285d6916fe092b622e4.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.0"
 					},
 					"parentIndex" : 0,
 					"projectIndex" : 2,
-					"source" : "/Users/shaheen/CppLib/glfw-3.3.8",
+					"source" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8",
 					"targetIndexes" : 
 					[
 						2
 					]
 				},
 				{
-					"build" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src",
+					"build" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-23775bbd5e0ff01422f4.json",
+					"jsonFile" : "directory-2ff6bf7ae4d467b223cb.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.0"
 					},
 					"parentIndex" : 3,
 					"projectIndex" : 2,
-					"source" : "/Users/shaheen/CppLib/glfw-3.3.8/src",
+					"source" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src",
 					"targetIndexes" : 
 					[
 						1,
@@ -137,28 +137,28 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "DynamicAO::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-DynamicAO-a093157097e4f7343904.json",
+					"jsonFile" : "target-DynamicAO-8bf7fddea88c70a08d3e.json",
 					"name" : "DynamicAO",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 4,
-					"id" : "glfw::@647e37bbaf33a0d5cfdf",
-					"jsonFile" : "target-glfw-6b4928453763478836c8.json",
+					"id" : "glfw::@943bd3108fbf3ab0593a",
+					"jsonFile" : "target-glfw-d47b5fd9d44f73ed6adf.json",
 					"name" : "glfw",
 					"projectIndex" : 2
 				},
 				{
 					"directoryIndex" : 3,
-					"id" : "uninstall::@c0a369ed319264de4d3d",
-					"jsonFile" : "target-uninstall-49783a1f71f3ebb6a989.json",
+					"id" : "uninstall::@ca79c7ff53ae620aaa08",
+					"jsonFile" : "target-uninstall-f4b38b3dcbabd79a03c0.json",
 					"name" : "uninstall",
 					"projectIndex" : 2
 				},
 				{
 					"directoryIndex" : 4,
-					"id" : "update_mappings::@647e37bbaf33a0d5cfdf",
-					"jsonFile" : "target-update_mappings-5ee22365ead501e2ff9d.json",
+					"id" : "update_mappings::@943bd3108fbf3ab0593a",
+					"jsonFile" : "target-update_mappings-9b180f2a472ed75506fb.json",
 					"name" : "update_mappings",
 					"projectIndex" : 2
 				}
@@ -168,12 +168,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build",
-		"source" : "/Users/shaheen/Documents/Coding/Masters/DynamicAO"
+		"build" : "/Users/shaheenebrahimi/Developer/DynamicAO/build",
+		"source" : "/Users/shaheenebrahimi/Developer/DynamicAO"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 4
+		"minor" : 6
 	}
 }

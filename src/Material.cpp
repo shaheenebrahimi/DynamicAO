@@ -9,14 +9,14 @@ Material::Material() {
     this->s = 100.0f;
 }
 
-Material::Material(glm::vec3 kd, glm::vec3 ks, glm::vec3 ka, float s) {
+Material::Material(const glm::vec3 &kd, const glm::vec3 &ks, const glm::vec3 &ka, float s) {
     this->kd = kd;
     this->ks = ks;
     this->ka = ka;
     this->s = s;
 }
 
-glm::vec3 Material::computeFrag(glm::vec3 ray, glm::vec3 pos, glm::vec3 nor, std::vector<std::shared_ptr<Light>>& lights) {
+glm::vec3 Material::computeFrag(const glm::vec3 &ray, const glm::vec3 &pos, const glm::vec3 &nor, std::vector<std::shared_ptr<Light>>& lights) {
     glm::vec3 fragColor = ka; // ambient
     
     for (std::shared_ptr<Light> l : lights) {

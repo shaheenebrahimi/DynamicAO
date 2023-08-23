@@ -20,8 +20,8 @@
 class Raytracer {
 public:
     Raytracer();
-    Raytracer(std::string& filename, int resolution);
-    void setFilename(std::string& filename) { this->filename = filename; }
+    Raytracer(std::string &filename, int resolution);
+    void setFilename(std::string &filename) { this->filename = filename; }
     void setResolution(int resolution) { this->resolution = resolution; init(); }
     void setScene(Scene& scn) { this->scn = scn; init(); }
     void init();

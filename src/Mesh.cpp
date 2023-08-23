@@ -12,7 +12,7 @@ Mesh::Mesh() {
     this->transform = glm::mat4(1);
 }
 
-Mesh::Mesh(const string& meshName) {
+Mesh::Mesh(const string &meshName) {
     this->transform = glm::mat4(1);
     loadMesh(meshName); // load obj and populate the triangles
 	constructBVH();
@@ -24,7 +24,7 @@ Mesh::~Mesh() {
 	precomputed.clear();
 }
 
-void Mesh::loadMesh(const string& meshName) {
+void Mesh::loadMesh(const string &meshName) {
 	tinyobj::attrib_t attrib;
 	vector<tinyobj::shape_t> shapes;
 	vector<tinyobj::material_t> materials;
@@ -125,7 +125,7 @@ void Mesh::constructBVH() {
 
 }
 
-std::optional<Hit> Mesh::collider(Ray& ray) {
+std::optional<Hit> Mesh::collider(const Ray& ray) {
     auto prim_id = invalid_id;
     Scalar u, v;
 	BvhRay r = BvhRay {

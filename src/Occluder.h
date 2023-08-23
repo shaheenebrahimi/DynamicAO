@@ -34,13 +34,13 @@ using Tri2D   = bvh::v2::Tri<Scalar, 2>;
 class Occluder {
 public:
     Occluder();
-    Occluder(const std::string& filename, int resolution);
+    Occluder(const std::string &filename, int resolution);
     ~Occluder();
-    void setFilename(const std::string& filename) { this->filename = filename; }
-    void setResolution(int resolution) { this->resolution = resolution; init(); }
-    void setScene(Scene& scn) { this->scn = scn; init(); }
-    void setSamples(int samples) { this->samples = samples; init(); }
-    void setRadius(float radius) { this->radius = radius; init(); }
+    void setFilename(const std::string &filename) { this->filename = filename; }
+    void setResolution(int resolution) { this->resolution = resolution; }
+    void setScene(const Scene& scn) { this->scn = scn; }
+    void setSamples(int samples) { this->samples = samples; }
+    void setRadius(float radius) { this->radius = radius; }
     void init();
     void render();
     void renderTexture(std::shared_ptr<Object> target);
@@ -57,10 +57,10 @@ private:
     std::vector<glm::vec3> kernel; // ao kernel
 	std::vector<glm::vec3> noise; // ao noise
 
-    std::optional<Hit> shootRay(Ray& ray);
+    std::optional<Hit> shootRay(const Ray& ray);
     void genOcclusionHemisphere();
-    float computeRayOcclusion(Ray& ray);
-    float computePointOcclusion(glm::vec3 pos, glm::vec3 nor);
+    float computeRayOcclusion(const Ray& ray);
+    float computePointOcclusion(const glm::vec3 &pos, glm::vec3 &nor);
 };
 
 

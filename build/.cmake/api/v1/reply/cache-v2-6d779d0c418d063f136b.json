@@ -67,7 +67,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build"
+			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "25"
+			"value" : "27"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -103,7 +103,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "2"
+			"value" : "3"
 		},
 		{
 			"name" : "CMAKE_COLOR_MAKEFILE",
@@ -507,7 +507,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/CMakeFiles/pkgRedirects"
+			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -579,7 +579,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/shaheen/Documents/Coding/Masters/DynamicAO"
+			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO"
 		},
 		{
 			"name" : "CMAKE_INSTALL_BINDIR",
@@ -1059,7 +1059,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "12.6"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_OSX_SYSROOT",
@@ -1071,7 +1071,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk"
+			"value" : "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk"
 		},
 		{
 			"name" : "CMAKE_PLATFORM_INFO_INITIALIZED",
@@ -1223,7 +1223,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Applications/CMake.app/Contents/share/cmake-3.25"
+			"value" : "/Applications/CMake.app/Contents/share/cmake-3.27"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1434,6 +1434,22 @@
 			"value" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip"
 		},
 		{
+			"name" : "CMAKE_TAPI",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/tapi"
+		},
+		{
 			"name" : "CMAKE_UNAME",
 			"properties" : 
 			[
@@ -1471,7 +1487,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build"
+			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO/build"
 		},
 		{
 			"name" : "DynamicAO_IS_TOP_LEVEL",
@@ -1495,7 +1511,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/shaheen/Documents/Coding/Masters/DynamicAO"
+			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Threads",
@@ -1519,7 +1535,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/shaheen/CppLib/glfw-3.3.8/debug"
+			"value" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug"
 		},
 		{
 			"name" : "GLFW_BUILD_DOCS",
@@ -1591,7 +1607,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/shaheen/CppLib/glfw-3.3.8"
+			"value" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8"
 		},
 		{
 			"name" : "GLFW_USE_OSMESA",
@@ -1639,7 +1655,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/shaheen/Documents/Coding/Masters/DynamicAO/build/contrib/bvh"
+			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO/build/contrib/bvh"
 		},
 		{
 			"name" : "bvh_IS_TOP_LEVEL",
@@ -1663,7 +1679,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh"
+			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh"
 		}
 	],
 	"kind" : "cache",

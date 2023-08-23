@@ -7,7 +7,7 @@
 		],
 		"files" : 
 		[
-			"/Users/shaheen/CppLib/glfw-3.3.8/CMakeLists.txt"
+			"/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -48,7 +48,7 @@
 			"destination" : "include",
 			"paths" : 
 			[
-				"/Users/shaheen/CppLib/glfw-3.3.8/include/GLFW"
+				"/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/include/GLFW"
 			],
 			"type" : "directory"
 		},
@@ -58,8 +58,8 @@
 			"destination" : "lib/cmake/glfw3",
 			"paths" : 
 			[
-				"/Users/shaheen/CppLib/glfw-3.3.8/debug/src/glfw3Config.cmake",
-				"/Users/shaheen/CppLib/glfw-3.3.8/debug/src/glfw3ConfigVersion.cmake"
+				"/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src/glfw3Config.cmake",
+				"/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src/glfw3ConfigVersion.cmake"
 			],
 			"type" : "file"
 		},
@@ -71,13 +71,13 @@
 			"exportTargets" : 
 			[
 				{
-					"id" : "glfw::@647e37bbaf33a0d5cfdf",
+					"id" : "glfw::@943bd3108fbf3ab0593a",
 					"index" : 1
 				}
 			],
 			"paths" : 
 			[
-				"/Users/shaheen/CppLib/glfw-3.3.8/debug/CMakeFiles/Export/f367bd07922f2ecfc14cf5547f1f7c4e/glfw3Targets.cmake"
+				"/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/CMakeFiles/Export/f367bd07922f2ecfc14cf5547f1f7c4e/glfw3Targets.cmake"
 			],
 			"type" : "export"
 		},
@@ -87,14 +87,14 @@
 			"destination" : "lib/pkgconfig",
 			"paths" : 
 			[
-				"/Users/shaheen/CppLib/glfw-3.3.8/debug/src/glfw3.pc"
+				"/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src/glfw3.pc"
 			],
 			"type" : "file"
 		}
 	],
 	"paths" : 
 	{
-		"build" : "/Users/shaheen/CppLib/glfw-3.3.8/debug",
-		"source" : "/Users/shaheen/CppLib/glfw-3.3.8"
+		"build" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug",
+		"source" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8"
 	}
 }

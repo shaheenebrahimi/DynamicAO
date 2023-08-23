@@ -10,7 +10,7 @@ public:
     glm::vec3 position;
     float intensity;
 
-    Light(glm::vec3 position, float intensity);
+    Light(const glm::vec3 &position, float intensity);
 };
 
 #endif

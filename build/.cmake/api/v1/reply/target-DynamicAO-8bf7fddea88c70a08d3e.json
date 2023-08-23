@@ -19,7 +19,7 @@
 		"files" : 
 		[
 			"CMakeLists.txt",
-			"/Users/shaheen/CppLib/glfw-3.3.8/src/CMakeLists.txt"
+			"/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/src/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -97,29 +97,26 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -pedantic -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.6"
-				},
-				{
-					"fragment" : "-std=gnu++20"
+					"fragment" : " -Wall -pedantic -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk"
 				}
 			],
 			"includes" : 
 			[
 				{
 					"backtrace" : 7,
-					"path" : "/Users/shaheen/CppLib/glm-master"
+					"path" : "/Users/shaheenebrahimi/Developer/Library/glm-master"
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/Users/shaheen/CppLib/glfw-3.3.8/include"
+					"path" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/include"
 				},
 				{
 					"backtrace" : 9,
-					"path" : "/Users/shaheen/CppLib/glew-2.1.0/include"
+					"path" : "/Users/shaheenebrahimi/Developer/Library/glew-2.1.0/include"
 				},
 				{
 					"backtrace" : 10,
-					"path" : "/Users/shaheen/Documents/Coding/Masters/DynamicAO/contrib/bvh/src/bvh/v2/../.."
+					"path" : "/Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../.."
 				}
 			],
 			"language" : "CXX",
@@ -156,7 +153,7 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "glfw::@647e37bbaf33a0d5cfdf"
+			"id" : "glfw::@943bd3108fbf3ab0593a"
 		}
 	],
 	"id" : "DynamicAO::@6890427a1f51a3e7e1df",
@@ -174,12 +171,12 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "/Users/shaheen/CppLib/glfw-3.3.8/debug/src/libglfw3.a",
+				"fragment" : "/Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/debug/src/libglfw3.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "/Users/shaheen/CppLib/glew-2.1.0/lib/libGLEW.a",
+				"fragment" : "/Users/shaheenebrahimi/Developer/Library/glew-2.1.0/lib/libGLEW.a",
 				"role" : "libraries"
 			},
 			{

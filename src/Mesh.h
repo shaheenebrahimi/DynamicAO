@@ -47,14 +47,14 @@ public:
     glm::mat4 transform;
 
     Mesh();
-    Mesh(const std::string& objPath);
+    Mesh(const std::string &objPath);
     ~Mesh();
-    void loadMesh(const std::string& meshName);
+    void loadMesh(const std::string &meshName);
     void loadBuffers(); // only for rasterization
     void constructBVH();
     void setTransform(glm::mat4 transform) { this->transform = transform; constructBVH(); }
     std::vector<std::shared_ptr<Triangle>> getTriangles() { return transformed; } // return transformed tris
-    std::optional<Hit> collider(Ray& ray);
+    std::optional<Hit> collider(const Ray& ray);
     void drawMesh(std::shared_ptr<Program> prog);
 private:
     static constexpr bool should_permute = true;

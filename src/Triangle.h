@@ -41,21 +41,21 @@ public:
 
     Triangle();
     Triangle(
-        glm::vec3 pos0, glm::vec3 pos1, glm::vec3 pos2,
-        glm::vec3 nor0, glm::vec3 nor1, glm::vec3 nor2,
-        glm::vec2 tex0, glm::vec2 tex1, glm::vec2 tex2
+        const glm::vec3 &pos0, const glm::vec3 &pos1, const glm::vec3 &pos2,
+        const glm::vec3 &nor0, const glm::vec3 &nor1, const glm::vec3 &nor2,
+        const glm::vec2 &tex0, const glm::vec2 &tex1, const glm::vec2 &tex2
     );
     ~Triangle() { }
-    glm::vec3 computeBarycentric(glm::vec2 tex);
+    glm::vec3 computeBarycentric(const glm::vec2 &tex);
     glm::vec3 interpolatePos(float w, float u, float v);
     glm::vec3 interpolateNor(float w, float u, float v);
     glm::vec2 interpolateTex(float w, float u, float v);
-    std::shared_ptr<Triangle> applyTransformation(glm::mat4 matrix);
+    std::shared_ptr<Triangle> applyTransformation(const glm::mat4 &matrix);
     Tri convertPosToTri();
     Tri2D convertTexToTri();
 
 private:
-    float computeArea(glm::vec2 pos0, glm::vec2 pos1, glm::vec2 pos2);
+    float computeArea(const glm::vec2 &pos0, const glm::vec2 &pos1, const glm::vec2 &pos2);
 };
 
 #endif

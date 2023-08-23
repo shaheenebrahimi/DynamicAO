@@ -16,7 +16,7 @@ public:
 	int resolution;
 
 	Camera();
-	Camera(glm::vec3 position, glm::vec3 lookat, glm::vec3 up, float fov);
+	Camera(const glm::vec3 &position, const glm::vec3 &lookat, const glm::vec3 &up, float fov);
 	virtual ~Camera();
 
 	Ray getRay(int r, int c);
