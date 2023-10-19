@@ -1,6 +1,6 @@
 CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/main.cpp \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Image.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/main.cpp \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Image.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/string \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/max.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/comp.h \
@@ -677,7 +677,7 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/pointer_to_binary_function.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/pointer_to_unary_function.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/unary_negate.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Camera.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Camera.h \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/glm.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/_fixes.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/setup.hpp \
@@ -831,9 +831,9 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/vector_relational.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/integer.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/func_integer.inl \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Ray.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Scene.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Object.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Ray.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Scene.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Object.h \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/matrix_transform.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat4x4.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../vec2.hpp \
@@ -934,7 +934,7 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat4x2.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat4x3.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/type_ptr.inl \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Mesh.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Mesh.h \
   /Users/shaheenebrahimi/Developer/Library/glew-2.1.0/include/GL/glew.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers/OpenGLAvailability.h \
@@ -996,14 +996,14 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_fsfilcnt_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/GLSL.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/GLSL.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/sstream \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Triangle.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bvh.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/node.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/utils.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/platform.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/vec.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Triangle.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bvh.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/node.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/utils.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/platform.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/vec.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/numeric \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/accumulate.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/adjacent_difference.h \
@@ -1018,38 +1018,38 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/transform_exclusive_scan.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/transform_inclusive_scan.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/transform_reduce.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bbox.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/ray.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stream.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bbox.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/ray.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stream.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stack \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/deque \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/default_builder.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/mini_tree_builder.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/sweep_sah_builder.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/top_down_sah_builder.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/split_heuristic.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/default_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/mini_tree_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/sweep_sah_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/top_down_sah_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/split_heuristic.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/span \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__fwd/span.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/binned_sah_builder.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/thread_pool.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/binned_sah_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/thread_pool.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/thread \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/condition_variable \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/queue \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/executor.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/reinsertion_optimizer.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stack.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/tri.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Hit.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Material.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Light.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Program.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/executor.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/reinsertion_optimizer.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stack.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/tri.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Hit.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Material.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Light.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Program.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/map \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__tree \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Texture.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/MatrixStack.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Raytracer.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Collision.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Occluder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Texture.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/MatrixStack.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Raytracer.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Collision.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Occluder.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/random \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/bernoulli_distribution.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/uniform_real_distribution.h \
@@ -1084,8 +1084,220 @@ CMakeFiles/DynamicAO.dir/src/main.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/seed_seq.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/student_t_distribution.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/weibull_distribution.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Rasterizer.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/RasterCam.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Rasterizer.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/RasterCam.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Sampler.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/fstream \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/filesystem \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/file_status.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/file_type.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/perms.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/path.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/iomanip \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/operations.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/space_info.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/u8path.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/NeuralNetwork.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/Dense \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/Core \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/DisableStupidWarnings.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/Macros.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/ConfigureVectorization.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/arm_neon.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/arm_fp16.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/complex \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/MKL_support.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/Constants.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/Meta.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/ForwardDeclarations.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/StaticAssert.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/XprHelper.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/Memory.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/IntegralConstant.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/SymbolicIndex.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/NumTraits.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/MathFunctions.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/GenericPacketMath.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/MathFunctionsImpl.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/arch/Default/ConjHelper.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/arch/Default/Half.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/arch/Default/BFloat16.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/arch/Default/TypeCasting.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/arch/Default/GenericPacketMathFunctionsFwd.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/arch/NEON/PacketMath.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/arch/NEON/TypeCasting.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/arch/NEON/MathFunctions.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/arch/NEON/Complex.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/arch/Default/Settings.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/arch/Default/GenericPacketMathFunctions.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/functors/TernaryFunctors.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/functors/BinaryFunctors.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/functors/UnaryFunctors.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/functors/NullaryFunctors.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/functors/StlFunctors.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/functors/AssignmentFunctors.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/IndexedViewHelper.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/ReshapedHelper.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/ArithmeticSequence.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/IO.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/DenseCoeffsBase.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/DenseBase.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/../plugins/CommonCwiseUnaryOps.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/../plugins/BlockMethods.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/../plugins/IndexedViewMethods.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/../plugins/ReshapedMethods.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/MatrixBase.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/../plugins/CommonCwiseBinaryOps.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/../plugins/MatrixCwiseUnaryOps.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/../plugins/MatrixCwiseBinaryOps.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/EigenBase.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Product.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/CoreEvaluators.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/AssignEvaluator.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Assign.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/ArrayBase.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/../plugins/ArrayCwiseUnaryOps.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/../plugins/ArrayCwiseBinaryOps.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/BlasUtil.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/DenseStorage.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/NestByValue.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/ReturnByValue.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/NoAlias.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/PlainObjectBase.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Matrix.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Array.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/CwiseTernaryOp.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/CwiseBinaryOp.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/CwiseUnaryOp.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/CwiseNullaryOp.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/CwiseUnaryView.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/SelfCwiseBinaryOp.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Dot.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/StableNorm.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Stride.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/MapBase.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Map.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Ref.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Block.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/VectorBlock.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/IndexedView.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Reshaped.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Transpose.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/DiagonalMatrix.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Diagonal.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/DiagonalProduct.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Redux.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Visitor.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Fuzzy.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Swap.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/CommaInitializer.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/GeneralProduct.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Solve.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Inverse.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/SolverBase.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/PermutationMatrix.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Transpositions.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/TriangularMatrix.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/SelfAdjointView.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/products/GeneralBlockPanelKernel.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/products/Parallelizer.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/ProductEvaluators.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/products/GeneralMatrixVector.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/products/GeneralMatrixMatrix.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/SolveTriangular.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/products/SelfadjointMatrixVector.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/products/SelfadjointMatrixMatrix.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/products/SelfadjointProduct.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/products/SelfadjointRank2Update.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/products/TriangularMatrixVector.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/products/TriangularMatrixMatrix.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/products/TriangularSolverMatrix.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/products/TriangularSolverVector.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/BandMatrix.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/CoreIterators.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/ConditionEstimator.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/arch/NEON/GeneralBlockPanelKernel.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/BooleanRedux.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Select.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/VectorwiseOp.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/PartialReduxEvaluator.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Random.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Replicate.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/Reverse.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/ArrayWrapper.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/StlIterators.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/GlobalFunctions.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Core/util/ReenableStupidWarnings.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/LU \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/misc/Kernel.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/misc/Image.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/LU/FullPivLU.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/LU/PartialPivLU.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/LU/Determinant.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/LU/InverseImpl.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/LU/arch/InverseSize4.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/Cholesky \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/Jacobi \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Jacobi/Jacobi.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Cholesky/LLT.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Cholesky/LDLT.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/QR \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/Householder \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Householder/Householder.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Householder/HouseholderSequence.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Householder/BlockHouseholder.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/QR/HouseholderQR.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/QR/FullPivHouseholderQR.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/QR/ColPivHouseholderQR.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/QR/CompleteOrthogonalDecomposition.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/SVD \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/misc/RealSvd2x2.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/SVD/UpperBidiagonalization.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/SVD/SVDBase.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/SVD/JacobiSVD.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/SVD/BDCSVD.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/Geometry \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/OrthoMethods.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/EulerAngles.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/Homogeneous.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/RotationBase.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/Rotation2D.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/Quaternion.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/AngleAxis.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/Transform.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/Translation.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/Scaling.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/Hyperplane.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/ParametrizedLine.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/AlignedBox.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/Umeyama.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Geometry/arch/Geometry_SIMD.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/Eigenvalues \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/Tridiagonalization.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/RealSchur.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/./HessenbergDecomposition.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/EigenSolver.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/./RealSchur.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/./Tridiagonalization.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/HessenbergDecomposition.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/ComplexSchur.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/ComplexEigenSolver.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/./ComplexSchur.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/RealQZ.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/./RealQZ.h \
+  /Users/shaheenebrahimi/Developer/Library/eigen-3.4.0/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/getopt.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/unistd.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/unistd.h \

@@ -1,5 +1,5 @@
 CMakeFiles/DynamicAO.dir/src/Camera.cpp.o: \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Camera.cpp \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Camera.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cmath \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__assert \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__config \
@@ -887,7 +887,7 @@ CMakeFiles/DynamicAO.dir/src/Camera.cpp.o: \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../geometric.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../trigonometric.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../matrix.hpp \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Camera.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Camera.h \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/glm.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cfloat \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/float.h \
@@ -903,4 +903,4 @@ CMakeFiles/DynamicAO.dir/src/Camera.cpp.o: \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../vector_relational.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../integer.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/func_integer.inl \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Ray.h
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Ray.h

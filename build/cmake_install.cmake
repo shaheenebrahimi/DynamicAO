@@ -1,4 +1,4 @@
-# Install script for directory: /Users/shaheenebrahimi/Developer/DynamicAO
+# Install script for directory: /Users/shaheenebrahimi/Developer/Research/DynamicAO
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/shaheenebrahimi/Developer/DynamicAO/build/contrib/bvh/cmake_install.cmake")
+  include("/Users/shaheenebrahimi/Developer/Research/DynamicAO/build/contrib/bvh/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
@@ -55,5 +55,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/shaheenebrahimi/Developer/DynamicAO/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/shaheenebrahimi/Developer/Research/DynamicAO/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

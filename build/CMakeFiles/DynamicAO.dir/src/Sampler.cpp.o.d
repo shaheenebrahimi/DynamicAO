@@ -1,38 +1,69 @@
-CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o: \
-  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/RasterCam.cpp \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cmath \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__assert \
+CMakeFiles/DynamicAO.dir/src/Sampler.cpp.o: \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Sampler.cpp \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Sampler.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Texture.h \
+  /Users/shaheenebrahimi/Developer/Library/glew-2.1.0/include/GL/glew.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__config \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__config_site \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__verbose_abort \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__availability \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/math.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/math.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/stddef.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/__stddef_max_align_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stdint.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/stdint.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/stdint.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_int8_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_int16_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_int32_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_int64_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_uint8_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_uint16_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_uint32_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_uint64_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/cdefs.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_symbol_aliasing.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_posix_availability.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/_types.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/_types.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_pthread/_pthread_types.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_intptr_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/types.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/types.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_u_int8_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_u_int16_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_u_int32_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_u_int64_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_uintptr_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_intmax_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_uintmax_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/Availability.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/AvailabilityVersions.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/AvailabilityInternal.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/promote.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/integral_constant.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/is_same.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__utility/declval.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers/OpenGLAvailability.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/os/availability.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/string \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/max.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/comp.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/comp_ref_type.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__debug \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__assert \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__verbose_abort \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__availability \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cstddef \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/enable_if.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/integral_constant.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/is_integral.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/remove_cv.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/remove_const.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/remove_volatile.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stddef.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/stddef.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/__stddef_max_align_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/version \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/limits \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/type_traits \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/invoke.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/add_lvalue_reference.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/is_referenceable.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/is_same.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/apply_cv.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/is_const.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/is_volatile.h \
@@ -51,6 +82,7 @@ CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/is_reference_wrapper.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/is_void.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/nat.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__utility/declval.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__utility/forward.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/add_const.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/add_cv.h \
@@ -136,105 +168,7 @@ CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/remove_pointer.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/type_identity.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cstdint \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stdint.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/stdint.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/stdint.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_int8_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_int16_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_int32_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_int64_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_uint8_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_uint16_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_uint32_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_uint64_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/_types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/_types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_pthread/_pthread_types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_intptr_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_u_int8_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_u_int16_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_u_int32_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_u_int64_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_uintptr_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_intmax_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_uintmax_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__undef_macros \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stdlib.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/stdlib.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/wait.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_pid_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_id_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/signal.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/appleapiopts.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/signal.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/signal.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/_mcontext.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/_mcontext.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/mach/machine/_structs.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/mach/arm/_structs.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_pthread/_pthread_attr_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_sigaltstack.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_ucontext.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_sigset_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_size_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_uid_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/resource.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_timeval.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/endian.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/endian.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_endian.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/libkern/_OSByteOrder.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/libkern/arm/OSByteOrder.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/arch.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/alloca.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_ct_rune_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_rune_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_wchar_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_null.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/malloc/_malloc.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_dev_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_mode_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/iostream \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/ios \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__ios/fpos.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/iosfwd \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__mbstate_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/wchar.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/wchar.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_mbstate_t.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/stdarg.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stdio.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/stdio.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_stdio.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_va_list.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/stdio.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_ctermid.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_off_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_ssize_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/time.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_clock_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_time_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_timespec.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_wctype.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/__wctype.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_wint_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_wctype_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/ctype.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/ctype.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_ctype.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/runetype.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__locale \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cctype \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/locale.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/locale.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_locale.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/memory \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/copy.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/unwrap_iter.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/max_element.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/iterator_traits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/incrementable_traits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/is_primary_template.h \
@@ -267,28 +201,72 @@ CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__concepts/relation.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__concepts/totally_ordered.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/readable_traits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/pointer_traits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/addressof.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/unwrap_range.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/concepts.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/iter_move.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/next.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/advance.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__utility/unreachable.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cstdlib \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/initializer_list \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__undef_macros \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/min.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/min_element.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/identity.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/remove.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/find.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/find_if.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/remove_if.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__format/enable_insertable.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/hash.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/unary_function.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__tuple \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__utility/pair.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__compare/common_comparison_category.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__compare/ordering.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__compare/synth_three_way.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__compare/three_way_comparable.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/unwrap_ref.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__tuple \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__utility/piecewise_construct.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/reverse_iterator.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__compare/compare_three_way_result.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/iter_swap.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/iterator.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/prev.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__utility/swap.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cstring \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/string.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/string.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_size_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_null.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_rsize_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_errno_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_ssize_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/strings.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/limits \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__ios/fpos.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/iosfwd \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__mbstate_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/wchar.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/wchar.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_mbstate_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_ct_rune_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_rune_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_wchar_t.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/stdarg.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stdio.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/stdio.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_stdio.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_va_list.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/stdio.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_ctermid.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_off_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/time.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_clock_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_time_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_timespec.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_wctype.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/__wctype.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_wint_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_wctype_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/ctype.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/ctype.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_ctype.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/runetype.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/distance.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/concepts.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/iter_move.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/pointer_traits.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/addressof.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__ranges/access.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__ranges/enable_borrowed_range.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__utility/auto_cast.h \
@@ -296,28 +274,86 @@ CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__ranges/data.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__ranges/enable_view.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__ranges/size.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/initializer_list \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/reverse_iterator.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/unwrap_iter.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__compare/compare_three_way_result.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/advance.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__utility/unreachable.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cstdlib \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stdlib.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/stdlib.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/wait.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_pid_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_id_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/signal.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/appleapiopts.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/signal.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/signal.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/_mcontext.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/_mcontext.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/mach/machine/_structs.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/mach/arm/_structs.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_pthread/_pthread_attr_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_sigaltstack.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_ucontext.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_sigset_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_uid_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/resource.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_timeval.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/endian.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/endian.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_endian.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/libkern/_OSByteOrder.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/libkern/arm/OSByteOrder.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/arch.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/alloca.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/malloc/_malloc.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_dev_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_mode_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/iter_swap.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/iterator.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/next.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/prev.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__ranges/subrange.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__ranges/dangling.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__ranges/view_interface.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__ranges/empty.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cstring \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/string.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/string.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_rsize_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_errno_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/strings.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/move.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/iterator_operations.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/iter_swap.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__utility/swap.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/ranges_iterator_concept.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/distance.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/wrap_iter.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/allocate_at_least.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/allocator_traits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/construct_at.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/access.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/voidify.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/swap_allocator.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__string/char_traits.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/copy_n.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/copy.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/unwrap_range.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/fill_n.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/find_end.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/iterator_operations.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/iter_swap.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/ranges_iterator_concept.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/search.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/find_first_of.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cstdio \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cwchar \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cwctype \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cctype \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/wctype.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/wctype.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_wctrans_t.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__string/extern_template_lists.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/climits \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/limits.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/limits.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/limits.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/limits.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/limits.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/_limits.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/syslimits.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/memory \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/move.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/allocation_guard.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/allocator.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/new \
@@ -346,6 +382,10 @@ CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__compare/weak_order.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__compare/strong_order.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__bit/bit_cast.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cmath \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/math.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/math.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__type_traits/promote.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__compare/compare_strong_order_fallback.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__compare/compare_weak_order_fallback.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__compare/is_eq.h \
@@ -358,22 +398,12 @@ CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/shared_ptr.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/binary_function.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/operations.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/unary_function.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/reference_wrapper.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/weak_result_type.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/unique_ptr.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/hash.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/atomic \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__chrono/duration.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/ratio \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/climits \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/limits.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/limits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/limits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/machine/limits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/limits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/arm/_limits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/syslimits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__thread/poll_with_backoff.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__chrono/high_resolution_clock.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__chrono/steady_clock.h \
@@ -419,7 +449,6 @@ CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__chrono/year_month_weekday.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/temporary_buffer.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/iterator \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__debug \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/back_insert_iterator.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/bounded_iter.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/common_iterator.h \
@@ -432,7 +461,6 @@ CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/erase_if_container.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/front_insert_iterator.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/indirectly_comparable.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/identity.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/projected.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/insert_iterator.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/istream_iterator.h \
@@ -448,40 +476,8 @@ CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/size.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/sortable.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/unreachable_sentinel.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__iterator/wrap_iter.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cassert \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/assert.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/mutex \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__mutex_base \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/system_error \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__errc \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cerrno \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/string \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/max.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/comp.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/comp_ref_type.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/max_element.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/min.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/min_element.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/remove.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/find.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/find_if.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/remove_if.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__format/enable_insertable.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__memory/swap_allocator.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__string/char_traits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/copy_n.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/fill_n.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/find_end.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/search.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/find_first_of.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cstdio \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cwchar \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cwctype \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/wctype.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/wctype.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_wctrans_t.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__string/extern_template_lists.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/string_view \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__fwd/string_view.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/algorithm \
@@ -687,6 +683,273 @@ CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/pointer_to_binary_function.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/pointer_to_unary_function.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/unary_negate.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Object.h \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/glm.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/_fixes.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/setup.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../simd/platform.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cfloat \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/float.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/float.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/float.h \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/fwd.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/qualifier.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/vec2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_bool2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_vec2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_vec2.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/./compute_vector_relational.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_bool2_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_float2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_float2_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_double2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_double2_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_int2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_int2_sized.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../ext/vector_int2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../ext/scalar_int_sized.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/setup.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_uint2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_uint2_sized.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../ext/vector_uint2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../ext/scalar_uint_sized.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/vec3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_bool3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_vec3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_vec3.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/compute_vector_relational.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_bool3_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_float3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_float3_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_double3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_double3_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_int3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_int3_sized.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../ext/vector_int3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_uint3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_uint3_sized.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../ext/vector_uint3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/vec4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_bool4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_vec4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_vec4.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_bool4_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_float4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_float4_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_double4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_double4_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_int4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_int4_sized.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../ext/vector_int4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_uint4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_uint4_sized.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../ext/vector_uint4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/mat2x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double2x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_mat2x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_vec2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_mat2x2.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../matrix.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/mat2x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double2x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_mat2x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_vec3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_mat2x3.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double2x3_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float2x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float2x3_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/mat2x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double2x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_mat2x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_vec4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_mat2x4.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double2x4_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float2x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float2x4_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/mat3x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double3x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_mat3x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_mat3x2.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double3x2_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float3x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float3x2_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/mat3x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double3x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_mat3x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_mat3x3.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double3x3_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float3x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float3x3_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/mat3x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double3x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_mat3x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_mat3x4.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double3x4_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float3x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float3x4_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/mat4x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double4x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_mat4x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_mat4x2.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double4x2_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float4x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float4x2_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/mat4x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double4x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_mat4x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_mat4x3.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double4x3_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float4x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float4x3_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/mat4x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double4x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_mat4x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_mat4x4.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double4x4_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float4x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float4x4_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/func_matrix.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../geometric.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/func_geometric.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../exponential.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_vec1.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_vec1.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/func_exponential.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../vector_relational.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/func_vector_relational.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/_vectorize.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../common.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/func_common.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/compute_common.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_double2x2_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float2x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_float2x2_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/trigonometric.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/func_trigonometric.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/exponential.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/common.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/packing.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/func_packing.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_half.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_half.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/geometric.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/matrix.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/vector_relational.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/integer.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/func_integer.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/matrix_transform.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat4x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../vec2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../vec3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../vec4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/matrix_projection.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../gtc/constants.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/scalar_constants.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/scalar_constants.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/constants.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../geometric.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../trigonometric.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../matrix.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_projection.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/matrix_clip_space.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../ext/scalar_constants.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_clip_space.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/matrix_transform.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/matrix_transform.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/matrix_transform.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../geometric.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../trigonometric.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../matrix.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/type_ptr.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../gtc/quaternion.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../gtc/constants.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../gtc/matrix_transform.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/vector_relational.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/qualifier.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_relational.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../vector_relational.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../common.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_float.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/quaternion_common.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../ext/quaternion_geometric.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../exponential.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../ext/vector_relational.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/quaternion_geometric.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/quaternion_common.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/quaternion_float.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_quat.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../detail/type_mat3x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../detail/type_mat4x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../detail/type_vec3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../detail/type_vec4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../ext/vector_relational.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../ext/quaternion_relational.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/quaternion_relational.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../gtc/constants.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../gtc/matrix_transform.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/type_quat.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../trigonometric.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../ext/quaternion_common.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/../ext/quaternion_geometric.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/quaternion_float_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/quaternion_double.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/quaternion_double_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/quaternion_relational.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/quaternion_geometric.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/quaternion_trigonometric.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/scalar_constants.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/vector_relational.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/quaternion_trigonometric.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/quaternion_transform.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/quaternion_transform.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/type_mat3x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/type_mat4x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/type_vec3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/type_vec4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/quaternion.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../exponential.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/epsilon.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/setup.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/qualifier.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/epsilon.inl \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../vector_relational.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../common.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../gtc/vec1.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/vector_bool1.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../detail/type_vec1.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/vector_bool1_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/vector_float1.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/vector_float1_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/vector_double1.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/vector_double1_precision.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/vector_int1.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/vector_int1_sized.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../ext/vector_int1.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/vector_uint1.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/vector_uint1_sized.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/./ext/../ext/vector_uint1.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat2x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat2x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat2x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat3x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat3x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat3x4.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat4x2.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat4x3.hpp \
+  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/type_ptr.inl \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Mesh.h \
+  /Users/shaheenebrahimi/Developer/Library/glfw-3.3.8/include/GLFW/glfw3.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/iostream \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/ios \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__locale \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/locale.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/locale.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_locale.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/mutex \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__mutex_base \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/system_error \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__errc \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cerrno \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/xlocale.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_xlocale.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/xlocale/_ctype.h \
@@ -731,179 +994,106 @@ CMakeFiles/DynamicAO.dir/src/RasterCam.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/sys/_types/_fsfilcnt_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/matrix_transform.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat4x4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double4x4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat4x4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_vec4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/qualifier.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/setup.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/../simd/platform.h \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_vec4.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/compute_vector_relational.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat4x4.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/../matrix.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/qualifier.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/setup.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../vec2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_bool2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_vec2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_vec2.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/./compute_vector_relational.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_bool2_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_float2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_float2_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_double2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_double2_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_int2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_int2_sized.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../ext/vector_int2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../ext/scalar_int_sized.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_uint2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_uint2_sized.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../ext/vector_uint2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../ext/scalar_uint_sized.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../vec3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_bool3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_vec3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_vec3.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_bool3_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_float3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_float3_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_double3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_double3_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_int3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_int3_sized.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../ext/vector_int3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_uint3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_uint3_sized.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../ext/vector_uint3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../vec4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_bool4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_bool4_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_float4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_float4_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_double4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_double4_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_int4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_int4_sized.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../ext/vector_int4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_uint4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/vector_uint4_sized.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../ext/vector_uint4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat2x2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double2x2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat2x2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat2x2.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double2x2_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float2x2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float2x2_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat2x3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double2x3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat2x3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat2x3.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double2x3_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float2x3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float2x3_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat2x4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double2x4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat2x4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat2x4.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double2x4_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float2x4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float2x4_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat3x2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double3x2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat3x2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat3x2.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double3x2_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float3x2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float3x2_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat3x3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double3x3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat3x3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat3x3.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double3x3_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float3x3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float3x3_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat3x4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double3x4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat3x4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat3x4.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double3x4_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float3x4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float3x4_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat4x2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double4x2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat4x2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat4x2.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double4x2_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float4x2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float4x2_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../mat4x3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double4x3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat4x3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_mat4x3.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double4x3_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float4x3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float4x3_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/func_matrix.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/../geometric.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/type_vec3.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/func_geometric.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/../exponential.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/type_vec1.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_vec1.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/type_vec2.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/type_vec4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/func_exponential.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/../vector_relational.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/func_vector_relational.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/_vectorize.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/../common.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/_fixes.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/func_common.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/compute_common.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_vec1.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_double4x4_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float4x4.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_float4x4_precision.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/matrix_projection.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../gtc/constants.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/scalar_constants.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/scalar_constants.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/constants.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../geometric.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../trigonometric.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/func_trigonometric.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../matrix.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_projection.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/matrix_clip_space.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../ext/scalar_constants.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_clip_space.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../ext/matrix_transform.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/matrix_transform.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/matrix_transform.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../geometric.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../trigonometric.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../matrix.hpp \
-  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/RasterCam.h \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/glm.hpp \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cfloat \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/float.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include/float.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/float.h \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../fwd.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../exponential.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../common.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../packing.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/func_packing.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_half.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/.././ext/../detail/type_half.inl \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../vector_relational.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../integer.hpp \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../detail/func_integer.inl \
-  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/MatrixStack.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/GLSL.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/sstream \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Triangle.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bvh.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/node.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/utils.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/platform.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/vec.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/numeric \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/accumulate.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/adjacent_difference.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/exclusive_scan.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/gcd_lcm.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/inclusive_scan.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/inner_product.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/iota.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/midpoint.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/partial_sum.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/reduce.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/transform_exclusive_scan.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/transform_inclusive_scan.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/transform_reduce.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bbox.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/ray.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stream.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stack \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/deque \
-  /Users/shaheenebrahimi/Developer/Library/glm-master/glm/fwd.hpp
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/default_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/mini_tree_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/sweep_sah_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/top_down_sah_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/split_heuristic.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/span \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__fwd/span.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/binned_sah_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/thread_pool.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/thread \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/condition_variable \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/queue \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/executor.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/reinsertion_optimizer.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stack.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/tri.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Hit.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Ray.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Material.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Light.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Program.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/map \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__tree \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/MatrixStack.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/random \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/bernoulli_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/uniform_real_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/generate_canonical.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/binomial_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/cauchy_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/chi_squared_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/gamma_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/exponential_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/clamp_to_integral.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/default_random_engine.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/linear_congruential_engine.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/is_seed_sequence.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/discard_block_engine.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/discrete_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/extreme_value_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/fisher_f_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/geometric_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/negative_binomial_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/poisson_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/normal_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/independent_bits_engine.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/knuth_b.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/shuffle_order_engine.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/lognormal_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/mersenne_twister_engine.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/piecewise_constant_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/piecewise_linear_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/random_device.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/ranlux.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/subtract_with_carry_engine.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/seed_seq.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/student_t_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__random/weibull_distribution.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/fstream \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/filesystem \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/file_status.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/file_type.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/perms.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/path.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/iomanip \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/operations.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/space_info.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__filesystem/u8path.h

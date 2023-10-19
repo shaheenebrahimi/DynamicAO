@@ -1,4 +1,4 @@
-# Install script for directory: /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2
+# Install script for directory: /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

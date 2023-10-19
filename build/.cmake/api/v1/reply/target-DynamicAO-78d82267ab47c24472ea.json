@@ -47,7 +47,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 131,
+				"line" : 151,
 				"parent" : 0
 			},
 			{
@@ -78,6 +78,12 @@
 				"parent" : 0
 			},
 			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 132,
+				"parent" : 0
+			},
+			{
 				"command" : 1,
 				"file" : 0,
 				"line" : 28,
@@ -86,7 +92,7 @@
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 115,
+				"line" : 135,
 				"parent" : 0
 			}
 		]
@@ -116,7 +122,11 @@
 				},
 				{
 					"backtrace" : 10,
-					"path" : "/Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../.."
+					"path" : "/Users/shaheenebrahimi/Developer/Library/eigen-3.4.0"
+				},
+				{
+					"backtrace" : 11,
+					"path" : "/Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../.."
 				}
 			],
 			"language" : "CXX",
@@ -124,7 +134,7 @@
 			{
 				"backtraces" : 
 				[
-					11
+					12
 				],
 				"standard" : "20"
 			},
@@ -145,7 +155,9 @@
 				12,
 				13,
 				14,
-				15
+				15,
+				16,
+				17
 			]
 		}
 	],
@@ -230,15 +242,15 @@
 				12,
 				13,
 				14,
-				15
+				15,
+				16,
+				17
 			]
 		},
 		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				16,
-				17,
 				18,
 				19,
 				20,
@@ -259,15 +271,19 @@
 				35,
 				36,
 				37,
-				38
+				38,
+				39,
+				40,
+				41,
+				42
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				39,
-				40
+				43,
+				44
 			]
 		}
 	],
@@ -318,6 +334,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "src/NeuralNetwork.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "src/Object.cpp",
 			"sourceGroupIndex" : 0
 		},
@@ -349,6 +371,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/Raytracer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/Sampler.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -416,6 +444,11 @@
 		},
 		{
 			"backtrace" : 1,
+			"path" : "src/NeuralNetwork.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
 			"path" : "src/Object.h",
 			"sourceGroupIndex" : 1
 		},
@@ -452,6 +485,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/Renderer.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Sampler.h",
 			"sourceGroupIndex" : 1
 		},
 		{

@@ -1,6 +1,6 @@
 CMakeFiles/DynamicAO.dir/src/Triangle.cpp.o: \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Triangle.cpp \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Triangle.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Triangle.cpp \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Triangle.h \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/glm.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/_fixes.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cmath \
@@ -385,10 +385,10 @@ CMakeFiles/DynamicAO.dir/src/Triangle.cpp.o: \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../geometric.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../trigonometric.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/gtc/../matrix.hpp \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bvh.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/node.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/utils.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/platform.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bvh.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/node.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/utils.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/platform.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cstring \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/string.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/string.h \
@@ -488,7 +488,7 @@ CMakeFiles/DynamicAO.dir/src/Triangle.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__chrono/year_month.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__chrono/year_month_day.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__chrono/year_month_weekday.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/vec.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/vec.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/numeric \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__numeric/accumulate.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__utility/move.h \
@@ -859,9 +859,9 @@ CMakeFiles/DynamicAO.dir/src/Triangle.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/pointer_to_binary_function.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/pointer_to_unary_function.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__functional/unary_negate.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bbox.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/ray.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stream.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/bbox.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/ray.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stream.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/istream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/ostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/bitset \
@@ -931,21 +931,21 @@ CMakeFiles/DynamicAO.dir/src/Triangle.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/stack \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/deque \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/default_builder.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/mini_tree_builder.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/sweep_sah_builder.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/top_down_sah_builder.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/split_heuristic.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/default_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/mini_tree_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/sweep_sah_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/top_down_sah_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/split_heuristic.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/span \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__fwd/span.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/binned_sah_builder.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/thread_pool.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/binned_sah_builder.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/thread_pool.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/thread \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/condition_variable \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/queue \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/executor.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/reinsertion_optimizer.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stack.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/tri.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Hit.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Ray.h
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/executor.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/reinsertion_optimizer.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/stack.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh/src/bvh/v2/../../bvh/v2/tri.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Hit.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Ray.h

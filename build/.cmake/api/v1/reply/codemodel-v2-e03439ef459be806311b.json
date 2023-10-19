@@ -137,7 +137,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "DynamicAO::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-DynamicAO-8bf7fddea88c70a08d3e.json",
+					"jsonFile" : "target-DynamicAO-78d82267ab47c24472ea.json",
 					"name" : "DynamicAO",
 					"projectIndex" : 0
 				},
@@ -168,8 +168,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/shaheenebrahimi/Developer/DynamicAO/build",
-		"source" : "/Users/shaheenebrahimi/Developer/DynamicAO"
+		"build" : "/Users/shaheenebrahimi/Developer/Research/DynamicAO/build",
+		"source" : "/Users/shaheenebrahimi/Developer/Research/DynamicAO"
 	},
 	"version" : 
 	{

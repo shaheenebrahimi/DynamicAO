@@ -2,13 +2,14 @@
 #include "Camera.h"
 #include "Scene.h"
 #include "Ray.h"
-// #include "BlinnPhong.h"
 #include "Material.h"
 #include "Mesh.h"
 #include "Raytracer.h"
 #include "Occluder.h"
 #include "Rasterizer.h"
 #include "Object.h"
+#include "Sampler.h"
+#include "NeuralNetwork.h"
 
 #include <glm/glm.hpp>
 #include <getopt.h>
@@ -51,7 +52,7 @@ Scene createScene() {
 	scn.addObject(sphere);
 	scn.addObject(floor);
 
-	target = floor;
+	target = sphere;
 
 	return scn;
 }
@@ -95,6 +96,18 @@ int main(int argc, char **argv) {
 		raster.init();
 		raster.run();
 	}
+
+	// shared_ptr<Object> sphere = make_shared<Object>(RES_DIR + "models/sphere2.obj");
+	// sphere->setMaterial(glm::vec3(0,0,1), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
+	// sphere->addTexture(RES_DIR + "/textures/sphereTex.png");
+	// sphere->tex->load();
+
+	// Sampler s (sphere);
+	// s.sample(50); // samples per triangle
+
+	// NeuralNetwork nn;
+	// nn.loadNetwork(RES_DIR + "evaluators/model.txt");
+	// cout << nn.evaluate(0.5, 0.5) << endl;
 
 	/*
 		TODOS:

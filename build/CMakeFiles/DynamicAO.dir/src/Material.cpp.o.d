@@ -1,6 +1,6 @@
 CMakeFiles/DynamicAO.dir/src/Material.cpp.o: \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Material.cpp \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Material.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Material.cpp \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Material.h \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/glm.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/_fixes.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cmath \
@@ -793,7 +793,7 @@ CMakeFiles/DynamicAO.dir/src/Material.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/shift_left.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/shift_right.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__algorithm/transform.h \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Light.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Light.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/ios \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/__ios/fpos.h \

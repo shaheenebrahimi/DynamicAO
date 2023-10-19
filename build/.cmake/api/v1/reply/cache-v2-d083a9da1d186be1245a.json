@@ -67,7 +67,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO/build"
+			"value" : "/Users/shaheenebrahimi/Developer/Research/DynamicAO/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -103,7 +103,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "3"
+			"value" : "4"
 		},
 		{
 			"name" : "CMAKE_COLOR_MAKEFILE",
@@ -131,7 +131,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Applications/CMake.app/Contents/bin/cmake"
+			"value" : "/opt/homebrew/Cellar/cmake/3.27.4/bin/cmake"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -143,7 +143,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Applications/CMake.app/Contents/bin/cpack"
+			"value" : "/opt/homebrew/Cellar/cmake/3.27.4/bin/cpack"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -155,7 +155,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Applications/CMake.app/Contents/bin/ctest"
+			"value" : "/opt/homebrew/Cellar/cmake/3.27.4/bin/ctest"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER",
@@ -375,7 +375,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Applications/CMake.app/Contents/bin/ccmake"
+			"value" : "/opt/homebrew/Cellar/cmake/3.27.4/bin/ccmake"
 		},
 		{
 			"name" : "CMAKE_EXECUTABLE_FORMAT",
@@ -507,7 +507,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO/build/CMakeFiles/pkgRedirects"
+			"value" : "/Users/shaheenebrahimi/Developer/Research/DynamicAO/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -579,7 +579,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO"
+			"value" : "/Users/shaheenebrahimi/Developer/Research/DynamicAO"
 		},
 		{
 			"name" : "CMAKE_INSTALL_BINDIR",
@@ -1223,7 +1223,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Applications/CMake.app/Contents/share/cmake-3.27"
+			"value" : "/opt/homebrew/Cellar/cmake/3.27.4/share/cmake"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1487,7 +1487,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO/build"
+			"value" : "/Users/shaheenebrahimi/Developer/Research/DynamicAO/build"
 		},
 		{
 			"name" : "DynamicAO_IS_TOP_LEVEL",
@@ -1511,7 +1511,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO"
+			"value" : "/Users/shaheenebrahimi/Developer/Research/DynamicAO"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Threads",
@@ -1655,7 +1655,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO/build/contrib/bvh"
+			"value" : "/Users/shaheenebrahimi/Developer/Research/DynamicAO/build/contrib/bvh"
 		},
 		{
 			"name" : "bvh_IS_TOP_LEVEL",
@@ -1679,7 +1679,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/shaheenebrahimi/Developer/DynamicAO/contrib/bvh"
+			"value" : "/Users/shaheenebrahimi/Developer/Research/DynamicAO/contrib/bvh"
 		}
 	],
 	"kind" : "cache",

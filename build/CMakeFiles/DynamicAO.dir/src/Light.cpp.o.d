@@ -1,6 +1,6 @@
 CMakeFiles/DynamicAO.dir/src/Light.cpp.o: \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Light.cpp \
-  /Users/shaheenebrahimi/Developer/DynamicAO/src/Light.h \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Light.cpp \
+  /Users/shaheenebrahimi/Developer/Research/DynamicAO/src/Light.h \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/glm.hpp \
   /Users/shaheenebrahimi/Developer/Library/glm-master/glm/detail/_fixes.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/include/c++/v1/cmath \

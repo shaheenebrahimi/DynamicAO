@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.27.4/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CMake.app/Contents/bin/cmake -E rm -f
+RM = /opt/homebrew/Cellar/cmake/3.27.4/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/shaheenebrahimi/Developer/DynamicAO
+CMAKE_SOURCE_DIR = /Users/shaheenebrahimi/Developer/Research/DynamicAO
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/shaheenebrahimi/Developer/DynamicAO/build
+CMAKE_BINARY_DIR = /Users/shaheenebrahimi/Developer/Research/DynamicAO/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /Users/shaheenebrahimi/Developer/DynamicAO/build
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	/Applications/CMake.app/Contents/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/homebrew/Cellar/cmake/3.27.4/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/Applications/CMake.app/Contents/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/homebrew/Cellar/cmake/3.27.4/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -97,44 +97,44 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/Applications/CMake.app/Contents/bin/cmake -P cmake_install.cmake
+	/opt/homebrew/Cellar/cmake/3.27.4/bin/cmake -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/Applications/CMake.app/Contents/bin/cmake -P cmake_install.cmake
+	/opt/homebrew/Cellar/cmake/3.27.4/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/opt/homebrew/Cellar/cmake/3.27.4/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/opt/homebrew/Cellar/cmake/3.27.4/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/opt/homebrew/Cellar/cmake/3.27.4/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/Applications/CMake.app/Contents/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/opt/homebrew/Cellar/cmake/3.27.4/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shaheenebrahimi/Developer/DynamicAO/build/CMakeFiles /Users/shaheenebrahimi/Developer/DynamicAO/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shaheenebrahimi/Developer/Research/DynamicAO/build/CMakeFiles /Users/shaheenebrahimi/Developer/Research/DynamicAO/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shaheenebrahimi/Developer/DynamicAO/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shaheenebrahimi/Developer/Research/DynamicAO/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -381,6 +381,30 @@ src/Mesh.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Mesh.cpp.s
 .PHONY : src/Mesh.cpp.s
 
+src/NeuralNetwork.o: src/NeuralNetwork.cpp.o
+.PHONY : src/NeuralNetwork.o
+
+# target to build an object file
+src/NeuralNetwork.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/NeuralNetwork.cpp.o
+.PHONY : src/NeuralNetwork.cpp.o
+
+src/NeuralNetwork.i: src/NeuralNetwork.cpp.i
+.PHONY : src/NeuralNetwork.i
+
+# target to preprocess a source file
+src/NeuralNetwork.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/NeuralNetwork.cpp.i
+.PHONY : src/NeuralNetwork.cpp.i
+
+src/NeuralNetwork.s: src/NeuralNetwork.cpp.s
+.PHONY : src/NeuralNetwork.s
+
+# target to generate assembly for a file
+src/NeuralNetwork.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/NeuralNetwork.cpp.s
+.PHONY : src/NeuralNetwork.cpp.s
+
 src/Object.o: src/Object.cpp.o
 .PHONY : src/Object.o
 
@@ -525,6 +549,30 @@ src/Raytracer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Raytracer.cpp.s
 .PHONY : src/Raytracer.cpp.s
 
+src/Sampler.o: src/Sampler.cpp.o
+.PHONY : src/Sampler.o
+
+# target to build an object file
+src/Sampler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Sampler.cpp.o
+.PHONY : src/Sampler.cpp.o
+
+src/Sampler.i: src/Sampler.cpp.i
+.PHONY : src/Sampler.i
+
+# target to preprocess a source file
+src/Sampler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Sampler.cpp.i
+.PHONY : src/Sampler.cpp.i
+
+src/Sampler.s: src/Sampler.cpp.s
+.PHONY : src/Sampler.s
+
+# target to generate assembly for a file
+src/Sampler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DynamicAO.dir/build.make CMakeFiles/DynamicAO.dir/src/Sampler.cpp.s
+.PHONY : src/Sampler.cpp.s
+
 src/Texture.o: src/Texture.cpp.o
 .PHONY : src/Texture.o
 
@@ -634,6 +682,9 @@ help:
 	@echo "... src/Mesh.o"
 	@echo "... src/Mesh.i"
 	@echo "... src/Mesh.s"
+	@echo "... src/NeuralNetwork.o"
+	@echo "... src/NeuralNetwork.i"
+	@echo "... src/NeuralNetwork.s"
 	@echo "... src/Object.o"
 	@echo "... src/Object.i"
 	@echo "... src/Object.s"
@@ -652,6 +703,9 @@ help:
 	@echo "... src/Raytracer.o"
 	@echo "... src/Raytracer.i"
 	@echo "... src/Raytracer.s"
+	@echo "... src/Sampler.o"
+	@echo "... src/Sampler.i"
+	@echo "... src/Sampler.s"
 	@echo "... src/Texture.o"
 	@echo "... src/Texture.i"
 	@echo "... src/Texture.s"
