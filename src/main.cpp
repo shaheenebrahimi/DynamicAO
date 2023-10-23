@@ -10,9 +10,11 @@
 #include "Object.h"
 #include "Sampler.h"
 #include "NeuralNetwork.h"
+#include "Evaluator.cuh"
+
 
 #include <glm/glm.hpp>
-#include <getopt.h>
+//#include <getopt.h>
 #include <memory>
 #include <iostream>
 #include <string>
@@ -43,7 +45,8 @@ Scene createScene() {
 	std::shared_ptr<Object> floor = make_shared<Object>(RES_DIR + "models/square.obj");
 	floor->setMaterial(glm::vec3(1,0,0), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
 	floor->setPosition(glm::vec3(0.0f, -1.0f, 0.0f));
-	floor->setRotation(glm::vec4(-M_PI_2, 1.0f, 0.0f, 0.0f));
+	//floor->setRotation(glm::vec4(-M_PI_2, 1.0f, 0.0f, 0.0f));
+	floor->setRotation(glm::vec4(-1.57, 1.0f, 0.0f, 0.0f));
 	floor->setScale(glm::vec3(3.0f, 3.0f, 3.0f));
 	floor->addTexture(RES_DIR + "/textures/floorTex.png");
 
@@ -59,64 +62,62 @@ Scene createScene() {
 
 int main(int argc, char **argv) {
 	/* Get Arguments */
-	int opt;
-	string filename = "out.png"; // optional name of output file
-	int resolution = 512; // optional size of output file
-	bool generate = false;
+	//int opt;
+	//string filename = "out.png"; // optional name of output file
+	//int resolution = 512; // optional size of output file
+	//bool generate = false;
 
-	while((opt = getopt(argc, argv, ":gf:r:")) != -1) { 
-		switch(opt) {
-			case 'g': generate = true; break;
-			case 'f': filename = optarg; break;
-			case 'r': resolution = atoi(optarg); break;
-		}
-	}
+	///*while((opt = getopt(argc, argv, ":gf:r:")) != -1) { 
+	//	switch(opt) {
+	//		case 'g': generate = true; break;
+	//		case 'f': filename = optarg; break;
+	//		case 'r': resolution = atoi(optarg); break;
+	//	}
+	//}*/
 
-	/* Initializations */
-	Scene scn = createScene();
+	///* Initializations */
+	//Scene scn = createScene();
 
-	if (generate) { // generator
-		chrono::time_point<chrono::system_clock> start, end; // Declare timers
+	//if (generate) { // generator
+	//	chrono::time_point<chrono::system_clock> start, end; // Declare timers
 
-		Occluder occluder (filename, resolution); // Initialize Occluder
-		occluder.setScene(scn);
-		occluder.init();
+	//	Occluder occluder (filename, resolution); // Initialize Occluder
+	//	occluder.setScene(scn);
+	//	occluder.init();
 
-		start = chrono::system_clock::now();
-		occluder.renderTexture(target);
-		end = chrono::system_clock::now();
+	//	start = chrono::system_clock::now();
+	//	occluder.renderTexture(target);
+	//	end = chrono::system_clock::now();
 
-		chrono::duration<double> elapsed = end - start;
-		cout << "Elapsed time: " << elapsed.count() << "s" << endl;
+	//	chrono::duration<double> elapsed = end - start;
+	//	cout << "Elapsed time: " << elapsed.count() << "s" << endl;
 
-	}
-	else { // viewer
-		Rasterizer raster; // Initialize Rasterizer
-		raster.setScene(scn);
-		raster.init();
-		raster.run();
-	}
-
-	// shared_ptr<Object> sphere = make_shared<Object>(RES_DIR + "models/sphere2.obj");
-	// sphere->setMaterial(glm::vec3(0,0,1), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
-	// sphere->addTexture(RES_DIR + "/textures/sphereTex.png");
-	// sphere->tex->load();
+	//}
+	//else { // viewer
+	//	Rasterizer raster; // Initialize Rasterizer
+	//	raster.setScene(scn);
+	//	raster.init();
+	//	raster.run();
+	//}
+	// Initialize arrays A, B, and C.
 
 	// Sampler s (sphere);
 	// s.sample(50); // samples per triangle
+	
 
-	// NeuralNetwork nn;
-	// nn.loadNetwork(RES_DIR + "evaluators/model.txt");
-	// cout << nn.evaluate(0.5, 0.5) << endl;
+	float u = 0.5, v = 0.5;
+	Matrix input(1, 2);
+	float buf[2] = { u, v };
+	input.allocateMemory();
+	input.setBuf(buf);
 
-	/*
-		TODOS:
-		- Fix ao texture gen speed (benchmark: 1:40)
-			- optimization bugs: pass by reference etc
-			- pthreads on outerloop
-		- Make textures better (noisy)
-			- bluenoise sampling
-	*/
+	//NeuralNetwork nn;
+	//nn.loadNetwork(RES_DIR + "evaluators/testmodel.txt");
+	//cout << "NN: " << nn.evaluate(u, v) << endl;
+
+	Evaluator ev;
+	ev.loadEvaluator(RES_DIR + "evaluators/testmodel.txt");
+	cout << "EV: " << ev.evaluate(input) << endl;
 	
 	return 0;
 }

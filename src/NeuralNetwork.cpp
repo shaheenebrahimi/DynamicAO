@@ -36,7 +36,6 @@ void NeuralNetwork::loadNetwork(const std::string &filename) {
         ss >> inputs; ss >> outputs;
         shared_ptr<Connection> con = make_shared<Connection>(inputs, outputs);
         cout << "inputs: " << inputs << " outputs: " << outputs << endl;
-        cout << "weights: " << con->weights.size() << " biases: " << con->biases.size() << endl;
         // Get values
         getline(in, line);
         ss = stringstream(line);
@@ -68,10 +67,9 @@ void NeuralNetwork::activation(Eigen::MatrixXf &z) { // tanh
 float NeuralNetwork::evaluate(float u, float v) {
     Eigen::MatrixXf input (1, 2); input << u, v;
     Eigen::MatrixXf output = input;
-    for (auto con : network) {
-        Eigen::MatrixXf z = output * con->weights + con->biases;
-        cout << z.rows() << " " << z.cols() << endl;
-        activation(z);
+    for (int i = 0; i < network.size(); ++i) {
+        Eigen::MatrixXf z = output * network[i]->weights + network[i]->biases;
+        if (i != network.size() - 1) activation(z);
         output = z; // move to next layer
     }
     return output(0);

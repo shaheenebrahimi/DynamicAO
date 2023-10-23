@@ -13,12 +13,10 @@ Texture::Texture() :
 	filename(""),
 	tid(0)
 {
-	
 }
 
 Texture::~Texture()
 {
-	if (data) stbi_image_free(data);
 }
 
 void Texture::load() {
