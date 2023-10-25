@@ -105,19 +105,36 @@ int main(int argc, char **argv) {
 	// s.sample(50); // samples per triangle
 	
 
-	float u = 0.5, v = 0.5;
-	Matrix input(1, 2);
-	float buf[2] = { u, v };
-	input.allocateMemory();
-	input.setBuf(buf);
+	Matrix i0(1, 2);
+	float buf0[2] = { 0.5, 0.5 };
+	i0.allocateMemory();
+	i0.setBuf(buf0);
+
+	Matrix i1(1, 2);
+	float buf1[2] = { 0.75, 0.7 };
+	i1.allocateMemory();
+	i1.setBuf(buf1);
+
+	Batch input({ i0, i1 });
+
+	//for (int i = 0; i < 4; ++i) {
+	//	cout << input.data_host.get()[i] << " ";
+	//}
+
 
 	//NeuralNetwork nn;
 	//nn.loadNetwork(RES_DIR + "evaluators/testmodel.txt");
-	//cout << "NN: " << nn.evaluate(u, v) << endl;
+	//cout << "NN: " << nn.evaluate(0.75,0.7) << endl;
 
 	Evaluator ev;
 	ev.loadEvaluator(RES_DIR + "evaluators/testmodel.txt");
-	cout << "EV: " << ev.evaluate(input) << endl;
+	cout << "EV: " << ev.evaluate(i1) << endl;
+
+	auto res = ev.evaluateBatch(input);
+	cout << "Batched EV: ";
+	for (int i = 0; i < res.size(); ++i) {
+		cout << res[i] << " ";
+	}
 	
 	return 0;
 }

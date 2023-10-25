@@ -29,22 +29,24 @@ Matrix Evaluator::forward(Matrix X) {
 	for (auto layer : layers) {
 		Z = layer->forward(Z);
 		//Z.copyDeviceToHost();
-		//std::cout << Z.to_string().substr(0,25) << std::endl;
+		//std::cout << Z.to_string() << std::endl;
+		//break;
 	}
 	Y = Z;
 	return Y;
 }
 
-//std::vector<Matrix> Evaluator::forwardBatch(std::vector<Matrix> Xs) {
-//	std::vector<Matrix> Zs = Xs;
-//	for (auto layer : layers) {
-//		Zs = layer->forwardBatch(Xs);
-//		//Z.copyDeviceToHost();
-//		//std::cout << Z.to_string().substr(0,25) << std::endl;
-//	}
-//	Y = Z;
-//	return Y;
-//}
+Batch Evaluator::forwardBatch(Batch batchedX) {
+	Batch batchedZ = batchedX;
+	for (auto layer : layers) {
+		batchedZ = layer->forwardBatch(batchedZ);
+		//batchedZ.copyDeviceToHost();
+		//std::cout << batchedZ.to_string() << std::endl;
+		//break;
+	}
+	batchedY = batchedZ;
+	return batchedY;
+}
 
 void Evaluator::loadEvaluator(const std::string& model) {
 	ifstream in;
@@ -99,16 +101,26 @@ float Evaluator::evaluate(const Matrix &input) {
 	return output[0];
 }
 
-std::vector<float> Evaluator::evaluateBatch(const std::vector<Matrix> &inputs) {
-
-	std::vector<Matrix> outputs = forwardBatch(inputs);
-	std::vector<float> res(outputs.size());
-	for (int i = 0; i < outputs.size(); ++i) {
-		outputs[i].copyDeviceToHost();
-		res[i] = outputs[i][0];
+std::vector<float> Evaluator::evaluateBatch(const Batch& input) {
+	std::vector<float> res(input.batchSize);
+	Batch output = forwardBatch(input);
+	output.copyDeviceToHost();
+	for (int b = 0; b < input.batchSize; ++b) {
+		res[b] = output.data_host.get()[b];
 	}
 	return res;
 }
+
+//std::vector<float> Evaluator::evaluateBatch(const std::vector<Matrix> &inputs) {
+//
+//	std::vector<Matrix> outputs = forwardBatch(inputs);
+//	std::vector<float> res(outputs.size());
+//	for (int i = 0; i < outputs.size(); ++i) {
+//		outputs[i].copyDeviceToHost();
+//		res[i] = outputs[i][0];
+//	}
+//	return res;
+//}
 
 //void Evaluator::backprop(Matrix predictions, Matrix target) {
 //	dY.allocateMemoryIfNotAllocated(predictions.shape);

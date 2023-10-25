@@ -43,6 +43,21 @@ __global__ void linearLayerForward(float* A, float* W, float* b, float* Z, int N
 	}
 }
 
+__global__ void linearLayerForwardBatch(float* bA, float* W, float* b, float* bZ, int N, int P, int Q, int batchSize) {
+
+	int batch = blockIdx.z * blockDim.z + threadIdx.z;
+	int row = blockIdx.y * blockDim.y + threadIdx.y;
+	int col = blockIdx.x * blockDim.x + threadIdx.x;
+
+	if (batch < batchSize && row < P && col < Q) {
+		float z = 0.0;
+		for (int i = 0; i < N; ++i) {
+			z += bA[batch * P * N + row * N + i] * W[i * Q + col];
+		}
+		bZ[batch * P * Q + row * Q + col] = z + b[col];
+	}
+}
+
 __global__ void linearLayerBackprop(float* W, float* dZ, float *dA,
 									int W_x_dim, int W_y_dim,
 									int dZ_x_dim, int dZ_y_dim) {
@@ -157,20 +172,31 @@ Matrix& LinearLayer::forward(Matrix& A) {
 	Z.allocateMemoryIfNotAllocated(Z_shape);
 	computeAndStoreLayerOutput(A);
 	NNException::throwIfDeviceErrorsOccurred("Cannot perform linear layer forward propagation.");
-
 	return Z;
 }
 
-std::vector<Matrix>& LinearLayer::forwardBatch(std::vector<Matrix>& A) {
-
+Batch& LinearLayer::forwardBatch(Batch& batchedA) {
+	assert(batchedA.matrixDim.y == W.shape.x);
+	this->batchedA = batchedA;
+	Shape Z_shape(A.shape.x, W.shape.y);
+	batchedZ.allocateMemoryIfNotAllocated(Z_shape, batchedA.batchSize);
+	computeAndStoreLayerBatchedOutput(batchedA);
+	NNException::throwIfDeviceErrorsOccurred("Cannot perform linear layer forward propagation.");
+	return batchedZ;
 }
-
 
 void LinearLayer::computeAndStoreLayerOutput(Matrix& A) {
 	int N = W.shape.x, P = A.shape.x, Q = W.shape.y; // (P, N) * (N, Q)
 	dim3 block_size(32, 32);
 	dim3 num_of_blocks(ceilf(P / (float)block_size.x), ceilf(Q / (float)block_size.y));
 	linearLayerForward <<<num_of_blocks, block_size>>> (A.data_device.get(), W.data_device.get(), b.data_device.get(), Z.data_device.get(), N, P, Q);
+}
+
+void LinearLayer::computeAndStoreLayerBatchedOutput(Batch& batchedA) {
+	int N = W.shape.x, P = A.shape.x, Q = W.shape.y, bs = batchedA.batchSize; // (P, N) * (N, Q)
+	dim3 block_size(16, 16, 4);
+	dim3 num_of_blocks(ceilf(P / (float)block_size.x), ceilf(Q / (float)block_size.y), ceilf(bs / (float)block_size.z));
+	linearLayerForwardBatch <<<num_of_blocks, block_size>>> (batchedA.data_device.get(), W.data_device.get(), b.data_device.get(), batchedZ.data_device.get(), N, P, Q, bs);
 }
 
 //Matrix& LinearLayer::backprop(Matrix& dZ, float learning_rate) {

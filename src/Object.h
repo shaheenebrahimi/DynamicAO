@@ -11,14 +11,16 @@
 #include "Material.h"
 #include "Texture.h"
 #include "Program.h"
+#include "Evaluator.cuh"
 #include "MatrixStack.h"
 
 class Object {
     // Transform
 public:
     std::shared_ptr<Mesh> mesh; // all meshes should have a collider
-    std::shared_ptr<Texture> tex; // all meshes should have a collider
+    std::shared_ptr<Texture> tex;
     std::shared_ptr<Material> mat;
+    std::shared_ptr<Evaluator> eval; // trained model to output occlusion
     glm::mat4 transform;
 
     Object();

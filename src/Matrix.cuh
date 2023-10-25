@@ -11,13 +11,6 @@ struct Shape {
 };
 
 class Matrix {
-private:
-	bool device_allocated;
-	bool host_allocated;
-
-	void allocateCudaMemory();
-	void allocateHostMemory();
-
 public:
 	Shape shape;
 
@@ -38,4 +31,11 @@ public:
 
 	float& operator[](const int index);
 	const float& operator[](const int index) const;
+
+private:
+	bool device_allocated;
+	bool host_allocated;
+
+	void allocateCudaMemory();
+	void allocateHostMemory();
 };

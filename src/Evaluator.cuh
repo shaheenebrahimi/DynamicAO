@@ -17,11 +17,10 @@ public:
 
 	void loadEvaluator(const std::string& model);
 	float evaluate(const Matrix &input);
-	std::vector<float> evaluateBatch(const std::vector<Matrix>& inputs);
-
+	std::vector<float> evaluateBatch(const Batch& input);
 
 	Matrix forward(Matrix X);
-	std::vector<Matrix> forwardBatch(std::vector<Matrix> Xs);
+	Batch forwardBatch(Batch batchedX);
 	//void backprop(Matrix predictions, Matrix target);
 
 	void addLayer(NNLayer *layer);
@@ -34,5 +33,7 @@ private:
 
 	Matrix Y;
 	Matrix dY;
+	Batch batchedY;
+
 	float learning_rate;
 };

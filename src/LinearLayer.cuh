@@ -1,5 +1,6 @@
 #pragma once
 #include "NNLayer.h"
+#include "Batch.cuh"
 
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
@@ -22,7 +23,7 @@ public:
 	void loadLayer(const std::string& stream);
 
 	Matrix& forward(Matrix& A);
-	std::vector<Matrix>& forwardBatch(std::vector<Matrix> &A);
+	Batch& forwardBatch(Batch& batchedA);
 
 	//Matrix& backprop(Matrix& dZ, float learning_rate = 0.01);
 
@@ -41,12 +42,18 @@ private:
 	Matrix A;
 	Matrix dA;
 
+	Batch batchedZ;
+	Batch batchedA;
+	//Batch batcheddA;
+
 	void initializeBiasWithZeros();
 	void initializeWeightsRandomly();
 
 	//void computeAndStoreBackpropError(Matrix& dZ);
 
 	void computeAndStoreLayerOutput(Matrix& A);
+	void computeAndStoreLayerBatchedOutput(Batch& batchedA);
+
 	//void updateWeights(Matrix& dZ, float learning_rate);
 	//void updateBias(Matrix& dZ, float learning_rate);
 };

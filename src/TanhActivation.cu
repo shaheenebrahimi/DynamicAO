@@ -16,6 +16,17 @@ __global__ void tanhActivationForward(float* Z, float* A,
 	}
 }
 
+__global__ void tanhActivationForwardBatch(float* bZ, float* bA, int xDim, int yDim, int bs) {
+
+	int index = blockIdx.x * blockDim.x + threadIdx.x;
+	int batch = blockIdx.y * blockDim.y + threadIdx.y;
+
+	if (index < xDim * yDim && batch < bs) {
+		bA[batch * xDim * yDim + index] = tanh(bZ[batch * xDim * yDim + index]);
+	}
+}
+
+
 //__global__ void tanhActivationBackprop(float* Z, float* dA, float* dZ,
 //										  int Z_x_dim, int Z_y_dim) {
 //
@@ -44,6 +55,20 @@ Matrix& TanhActivation::forward(Matrix& Z) {
 	NNException::throwIfDeviceErrorsOccurred("Cannot perform tanh forward propagation.");
 
 	return A;
+}
+
+Batch& TanhActivation::forwardBatch(Batch& batchedZ) {
+	this->batchedZ = batchedZ;
+	int matrixX = batchedZ.matrixDim.x, matrixY = batchedZ.matrixDim.y, bs = batchedZ.batchSize;
+	batchedA.allocateMemoryIfNotAllocated(batchedZ.matrixDim, bs);
+
+	dim3 block_size(32, 32);
+	dim3 num_of_blocks(ceilf((matrixX * matrixY) / (float)block_size.x), ceilf(bs / (float)block_size.y));
+
+	tanhActivationForwardBatch <<<num_of_blocks, block_size>>> (batchedZ.data_device.get(), batchedA.data_device.get(), matrixX, matrixY, bs);
+	NNException::throwIfDeviceErrorsOccurred("Cannot perform tanh forward propagation.");
+
+	return batchedA;
 }
 
 //Matrix& TanhActivation::backprop(Matrix& dA, float learning_rate) {
