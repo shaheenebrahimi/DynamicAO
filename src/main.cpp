@@ -115,21 +115,20 @@ int main(int argc, char **argv) {
 	i1.allocateMemory();
 	i1.setBuf(buf1);
 
-	Batch input({ i0, i1 });
+	Matrix i2(1, 2);
+	float buf2[2] = { 0.1, 0.05 };
+	i2.allocateMemory();
+	i2.setBuf(buf2);
 
-	//for (int i = 0; i < 4; ++i) {
-	//	cout << input.data_host.get()[i] << " ";
-	//}
+	Matrix i3(1, 2);
+	float buf3[2] = { 0.8, 0.9 };
+	i3.allocateMemory();
+	i3.setBuf(buf3);
 
-
-	//NeuralNetwork nn;
-	//nn.loadNetwork(RES_DIR + "evaluators/testmodel.txt");
-	//cout << "NN: " << nn.evaluate(0.75,0.7) << endl;
+	Batch input({ i0, i1, i2, i3 });
 
 	Evaluator ev;
-	ev.loadEvaluator(RES_DIR + "evaluators/testmodel.txt");
-	cout << "EV: " << ev.evaluate(i1) << endl;
-
+	ev.loadEvaluator(RES_DIR + "evaluators/model.txt");
 	auto res = ev.evaluateBatch(input);
 	cout << "Batched EV: ";
 	for (int i = 0; i < res.size(); ++i) {

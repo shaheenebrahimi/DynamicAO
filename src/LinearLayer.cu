@@ -188,14 +188,14 @@ Batch& LinearLayer::forwardBatch(Batch& batchedA) {
 void LinearLayer::computeAndStoreLayerOutput(Matrix& A) {
 	int N = W.shape.x, P = A.shape.x, Q = W.shape.y; // (P, N) * (N, Q)
 	dim3 block_size(32, 32);
-	dim3 num_of_blocks(ceilf(P / (float)block_size.x), ceilf(Q / (float)block_size.y));
+	dim3 num_of_blocks(ceilf(Q / (float)block_size.x), ceilf(P / (float)block_size.y));
 	linearLayerForward <<<num_of_blocks, block_size>>> (A.data_device.get(), W.data_device.get(), b.data_device.get(), Z.data_device.get(), N, P, Q);
 }
 
 void LinearLayer::computeAndStoreLayerBatchedOutput(Batch& batchedA) {
 	int N = W.shape.x, P = A.shape.x, Q = W.shape.y, bs = batchedA.batchSize; // (P, N) * (N, Q)
-	dim3 block_size(16, 16, 4);
-	dim3 num_of_blocks(ceilf(P / (float)block_size.x), ceilf(Q / (float)block_size.y), ceilf(bs / (float)block_size.z));
+	dim3 block_size(8, 8, 8);
+	dim3 num_of_blocks(ceilf(Q / (float)block_size.x), ceilf(P / (float)block_size.y), ceilf(bs / (float)block_size.z));
 	linearLayerForwardBatch <<<num_of_blocks, block_size>>> (batchedA.data_device.get(), W.data_device.get(), b.data_device.get(), batchedZ.data_device.get(), N, P, Q, bs);
 }
 
