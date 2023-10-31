@@ -2,6 +2,8 @@
 
 #define TINYOBJLOADER_IMPLEMENTATION
 #include "tiny_obj_loader.h"
+#include <cuda_gl_interop.h>
+#include <cuda_runtime.h>
 
 #include <iostream>
 
@@ -66,6 +68,10 @@ void Mesh::loadMesh(const string &meshName) {
 	}
 }
 
+void Mesh::loadEvaluator(const string& modelName) {
+	eval = std::make_shared<Evaluator>(modelName);
+}
+
 void Mesh::loadBuffers() {
 	
     // Send the position array to the GPU
@@ -86,6 +92,9 @@ void Mesh::loadBuffers() {
 		glBindBuffer(GL_ARRAY_BUFFER, texBufID);
 		glBufferData(GL_ARRAY_BUFFER, texBuf.size()*sizeof(float), &texBuf[0], GL_STATIC_DRAW);
 	}
+
+	// Send occlusion array to GPU
+	createCudaVBO(&occBufID, &cudaOccResource, cudaGraphicsMapFlagsWriteDiscard, posBuf.size()/3);
 
 	// Unbind the arrays
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -177,6 +186,43 @@ void Mesh::bufToTriangles() {
     }
 }
 
+void Mesh::createCudaVBO(GLuint *vbo, cudaGraphicsResource **vboRes, unsigned int vboResFlags, unsigned int size)
+{
+	// create buffer object
+	glGenBuffers(1, vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, *vbo);
+
+	// initialize buffer object
+	glBufferData(GL_ARRAY_BUFFER, size * sizeof(float), 0, GL_DYNAMIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	// register this buffer object with CUDA
+	cudaGraphicsGLRegisterBuffer(vboRes, *vbo, vboResFlags);
+}
+
+void Mesh::deleteCudaVBO(GLuint *vbo, cudaGraphicsResource *vboRes)
+{
+	// unregister this buffer object with CUDA
+	//checkCudaErrors(cudaGraphicsUnregisterResource(vboRes));
+	cudaGraphicsUnregisterResource(vboRes);
+
+	glBindBuffer(1, *vbo);
+	glDeleteBuffers(1, vbo);
+	*vbo = 0;
+}
+
+void Mesh::computeOcclusion()
+{
+	Batch inputs = getInputs(); // TODO: fix to get proper inputs
+	eval->sharedBatchCompute(inputs, &cudaOccResource);
+}
+
+void Mesh::updateMesh()
+{
+	// TODO: skinning
+	computeOcclusion();
+}
+
 void Mesh::drawMesh(std::shared_ptr<Program> prog) {
     // Bind position buffer
 	int h_pos = prog->getAttribute("aPos");
@@ -200,6 +246,13 @@ void Mesh::drawMesh(std::shared_ptr<Program> prog) {
 		glVertexAttribPointer(h_tex, 2, GL_FLOAT, GL_FALSE, 0, (const void *)0);
 	}
 
+	int h_occ = prog->getAttribute("aOcc");
+	if (h_occ != -1 && occBufID != 0) {
+		glEnableVertexAttribArray(h_occ);
+		glBindBuffer(GL_ARRAY_BUFFER, occBufID);
+		glVertexAttribPointer(h_occ, 1, GL_FLOAT, GL_FALSE, 0, (const void*)0);
+	}
+
 	// Draw
 	int count = posBuf.size()/3; // number of indices to be rendered
 	glDrawArrays(GL_TRIANGLES, 0, count);
@@ -211,8 +264,19 @@ void Mesh::drawMesh(std::shared_ptr<Program> prog) {
 	if(h_nor != -1) {
 		glDisableVertexAttribArray(h_nor);
 	}
+	glDisableVertexAttribArray(h_occ);
 	glDisableVertexAttribArray(h_pos);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	
 	GLSL::checkError(GET_FILE_LINE);
+}
+
+Batch Mesh::getInputs()
+{
+	std::vector<std::vector<float>> data;
+	for (int i = 0; i < texBuf.size(); i += 2) {
+		data.push_back({ texBuf[i], texBuf[i + 1] });
+	}
+	Batch inputs (Shape(1,2), data);
+	return inputs;
 }

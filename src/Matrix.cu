@@ -11,6 +11,14 @@ Matrix::Matrix(Shape shape) :
 	Matrix(shape.x, shape.y)
 { }
 
+Matrix::Matrix(std::vector<float> data, Shape shape) : shape(shape), data_device(nullptr), data_host(nullptr), 
+	device_allocated(false), host_allocated(false)
+{
+	allocateMemory();
+	memcpy(data_host.get(), data.data(), shape.x * shape.y * sizeof(float));
+	copyHostToDevice();
+}
+
 void Matrix::allocateCudaMemory() {
 	if (!device_allocated) {
 		float* device_memory = nullptr;

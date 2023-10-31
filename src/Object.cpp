@@ -80,8 +80,18 @@ void Object::addTexture(const std::string &texPath) {
 	tex->setFilename(texPath);
 }
 
+void Object::addEvaluator(const std::string &modelPath)
+{
+    mesh->loadEvaluator(modelPath);
+}
+
 glm::mat4 Object::computeTransform() {
     return T * R * S;
+}
+
+void Object::update()
+{
+    mesh->updateMesh();
 }
 
 void Object::draw(std::shared_ptr<Program> prog, std::shared_ptr<MatrixStack> P, std::shared_ptr<MatrixStack> MV) {

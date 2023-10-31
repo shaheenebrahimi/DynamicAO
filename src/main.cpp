@@ -41,19 +41,20 @@ Scene createScene() {
 	shared_ptr<Object> sphere = make_shared<Object>(RES_DIR + "models/sphere2.obj");
 	sphere->setMaterial(glm::vec3(0,0,1), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
 	sphere->addTexture(RES_DIR + "/textures/sphereTex.png");
+	sphere->addEvaluator(RES_DIR + "/evaluators/model.txt");
 	
-	std::shared_ptr<Object> floor = make_shared<Object>(RES_DIR + "models/square.obj");
-	floor->setMaterial(glm::vec3(1,0,0), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
-	floor->setPosition(glm::vec3(0.0f, -1.0f, 0.0f));
+	//std::shared_ptr<Object> floor = make_shared<Object>(RES_DIR + "models/square.obj");
+	//floor->setMaterial(glm::vec3(1,0,0), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
+	//floor->setPosition(glm::vec3(0.0f, -1.0f, 0.0f));
 	//floor->setRotation(glm::vec4(-M_PI_2, 1.0f, 0.0f, 0.0f));
-	floor->setRotation(glm::vec4(-1.57, 1.0f, 0.0f, 0.0f));
-	floor->setScale(glm::vec3(3.0f, 3.0f, 3.0f));
-	floor->addTexture(RES_DIR + "/textures/floorTex.png");
-
+	//floor->setRotation(glm::vec4(-1.57, 1.0f, 0.0f, 0.0f));
+	//floor->setScale(glm::vec3(3.0f, 3.0f, 3.0f));
+	//floor->addTexture(RES_DIR + "/textures/floorTex.png");
+	//floor->addEvaluator(RES_DIR + "/evaluators/testmodel.txt");
 
 	// Add to scene
 	scn.addObject(sphere);
-	scn.addObject(floor);
+	//scn.addObject(floor);
 
 	target = sphere;
 
@@ -63,9 +64,9 @@ Scene createScene() {
 int main(int argc, char **argv) {
 	/* Get Arguments */
 	//int opt;
-	//string filename = "out.png"; // optional name of output file
-	//int resolution = 512; // optional size of output file
-	//bool generate = false;
+	string filename = "out.png"; // optional name of output file
+	int resolution = 512; // optional size of output file
+	bool generate = false;
 
 	///*while((opt = getopt(argc, argv, ":gf:r:")) != -1) { 
 	//	switch(opt) {
@@ -76,64 +77,50 @@ int main(int argc, char **argv) {
 	//}*/
 
 	///* Initializations */
-	//Scene scn = createScene();
+	Scene scn = createScene();
 
-	//if (generate) { // generator
-	//	chrono::time_point<chrono::system_clock> start, end; // Declare timers
+	if (generate) { // generator
+		chrono::time_point<chrono::system_clock> start, end; // Declare timers
 
-	//	Occluder occluder (filename, resolution); // Initialize Occluder
-	//	occluder.setScene(scn);
-	//	occluder.init();
+		Occluder occluder (filename, resolution); // Initialize Occluder
+		occluder.setScene(scn);
+		occluder.init();
 
-	//	start = chrono::system_clock::now();
-	//	occluder.renderTexture(target);
-	//	end = chrono::system_clock::now();
+		start = chrono::system_clock::now();
+		occluder.renderTexture(target);
+		end = chrono::system_clock::now();
 
-	//	chrono::duration<double> elapsed = end - start;
-	//	cout << "Elapsed time: " << elapsed.count() << "s" << endl;
-
-	//}
-	//else { // viewer
-	//	Rasterizer raster; // Initialize Rasterizer
-	//	raster.setScene(scn);
-	//	raster.init();
-	//	raster.run();
-	//}
+		chrono::duration<double> elapsed = end - start;
+		cout << "Elapsed time: " << elapsed.count() << "s" << endl;
+	}
+	else { // viewer
+		Rasterizer raster; // Initialize Rasterizer
+		raster.setScene(scn);
+		raster.init();
+		raster.run();
+	}
 	// Initialize arrays A, B, and C.
 
 	// Sampler s (sphere);
 	// s.sample(50); // samples per triangle
 	
+	/*Shape inputDim = Shape(1, 2);
 
-	Matrix i0(1, 2);
-	float buf0[2] = { 0.5, 0.5 };
-	i0.allocateMemory();
-	i0.setBuf(buf0);
-
-	Matrix i1(1, 2);
-	float buf1[2] = { 0.75, 0.7 };
-	i1.allocateMemory();
-	i1.setBuf(buf1);
-
-	Matrix i2(1, 2);
-	float buf2[2] = { 0.1, 0.05 };
-	i2.allocateMemory();
-	i2.setBuf(buf2);
-
-	Matrix i3(1, 2);
-	float buf3[2] = { 0.8, 0.9 };
-	i3.allocateMemory();
-	i3.setBuf(buf3);
-
-	Batch input({ i0, i1, i2, i3 });
+	Batch input(
+		inputDim,
+		{ 
+			{ 0.71, 0.52 }, { 0.5, 0.64 }, { 0.8, 0.54 }, { 0.1, 0.9 }, { 0.59, 0.29 }, { 0.57, 0.58 } 
+		}
+	);
 
 	Evaluator ev;
-	ev.loadEvaluator(RES_DIR + "evaluators/model.txt");
+	ev.loadEvaluator(RES_DIR + "evaluators/testmodel.txt");
 	auto res = ev.evaluateBatch(input);
 	cout << "Batched EV: ";
 	for (int i = 0; i < res.size(); ++i) {
 		cout << res[i] << " ";
 	}
+	*/
 	
 	return 0;
 }

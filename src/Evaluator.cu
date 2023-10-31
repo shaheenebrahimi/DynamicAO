@@ -14,6 +14,12 @@ Evaluator::Evaluator(float learning_rate) :
 	learning_rate(learning_rate)
 { }
 
+Evaluator::Evaluator(const std::string &model) :
+	learning_rate(0.01)
+{
+	loadEvaluator(model);
+}
+
 Evaluator::~Evaluator() {
 	for (auto layer : layers) {
 		delete layer;
@@ -28,9 +34,6 @@ Matrix Evaluator::forward(Matrix X) {
 	Matrix Z = X;
 	for (auto layer : layers) {
 		Z = layer->forward(Z);
-		//Z.copyDeviceToHost();
-		//std::cout << Z.to_string() << std::endl;
-		//break;
 	}
 	Y = Z;
 	return Y;
@@ -40,9 +43,6 @@ Batch Evaluator::forwardBatch(Batch batchedX) {
 	Batch batchedZ = batchedX;
 	for (auto layer : layers) {
 		batchedZ = layer->forwardBatch(batchedZ);
-		//batchedZ.copyDeviceToHost();
-		//std::cout << batchedZ.to_string() << std::endl;
-		//break;
 	}
 	batchedY = batchedZ;
 	return batchedY;
@@ -55,7 +55,7 @@ void Evaluator::loadEvaluator(const std::string& model) {
 	    cout << "Cannot read " << model << endl;
 	    return;
 	}
-	cout << "Loading " << model << endl;
+	//cout << "Loading " << model << endl;
 	
 	string line;
 	stringstream ss;
@@ -66,7 +66,7 @@ void Evaluator::loadEvaluator(const std::string& model) {
 	int numLayers;
 	ss >> numLayers;
 	
-	cout << "layers: " << numLayers << endl;
+	//cout << "layers: " << numLayers << endl;
 	
 	// Layer data
 	for (int l = 0; l < numLayers; ++l) {
@@ -76,7 +76,7 @@ void Evaluator::loadEvaluator(const std::string& model) {
 	    int inputs, outputs;
 	    ss >> inputs; ss >> outputs;
 		LinearLayer* layer = new LinearLayer("layer"+to_string(l), Shape(inputs, outputs));
-	    cout << "inputs: " << inputs << " outputs: " << outputs << endl;
+	    //cout << "inputs: " << inputs << " outputs: " << outputs << endl;
 	    // Get values
 	    getline(in, line);
 	    ss = stringstream(line);
@@ -111,16 +111,22 @@ std::vector<float> Evaluator::evaluateBatch(const Batch& input) {
 	return res;
 }
 
-//std::vector<float> Evaluator::evaluateBatch(const std::vector<Matrix> &inputs) {
-//
-//	std::vector<Matrix> outputs = forwardBatch(inputs);
-//	std::vector<float> res(outputs.size());
-//	for (int i = 0; i < outputs.size(); ++i) {
-//		outputs[i].copyDeviceToHost();
-//		res[i] = outputs[i][0];
-//	}
-//	return res;
-//}
+void Evaluator::sharedBatchCompute(const Batch& input, struct cudaGraphicsResource** outputResource)
+{	
+	float* output;
+	cudaGraphicsMapResources(1, outputResource, 0);
+
+	size_t numBytes;
+	cudaGraphicsResourceGetMappedPointer((void**)&output, &numBytes, *outputResource);
+
+
+	Batch res = forwardBatch(input);
+
+	cudaMemcpy(output, res.data_device.get(), numBytes, cudaMemcpyDeviceToDevice);
+
+	// unmap buffer object
+	cudaGraphicsUnmapResources(1, outputResource, 0);
+}
 
 //void Evaluator::backprop(Matrix predictions, Matrix target) {
 //	dY.allocateMemoryIfNotAllocated(predictions.shape);

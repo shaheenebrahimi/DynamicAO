@@ -21,6 +21,7 @@
 #include "Ray.h"
 #include "Material.h"
 #include "Program.h"
+#include "Evaluator.cuh"
 
 #include <bvh/v2/bvh.h>
 #include <bvh/v2/vec.h>
@@ -50,11 +51,14 @@ public:
     Mesh(const std::string &objPath);
     ~Mesh();
     void loadMesh(const std::string &meshName);
+    void loadEvaluator(const std::string& modelName);
+
     void loadBuffers(); // only for rasterization
     void constructBVH();
     void setTransform(glm::mat4 transform) { this->transform = transform; constructBVH(); }
     std::vector<std::shared_ptr<Triangle>> getTriangles() { return transformed; } // return transformed tris
     std::optional<Hit> collider(const Ray& ray);
+    void updateMesh();
     void drawMesh(std::shared_ptr<Program> prog);
 private:
     static constexpr bool should_permute = true;
@@ -67,14 +71,24 @@ private:
     std::vector<std::shared_ptr<Triangle>> transformed;
     std::vector<PrecomputedTri> precomputed;
 
+    std::shared_ptr<Evaluator> eval;
+
     std::vector<float> posBuf;
     std::vector<float> norBuf;
     std::vector<float> texBuf;
+    std::vector<float> occBuf;
     unsigned posBufID;
 	unsigned norBufID;
-	unsigned texBufID;
+    unsigned texBufID;
+    unsigned occBufID;
 
+    struct cudaGraphicsResource* cudaOccResource;
+    
+    Batch getInputs();
     void bufToTriangles();
+    void createCudaVBO(GLuint *vbo, struct cudaGraphicsResource **vboRes, unsigned int vboResFlags, unsigned int size);
+    void deleteCudaVBO(GLuint *vbo, struct cudaGraphicsResource *vboRes);
+    void computeOcclusion();
 };
 
 #endif

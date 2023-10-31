@@ -13,11 +13,13 @@
 class Evaluator {
 public:
 	Evaluator(float learning_rate = 0.01);
+	Evaluator(const std::string& model);
 	~Evaluator();
 
 	void loadEvaluator(const std::string& model);
 	float evaluate(const Matrix &input);
 	std::vector<float> evaluateBatch(const Batch& input);
+	void sharedBatchCompute(const Batch& input, struct cudaGraphicsResource** outputResource);
 
 	Matrix forward(Matrix X);
 	Batch forwardBatch(Batch batchedX);

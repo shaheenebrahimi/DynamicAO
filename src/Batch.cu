@@ -28,14 +28,14 @@ Batch::Batch(const std::vector<Matrix>& matrices) {
 	copyHostToDevice();
 }
 
-Batch::Batch(const std::vector<std::shared_ptr<float>>& matrices, Shape dim) {
+Batch::Batch(Shape dim, const std::vector<std::vector<float>> &matrices) {
 	this->device_allocated = false;
 	this->host_allocated = false;
 	this->batchSize = matrices.size();
 	this->matrixDim = dim;
 	allocateMemory();
 	for (int batch = 0; batch < batchSize; ++batch) {
-		memcpy(data_host.get() + batch * matrixDim.x * matrixDim.y, matrices[batch].get(), matrixDim.x * matrixDim.y * sizeof(float));
+		memcpy(data_host.get() + batch * matrixDim.x * matrixDim.y, matrices[batch].data(), matrixDim.x * matrixDim.y * sizeof(float));
 	}
 	copyHostToDevice();
 }

@@ -137,7 +137,6 @@ void Occluder::genOcclusionHemisphere() {
 float Occluder::computePointOcclusion(const glm::vec3 &pos, glm::vec3 &nor) {
     // glm::vec3 noiseSample = noise[rand() % noise.size()];
     int occlusionCount = 0; // compute occlusion factor
-    // std::cout << col->hit->nor.x << " " << col->hit->nor.y << " " << col->hit->nor.z << std::endl;
     for (int i = 0; i < kernel.size(); ++i) {
         // get normal at point for sphere
         glm::vec3 normal = normalize(nor);

@@ -10,6 +10,7 @@ uniform float s;
 varying vec3 vPos; // vertex position
 varying vec3 vNor; // vertex normal
 varying vec2 vTex; // vertex texture coord
+varying float vOcc; // vertex occlusion factor
 
 void main()
 {
@@ -27,5 +28,5 @@ void main()
 	vec3 specular = ks * pow(max(0, dot(h_hat, n_hat)), s);
 	vec3 color = ambient + diffuse + specular; 
 
-	gl_FragColor.rgb = color * occlusion;
+	gl_FragColor.rgb = color * vOcc;
 }

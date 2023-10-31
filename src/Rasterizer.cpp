@@ -1,6 +1,8 @@
 #include "Rasterizer.h"
 #include "MatrixStack.h"
 
+#include <cuda_gl_interop.h>
+
 bool keyToggles[256] = {false}; // only for English keyboards!
 Rasterizer* raster = nullptr;
 
@@ -49,16 +51,15 @@ void char_callback(GLFWwindow *window, unsigned int key)
 Rasterizer::Rasterizer() { 
     this->width = 1366;
     this->height = 768;
+	this->window = nullptr;
 	raster = this;
-    // init();
 }
 
 Rasterizer::Rasterizer(int width, int height) {
     this->width = width;
     this->height = height;
+	this->window = nullptr;
 	raster = this;
-
-    // init();
 }
 
 Rasterizer::~Rasterizer() { }
@@ -66,7 +67,7 @@ Rasterizer::~Rasterizer() { }
 int Rasterizer::init() {
 	// Set error callback.
 	// glfwSetErrorCallback(error_callback);
-	
+	// 
 	// Initialize the library.
 	if(!glfwInit()) {
 		return -1;
@@ -111,6 +112,7 @@ int Rasterizer::init() {
 	prog->addAttribute("aPos");
 	prog->addAttribute("aNor");
 	prog->addAttribute("aTex");
+	prog->addAttribute("aOcc");
 	prog->addUniform("P");
 	prog->addUniform("MV");
 	prog->addUniform("itMV");
@@ -176,6 +178,7 @@ void Rasterizer::render() {
 		for (auto obj : scn.objects) {
 			MV->pushMatrix();
 				MV->multMatrix(obj->transform);
+				obj->update();
 				obj->draw(prog, P, MV);
 			MV->popMatrix();
 		}

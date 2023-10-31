@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <string>
+#include <vector>
 
 struct Shape {
 	size_t x, y;
@@ -18,6 +19,7 @@ public:
 	std::shared_ptr<float> data_host;
 
 	Matrix(size_t x_dim = 1, size_t y_dim = 1);
+	Matrix(std::vector<float> data, Shape shape);
 	Matrix(Shape shape);
 
 	void allocateMemory();

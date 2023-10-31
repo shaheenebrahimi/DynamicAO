@@ -8,7 +8,7 @@ public:
 	Batch();
 	Batch(Shape dim, size_t batchSize);
 	Batch(const std::vector<Matrix>& matrices);
-	Batch(const std::vector<std::shared_ptr<float>> &matrices, Shape dim);
+	Batch(Shape dim, const std::vector<std::vector<float>> &matrices);
 	~Batch();
 
 	size_t batchSize; // how many matrices

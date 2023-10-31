@@ -20,7 +20,6 @@ public:
     std::shared_ptr<Mesh> mesh; // all meshes should have a collider
     std::shared_ptr<Texture> tex;
     std::shared_ptr<Material> mat;
-    std::shared_ptr<Evaluator> eval; // trained model to output occlusion
     glm::mat4 transform;
 
     Object();
@@ -38,7 +37,9 @@ public:
     void setScale(const glm::vec3 &scale);
 
     void addTexture(const std::string &texPath);
+    void addEvaluator(const std::string& modelPath);
 
+    void update();
     void draw(std::shared_ptr<Program> prog, std::shared_ptr<MatrixStack> P, std::shared_ptr<MatrixStack> MV);
 
 private:
