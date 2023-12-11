@@ -1,3 +1,16 @@
 /.vscode
+/.DS_STORE
 build/
 TODO.txt
+*~
+.#*
+*#
+bin
+build
+*.autosave
+*.gz
+*.zip
+Session.vim
+/models/*
+*.swp
+
