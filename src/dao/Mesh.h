@@ -44,9 +44,12 @@ public:
     void setBoneAngles(const std::vector<float>& thetas);
     void setTransform(glm::mat4 transform) { this->transform = transform; }
 
-    void dumpMesh(const std::string &filename);
+    void dumpMesh(const std::string &filename, const std::string& header = "");
     void updateMesh();
     void drawMesh(std::shared_ptr<Program> prog);
+
+    int getBoneCount() { return boneCount; }
+    int getBoneIndex(const std::string& name) { return boneMap[name]; }
 private:
     //std::vector<std::shared_ptr<Triangle>> triangles;
     //std::vector<std::shared_ptr<Triangle>> transformed;

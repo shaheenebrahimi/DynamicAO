@@ -216,18 +216,15 @@ void Mesh::loadBuffers() {
 
 void Mesh::setBoneAngles(const std::vector<float>& thetas)
 {
-	// convert to quaternions
-	// for (int i = 0; i < relativeRotations.size(); ++i) {
-	// 	relativeRotations[i] = glm::quat(cos(thetas[i]/2), 0, sin(thetas[i]/2), 0); // TOFIX: hard coded to rotate about y
-	// }
-	// assert(thetas.size() == boneCount);
+	 // convert to quaternions
+	 for (int i = 0; i < relativeRotations.size(); ++i) {
+	 	relativeRotations[i] = glm::quat(cos(thetas[i]/2), 0, sin(thetas[i]/2), 0); // TOFIX: hard coded to rotate about y
+	 }
+	 assert(thetas.size() == boneCount);
 
 	// convert to pose
 	std::vector<glm::mat4> pose;
 	traverseHierarchy(pose);
-	for (int i = 0; i < boneCount; ++i) {
-		cout << glm::to_string(pose[i]) << endl;
-	}
 
 	// apply pose
 	applyPose(pose);
@@ -266,7 +263,7 @@ void Mesh::computeOcclusion()
 	eval->sharedBatchCompute(inputs, &cudaOccResource);
 }
 
-void Mesh::dumpMesh(const std::string &filename)
+void Mesh::dumpMesh(const std::string &filename, const std::string &header)
 {
 	ofstream out;
 	out.open(filename);
@@ -274,18 +271,13 @@ void Mesh::dumpMesh(const std::string &filename)
 		cout << "Cannot open " << filename << endl;
 		return;
 	}
+	out << "# " << header << "\n";
 	for (int i = 0; i < skPosBuf.size() / 3; ++i) {
 		out << "v " << skPosBuf[3 * i] << " " << skPosBuf[3 * i + 1] << " " << skPosBuf[3 * i + 2] << "\n";
 	}
 	for (int i = 0; i < skNorBuf.size() / 3; ++i) {
 		out << "vn " << skNorBuf[3 * i] << " " << skNorBuf[3 * i + 1] << " " << skNorBuf[3 * i + 2] << "\n";
 	}
-	//for (int i = 0; i < posBuf.size() / 3; ++i) {
-	//	out << "v " << posBuf[3 * i] << " " << posBuf[3 * i + 1] << " " << posBuf[3 * i + 2] << "\n";
-	//}
-	//for (int i = 0; i < norBuf.size() / 3; ++i) {
-	//	out << "vn " << norBuf[3 * i] << " " << norBuf[3 * i + 1] << " " << norBuf[3 * i + 2] << "\n";
-	//}
 	for (int i = 0; i < texBuf.size() / 2; ++i) {
 		out << "vt " << texBuf[2 * i] << " " << texBuf[2 * i + 1] << "\n";
 	}

@@ -52,11 +52,16 @@ void generateMeshes(int genCount) {
 	mesh.loader(RES_DIR + "models/", "arm");
 
 	for (int i = 0; i < genCount; ++i) {
-		float theta = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 135));
+		// random angle between 0 and 100 degrees
+		float theta = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 100));
 		theta = theta * DEG_TO_RAD;
 
-		mesh.setBoneAngles({ 0.0, 0.0, 0.0, 0.0 });
-		mesh.dumpMesh(RES_DIR + "data/arm" + to_string((int)theta) + ".obj");
+		vector<float> thetas(mesh.getBoneCount(), 0);
+		int boneInd = mesh.getBoneIndex("mixamorig:RightForeArm");
+		thetas[boneInd] = theta;
+
+		mesh.setBoneAngles(thetas);
+		mesh.dumpMesh(RES_DIR + "data/arm" + to_string(i) + ".obj", "theta = " + to_string(theta));
 	}
 }
 
@@ -71,7 +76,7 @@ int main(int argc, char **argv) {
 	//raster.init();
 	//raster.run();
 
-	generateMeshes(1);
+	generateMeshes(2);
 	
 	return 0;
 }
