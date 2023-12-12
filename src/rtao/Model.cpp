@@ -79,98 +79,158 @@ namespace osc {
     
     return newID;
   }
-  
-  Model *loadOBJ(const std::string &objFile, const std::string& skinFile)
+
+  Model* loadOBJ(const std::string& objFile)
   {
-    Model *model = new Model;
+      Model* model = new Model;
 
-    //const std::string mtlDir
-    //  = objFile.substr(0,objFile.rfind('/')+1);
-    //PRINT(mtlDir);
-    
-    tinyobj::attrib_t attributes;
-    std::vector<tinyobj::shape_t> shapes;
-    std::vector<tinyobj::material_t> materials;
-    std::string err = "";
+      tinyobj::attrib_t attributes;
+      std::vector<tinyobj::shape_t> shapes;
+      std::vector<tinyobj::material_t> materials;
+      std::string err = "";
 
-    bool readOK
-        //= tinyobj::LoadObj(&attributes,
-        //                   &shapes,
-        //                   &materials,
-        //                   &err,
-        //                   &err,
-                          // objFile.c_str(),
-        //                   mtlDir.c_str(),
-        //                   /* triangulate */true);
-        = tinyobj::LoadObj(&attributes, &shapes, &materials, &err, objFile.c_str());
-    if (!readOK) {
-      throw std::runtime_error("Could not read OBJ model from "  +objFile + " : " + err);
-    }
-
-    //if (materials.empty())
-    //  throw std::runtime_error("could not parse materials ...");
-
-    std::cout << "Done loading obj file." << std::endl;
-    for (int shapeID=0;shapeID<(int)shapes.size();shapeID++) {
-      tinyobj::shape_t &shape = shapes[shapeID];
-
-      std::set<int> materialIDs;
-      for (auto faceMatID : shape.mesh.material_ids)
-        materialIDs.insert(faceMatID);
-      
-      for (int materialID : materialIDs) {
-        std::map<tinyobj::index_t,int> knownVertices;
-        TriangleMesh *mesh = new TriangleMesh;
-        
-        for (int faceID=0;faceID<shape.mesh.material_ids.size();faceID++) {
-          if (shape.mesh.material_ids[faceID] != materialID) continue;
-          tinyobj::index_t idx0 = shape.mesh.indices[3*faceID+0];
-          tinyobj::index_t idx1 = shape.mesh.indices[3*faceID+1];
-          tinyobj::index_t idx2 = shape.mesh.indices[3*faceID+2];
-          
-          vec3i idx(addVertex(mesh, attributes, idx0, knownVertices),
-                    addVertex(mesh, attributes, idx1, knownVertices),
-                    addVertex(mesh, attributes, idx2, knownVertices));
-          mesh->index.push_back(idx);
- /*         mesh->diffuse = (const vec3f&)materials[materialID].diffuse;
-          mesh->diffuse = gdt::randomColor(materialID);*/
-        }
-
-        if (mesh->vertex.empty())
-          delete mesh;
-        else
-          model->meshes.push_back(mesh);
+      bool readOK = tinyobj::LoadObj(&attributes, &shapes, &materials, &err, objFile.c_str());
+      if (!readOK) {
+          throw std::runtime_error("Could not read OBJ model from " + objFile + " : " + err);
       }
-    }
+      std::cout << "Done loading obj file." << std::endl;
 
-    // Assert
-    for (auto mesh : model->meshes) {
-        if (mesh->texcoord.empty())
-            throw std::runtime_error("no texture coordinates.");
-        if (mesh->vertex.size() != mesh->normal.size() || mesh->vertex.size() != mesh->texcoord.size())
-            throw std::runtime_error("vertex attribute count not equal.");
-    }
+      TriangleMesh* mesh = new TriangleMesh;
 
-    // of course, you should be using tbb::parallel_for for stuff
-    // like this:
-    for (auto mesh : model->meshes)
-      for (auto vtx : mesh->vertex)
-        model->bounds.extend(vtx);
+      std::vector<float> posBuf = attributes.vertices;
+      std::vector<float> norBuf = attributes.normals;
+      std::vector<float> texBuf = attributes.texcoords;
+      std::vector<unsigned int> elemBuf;
 
-    std::cout << "created a total of " << model->meshes.size() << " meshes" << std::endl;
-    return model;
+      // Loop over shapes
+      for (size_t s = 0; s < shapes.size(); s++) {
+          // Loop over faces (polygons)
+          size_t index_offset = 0;
+          for (size_t f = 0; f < shapes[s].mesh.num_face_vertices.size(); f++) {
+              size_t fv = shapes[s].mesh.num_face_vertices[f];
+              // Loop over vertices in the face.
+              for (size_t v = 0; v < fv; v++) {
+                  // access to vertex
+                  tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + v];
+                  elemBuf.push_back(idx.vertex_index);
+              }
+              index_offset += fv;
+          }
+      }
+
+      for (int i = 0; i < posBuf.size() / 3; ++i) {
+          mesh->vertex.push_back(vec3f(posBuf[3 * i], posBuf[3 * i + 1], posBuf[3 * i + 2]));
+      }
+      for (int i = 0; i < norBuf.size() / 3; ++i) {
+          mesh->normal.push_back(vec3f(norBuf[3 * i], norBuf[3 * i + 1], norBuf[3 * i + 2]));
+      }
+      for (int i = 0; i < texBuf.size() / 2; ++i) {
+          mesh->texcoord.push_back(vec2f(texBuf[2 * i], texBuf[2 * i + 1]));
+      }
+      for (int i = 0; i < elemBuf.size() / 3; ++i) {
+          mesh->index.push_back(vec3i(elemBuf[3 * i], elemBuf[3 * i + 1], elemBuf[3 * i + 2]));
+      }
+
+      model->meshes.push_back(mesh);
+
+      // Assert
+      for (auto mesh : model->meshes) {
+          if (mesh->texcoord.empty())
+              throw std::runtime_error("no texture coordinates.");
+          if (mesh->vertex.size() != mesh->normal.size())
+              throw std::runtime_error("vertex attribute count not equal.");
+      }
+
+      // of course, you should be using tbb::parallel_for for stuff
+      // like this:
+      for (auto mesh : model->meshes)
+          for (auto vtx : mesh->vertex)
+              model->bounds.extend(vtx);
+
+      std::cout << "created a total of " << model->meshes.size() << " meshes" << std::endl;
+      return model;
   }
-
-  //Model* skin(Model* base, const std::vector<float> thetas)
+  
+  //Model *loadOBJ(const std::string &objFile)
   //{
-  //    Model* skinned = new Model;
-  //    
-  //    for (auto mesh : base->meshes) {
-  //        for (int i = 0; i < mesh->vertex.size(); ++i) {
-  //            vec3f x0 = mesh->vertex[i];
-  //            vec3f n0 = mesh->normal[i];
+  //  Model *model = new Model;
 
-  //        }
+  //  //const std::string mtlDir
+  //  //  = objFile.substr(0,objFile.rfind('/')+1);
+  //  //PRINT(mtlDir);
+  //  
+  //  tinyobj::attrib_t attributes;
+  //  std::vector<tinyobj::shape_t> shapes;
+  //  std::vector<tinyobj::material_t> materials;
+  //  std::string err = "";
+
+  //  bool readOK
+  //      //= tinyobj::LoadObj(&attributes,
+  //      //                   &shapes,
+  //      //                   &materials,
+  //      //                   &err,
+  //      //                   &err,
+  //                        // objFile.c_str(),
+  //      //                   mtlDir.c_str(),
+  //      //                   /* triangulate */true);
+  //      = tinyobj::LoadObj(&attributes, &shapes, &materials, &err, objFile.c_str());
+  //  if (!readOK) {
+  //    throw std::runtime_error("Could not read OBJ model from "  +objFile + " : " + err);
+  //  }
+
+  //  //if (materials.empty())
+  //  //  throw std::runtime_error("could not parse materials ...");
+
+  //  std::cout << "Done loading obj file." << std::endl;
+  //  for (int shapeID=0;shapeID<(int)shapes.size();shapeID++) {
+  //    tinyobj::shape_t &shape = shapes[shapeID];
+
+  //    
+  //    
+  //    std::set<int> materialIDs;
+  //    for (auto faceMatID : shape.mesh.material_ids)
+  //      materialIDs.insert(faceMatID);
+  //    
+  //    for (int materialID : materialIDs) {
+  //      std::map<tinyobj::index_t,int> knownVertices;
+  //      TriangleMesh *mesh = new TriangleMesh;
+  //      
+  //      for (int faceID=0;faceID<shape.mesh.material_ids.size();faceID++) {
+  //        if (shape.mesh.material_ids[faceID] != materialID) continue;
+  //        tinyobj::index_t idx0 = shape.mesh.indices[3*faceID+0];
+  //        tinyobj::index_t idx1 = shape.mesh.indices[3*faceID+1];
+  //        tinyobj::index_t idx2 = shape.mesh.indices[3*faceID+2];
+  //        
+  //        vec3i idx(addVertex(mesh, attributes, idx0, knownVertices),
+  //                  addVertex(mesh, attributes, idx1, knownVertices),
+  //                  addVertex(mesh, attributes, idx2, knownVertices));
+  //        mesh->index.push_back(idx);
+  //        //mesh->diffuse = (const vec3f&)materials[materialID].diffuse;
+  //        //mesh->diffuse = gdt::randomColor(materialID);
+  //      }
+
+  //      if (mesh->vertex.empty())
+  //        delete mesh;
+  //      else
+  //        model->meshes.push_back(mesh);
   //    }
+  //  }
+
+  //  // Assert
+  //  for (auto mesh : model->meshes) {
+  //      if (mesh->texcoord.empty())
+  //          throw std::runtime_error("no texture coordinates.");
+  //      if (mesh->vertex.size() != mesh->normal.size())
+  //          throw std::runtime_error("vertex attribute count not equal.");
+  //  }
+
+  //  // of course, you should be using tbb::parallel_for for stuff
+  //  // like this:
+  //  for (auto mesh : model->meshes)
+  //    for (auto vtx : mesh->vertex)
+  //      model->bounds.extend(vtx);
+
+  //  std::cout << "created a total of " << model->meshes.size() << " meshes" << std::endl;
+  //  return model;
   //}
 }

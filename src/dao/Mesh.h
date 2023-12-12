@@ -44,7 +44,7 @@ public:
     void setBoneAngles(const std::vector<float>& thetas);
     void setTransform(glm::mat4 transform) { this->transform = transform; }
 
-    void dumpMesh(const std::string &filename, const std::string& header = "");
+    void dumpMesh(const std::string &filename, const std::vector<std::string>& header = {});
     void updateMesh();
     void drawMesh(std::shared_ptr<Program> prog);
 

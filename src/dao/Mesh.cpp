@@ -263,7 +263,7 @@ void Mesh::computeOcclusion()
 	eval->sharedBatchCompute(inputs, &cudaOccResource);
 }
 
-void Mesh::dumpMesh(const std::string &filename, const std::string &header)
+void Mesh::dumpMesh(const std::string &filename, const std::vector<std::string> &header)
 {
 	ofstream out;
 	out.open(filename);
@@ -271,7 +271,9 @@ void Mesh::dumpMesh(const std::string &filename, const std::string &header)
 		cout << "Cannot open " << filename << endl;
 		return;
 	}
-	out << "# " << header << "\n";
+	for (int i = 0; i < header.size(); ++i) {
+		out << "# " << header[i] << "\n";
+	}
 	for (int i = 0; i < skPosBuf.size() / 3; ++i) {
 		out << "v " << skPosBuf[3 * i] << " " << skPosBuf[3 * i + 1] << " " << skPosBuf[3 * i + 2] << "\n";
 	}

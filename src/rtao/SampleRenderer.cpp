@@ -15,10 +15,12 @@
 // ======================================================================== //
 
 #include "SampleRenderer.h"
+#include "gdt/math/vec.h"
+
 // this include may only appear in a single source file:
 #include <optix_function_table_definition.h>
 #include <random>
-#include "gdt/math/vec.h"
+#include <chrono>
 
 
 /*! \namespace osc - Optix Siggraph Course */
@@ -90,6 +92,9 @@ namespace osc {
   }
 
   void SampleRenderer::sampleOcclusionPoints() {
+      unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+      std::uniform_real_distribution<float> randomFloats(0.0, 1.0); // random floats between [0.0, 1.0]
+      std::default_random_engine generator(seed);
       std::vector<vec3f> pos;
       std::vector<vec3f> nor;
       for (auto mesh : this->model->meshes) {
@@ -112,8 +117,6 @@ namespace osc {
               // randomly sample in triangle
               int sampled = 0;
               while (sampled < this->samplesPerTri) {
-                  std::uniform_real_distribution<float> randomFloats(0.0, 1.0); // random floats between [0.0, 1.0]
-                  std::default_random_engine generator;
                   float r1 = sqrt(randomFloats(generator));
                   float r2 = randomFloats(generator);
 
@@ -670,8 +673,9 @@ namespace osc {
     std::vector<vec3f> kernel(this->rayCount);
     std::vector<vec3f> noise(this->rayCount);
 
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::uniform_real_distribution<float> randomFloats(0.0, 1.0); // random floats between [0.0, 1.0]
-    std::default_random_engine generator;
+    std::default_random_engine generator(seed);
 
     for (int i = 0; i < this->rayCount; ++i) {
         // sample random vectors in unit hemisphere

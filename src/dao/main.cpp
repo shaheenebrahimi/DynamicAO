@@ -51,6 +51,7 @@ void generateMeshes(int genCount) {
 	Mesh mesh;
 	mesh.loader(RES_DIR + "models/", "arm");
 
+	// TODO: make work for all theta values
 	for (int i = 0; i < genCount; ++i) {
 		// random angle between 0 and 100 degrees
 		float theta = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 100));
@@ -61,7 +62,12 @@ void generateMeshes(int genCount) {
 		thetas[boneInd] = theta;
 
 		mesh.setBoneAngles(thetas);
-		mesh.dumpMesh(RES_DIR + "data/arm" + to_string(i) + ".obj", "theta = " + to_string(theta));
+		vector<string> header = {
+			"The next comment says how many theta values and the following one has their values",
+			to_string(1),
+			to_string(theta)
+		};
+		mesh.dumpMesh(RES_DIR + "data/arm" + to_string(i) + ".obj", header);
 	}
 }
 
@@ -76,7 +82,7 @@ int main(int argc, char **argv) {
 	//raster.init();
 	//raster.run();
 
-	generateMeshes(2);
+	//generateMeshes(50);
 	
 	return 0;
 }

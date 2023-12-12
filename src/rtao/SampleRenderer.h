@@ -139,9 +139,6 @@ namespace osc {
     /*! @} */
 
     CUDABuffer occlusionBuffer;
-
-    /*! the camera we are to render with. */
-    //Camera lastSetCamera;
     
     /*! the model we are going to trace rays against */
     std::vector<vec2f> inputs; // texcoord inputs

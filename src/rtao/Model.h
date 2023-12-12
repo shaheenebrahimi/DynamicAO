@@ -42,6 +42,5 @@ namespace osc {
     box3f bounds; //! bounding box of all vertices in the model
   };
 
-  Model* loadOBJ(const std::string &objFile, const std::string& skinFile);
-  //Model* skin(Model* base, const std::vector<float> thetas);
+  Model* loadOBJ(const std::string &objFile);
 }

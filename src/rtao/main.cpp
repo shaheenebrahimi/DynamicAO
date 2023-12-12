@@ -18,6 +18,7 @@
 #include <GL/gl.h>
 #include <string>
 #include <fstream>
+#include <sstream>
 
 /*! \namespace osc - Optix Siggraph Course */
 /* Generates ray traced ambient occlusion training samples for neural network */
@@ -33,49 +34,85 @@ const std::string RES_DIR =
 ;
 
 namespace osc {
+    std::vector<float> parseHeader(const std::string & filename) {
+        // get header
+        std::ifstream in;
+        std::string line;
+
+        in.open(filename);
+        if (!in.good()) {
+            std::cout << "Cannot read " << filename << std::endl;
+        }
+
+        // skip instruction line
+        char comment;
+        getline(in, line);
+
+        // theta count line
+        int dimensions;
+        getline(in, line);
+        std::stringstream ssd(line);
+        ssd >> comment;
+        ssd >> dimensions;
+
+        // theta value line
+        std::vector<float> thetas (dimensions);
+        getline(in, line);
+
+        std::stringstream sst(line);
+        sst >> comment;
+        for (int i = 0; i < dimensions; ++i) {
+            sst >> thetas[i];
+        }
+        return thetas;
+}
+
   extern "C" int main(int ac, char **av)
   {
-      Model* model;
-    try {
-      std::string path = RES_DIR + "models/arm.obj";
-      model = loadOBJ(path);
-    } catch (std::runtime_error& e) {
-      std::cout << GDT_TERMINAL_RED << "FATAL ERROR: " << e.what() << GDT_TERMINAL_DEFAULT << std::endl;
-	    std::cout << "Could not load obj file" << std::endl;
-	    exit(1);
-    }
 
-    // TODO: apply some random transform and repeat x amount of times
-    const std::vector<float> thetas = { 0.0 }; // one joint of interest
-    // apply to model
+      // export to file
+      std::ofstream out;
+      //out.open(RES_DIR + "occlusion/data.txt", std::ios_base::app); // keep appending to data
+      out.open(RES_DIR + "occlusion/data.txt");
 
-    // Create SampleRenderer
-    const int triSamples = 10;
-    const int rayCount = 250;
-    SampleRenderer renderer (model, triSamples, rayCount);
-    renderer.render(); // only need to render the frame once
+      for (int i = 0; i < 50; ++i) {
+          std::string filename = RES_DIR + "data/arm" + std::to_string(i) + ".obj";
+          std::vector<float> thetas = parseHeader(filename);
 
-    std::vector<float> occlusionValues;
-    renderer.downloadBuffer(occlusionValues); // download from buffer
-    std::vector<vec2f> uvs = renderer.getUVs();
+          Model* model;
+          try {
+              model = loadOBJ(filename);
+              
+          }
+          catch (std::runtime_error& e) {
+              std::cout << GDT_TERMINAL_RED << "FATAL ERROR: " << e.what() << GDT_TERMINAL_DEFAULT << std::endl;
+              std::cout << "Could not load obj file" << std::endl;
+              exit(1);
+          }
 
-    // export to file
-    std::ofstream of;
-    //of.open(RES_DIR + "occlusion/data.txt", std::ios_base::app); // keep appending to data
-    of.open(RES_DIR + "occlusion/data.txt");
+          // Create SampleRenderer
+          const int triSamples = 10;
+          const int rayCount = 250;
+          SampleRenderer renderer(model, triSamples, rayCount);
+          renderer.render(); // only need to render the frame once
 
-    int inputs = thetas.size() + 2;
-    int outputs = occlusionValues.size();
-    of << inputs << " " << outputs << std::endl; // first two lines num inputs, num len data
-    for (int i = 0; i < outputs; ++i) { // u v theta0 theta1 ... occlusion value
-        of << uvs[i].x << " " << uvs[i].y << " ";
-        for (float theta : thetas) {
-            of << theta << " ";
-        }
-        of << occlusionValues[i] << std::endl;
-    }
-    of.close();
+          std::vector<float> occlusionValues;
+          renderer.downloadBuffer(occlusionValues); // download from buffer
+          std::vector<vec2f> uvs = renderer.getUVs();
 
+          int inputs = thetas.size() + 2;
+          int outputs = occlusionValues.size();
+          std::cout << "Input dimensionality: " << inputs << std::endl;
+          //out << inputs << " " << outputs << std::endl; // first two lines num inputs, num len data
+          for (int i = 0; i < outputs; ++i) { // u v theta0 theta1 ... occlusion value
+              out << uvs[i].x << " " << uvs[i].y << " ";
+              for (float theta : thetas) {
+                  out << theta << " ";
+              }
+              out << occlusionValues[i] << std::endl;
+          }
+      }
+      out.close();
     return 0;
   }
   
