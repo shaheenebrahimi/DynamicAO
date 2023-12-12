@@ -4,7 +4,6 @@
 #include "tiny_obj_loader.h"
 #include <cuda_gl_interop.h>
 #include <cuda_runtime.h>
-
 #include <iostream>
 
 using namespace std;
@@ -24,6 +23,14 @@ Mesh::~Mesh() {
 	//transformed.clear();
 }
 
+void Mesh::loader(const std::string& dir, const std::string& name)
+{
+	loadMesh(dir + name + "/" + name + ".obj");
+	loadSkeleton(dir + name + "/" + name + "_skeleton.txt");
+	loadHierarchy(dir + name + "/" + name + "_hierarchy.txt");
+	loadSkinWeights(dir + name + "/" + name + "_skin.txt");
+}
+
 void Mesh::loadMesh(const string &meshName) {
 	tinyobj::attrib_t attrib;
 	vector<tinyobj::shape_t> shapes;
@@ -33,6 +40,10 @@ void Mesh::loadMesh(const string &meshName) {
 	if(!rc) {
 		cerr << errStr << endl;
 	} else {
+		posBuf = attrib.vertices;
+		norBuf = attrib.normals;
+		texBuf = attrib.texcoords;
+
 		// Loop over shapes
 		for(size_t s = 0; s < shapes.size(); s++) {
 			// Loop over faces (polygons)
@@ -43,26 +54,130 @@ void Mesh::loadMesh(const string &meshName) {
 				for(size_t v = 0; v < fv; v++) {
 					// access to vertex
 					tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + v];
-					posBuf.push_back(attrib.vertices[3*idx.vertex_index+0]);
-					posBuf.push_back(attrib.vertices[3*idx.vertex_index+1]);
-					posBuf.push_back(attrib.vertices[3*idx.vertex_index+2]);
-					if(!attrib.normals.empty()) {
-						norBuf.push_back(attrib.normals[3*idx.normal_index+0]);
-						norBuf.push_back(attrib.normals[3*idx.normal_index+1]);
-						norBuf.push_back(attrib.normals[3*idx.normal_index+2]);
-					}
-					if(!attrib.texcoords.empty()) {
-						texBuf.push_back(attrib.texcoords[2*idx.texcoord_index+0]);
-						texBuf.push_back(attrib.texcoords[2*idx.texcoord_index+1]);
-					}
-					else {
-						cerr << "Error: model does not have texture coords" << endl;
-					}
+					elemBuf.push_back(idx.vertex_index);
 				}
 				index_offset += fv;
 			}
 		}
+		skPosBuf.resize(posBuf.size());
+		skNorBuf.resize(norBuf.size());
 	}
+}
+
+void Mesh::loadSkeleton(const std::string& filename)
+{
+	ifstream in;
+	in.open(filename);
+	if (!in.good()) {
+		cout << "Cannot read " << filename << endl;
+		return;
+	}
+	// cout << "Loading " << filename << endl;
+
+	string line;
+	stringstream ss;
+
+	// Ignore comment header
+	while (line.empty() || line.at(0) == '#') {
+		getline(in, line);
+	}
+
+	// Get meta data
+	int frameCount;
+	ss = stringstream(line);
+	ss >> frameCount; ss >> boneCount;
+	bindPose.resize(boneCount);
+
+	getline(in, line);
+	ss = stringstream(line);
+	for (int bone = 0; bone < boneCount; ++bone) {
+		float qx, qy, qz, qw, px, py, pz;
+		ss >> qx; ss >> qy; ss >> qz; ss >> qw; ss >> px; ss >> py; ss >> pz;
+		bindPose[bone] = glm::vec3(px, py, pz);
+	}
+	in.close();
+}
+
+void Mesh::loadSkinWeights(const std::string& filename)
+{
+	ifstream in;
+	in.open(filename);
+	if (!in.good()) {
+		cout << "Cannot read " << filename << endl;
+		return;
+	}
+	// cout << "Loading " << filename << endl;
+
+	string line;
+	stringstream ss;
+
+	// Ignore comment header
+	while (line.empty() || line.at(0) == '#') {
+		getline(in, line);
+	}
+
+	// Get meta data
+	int verts, bones;
+	ss = stringstream(line);
+	ss >> verts; ss >> bones; ss >> influences;
+	skBoneInds.resize(verts * influences, 0);
+	skWeights.resize(verts * influences, 0);
+
+	// Get bone weights per vertex
+	for (unsigned int vert = 0; vert < verts; ++vert) {
+		getline(in, line);
+		ss = stringstream(line);
+		int vertInfluences;
+		ss >> vertInfluences;
+		for (int i = 0; i < vertInfluences; ++i) {
+			ss >> skBoneInds[vert * influences + i];
+			ss >> skWeights[vert * influences + i];
+		}
+	}
+	in.close();
+}
+
+void Mesh::loadHierarchy(const std::string& filename)
+{
+	ifstream in;
+	in.open(filename);
+	if (!in.good()) {
+		cout << "Cannot read " << filename << endl;
+		return;
+	}
+	// cout << "Loading " << filename << endl;
+
+	string line;
+	stringstream ss;
+
+	// Ignore comment header
+	while (line.empty() || line.at(0) == '#') {
+		getline(in, line);
+	}
+
+	// Get meta data
+	ss = stringstream(line);
+	ss >> boneCount;
+
+	// Get hierarchy data per line
+	boneHierarchy.resize(boneCount);
+	for (int i = 0; i < boneCount; ++i) {
+		unsigned int jointInd, parentInd; string rotOrder, jointName;
+		getline(in, line);
+		ss = stringstream(line);
+		ss >> jointInd; ss >> parentInd; ss >> rotOrder; ss >> jointName;
+		boneHierarchy[jointInd] = parentInd;
+		boneMap[jointName] = jointInd;
+	}
+
+	// populate hierarchy
+	relativeTranslations.resize(boneCount);
+	relativeRotations.resize(boneCount);
+	for (int i = 0; i < boneCount; ++i) { // iter through bone index
+		relativeTranslations[i] = (i == 0) ? bindPose[i] : bindPose[i] - bindPose[boneHierarchy[i]]; // abs pos = rel pos if root
+		relativeRotations[i] = glm::quat(1.0, 0.0, 0.0, 0.0);
+	}
+	in.close();
 }
 
 void Mesh::loadEvaluator(const string& modelName) {
@@ -99,23 +214,26 @@ void Mesh::loadBuffers() {
 	GLSL::checkError(GET_FILE_LINE);
 }
 
-/* PRIVATE */
+void Mesh::setBoneAngles(const std::vector<float>& thetas)
+{
+	// convert to quaternions
+	// for (int i = 0; i < relativeRotations.size(); ++i) {
+	// 	relativeRotations[i] = glm::quat(cos(thetas[i]/2), 0, sin(thetas[i]/2), 0); // TOFIX: hard coded to rotate about y
+	// }
+	// assert(thetas.size() == boneCount);
 
-//void Mesh::bufToTriangles() {
-//    for (int i = 0; i < posBuf.size()/9; i++) {
-//        glm::vec3 pos0 (posBuf[9*i], posBuf[9*i+1], posBuf[9*i+2]);
-//        glm::vec3 pos1 (posBuf[9*i+3], posBuf[9*i+4], posBuf[9*i+5]);
-//        glm::vec3 pos2 (posBuf[9*i+6], posBuf[9*i+7], posBuf[9*i+8]);
-//        glm::vec3 nor0 (norBuf[9*i], norBuf[9*i+1], norBuf[9*i+2]);
-//        glm::vec3 nor1 (norBuf[9*i+3], norBuf[9*i+4], norBuf[9*i+5]);
-//        glm::vec3 nor2 (norBuf[9*i+6], norBuf[9*i+7], norBuf[9*i+8]);
-//		glm::vec2 tex0 (texBuf[6*i], texBuf[6*i+1]);
-//        glm::vec2 tex1 (texBuf[6*i+2], texBuf[6*i+3]);
-//        glm::vec2 tex2 (texBuf[6*i+4], texBuf[6*i+5]);
-//        shared_ptr<Triangle> tri = std::make_shared<Triangle>(pos0, pos1, pos2, nor0, nor1, nor2, tex0, tex1, tex2);
-//        triangles.push_back(tri);
-//    }
-//}
+	// convert to pose
+	std::vector<glm::mat4> pose;
+	traverseHierarchy(pose);
+	for (int i = 0; i < boneCount; ++i) {
+		cout << glm::to_string(pose[i]) << endl;
+	}
+
+	// apply pose
+	applyPose(pose);
+}
+
+/* PRIVATE */
 
 void Mesh::createCudaVBO(GLuint *vbo, cudaGraphicsResource **vboRes, unsigned int vboResFlags, unsigned int size)
 {
@@ -146,6 +264,34 @@ void Mesh::computeOcclusion()
 {
 	Batch inputs = getInputs(); // TODO: fix to get proper inputs
 	eval->sharedBatchCompute(inputs, &cudaOccResource);
+}
+
+void Mesh::dumpMesh(const std::string &filename)
+{
+	ofstream out;
+	out.open(filename);
+	if (!out.good()) {
+		cout << "Cannot open " << filename << endl;
+		return;
+	}
+	for (int i = 0; i < skPosBuf.size() / 3; ++i) {
+		out << "v " << skPosBuf[3 * i] << " " << skPosBuf[3 * i + 1] << " " << skPosBuf[3 * i + 2] << "\n";
+	}
+	for (int i = 0; i < skNorBuf.size() / 3; ++i) {
+		out << "vn " << skNorBuf[3 * i] << " " << skNorBuf[3 * i + 1] << " " << skNorBuf[3 * i + 2] << "\n";
+	}
+	//for (int i = 0; i < posBuf.size() / 3; ++i) {
+	//	out << "v " << posBuf[3 * i] << " " << posBuf[3 * i + 1] << " " << posBuf[3 * i + 2] << "\n";
+	//}
+	//for (int i = 0; i < norBuf.size() / 3; ++i) {
+	//	out << "vn " << norBuf[3 * i] << " " << norBuf[3 * i + 1] << " " << norBuf[3 * i + 2] << "\n";
+	//}
+	for (int i = 0; i < texBuf.size() / 2; ++i) {
+		out << "vt " << texBuf[2 * i] << " " << texBuf[2 * i + 1] << "\n";
+	}
+	for (int i = 0; i < elemBuf.size() / 3; ++i)
+		out << "f " << elemBuf[3 * i] + 1 << " " << elemBuf[3 * i + 1] + 1 << " " << elemBuf[3 * i + 2] + 1 << "\n";
+	out.close();
 }
 
 void Mesh::updateMesh()
@@ -200,6 +346,43 @@ void Mesh::drawMesh(std::shared_ptr<Program> prog) {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	
 	GLSL::checkError(GET_FILE_LINE);
+}
+
+void Mesh::traverseHierarchy(std::vector<glm::mat4>& pose)
+{
+	pose.resize(boneCount);
+	for (int i = 0; i < boneCount; ++i) {
+		glm::mat4 M(1);
+		int ind = i;
+		do {
+			glm::mat4 Mi = glm::translate(glm::mat4(1), relativeTranslations[ind]) * glm::mat4_cast(relativeRotations[ind]); // T * R
+			M = Mi * M;
+			ind = boneHierarchy[ind]; // go down hierarchy
+		} while (ind != -1);
+		pose[i] = M;
+	}
+}
+
+void Mesh::applyPose(const std::vector<glm::mat4>& pose)
+{
+	// Linear Blend Skinning
+	for (int i = 0; i < posBuf.size() / 3; ++i) { // iterate through vertices
+		glm::vec4 x0(posBuf[3 * i], posBuf[3 * i + 1], posBuf[3 * i + 2], 1); // world mesh pos
+		glm::vec4 n0(norBuf[3 * i], norBuf[3 * i + 1], norBuf[3 * i + 2], 0); // world mesh nor
+		glm::mat4 weightedTrans(0);
+		for (int j = 0; j < influences; ++j) { // iterate through bone influences
+			unsigned int boneInd = skBoneInds[influences * i + j];
+			glm::mat4 M0 = glm::translate(glm::mat4(1), bindPose[boneInd]); // bind pose bone space to world
+			glm::mat4 Mk = pose[boneInd];
+			float w = skWeights[influences * i + j]; // weight of bone on vert
+			glm::mat4 T = Mk * glm::inverse(M0); // linear skinning eq
+			weightedTrans += T * w;
+		}
+		glm::vec4 xk = weightedTrans * x0;
+		glm::vec4 nk = glm::normalize(weightedTrans * n0);
+		skPosBuf[3 * i] = xk.x; skPosBuf[3 * i + 1] = xk.y; skPosBuf[3 * i + 2] = xk.z;
+		skNorBuf[3 * i] = nk.x; skNorBuf[3 * i + 1] = nk.y; skNorBuf[3 * i + 2] = nk.z;
+	}
 }
 
 Batch Mesh::getInputs()

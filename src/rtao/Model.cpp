@@ -80,7 +80,7 @@ namespace osc {
     return newID;
   }
   
-  Model *loadOBJ(const std::string &objFile)
+  Model *loadOBJ(const std::string &objFile, const std::string& skinFile)
   {
     Model *model = new Model;
 
@@ -160,49 +160,17 @@ namespace osc {
     std::cout << "created a total of " << model->meshes.size() << " meshes" << std::endl;
     return model;
   }
-}
 
-//namespace osc {
-//	Mesh *loadOBJ(const std::string& meshName) {
-//		tinyobj::attrib_t attrib;
-//		std::vector<tinyobj::shape_t> shapes;
-//		std::vector<tinyobj::material_t> materials;
-//		std::string errStr;
-//		bool rc = tinyobj::LoadObj(&attrib, &shapes, &materials, &errStr, meshName.c_str());
-//		if (!rc) {
-//			std::cerr << errStr << std::endl;
-//		}
-//		else {
-//			// Loop over shapes
-//			for (size_t s = 0; s < shapes.size(); s++) {
-//				// Loop over faces (polygons)
-//				size_t index_offset = 0;
-//				for (size_t f = 0; f < shapes[s].mesh.num_face_vertices.size(); f++) {
-//					size_t fv = shapes[s].mesh.num_face_vertices[f];
-//					// Loop over vertices in the face.
-//					for (size_t v = 0; v < fv; v++) {
-//						// access to vertex
-//						tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + v];
-//						posBuf.push_back(attrib.vertices[3 * idx.vertex_index + 0]);
-//						posBuf.push_back(attrib.vertices[3 * idx.vertex_index + 1]);
-//						posBuf.push_back(attrib.vertices[3 * idx.vertex_index + 2]);
-//						if (!attrib.normals.empty()) {
-//							norBuf.push_back(attrib.normals[3 * idx.normal_index + 0]);
-//							norBuf.push_back(attrib.normals[3 * idx.normal_index + 1]);
-//							norBuf.push_back(attrib.normals[3 * idx.normal_index + 2]);
-//						}
-//						if (!attrib.texcoords.empty()) {
-//							texBuf.push_back(attrib.texcoords[2 * idx.texcoord_index + 0]);
-//							texBuf.push_back(attrib.texcoords[2 * idx.texcoord_index + 1]);
-//						}
-//						else {
-//							cerr << "Error: model does not have texture coords" << endl;
-//						}
-//					}
-//					index_offset += fv;
-//				}
-//			}
-//			bufToTriangles();
-//		}
-//	}
-//}
+  //Model* skin(Model* base, const std::vector<float> thetas)
+  //{
+  //    Model* skinned = new Model;
+  //    
+  //    for (auto mesh : base->meshes) {
+  //        for (int i = 0; i < mesh->vertex.size(); ++i) {
+  //            vec3f x0 = mesh->vertex[i];
+  //            vec3f n0 = mesh->normal[i];
+
+  //        }
+  //    }
+  //}
+}

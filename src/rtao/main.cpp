@@ -17,6 +17,7 @@
 #include "SampleRenderer.h"
 #include <GL/gl.h>
 #include <string>
+#include <fstream>
 
 /*! \namespace osc - Optix Siggraph Course */
 /* Generates ray traced ambient occlusion training samples for neural network */
@@ -36,7 +37,7 @@ namespace osc {
   {
       Model* model;
     try {
-      std::string path = RES_DIR + "models/sphere2.obj";
+      std::string path = RES_DIR + "models/arm.obj";
       model = loadOBJ(path);
     } catch (std::runtime_error& e) {
       std::cout << GDT_TERMINAL_RED << "FATAL ERROR: " << e.what() << GDT_TERMINAL_DEFAULT << std::endl;
@@ -44,19 +45,36 @@ namespace osc {
 	    exit(1);
     }
 
-    // TODO: Rename to OcclusionRenderer
     // TODO: apply some random transform and repeat x amount of times
+    const std::vector<float> thetas = { 0.0 }; // one joint of interest
+    // apply to model
+
     // Create SampleRenderer
-    SampleRenderer renderer (model, 1, 250); // 10 points per tri and 250 rays per point
+    const int triSamples = 10;
+    const int rayCount = 250;
+    SampleRenderer renderer (model, triSamples, rayCount);
     renderer.render(); // only need to render the frame once
 
     std::vector<float> occlusionValues;
     renderer.downloadBuffer(occlusionValues); // download from buffer
+    std::vector<vec2f> uvs = renderer.getUVs();
 
-    for (int i = 0; i < occlusionValues.size(); ++i) {
-        std::cout << occlusionValues[i] << std::endl;
+    // export to file
+    std::ofstream of;
+    //of.open(RES_DIR + "occlusion/data.txt", std::ios_base::app); // keep appending to data
+    of.open(RES_DIR + "occlusion/data.txt");
+
+    int inputs = thetas.size() + 2;
+    int outputs = occlusionValues.size();
+    of << inputs << " " << outputs << std::endl; // first two lines num inputs, num len data
+    for (int i = 0; i < outputs; ++i) { // u v theta0 theta1 ... occlusion value
+        of << uvs[i].x << " " << uvs[i].y << " ";
+        for (float theta : thetas) {
+            of << theta << " ";
+        }
+        of << occlusionValues[i] << std::endl;
     }
-
+    of.close();
 
     return 0;
   }

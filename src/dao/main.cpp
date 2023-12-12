@@ -16,6 +16,8 @@
 #include <random>
 #include <chrono>
 
+#define DEG_TO_RAD 3.1415/180.0
+
 using namespace std;
 
 const std::string RES_DIR =
@@ -33,10 +35,7 @@ Scene createScene(const string &name) {
 
 	// Lights
 	std::shared_ptr<Light> l1 = make_shared<Light>(glm::vec3(1.0f, 2.0f, 2.0f), 0.5f);
-	// std::shared_ptr<Light> l2 = make_shared<Light>(glm::vec3(-1.0f, 2.0f, -1.0f), 0.5f);
-
 	scn.addLight(l1);
-	// scn.addLight(l2);
 
 	// Objects
 	shared_ptr<Object> obj = make_shared<Object>(RES_DIR + "models/" + name + ".obj");
@@ -48,16 +47,31 @@ Scene createScene(const string &name) {
 	return scn;
 }
 
+void generateMeshes(int genCount) {
+	Mesh mesh;
+	mesh.loader(RES_DIR + "models/", "arm");
+
+	for (int i = 0; i < genCount; ++i) {
+		float theta = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 135));
+		theta = theta * DEG_TO_RAD;
+
+		mesh.setBoneAngles({ 0.0, 0.0, 0.0, 0.0 });
+		mesh.dumpMesh(RES_DIR + "data/arm" + to_string((int)theta) + ".obj");
+	}
+}
+
 int main(int argc, char **argv) {
 	///* Initializations */
-	string name = "sphere2";
-	Scene scn = createScene(name);
+	//string name = "sphere2";
+	//Scene scn = createScene(name);
 
 	// viewer
-	Rasterizer raster; // Initialize Rasterizer
-	raster.setScene(scn);
-	raster.init();
-	raster.run();
+	//Rasterizer raster; // Initialize Rasterizer
+	//raster.setScene(scn);
+	//raster.init();
+	//raster.run();
+
+	generateMeshes(1);
 	
 	return 0;
 }

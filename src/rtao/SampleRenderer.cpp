@@ -92,7 +92,6 @@ namespace osc {
   void SampleRenderer::sampleOcclusionPoints() {
       std::vector<vec3f> pos;
       std::vector<vec3f> nor;
-      std::vector<vec2f> tex;
       for (auto mesh : this->model->meshes) {
           for (vec3i i : mesh->index) { // iter through triangles
               // get texcoord of vertices of triangle
@@ -139,25 +138,91 @@ namespace osc {
                   // store data
                   pos.push_back(vec3f(px, py, pz));
                   nor.push_back(normalize(vec3f(nx, ny, nz)));
-                  tex.push_back(vec2f(u, v));
 
+                  // save input
+                  this->inputs.push_back(vec2f(u,v));
+
+                  // increment number of sample
                   sampled++;
               }
           }
       }
 
     // send data to GPU for raytracing
-    //cudaMalloc(&launchParams.origins.testing, pos.size() * sizeof(vec3f));
-    //cudaMemcpy(&launchParams.origins.testing, pos.data(), pos.size() * sizeof(vec3f), cudaMemcpyHostToDevice);
-
     launchParams.origins.positions.alloc_and_upload(pos);
     launchParams.origins.normals.alloc_and_upload(nor);
     launchParams.origins.samples = pos.size(); // number of faces * sample per tri count
 
     occlusionBuffer.resize(launchParams.origins.samples * launchParams.hemisphere.samples * sizeof(int));
     launchParams.result.occlusionBuffer = (int*)occlusionBuffer.d_ptr;
-    
-    // TODO: use texture cords
+  }
+
+  void SampleRenderer::sampleAllOcclusionPoints(int resolution) {
+      std::vector<vec3f> pos;
+      std::vector<vec3f> nor;
+      std::vector<vec2f> tex;
+      float texelStep = 1.0 / (float)resolution;
+      for (auto mesh : this->model->meshes) {
+          for (vec3i i : mesh->index) { // iter through triangles
+
+              // get texcoord of vertices of triangle
+              vec2f texA = mesh->texcoord[i.x];
+              vec2f texB = mesh->texcoord[i.y];
+              vec2f texC = mesh->texcoord[i.z];
+
+              // get position of vertices of triangle
+              vec3f posA = mesh->vertex[i.x];
+              vec3f posB = mesh->vertex[i.y];
+              vec3f posC = mesh->vertex[i.z];
+
+              // get position of vertices of triangle
+              vec3f norA = mesh->normal[i.x];
+              vec3f norB = mesh->normal[i.y];
+              vec3f norC = mesh->normal[i.z];
+
+              vec2f minBound = vec2f(min(min(texA.x, texB.x), texC.x), min(min(texA.y, texB.y), texC.y));
+              vec2f maxBound = vec2f(max(max(texA.x, texB.x), texC.x), max(max(texA.y, texB.y), texC.y));
+
+              for (float y = minBound.y; y <= maxBound.y; y += texelStep) {
+                  for (float x = minBound.x; x <= maxBound.x; x += texelStep) {
+                      // TODO: FINISH THIS
+                      // assert valid 
+                      //if (!(a >= 0 && a <= 1 && b >= 0 && b <= 1 && c >= 0 && c <= 1)) continue;
+
+                      //// sampled vertex
+                      //float px = posA.x * a + posB.x * b + posC.x * c;
+                      //float py = posA.y * a + posB.y * b + posC.y * c;
+                      //float pz = posA.z * a + posB.z * b + posC.z * c;
+                      //float nx = norA.x * a + norB.x * b + norC.x * c;
+                      //float ny = norA.y * a + norB.y * b + norC.y * c;
+                      //float nz = norA.z * a + norB.z * b + norC.z * c;
+                      //float u = texA.x * a + texB.x * b + texC.x * c;
+                      //float v = texA.y * a + texB.y * b + texC.y * c;
+
+                      //// store data
+                      //pos.push_back(vec3f(px, py, pz));
+                      //nor.push_back(normalize(vec3f(nx, ny, nz)));
+
+                      //// save input
+                      //Input in;
+                      //in.uv = vec2f(u, v);
+                      //this->inputs.push_back(in);
+
+                      //// increment number of sample
+                      //sampled++;
+                  }
+              }
+                  
+          }
+      }
+
+      // send data to GPU for raytracing
+      launchParams.origins.positions.alloc_and_upload(pos);
+      launchParams.origins.normals.alloc_and_upload(nor);
+      launchParams.origins.samples = pos.size(); // number of faces * sample per tri count
+
+      occlusionBuffer.resize(launchParams.origins.samples * launchParams.hemisphere.samples * sizeof(int));
+      launchParams.result.occlusionBuffer = (int*)occlusionBuffer.d_ptr;
   }
 
   OptixTraversableHandle SampleRenderer::buildAccel()
@@ -569,16 +634,17 @@ namespace osc {
 
 
   /*! render one frame */
-  void SampleRenderer::render()
+  void SampleRenderer::render(bool all)
   {
     // generate rays for occlusion hemisphere
     std::cout << "#osc: generating hemisphere ..." << std::endl;
     genHemisphere();
 
+    // generate points for occlusion computations
     std::cout << "#osc: generating samples to raytrace ..." << std::endl;
-    sampleOcclusionPoints();
+    (all) ? sampleAllOcclusionPoints(256) : sampleOcclusionPoints(); // sample randomly or go through every texel (at resolution)
 
-    std::cout << "dimensions: " << launchParams.origins.samples << ", " << launchParams.hemisphere.samples << std::endl;
+    std::cout << "#osc: total samples " << launchParams.origins.samples << std::endl;
     launchParamsBuffer.upload(&launchParams, 1);
       
 
@@ -653,6 +719,11 @@ namespace osc {
           occlusions[i] /= (float)launchParams.hemisphere.samples;
           occlusions[i] = 1.0 - occlusions[i];
       }
+  }
+
+  std::vector<vec2f> osc::SampleRenderer::getUVs()
+  {
+      return this->inputs;
   }
   
 } // ::osc

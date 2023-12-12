@@ -36,22 +36,24 @@ namespace osc {
       pattern, in this case */
   class SampleRenderer
   {
-    // ------------------------------------------------------------------
-    // publicly accessible interface
-    // ------------------------------------------------------------------
+      // ------------------------------------------------------------------
+      // publicly accessible interface
+      // ------------------------------------------------------------------
   public:
-    /*! constructor - performs all setup, including initializing
-      optix, creates module, pipeline, programs, SBT, etc. */
-    SampleRenderer(const Model *model, const int samplesPerTri, const int rayCount);
+      /*! constructor - performs all setup, including initializing
+        optix, creates module, pipeline, programs, SBT, etc. */
+      SampleRenderer(const Model* model, const int samplesPerTri, const int rayCount);
 
-    /*! render one frame */
-    void render();
+      /*! render one frame */
+      void render(bool all = false);
 
-    /*! resize frame buffer to given resolution */
-    //void resize(const vec2i &newSize);
+      /*! resize frame buffer to given resolution */
+      //void resize(const vec2i &newSize);
 
-    /*! download the rendered color buffer */
-    void downloadBuffer(std::vector<float> &occlusions);
+      /*! download the rendered color buffer */
+      void downloadBuffer(std::vector<float>& occlusions);
+
+      std::vector<vec2f> getUVs();
 
     /*! set camera to render with */
     //void setCamera(const Camera &camera);
@@ -92,6 +94,8 @@ namespace osc {
 
     /*! generate occlusion sample points */
     void sampleOcclusionPoints();
+
+    void sampleAllOcclusionPoints(int resolution);
 
     /*! build an acceleration structure for the given triangle mesh */
     OptixTraversableHandle buildAccel();
@@ -140,6 +144,7 @@ namespace osc {
     //Camera lastSetCamera;
     
     /*! the model we are going to trace rays against */
+    std::vector<vec2f> inputs; // texcoord inputs
     const Model *model;
     const int samplesPerTri; // number of points sampled per triangle
     const int rayCount; // number of sampled in hemisphere rays per point

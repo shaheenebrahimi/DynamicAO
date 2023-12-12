@@ -1,0 +1,8 @@
+# The first line is the number of bones/joints.
+# All other files are:
+# <JOINT INDEX> <PARENT INDEX> <ROTATION ORDER> <JOINT NAME>
+4
+0 -1 EULER_XYZ mixamorig:RightArm
+1 0 EULER_XYZ mixamorig:RightForeArm
+2 1 EULER_XYZ mixamorig:RightHand
+3 2 EULER_XYZ mixamorig:RightHand_end
