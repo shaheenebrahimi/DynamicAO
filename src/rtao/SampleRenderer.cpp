@@ -21,6 +21,7 @@
 #include <optix_function_table_definition.h>
 #include <random>
 #include <chrono>
+#include <cmath>
 
 
 /*! \namespace osc - Optix Siggraph Course */
@@ -57,8 +58,8 @@ namespace osc {
 
   /*! constructor - performs all setup, including initializing
     optix, creates module, pipeline, programs, SBT, etc. */
-  SampleRenderer::SampleRenderer(const Model *model, const int samplesPerTri, const int rayCount)
-    : model(model), samplesPerTri(samplesPerTri), rayCount(rayCount)
+  SampleRenderer::SampleRenderer(const Model *model, const int sampleCount, const int rayCount)
+    : model(model), sampleCount(sampleCount), rayCount(rayCount)
   {
     initOptix();
       
@@ -97,26 +98,51 @@ namespace osc {
       std::default_random_engine generator(seed);
       std::vector<vec3f> pos;
       std::vector<vec3f> nor;
+      std::vector<float> areas;
+      float areaSum = 0;
+
+      // Compute areas
       for (auto mesh : this->model->meshes) {
+          for (vec3i i : mesh->index) { // iter through triangles
+              // get position of vertices of triangle
+              vec3f posA = mesh->vertex[i.x];
+              vec3f posB = mesh->vertex[i.y];
+              vec3f posC = mesh->vertex[i.z];
+              // compute rays
+              vec3f AB = posB - posA;
+              vec3f AC = posC - posA;
+              // compute area
+              float area = 0.5 * gdt::length(gdt::cross(AB, AC)); // a = 1/2 * || AB x AC ||
+              areas.push_back(area);
+              areaSum += area; // running sum
+          }
+      }
+
+      // Sample points
+      for (auto mesh : this->model->meshes) { // iter through meshes
+          int triCount = 0; // counter to access area of corresponding triangle
           for (vec3i i : mesh->index) { // iter through triangles
               // get texcoord of vertices of triangle
               vec2f texA = mesh->texcoord[i.x];
               vec2f texB = mesh->texcoord[i.y];
               vec2f texC = mesh->texcoord[i.z];
-
               // get position of vertices of triangle
               vec3f posA = mesh->vertex[i.x];
               vec3f posB = mesh->vertex[i.y];
               vec3f posC = mesh->vertex[i.z];
-
               // get position of vertices of triangle
               vec3f norA = mesh->normal[i.x];
               vec3f norB = mesh->normal[i.y];
               vec3f norC = mesh->normal[i.z];
 
+
               // randomly sample in triangle
+              const float alpha = areas[triCount] / areaSum; // compute weighted sample count ratio
+              const int triSampleGoal = round(alpha * this->sampleCount); // how many to sample within triangle
+              // TODO: ceil vs round
+
               int sampled = 0;
-              while (sampled < this->samplesPerTri) {
+              while (sampled < triSampleGoal) {
                   float r1 = sqrt(randomFloats(generator));
                   float r2 = randomFloats(generator);
 
@@ -148,6 +174,7 @@ namespace osc {
                   // increment number of sample
                   sampled++;
               }
+              triCount++;
           }
       }
 

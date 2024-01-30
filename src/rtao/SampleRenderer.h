@@ -42,7 +42,7 @@ namespace osc {
   public:
       /*! constructor - performs all setup, including initializing
         optix, creates module, pipeline, programs, SBT, etc. */
-      SampleRenderer(const Model* model, const int samplesPerTri, const int rayCount);
+      SampleRenderer(const Model* model, const int sampleCount, const int rayCount);
 
       /*! render one frame */
       void render(bool all = false);
@@ -143,7 +143,7 @@ namespace osc {
     /*! the model we are going to trace rays against */
     std::vector<vec2f> inputs; // texcoord inputs
     const Model *model;
-    const int samplesPerTri; // number of points sampled per triangle
+    const int sampleCount; // number of points sampled per triangle
     const int rayCount; // number of sampled in hemisphere rays per point
 
     /*! buffer containing occlusion sample vertices */

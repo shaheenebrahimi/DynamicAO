@@ -71,16 +71,18 @@ namespace osc {
   {
 
       // Export to file
+      const std::string outputFilename = RES_DIR + "occlusion/dataFixed.txt";
       std::ofstream out;
-      //out.open(RES_DIR + "occlusion/data.txt", std::ios_base::app); // keep appending to data
-      out.open(RES_DIR + "occlusion/dataTest.txt");
+      //out.open(outputFilename, std::ios_base::app); // keep appending to data
+      out.open(outputFilename);
 
-      // Render data points for distinct poses
+      // Iterate through distinct random poses
       int poseCount = 1; // TODO: read all of poses in folder
       for (int i = 0; i < poseCount; ++i) {
           std::string filename = RES_DIR + "data/arm" + std::to_string(i) + ".obj";
           std::vector<float> thetas = parseHeader(filename);
 
+          // Load model
           Model* model;
           try {
               model = loadOBJ(filename);
@@ -92,16 +94,18 @@ namespace osc {
               exit(1);
           }
 
-          // Create SampleRenderer
-          const int triSamples = 10;
+          // Create renderer and render model
+          const int sampleCount = 1000; // how many points we are sampling on the mesh
           const int rayCount = 250;
-          SampleRenderer renderer(model, triSamples, rayCount);
+          SampleRenderer renderer(model, sampleCount, rayCount);
           renderer.render(); // only need to render the frame once
 
+          // Retrieve occlusion values from GPU
           std::vector<float> occlusionValues;
           renderer.downloadBuffer(occlusionValues); // download from buffer
           std::vector<vec2f> uvs = renderer.getUVs();
 
+          // Write occlusion values to output file
           int inputs = thetas.size() + 2;
           int outputs = occlusionValues.size();
           std::cout << "Input dimensionality: " << inputs << std::endl;
@@ -114,6 +118,7 @@ namespace osc {
               out << occlusionValues[i] << std::endl;
           }
       }
+      // total data points = sample count * pose count
       out.close();
     return 0;
   }

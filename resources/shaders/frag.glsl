@@ -28,5 +28,5 @@ void main()
 	vec3 specular = ks * pow(max(0, dot(h_hat, n_hat)), s);
 	vec3 color = ambient + diffuse + specular; 
 
-	gl_FragColor.rgb = color * vOcc;
+	gl_FragColor.rgb = color * (1.0 - vOcc);
 }
