@@ -718,10 +718,9 @@ namespace osc {
           occlusions[index] += occlusionTable[i];
       }
 
-      // find proportion and invert for color
+      // compute occlusion factor
       for (int i = 0; i < occlusions.size(); ++i) {
           occlusions[i] /= (float)launchParams.hemisphere.samples;
-          occlusions[i] = 1.0 - occlusions[i];
       }
   }
 

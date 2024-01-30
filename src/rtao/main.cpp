@@ -70,12 +70,14 @@ namespace osc {
   extern "C" int main(int ac, char **av)
   {
 
-      // export to file
+      // Export to file
       std::ofstream out;
       //out.open(RES_DIR + "occlusion/data.txt", std::ios_base::app); // keep appending to data
-      out.open(RES_DIR + "occlusion/data.txt");
+      out.open(RES_DIR + "occlusion/dataTest.txt");
 
-      for (int i = 0; i < 50; ++i) {
+      // Render data points for distinct poses
+      int poseCount = 1; // TODO: read all of poses in folder
+      for (int i = 0; i < poseCount; ++i) {
           std::string filename = RES_DIR + "data/arm" + std::to_string(i) + ".obj";
           std::vector<float> thetas = parseHeader(filename);
 

@@ -84,9 +84,10 @@ namespace osc {
     prd = cosDN * sbtData.color;*/
 
     bool& prd = *(bool*)getPRD<bool>();
-    //prd = (optixGetRayTmax() < optixLaunchParams.hemisphere.radius); // is occluded or not within radius
-    //printf("HIT!\n");
-    prd = true;
+    const float t = optixGetRayTmax();
+    const vec3f rayDir = optixGetWorldRayDirection();
+    const float rayDist = gdt::length(t * rayDir);
+    prd = (rayDist < optixLaunchParams.hemisphere.radius); // occlusion if within radius
   }
   
   extern "C" __global__ void __anyhit__radiance()
