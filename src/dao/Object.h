@@ -36,8 +36,9 @@ public:
     void setRotation(const glm::vec4 &rotation);
     void setScale(const glm::vec3 &scale);
 
+    void addMesh(const std::string dir, const std::string meshPath);
     void addTexture(const std::string &texPath);
-    void addEvaluator(const std::string& modelPath);
+    void addEvaluator(const std::string& evalPath);
 
     void update();
     void draw(std::shared_ptr<Program> prog, std::shared_ptr<MatrixStack> P, std::shared_ptr<MatrixStack> MV);

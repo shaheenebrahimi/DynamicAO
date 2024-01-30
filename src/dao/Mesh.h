@@ -61,6 +61,7 @@ private:
     std::vector<float> norBuf;
     std::vector<float> texBuf;
     std::vector<float> occBuf;
+    std::vector<float> thetaBuf;                        // all of the thetas for bones 
 
     std::vector<float> skBoneInds;
     std::vector<float> skWeights;
@@ -75,6 +76,7 @@ private:
     std::vector<glm::quat> relativeRotations;           // bone rotation with respect to parent
     std::unordered_map<std::string, int> boneMap;       // bone name to index
 
+    unsigned elemBufID;
     unsigned posBufID;
 	unsigned norBufID;
     unsigned texBufID;

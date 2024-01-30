@@ -38,10 +38,11 @@ Scene createScene(const string &name) {
 	scn.addLight(l1);
 
 	// Objects
-	shared_ptr<Object> obj = make_shared<Object>(RES_DIR + "models/" + name + ".obj");
-	obj->setMaterial(glm::vec3(0,0,1), glm::vec3(0.1,0.1,0.1), glm::vec3(0.1,0.1,0.1), 100);
+	shared_ptr<Object> obj = make_shared<Object>();
+	obj->addMesh(RES_DIR + "models/", name);
 	obj->addTexture(RES_DIR + "textures/" + name + ".png");
 	obj->addEvaluator(RES_DIR + "evaluators/" + name + ".txt");
+	obj->setMaterial(glm::vec3(0.2, 0.2, 0.2), glm::vec3(0.1, 0.1, 0.1), glm::vec3(0.1, 0.1, 0.1), 100);
 	scn.addObject(obj); // Add to scene
 
 	return scn;
@@ -72,15 +73,17 @@ void generateMeshes(int genCount) {
 }
 
 int main(int argc, char **argv) {
+	// TODO: fix so that doesn't need texture to run
 	///* Initializations */
+	string name = "arm";
 	//string name = "sphere2";
-	//Scene scn = createScene(name);
+	Scene scn = createScene(name);
 
 	// viewer
-	//Rasterizer raster; // Initialize Rasterizer
-	//raster.setScene(scn);
-	//raster.init();
-	//raster.run();
+	Rasterizer raster; // Initialize Rasterizer
+	raster.setScene(scn);
+	raster.init();
+	raster.run();
 
 	//generateMeshes(50);
 	

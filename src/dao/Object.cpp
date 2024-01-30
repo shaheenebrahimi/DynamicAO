@@ -75,6 +75,12 @@ void Object::setScale(const glm::vec3 &scale) {
     this->mesh->setTransform(transform);
 }
 
+void Object::addMesh(const std::string dir, const std::string meshPath)
+{
+    this->mesh = std::make_shared<Mesh>();
+    mesh->loader(dir, meshPath);
+}
+
 void Object::addTexture(const std::string &texPath) {
     tex = std::make_shared<Texture>();
 	tex->setFilename(texPath);

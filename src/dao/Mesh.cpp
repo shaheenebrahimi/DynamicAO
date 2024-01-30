@@ -11,17 +11,18 @@ using namespace std;
 /* PUBLIC  */
 Mesh::Mesh() {
     this->transform = glm::mat4(1);
+	this->elemBufID = 0;
+	this->posBufID = 0;
+	this->norBufID = 0;
+	this->texBufID = 0;
 }
 
 Mesh::Mesh(const string &meshName) {
     this->transform = glm::mat4(1);
-    loadMesh(meshName); // load obj and populate the triangles
+    //loadMesh(meshName); // load obj and populate the triangles
 }
 
-Mesh::~Mesh() {
-	//triangles.clear();
-	//transformed.clear();
-}
+Mesh::~Mesh() { }
 
 void Mesh::loader(const std::string& dir, const std::string& name)
 {
@@ -32,6 +33,10 @@ void Mesh::loader(const std::string& dir, const std::string& name)
 }
 
 void Mesh::loadMesh(const string &meshName) {
+	// Load geometry
+	// This works only if the OBJ file has the same indices for v/n/t.
+	// In other words, the 'f' lines must look like:
+	// f 70/70/70 41/41/41 67/67/67
 	tinyobj::attrib_t attrib;
 	vector<tinyobj::shape_t> shapes;
 	vector<tinyobj::material_t> materials;
@@ -47,6 +52,7 @@ void Mesh::loadMesh(const string &meshName) {
 		// Loop over shapes
 		for(size_t s = 0; s < shapes.size(); s++) {
 			// Loop over faces (polygons)
+
 			size_t index_offset = 0;
 			for(size_t f = 0; f < shapes[s].mesh.num_face_vertices.size(); f++) {
 				size_t fv = shapes[s].mesh.num_face_vertices[f];
@@ -96,6 +102,8 @@ void Mesh::loadSkeleton(const std::string& filename)
 		bindPose[bone] = glm::vec3(px, py, pz);
 	}
 	in.close();
+
+	thetaBuf = { 1.57 }; // TODO: make thetaBuf useful
 }
 
 void Mesh::loadSkinWeights(const std::string& filename)
@@ -205,11 +213,17 @@ void Mesh::loadBuffers() {
 		glBufferData(GL_ARRAY_BUFFER, texBuf.size()*sizeof(float), &texBuf[0], GL_STATIC_DRAW);
 	}
 
+	// Send the element array to the GPU
+	glGenBuffers(1, &elemBufID);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elemBufID);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, elemBuf.size() * sizeof(unsigned int), &elemBuf[0], GL_STATIC_DRAW);
+
 	// Send occlusion array to GPU
 	createCudaVBO(&occBufID, &cudaOccResource, cudaGraphicsMapFlagsWriteDiscard, posBuf.size()/3);
 
 	// Unbind the arrays
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	
 	GLSL::checkError(GET_FILE_LINE);
 }
@@ -218,7 +232,7 @@ void Mesh::setBoneAngles(const std::vector<float>& thetas)
 {
 	 // convert to quaternions
 	 for (int i = 0; i < relativeRotations.size(); ++i) {
-	 	relativeRotations[i] = glm::quat(cos(thetas[i]/2), 0, sin(thetas[i]/2), 0); // TOFIX: hard coded to rotate about y
+	 	relativeRotations[i] = glm::quat(cos(thetas[i]/2), 0, sin(thetas[i]/2), 0); // TODO: hard coded to rotate about y
 	 }
 	 assert(thetas.size() == boneCount);
 
@@ -228,6 +242,7 @@ void Mesh::setBoneAngles(const std::vector<float>& thetas)
 
 	// apply pose
 	applyPose(pose);
+	thetaBuf = thetas;
 }
 
 /* PRIVATE */
@@ -283,14 +298,18 @@ void Mesh::dumpMesh(const std::string &filename, const std::vector<std::string> 
 	for (int i = 0; i < texBuf.size() / 2; ++i) {
 		out << "vt " << texBuf[2 * i] << " " << texBuf[2 * i + 1] << "\n";
 	}
-	for (int i = 0; i < elemBuf.size() / 3; ++i)
-		out << "f " << elemBuf[3 * i] + 1 << " " << elemBuf[3 * i + 1] + 1 << " " << elemBuf[3 * i + 2] + 1 << "\n";
+	for (int i = 0; i < elemBuf.size() / 3; ++i) {
+		int v1 = elemBuf[3 * i] + 1, v2 = elemBuf[3 * i + 1] + 1, v3 = elemBuf[3 * i + 2] + 1;
+		out << "f " << v1 << "/" << v1 << "/" << v1 << " "
+					<< v2 << "/" << v2 << "/" << v2 << " "
+					<< v3 << "/" << v3 << "/" << v3 << "\n";
+	}
 	out.close();
 }
 
 void Mesh::updateMesh()
 {
-	// TODO: skinning
+	// apply pose?
 	computeOcclusion();
 }
 
@@ -317,6 +336,7 @@ void Mesh::drawMesh(std::shared_ptr<Program> prog) {
 		glVertexAttribPointer(h_tex, 2, GL_FLOAT, GL_FALSE, 0, (const void *)0);
 	}
 
+	// Bind occlusion buffer
 	int h_occ = prog->getAttribute("aOcc");
 	if (h_occ != -1 && occBufID != 0) {
 		glEnableVertexAttribArray(h_occ);
@@ -325,19 +345,24 @@ void Mesh::drawMesh(std::shared_ptr<Program> prog) {
 	}
 
 	// Draw
-	int count = posBuf.size()/3; // number of indices to be rendered
-	glDrawArrays(GL_TRIANGLES, 0, count);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elemBufID);
+	glDrawElements(GL_TRIANGLES, (int)elemBuf.size(), GL_UNSIGNED_INT, (const void *)0);
 	
 	// Disable and unbind
-	if(h_tex != -1) {
-		glDisableVertexAttribArray(h_tex);
+	if (h_pos != -1) {
+		glDisableVertexAttribArray(h_pos);
 	}
 	if(h_nor != -1) {
 		glDisableVertexAttribArray(h_nor);
 	}
-	glDisableVertexAttribArray(h_occ);
-	glDisableVertexAttribArray(h_pos);
+	if (h_tex != -1) {
+		glDisableVertexAttribArray(h_tex);
+	}
+	if (h_occ != -1) {
+		glDisableVertexAttribArray(h_occ);
+	}
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	
 	GLSL::checkError(GET_FILE_LINE);
 }
@@ -381,10 +406,13 @@ void Mesh::applyPose(const std::vector<glm::mat4>& pose)
 
 Batch Mesh::getInputs()
 {
+	int inputSize = 2 + thetaBuf.size();
 	std::vector<std::vector<float>> data;
 	for (int i = 0; i < texBuf.size(); i += 2) {
-		data.push_back({ texBuf[i], texBuf[i + 1] });
+		std::vector<float> input = { texBuf[i], texBuf[i + 1] }; // u, v
+		input.insert(input.end(), thetaBuf.begin(), thetaBuf.end()); // joint angles
+		data.push_back(input);
 	}
-	Batch inputs (Shape(1,2), data);
+	Batch inputs (Shape(1,inputSize), data);
 	return inputs;
 }

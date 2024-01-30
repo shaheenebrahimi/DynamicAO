@@ -103,6 +103,7 @@ float Evaluator::evaluate(const Matrix &input) {
 
 std::vector<float> Evaluator::evaluateBatch(const Batch& input) {
 	std::vector<float> res(input.batchSize);
+	cout << input.matrixDim.x << ", " << input.matrixDim.y << endl;
 	Batch output = forwardBatch(input);
 	output.copyDeviceToHost();
 	for (int b = 0; b < input.batchSize; ++b) {

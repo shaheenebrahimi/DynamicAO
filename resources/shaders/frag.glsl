@@ -15,8 +15,8 @@ varying float vOcc; // vertex occlusion factor
 void main()
 {
     // Fetch shading data
-    vec3 occlusion = texture2D(aoTexture, vTex).rgb;
-    
+    // vec3 texture = texture2D(aoTexture, vTex).rgb;
+
     // Blinn Phong
 	vec3 l_hat = normalize(lightPos - vPos);
 	vec3 e_hat = normalize(-vPos);

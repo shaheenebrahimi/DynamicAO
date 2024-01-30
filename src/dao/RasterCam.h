@@ -21,6 +21,7 @@ public:
 	RasterCam();
 	virtual ~RasterCam();
 	void setInitDistance(float z) { translations.z = -std::abs(z); }
+	void setInitPos(float x, float y, float z) { translations.x = -std::abs(x); translations.y = -std::abs(y); translations.z = -std::abs(z);}
 	void setAspect(float a) { aspect = a; };
 	void setRotationFactor(float f) { rfactor = f; };
 	void setTranslationFactor(float f) { tfactor = f; };
