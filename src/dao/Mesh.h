@@ -27,33 +27,40 @@
 
 class Mesh {
 public:
-    glm::mat4 transform;
 
     Mesh();
-    Mesh(const std::string &objPath);
+    Mesh(const std::string name);
     ~Mesh();
 
     void loader(const std::string& dir, const std::string& name);
     void loadMesh(const std::string& fileName);
     void loadSkeleton(const std::string& fileName);
+    void loadLocalSkeleton(const std::string& filename);
+    void loadLocalTransforms(const std::string& filename);
     void loadSkinWeights(const std::string& fileName);
     void loadHierarchy(const std::string& fileName);
     void loadEvaluator(const std::string& fileName);
     void loadBuffers(); // only for rasterization
 
-    void setBoneAngles(const std::vector<float>& thetas);
-    void setTransform(glm::mat4 transform) { this->transform = transform; }
+    void setAnimation(const std::string& fileName);
+    void setPose(const std::vector<glm::vec3>& orientations);
+    void setBone(const int boneInd, glm::vec3 orientation);
+    std::vector<glm::mat4> computeAbsolutePose(std::vector<glm::vec3>& relRotations);
+    void computeBoneTransforms();
+    void traverseHierarchy();
+    void applySkinning();
+    void stepAnimation();
 
-    void dumpMesh(const std::string &filename, const std::vector<std::string>& header = {});
     void updateMesh();
+    void dumpMesh(const std::string &filename, const std::vector<std::string>& header = {});
     void drawMesh(std::shared_ptr<Program> prog);
 
     int getBoneCount() { return boneCount; }
+    int getFrameCount() { return frameCount; }
+    glm::vec3 getRotationData(int frame, int boneInd) { return frameData[frame][boneInd]; }
+    std::vector<float> getFlattenedRotations();
     int getBoneIndex(const std::string& name) { return boneMap[name]; }
 private:
-    //std::vector<std::shared_ptr<Triangle>> triangles;
-    //std::vector<std::shared_ptr<Triangle>> transformed;
-
     std::shared_ptr<Evaluator> eval;
 
     std::vector<unsigned int> elemBuf;
@@ -61,7 +68,6 @@ private:
     std::vector<float> norBuf;
     std::vector<float> texBuf;
     std::vector<float> occBuf;
-    std::vector<float> thetaBuf;                        // all of the thetas for bones 
 
     std::vector<float> skBoneInds;
     std::vector<float> skWeights;
@@ -69,11 +75,15 @@ private:
     std::vector<float> skPosBuf;
     std::vector<float> skNorBuf;
 
-    int boneCount, influences;
-    std::vector<glm::vec3> bindPose;                    // absolute positions - size of (bones,)
-    std::vector<int> boneHierarchy;                     // hierarchy of bones
+    int boneCount, frameCount, influences, currFrame;
+    std::vector<std::vector<glm::mat4>> boneTransforms;     // local bone transforms
+    std::vector<std::vector<glm::vec3>> frameData;      // poses of each bone for each frame
+    std::vector<glm::mat4> pose;                        // matrix transforms to get to pose
+    std::vector<glm::mat4> bindPose;                    // position for each bone
+    std::vector<glm::vec3> jointPositions;              // absolute positions - size of (bones,)
     std::vector<glm::vec3> relativeTranslations;        // bone translation with respect to parent
-    std::vector<glm::quat> relativeRotations;           // bone rotation with respect to parent
+    std::vector<glm::vec3> relativeRotations;           // bone rotation with respect to parent
+    std::vector<int> boneHierarchy;                     // hierarchy of bones
     std::unordered_map<std::string, int> boneMap;       // bone name to index
 
     unsigned elemBufID;
@@ -83,14 +93,13 @@ private:
     unsigned occBufID;
 
     struct cudaGraphicsResource* cudaOccResource;
-
-    void traverseHierarchy(std::vector<glm::mat4>& pose);
-    void applyPose(const std::vector<glm::mat4>& pose);
     
-    Batch getInputs();
+    void computeOcclusion();
+    //void computeRelativeRotations(const std::vector<glm::quat>& orientations);
+
+    Batch getBatch();
     void createCudaVBO(GLuint *vbo, struct cudaGraphicsResource **vboRes, unsigned int vboResFlags, unsigned int size);
     void deleteCudaVBO(GLuint *vbo, struct cudaGraphicsResource *vboRes);
-    void computeOcclusion();
 };
 
 #endif

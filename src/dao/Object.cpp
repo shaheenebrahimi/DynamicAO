@@ -32,25 +32,21 @@ Object::Object(const std::string &objPath, const glm::vec3 &pos, const glm::vec4
     setRotation(rot);
     setScale(sc);
     this->transform = computeTransform();
-    mesh->setTransform(this->transform);
 }
 
 void Object::translate(const glm::vec3 &translation) {
     this->T = glm::translate(this->T, translation);
     this->transform = computeTransform();
-    this->mesh->setTransform(transform);
 }
 
 void Object::rotate(const glm::vec4 &rotation) {
     this->R = glm::rotate(this->R, rotation[0], glm::vec3(rotation[1], rotation[2], rotation[3]));
     this->transform = computeTransform();
-    this->mesh->setTransform(transform);
 }
 
 void Object::scale(const glm::vec3 &scale) {
     this->S = glm::scale(this->S, scale);
     this->transform = computeTransform();
-    this->mesh->setTransform(transform);
 }
 
 void Object::setMaterial(const glm::vec3 &kd, const glm::vec3 &ks, const glm::vec3 &ka, float s) {
@@ -60,19 +56,18 @@ void Object::setMaterial(const glm::vec3 &kd, const glm::vec3 &ks, const glm::ve
 void Object::setPosition(const glm::vec3 &position) {
     this->T = glm::translate(glm::mat4(1.0f), position);
     this->transform = computeTransform();
-    this->mesh->setTransform(transform);
 }
 
 void Object::setRotation(const glm::vec4 &rotation) {
     this->R = glm::rotate(glm::mat4(1.0f), rotation[0], glm::vec3(rotation[1], rotation[2], rotation[3]));
     this->transform = computeTransform();
-    this->mesh->setTransform(transform);
+    //this->mesh->setTransform(transform);
 }
 
 void Object::setScale(const glm::vec3 &scale) {
     this->S = glm::scale(glm::mat4(1.0f), scale);
     this->transform = computeTransform();
-    this->mesh->setTransform(transform);
+    //this->mesh->setTransform(transform);
 }
 
 void Object::addMesh(const std::string dir, const std::string meshPath)
@@ -90,6 +85,11 @@ void Object::addEvaluator(const std::string &modelPath)
 {
     mesh->loadEvaluator(modelPath);
 }
+
+//void Object::setAnimation(const std::string& animPath) {
+//
+//}
+
 
 glm::mat4 Object::computeTransform() {
     return T * R * S;

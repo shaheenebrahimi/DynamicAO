@@ -122,7 +122,6 @@ void Evaluator::sharedBatchCompute(const Batch& input, struct cudaGraphicsResour
 
 
 	Batch res = forwardBatch(input);
-
 	cudaMemcpy(output, res.data_device.get(), numBytes, cudaMemcpyDeviceToDevice);
 
 	// unmap buffer object

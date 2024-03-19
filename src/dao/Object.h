@@ -39,6 +39,7 @@ public:
     void addMesh(const std::string dir, const std::string meshPath);
     void addTexture(const std::string &texPath);
     void addEvaluator(const std::string& evalPath);
+    //void setAnimation(const std::string& animPath);
 
     void update();
     void draw(std::shared_ptr<Program> prog, std::shared_ptr<MatrixStack> P, std::shared_ptr<MatrixStack> MV);

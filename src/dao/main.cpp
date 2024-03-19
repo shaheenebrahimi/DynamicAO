@@ -30,6 +30,38 @@ const std::string RES_DIR =
 	#endif
 ;
 
+std::uniform_real_distribution<float> randomFloats(-1.0, 1.0); // random floats between [0.0, 1.0]
+std::default_random_engine generator;
+
+/* HELPERS */
+
+glm::quat eulerToQuaternion(float roll, float pitch, float yaw) { // roll (x), pitch (y), yaw (z), angles are in radians
+	float cr = cos(roll * 0.5);
+	float sr = sin(roll * 0.5);
+	float cp = cos(pitch * 0.5);
+	float sp = sin(pitch * 0.5);
+	float cy = cos(yaw * 0.5);
+	float sy = sin(yaw * 0.5);
+
+	glm::quat q;
+	q.w = cr * cp * cy + sr * sp * sy;
+	q.x = sr * cp * cy - cr * sp * sy;
+	q.y = cr * sp * cy + sr * cp * sy;
+	q.z = cr * cp * sy - sr * sp * cy;
+
+	return q;
+}
+
+glm::quat getRandomQuaternion() {
+	double x, y, z, u, v, w, s;
+	do { x = randomFloats(generator); y = randomFloats(generator); z = x * x + y * y; } while (z > 1);
+	do { u = randomFloats(generator); v = randomFloats(generator); w = u * u + v * v; } while (w > 1);
+	s = sqrt((1 - z) / w);
+	return glm::quat(x, y, s * u, s * v);
+}
+
+/* INITIALIZER */
+
 Scene createScene(const string &name) {
 	Scene scn;
 
@@ -41,51 +73,121 @@ Scene createScene(const string &name) {
 	shared_ptr<Object> obj = make_shared<Object>();
 	obj->addMesh(RES_DIR + "models/", name);
 	obj->addTexture(RES_DIR + "textures/" + name + ".png");
-	obj->addEvaluator(RES_DIR + "evaluators/" + name + ".txt");
+	//obj->addEvaluator(RES_DIR + "evaluators/" + name + ".txt");
 	obj->setMaterial(glm::vec3(0.2, 0.2, 0.2), glm::vec3(0.1, 0.1, 0.1), glm::vec3(0.1, 0.1, 0.1), 100);
 	scn.addObject(obj); // Add to scene
 
 	return scn;
 }
 
-void generateMeshes(int genCount) {
+/* DATA GENERATORS */
+
+void generateTrainingMeshes(const string &meshname) {
 	Mesh mesh;
-	mesh.loader(RES_DIR + "models/", "arm");
+	mesh.loader(RES_DIR + "models/", meshname);
 
-	// TODO: make work for all theta values
-	for (int i = 0; i < genCount; ++i) {
-		// random angle between 0 and 100 degrees
-		float theta = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 100));
-		theta = theta * DEG_TO_RAD;
+	// iterate through all bones
+	float lowerBound = -50.0, upperBound = 50.0, increment = 20.0; // in degrees
 
-		vector<float> thetas(mesh.getBoneCount(), 0);
-		int boneInd = mesh.getBoneIndex("mixamorig:RightForeArm");
-		thetas[boneInd] = theta;
+	// samples = boneCount * ((upperBound - lowerBound) / increment) ^ 3
+	long counter = 0;
+	for (int bone = 1; bone < mesh.getBoneCount(); ++bone) { // ignore first bone since root
+		for (float yaw = lowerBound; yaw < upperBound; yaw += increment) {
+			for (float roll = lowerBound; roll < upperBound; roll += increment) {
+				for (float pitch = lowerBound; pitch < upperBound; pitch += increment) {
 
-		mesh.setBoneAngles(thetas);
-		vector<string> header = {
-			"The next comment says how many theta values and the following one has their values",
-			to_string(1),
-			to_string(theta)
-		};
-		mesh.dumpMesh(RES_DIR + "data/arm" + to_string(i) + ".obj", header);
+					// get quaternion and set orientation
+					glm::quat orientation = eulerToQuaternion(yaw * DEG_TO_RAD, roll * DEG_TO_RAD, pitch * DEG_TO_RAD);
+					//mesh.setBone(bone, orientation);
+
+					// convert to printable string
+					vector<float> buffer = mesh.getFlattenedRotations();
+					string values = "";
+					for (int i = 0; i < buffer.size(); ++i) {
+						values += to_string(buffer[i]) + " ";
+					}
+
+					vector<string> header = {
+						"The next comment says how many bones and their orientations",
+						to_string(mesh.getBoneCount()),
+						values
+					};
+					mesh.dumpMesh(RES_DIR + "data/" + meshname + to_string(counter++) + ".obj", header);
+				}
+			}
+		}
 	}
+
 }
+
+void generateAnimatedMeshes(const string& meshname) {
+
+	// TODO: get orientations from animation files
+	Mesh mesh;
+	float to_rad = 3.1415 / 180.0;
+	float to_deg = 180 / 3.1415;
+	mesh.loader(RES_DIR + "models/", meshname);
+
+	/*
+	string animPath = RES_DIR + "models/" + meshname + "/animations/";
+	mesh.setAnimation(animPath + "anim_0.txt");
+
+	glm::vec3 b = mesh.getRotationData(12, 0); // 11 is arm
+	cout << b.x * to_deg << " " << b.y * to_deg << " " << b.z * to_deg << endl;
+
+	mesh.setBone(0, glm::vec3(0,0,0));
+	
+	mesh.dumpMesh(RES_DIR + "data/" + meshname + "_test.obj");
+
+	*/
+	
+	string animPath = RES_DIR + "models/" + meshname + "/animations/";
+	int animCount = 1;
+
+	// iterate through animations
+	for (int i = 0; i < animCount; ++i) {
+		mesh.setAnimation(animPath + "anim_" + to_string(i) + ".txt");
+
+		//glm::vec3 b = mesh.getRotationData(11, 0); // 11 is arm
+		//cout << b.x << " " << b.y << " " << b.z << endl;
+
+		// iterate through frames
+		for (int j = 0; j < mesh.getFrameCount(); ++j) {
+			// get comment header
+			vector<float> rotations = mesh.getFlattenedRotations();
+			string values = "";
+			for (int r = 0; r < rotations.size(); ++r) {
+				values += to_string(rotations[r]) + " ";
+			}
+			vector<string> header = {
+				"The next comment says how many bones and their orientations (qw, qx, qy, qz)",
+				to_string(mesh.getBoneCount()),
+				values
+			};
+
+			// dump mesh
+			mesh.dumpMesh(RES_DIR + "data/" + meshname + to_string(i) + "_" + to_string(j) + ".obj", header);
+			mesh.stepAnimation();
+		}
+	}
+	
+}
+
+/* MAIN */
 
 int main(int argc, char **argv) {
 	// TODO: fix so that doesn't need texture to run
 	///* Initializations */
-	string name = "arm";
-	//string name = "sphere2";
+	string name = "warrior";
 	Scene scn = createScene(name);
 
 	// viewer
-	Rasterizer raster; // Initialize Rasterizer
-	raster.setScene(scn);
-	raster.init();
-	raster.run();
+	//Rasterizer raster; // Initialize Rasterizer
+	//raster.setScene(scn);
+	//raster.init();
+	//raster.run();
 
-	//generateMeshes(50);
+	generateAnimatedMeshes(name); // go to 100 degrees with 1 degree increments
 	
 	return 0;
 }

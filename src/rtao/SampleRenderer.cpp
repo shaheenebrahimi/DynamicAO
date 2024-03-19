@@ -58,39 +58,57 @@ namespace osc {
 
   /*! constructor - performs all setup, including initializing
     optix, creates module, pipeline, programs, SBT, etc. */
-  SampleRenderer::SampleRenderer(const Model *model, const int sampleCount, const int rayCount)
-    : model(model), sampleCount(sampleCount), rayCount(rayCount)
+  SampleRenderer::SampleRenderer(const Model *model, const int rayCount)
+    : model(model), sampleCount(1000), rayCount(rayCount) // TODO: Fix sample count
   {
     initOptix();
       
-    std::cout << "#osc: creating optix context ..." << std::endl;
+    //std::cout << "#osc: creating optix context ..." << std::endl;
     createContext();
       
-    std::cout << "#osc: setting up module ..." << std::endl;
+    //std::cout << "#osc: setting up module ..." << std::endl;
     createModule();
 
-    std::cout << "#osc: creating raygen programs ..." << std::endl;
+    //std::cout << "#osc: creating programs ..." << std::endl;
     createRaygenPrograms();
-    std::cout << "#osc: creating miss programs ..." << std::endl;
     createMissPrograms();
-    std::cout << "#osc: creating hitgroup programs ..." << std::endl;
     createHitgroupPrograms();
 
     launchParams.traversable = buildAccel();
     
-    std::cout << "#osc: setting up optix pipeline ..." << std::endl;
+    //std::cout << "#osc: setting up optix pipeline ..." << std::endl;
     createPipeline();
 
-    std::cout << "#osc: building SBT ..." << std::endl;
+    //std::cout << "#osc: building SBT ..." << std::endl;
     buildSBT();
 
     launchParamsBuffer.alloc(sizeof(launchParams));
-    std::cout << "#osc: context, module, pipeline, etc, all set up ..." << std::endl;
+    //std::cout << "#osc: context, module, pipeline, etc, all set up ..." << std::endl;
 
     std::cout << GDT_TERMINAL_GREEN;
     std::cout << "#osc: Optix 7 fully set up" << std::endl;
     std::cout << GDT_TERMINAL_DEFAULT;
   }
+
+  void SampleRenderer::getVertexSamples() {
+      std::vector<vec3f> pos;
+      std::vector<vec3f> nor;
+
+      // Sample points
+      for (auto mesh : this->model->meshes) { // iter through meshes
+          pos.insert(pos.end(), mesh->vertex.begin(), mesh->vertex.end());
+          nor.insert(nor.end(), mesh->normal.begin(), mesh->normal.end());
+      }
+
+      // send data to GPU for raytracing
+      launchParams.origins.positions.alloc_and_upload(pos);
+      launchParams.origins.normals.alloc_and_upload(nor);
+      launchParams.origins.samples = pos.size(); // number of faces * sample per tri count
+
+      occlusionBuffer.resize(launchParams.origins.samples * launchParams.hemisphere.samples * sizeof(int));
+      launchParams.result.occlusionBuffer = (int*)occlusionBuffer.d_ptr;
+  }
+
 
   void SampleRenderer::sampleOcclusionPoints() {
       unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
@@ -169,7 +187,7 @@ namespace osc {
                   nor.push_back(normalize(vec3f(nx, ny, nz)));
 
                   // save input
-                  this->inputs.push_back(vec2f(u,v));
+                  this->inputs.push_back(vec2f(u, v));
 
                   // increment number of sample
                   sampled++;
@@ -178,14 +196,15 @@ namespace osc {
           }
       }
 
-    // send data to GPU for raytracing
-    launchParams.origins.positions.alloc_and_upload(pos);
-    launchParams.origins.normals.alloc_and_upload(nor);
-    launchParams.origins.samples = pos.size(); // number of faces * sample per tri count
+      // send data to GPU for raytracing
+      launchParams.origins.positions.alloc_and_upload(pos);
+      launchParams.origins.normals.alloc_and_upload(nor);
+      launchParams.origins.samples = pos.size(); // number of faces * sample per tri count
 
-    occlusionBuffer.resize(launchParams.origins.samples * launchParams.hemisphere.samples * sizeof(int));
-    launchParams.result.occlusionBuffer = (int*)occlusionBuffer.d_ptr;
+      occlusionBuffer.resize(launchParams.origins.samples * launchParams.hemisphere.samples * sizeof(int));
+      launchParams.result.occlusionBuffer = (int*)occlusionBuffer.d_ptr;
   }
+
 
   void SampleRenderer::sampleAllOcclusionPoints(int resolution) {
       std::vector<vec3f> pos;
@@ -254,6 +273,7 @@ namespace osc {
       occlusionBuffer.resize(launchParams.origins.samples * launchParams.hemisphere.samples * sizeof(int));
       launchParams.result.occlusionBuffer = (int*)occlusionBuffer.d_ptr;
   }
+
 
   OptixTraversableHandle SampleRenderer::buildAccel()
   {
@@ -388,6 +408,7 @@ namespace osc {
     return asHandle;
   }
   
+
   /*! helper function that initializes optix and checks for errors */
   void SampleRenderer::initOptix()
   {
@@ -412,6 +433,7 @@ namespace osc {
               << GDT_TERMINAL_DEFAULT << std::endl;
   }
 
+
   static void context_log_cb(unsigned int level,
                              const char *tag,
                              const char *message,
@@ -419,6 +441,7 @@ namespace osc {
   {
     fprintf( stderr, "[%2d][%12s]: %s\n", (int)level, tag, message );
   }
+
 
   /*! creates and configures a optix device context (in this simple
     example, only for the primary GPU device) */
@@ -440,7 +463,6 @@ namespace osc {
     OPTIX_CHECK(optixDeviceContextSetLogCallback
                 (optixContext,context_log_cb,nullptr,4));
   }
-
 
 
   /*! creates the module that contains all the programs we are going
@@ -488,7 +510,6 @@ namespace osc {
 #endif
     if (sizeof_log > 1) PRINT(log);
   }
-    
 
 
   /*! does all setup for the raygen program(s) we are going to use */
@@ -516,6 +537,7 @@ namespace osc {
     if (sizeof_log > 1) PRINT(log);
   }
     
+
   /*! does all setup for the miss program(s) we are going to use */
   void SampleRenderer::createMissPrograms()
   {
@@ -541,6 +563,7 @@ namespace osc {
     if (sizeof_log > 1) PRINT(log);
   }
     
+
   /*! does all setup for the hitgroup program(s) we are going to use */
   void SampleRenderer::createHitgroupPrograms()
   {
@@ -662,9 +685,8 @@ namespace osc {
   }
 
 
-
   /*! render one frame */
-  void SampleRenderer::render(bool all)
+  void SampleRenderer::render()
   {
     // generate rays for occlusion hemisphere
     std::cout << "#osc: generating hemisphere ..." << std::endl;
@@ -672,7 +694,8 @@ namespace osc {
 
     // generate points for occlusion computations
     std::cout << "#osc: generating samples to raytrace ..." << std::endl;
-    (all) ? sampleAllOcclusionPoints(256) : sampleOcclusionPoints(); // sample randomly or go through every texel (at resolution)
+    //(all) ? sampleAllOcclusionPoints(256) : sampleOcclusionPoints(); // sample randomly or go through every texel (at resolution)
+    getVertexSamples();
 
     std::cout << "#osc: total samples " << launchParams.origins.samples << std::endl;
     launchParamsBuffer.upload(&launchParams, 1);
@@ -696,11 +719,11 @@ namespace osc {
     CUDA_SYNC_CHECK();
   }
 
-  void SampleRenderer::genHemisphere(int radius) {
+  void SampleRenderer::genHemisphere(int radius, bool seeded) {
     std::vector<vec3f> kernel(this->rayCount);
     std::vector<vec3f> noise(this->rayCount);
 
-    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    unsigned seed = (seeded) ? std::chrono::system_clock::now().time_since_epoch().count() : 0;
     std::uniform_real_distribution<float> randomFloats(0.0, 1.0); // random floats between [0.0, 1.0]
     std::default_random_engine generator(seed);
 

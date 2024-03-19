@@ -42,10 +42,10 @@ namespace osc {
   public:
       /*! constructor - performs all setup, including initializing
         optix, creates module, pipeline, programs, SBT, etc. */
-      SampleRenderer(const Model* model, const int sampleCount, const int rayCount);
+      SampleRenderer(const Model* model, const int rayCount);
 
       /*! render one frame */
-      void render(bool all = false);
+      void render();
 
       /*! resize frame buffer to given resolution */
       //void resize(const vec2i &newSize);
@@ -90,10 +90,13 @@ namespace osc {
     void buildSBT();
 
     /*! constructs occlusion hemisphere with radius */
-    void genHemisphere(int radius = 1);
+    void genHemisphere(int radius = 1, bool seeded = false);
 
     /*! generate occlusion sample points */
     void sampleOcclusionPoints();
+
+    /*! generate occlusion sample points */
+    void getVertexSamples();
 
     void sampleAllOcclusionPoints(int resolution);
 

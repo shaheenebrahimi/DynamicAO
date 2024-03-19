@@ -126,7 +126,7 @@ int Rasterizer::init() {
 
 	// Initialize Camera
 	camera = std::make_shared<RasterCam>();
-	camera->setInitDistance(-5.0f);
+	camera->setInitDistance(-100.0f);
 
 	// Send Objects to GPU
 	for (auto obj : scn.objects) { // TODO: texture issue
