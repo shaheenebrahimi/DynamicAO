@@ -35,37 +35,6 @@ const std::string RES_DIR =
 
 namespace osc {
     std::vector<float> parseHeader(const std::string & filename) {
-        //// get header
-        //std::ifstream in;
-        //std::string line;
-
-        //in.open(filename);
-        //if (!in.good()) {
-        //    std::cout << "Cannot read " << filename << std::endl;
-        //}
-
-        //// skip instruction line
-        //char comment;
-        //getline(in, line);
-
-        //// theta count line
-        //int dimensions;
-        //getline(in, line);
-        //std::stringstream ssd(line);
-        //ssd >> comment;
-        //ssd >> dimensions;
-
-        //// theta value line
-        //std::vector<float> thetas (dimensions);
-        //getline(in, line);
-
-        //std::stringstream sst(line);
-        //sst >> comment;
-        //for (int i = 0; i < dimensions; ++i) {
-        //    sst >> thetas[i];
-        //}
-        //return thetas;
-        // get header
         std::ifstream in;
         std::string line;
 
@@ -86,55 +55,61 @@ namespace osc {
         ssd >> bones;
 
         // theta value line
-        std::vector<float> orientations(4*bones);
+        std::vector<float> orientations(3*bones); // euler angles
         getline(in, line);
 
         std::stringstream sst(line);
         sst >> comment; // char
         for (int i = 0; i < bones; ++i) {
-            sst >> orientations[4 * i];
-            sst >> orientations[4 * i + 1];
-            sst >> orientations[4 * i + 2];
-            sst >> orientations[4 * i + 3];
+            sst >> orientations[3 * i];
+            sst >> orientations[3 * i + 1];
+            sst >> orientations[3 * i + 2];
         }
         return orientations;
-}
+    }
+
+    std::pair<int,int> getDimensions(const std::string& filename) {
+        std::ifstream in;
+        in.open(filename);
+        if (!in.good()) {
+            std::cout << "Couldn't read base occlusion file" << std::endl;
+            return {};
+        }
+        std::string line;
+        std::stringstream ss;
+        std::getline(in, line);
+        int bones; int verts;
+        ss = std::stringstream(line);
+        ss >> bones; ss >> verts;
+        return { bones, verts };
+    }
 
   extern "C" int main(int ac, char **av)
   {
+      // Define consts
       const std::string name = "warrior";
+      const int rayCount = 250;
+      const int poseCount = 181; // TODO: read all of poses in folder
+      const bool is_train = false;
 
       // Read in base occlusion values
       const std::string baseFilename = RES_DIR + "occlusion/base.txt";
-      std::ifstream in;
-      in.open(baseFilename);
-      if (!in.good()) {
-          std::cout << "Couldn't read base occlusion file" << std::endl;
-          return -1;
-      }
-      std::string line;
-      std::stringstream ss;
-      std::getline(in, line);
-      int bones; int verts;
-      ss = std::stringstream(line);
-      ss >> bones; ss >> verts;
+      std::pair<int, int> dim = getDimensions(baseFilename);
+      int bones = dim.first, verts = dim.second;
       
-      // Export to file
-      const std::string outputFilename = RES_DIR + "occlusion/" + name + "_data.txt";
+      // Open export file
+      const std::string outputFilename = RES_DIR + "occlusion/" + name + ((is_train) ? "_train_" : "_test_") + "data.txt";
       std::ofstream out;
       out.open(outputFilename);
-
-      // Create header
       out << bones << " " << verts << std::endl; // first two lines num inputs, num len data
 
       // Initialize renderer
-      const int rayCount = 250;
       SampleRenderer renderer;
 
       // Iterate through distinct random poses
-      int poseCount = 1; // TODO: read all of poses in folder
       for (int i = 0; i < poseCount; ++i) {
-          std::string filename = RES_DIR + "data/" + name + std::to_string(i) + ".obj";
+          std::string filename = RES_DIR + "data/" + name + ((is_train) ? "_train_" : "_test_") + std::to_string(i) + ".obj";
+
           std::vector<float> orientations = parseHeader(filename);
 
           // Load model
@@ -150,24 +125,21 @@ namespace osc {
           }
 
           // Create renderer and render model
-          //const int sampleCount = 25000; // how many points we are sampling on the mesh
           renderer.set(model);
           renderer.render(rayCount); // only need to render the frame once
 
            //Retrieve occlusion values from GPU
           std::vector<float> occlusionValues;
           renderer.downloadBuffer(occlusionValues); // download from buffer
-          //std::vector<vec2f> uvs = renderer.getUVs();
 
-          // Write occlusion values to output file
+          // Write values to output file: rx0, ry0, rz0, ..., ... aoN
           int inputs = orientations.size();
-          int outputs = occlusionValues.size();
-          //std::cout << "Input dimensionality: " << inputs << std::endl;
-          for (float orient : orientations) { // theta0, theta1, ...
+          for (float orient : orientations) { // rx0, ry0, rz0, ...
               out << orient << " ";
-          }   
-          for (int i = 0; i < outputs; ++i) { // theta0 theta1 ... occlusion value
-              float ao = occlusionValues[i]; // compute delta: baseOcclusion[i] - 
+          }
+          int outputs = occlusionValues.size();
+          for (int i = 0; i < outputs; ++i) { 
+              float ao = occlusionValues[i];
               out << ao; (i == outputs - 1) ? out << "\n" : out << " ";
           }
           renderer.reset();

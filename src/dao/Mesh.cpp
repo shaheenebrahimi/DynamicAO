@@ -134,7 +134,6 @@ std::vector<float> Mesh::getFlattenedRotations()
 {
 	std::vector<float> flattened;
 	for (const auto& r : relativeRotations) {
-		//flattened.push_back(r.w);
 		flattened.push_back(r.x);
 		flattened.push_back(r.y);
 		flattened.push_back(r.z);

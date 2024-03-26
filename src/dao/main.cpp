@@ -126,13 +126,15 @@ void generateAnimatedMeshes(const string& meshname, int step=1) {
 	Mesh mesh;
 	mesh.loader(RES_DIR + "models/", meshname);
 	
-	string animPath = RES_DIR + "models/" + meshname + "/animations/";
-	int animCount = 11;
+	const string animPath = RES_DIR + "models/" + meshname + "/animations/";
+	const bool is_train = false;
+	int animCount = 7;
 
 	// iterate through animations
 	int sample = 0;
 	for (int i = 0; i < animCount; ++i) {
-		mesh.setAnimation(animPath + "anim_" + to_string(i) + ".txt");
+
+		mesh.setAnimation(animPath + "anim" + (is_train ? "_train_" : "_test_") + to_string(i) + ".txt");
 
 		//glm::vec3 b = mesh.getRotationData(11, 0); // 11 is arm
 		//cout << b.x << " " << b.y << " " << b.z << endl;
@@ -152,7 +154,7 @@ void generateAnimatedMeshes(const string& meshname, int step=1) {
 			};
 
 			// dump mesh
-			mesh.dumpMesh(RES_DIR + "data/" + meshname + to_string(sample) + ".obj", header);
+			mesh.dumpMesh(RES_DIR + "data/" + meshname + (is_train ? "_train_" : "_test_") + to_string(sample) + ".obj", header);
 			mesh.setFrame(j);
 			sample++; // since j != sample if step != 1
 		}
@@ -179,3 +181,9 @@ int main(int argc, char **argv) {
 	
 	return 0;
 }
+
+// TODO:
+// Reduce to 1 joint space
+// Rotate each join to create augmented data
+// Fix visualizer
+// ML stuff: tensorboard, adam optimizer, adjust learning rate
