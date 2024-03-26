@@ -58,36 +58,56 @@ namespace osc {
 
   /*! constructor - performs all setup, including initializing
     optix, creates module, pipeline, programs, SBT, etc. */
-  SampleRenderer::SampleRenderer(const Model *model, const int rayCount)
-    : model(model), sampleCount(1000), rayCount(rayCount) // TODO: Fix sample count
+  SampleRenderer::SampleRenderer()
+    : model(nullptr), sampleCount(1000), rayCount(250) // TODO: Fix sample count
   {
-    initOptix();
-      
-    //std::cout << "#osc: creating optix context ..." << std::endl;
-    createContext();
-      
-    //std::cout << "#osc: setting up module ..." << std::endl;
-    createModule();
+      initOptix();
 
-    //std::cout << "#osc: creating programs ..." << std::endl;
-    createRaygenPrograms();
-    createMissPrograms();
-    createHitgroupPrograms();
+      //std::cout << "#osc: creating optix context ..." << std::endl;
+      createContext();
 
-    launchParams.traversable = buildAccel();
-    
-    //std::cout << "#osc: setting up optix pipeline ..." << std::endl;
-    createPipeline();
+      //std::cout << "#osc: setting up module ..." << std::endl;
+      createModule();
 
-    //std::cout << "#osc: building SBT ..." << std::endl;
-    buildSBT();
+      //std::cout << "#osc: creating programs ..." << std::endl;
+      createRaygenPrograms();
+      createMissPrograms();
+      createHitgroupPrograms();
+      createPipeline();
 
-    launchParamsBuffer.alloc(sizeof(launchParams));
-    //std::cout << "#osc: context, module, pipeline, etc, all set up ..." << std::endl;
+      std::cout << GDT_TERMINAL_GREEN;
+      std::cout << "#osc: Optix 7 fully set up" << std::endl;
+      std::cout << GDT_TERMINAL_DEFAULT;
+  }
 
-    std::cout << GDT_TERMINAL_GREEN;
-    std::cout << "#osc: Optix 7 fully set up" << std::endl;
-    std::cout << GDT_TERMINAL_DEFAULT;
+  void SampleRenderer::set(const Model* model) {
+      this->model = model;
+
+      launchParams.traversable = buildAccel();
+
+      buildSBT();
+
+      launchParamsBuffer.alloc(sizeof(launchParams));
+  }
+
+  void SampleRenderer::reset() {
+      occlusionBuffer.free();
+      samplePoints.free();
+      for (int i = 0; i < vertexBuffer.size(); ++i) {
+          vertexBuffer[i].free();
+      }
+      for (int i = 0; i < indexBuffer.size(); ++i) {
+          indexBuffer[i].free();
+      }
+      raygenRecordsBuffer.free();
+      missRecordsBuffer.free();
+      hitgroupRecordsBuffer.free();
+      asBuffer.free();
+      launchParams.origins.positions.free();
+      launchParams.origins.normals.free();
+      launchParams.hemisphere.kernel.free();
+      launchParams.hemisphere.noise.free();
+      launchParamsBuffer.free();
   }
 
   void SampleRenderer::getVertexSamples() {
@@ -277,8 +297,8 @@ namespace osc {
 
   OptixTraversableHandle SampleRenderer::buildAccel()
   {
-    PING;
-    PRINT(model->meshes.size());
+    //PING;
+    //PRINT(model->meshes.size());
     
     vertexBuffer.resize(model->meshes.size());
     indexBuffer.resize(model->meshes.size());
@@ -686,18 +706,21 @@ namespace osc {
 
 
   /*! render one frame */
-  void SampleRenderer::render()
+  void SampleRenderer::render(const int rayCount)
   {
+    std::cout << "#osc: rendering ... ";
+
+    this->rayCount = rayCount;
     // generate rays for occlusion hemisphere
-    std::cout << "#osc: generating hemisphere ..." << std::endl;
+    //std::cout << "#osc: generating hemisphere ..." << std::endl;
     genHemisphere();
 
     // generate points for occlusion computations
-    std::cout << "#osc: generating samples to raytrace ..." << std::endl;
+    //std::cout << "#osc: generating samples to raytrace ..." << std::endl;
     //(all) ? sampleAllOcclusionPoints(256) : sampleOcclusionPoints(); // sample randomly or go through every texel (at resolution)
     getVertexSamples();
 
-    std::cout << "#osc: total samples " << launchParams.origins.samples << std::endl;
+    //std::cout << "#osc: total samples " << launchParams.origins.samples << std::endl;
     launchParamsBuffer.upload(&launchParams, 1);
       
 
@@ -712,6 +735,7 @@ namespace osc {
                             launchParams.hemisphere.samples, // number of rays to compute per point
                             1
                             ));
+    std::cout << "done" << std::endl;
     // sync - make sure the frame is rendered before we download and
     // display (obviously, for a high-performance application you
     // want to use streams and double-buffering, but for this simple

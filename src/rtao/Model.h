@@ -42,5 +42,5 @@ namespace osc {
     box3f bounds; //! bounding box of all vertices in the model
   };
 
-  Model* loadOBJ(const std::string &objFile);
+  Model* loadOBJ(const std::string& objFile);
 }

@@ -618,6 +618,11 @@ void Mesh::stepAnimation() {
 	setPose(frameData[currFrame]);
 }
 
+void Mesh::setFrame(int frame) {
+	this->currFrame = (frame < frameCount) ? frame : 0;
+	setPose(frameData[currFrame]);
+}
+
 /* ---------------------------------------- PRIVATE ---------------------------------------- */
 
 // OCCLUSION

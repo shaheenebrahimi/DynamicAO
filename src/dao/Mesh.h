@@ -50,6 +50,7 @@ public:
     void traverseHierarchy();
     void applySkinning();
     void stepAnimation();
+    void setFrame(int frame);
 
     void updateMesh();
     void dumpMesh(const std::string &filename, const std::vector<std::string>& header = {});

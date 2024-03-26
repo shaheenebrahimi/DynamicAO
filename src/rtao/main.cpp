@@ -102,7 +102,7 @@ namespace osc {
 
   extern "C" int main(int ac, char **av)
   {
-      const std::string name = "arm";
+      const std::string name = "warrior";
 
       // Read in base occlusion values
       const std::string baseFilename = RES_DIR + "occlusion/base.txt";
@@ -112,40 +112,33 @@ namespace osc {
           std::cout << "Couldn't read base occlusion file" << std::endl;
           return -1;
       }
-
       std::string line;
       std::stringstream ss;
       std::getline(in, line);
-
-      // Get meta data
       int bones; int verts;
       ss = std::stringstream(line);
       ss >> bones; ss >> verts;
-
-      getline(in, line);
-      ss = std::stringstream(line);
-      std::vector<float> baseOcclusion(verts);
-      for (int vert = 0; vert < verts; ++vert) {
-          ss >> baseOcclusion[vert];
-      }
-      in.close();
       
       // Export to file
-      const std::string outputFilename = RES_DIR + "occlusion/data" + name + ".txt";
+      const std::string outputFilename = RES_DIR + "occlusion/" + name + "_data.txt";
       std::ofstream out;
-      //out.open(outputFilename, std::ios_base::app); // keep appending to data
       out.open(outputFilename);
 
       // Create header
       out << bones << " " << verts << std::endl; // first two lines num inputs, num len data
+
+      // Initialize renderer
+      const int rayCount = 250;
+      SampleRenderer renderer;
+
       // Iterate through distinct random poses
-      int poseCount = 101; // TODO: read all of poses in folder
+      int poseCount = 1; // TODO: read all of poses in folder
       for (int i = 0; i < poseCount; ++i) {
           std::string filename = RES_DIR + "data/" + name + std::to_string(i) + ".obj";
           std::vector<float> orientations = parseHeader(filename);
 
           // Load model
-          Model* model;
+          const Model* model;
           try {
               model = loadOBJ(filename);
               
@@ -158,11 +151,10 @@ namespace osc {
 
           // Create renderer and render model
           //const int sampleCount = 25000; // how many points we are sampling on the mesh
-          const int rayCount = 250;
-          SampleRenderer renderer(model, rayCount);
-          renderer.render(); // only need to render the frame once
+          renderer.set(model);
+          renderer.render(rayCount); // only need to render the frame once
 
-          // Retrieve occlusion values from GPU
+           //Retrieve occlusion values from GPU
           std::vector<float> occlusionValues;
           renderer.downloadBuffer(occlusionValues); // download from buffer
           //std::vector<vec2f> uvs = renderer.getUVs();
@@ -175,17 +167,11 @@ namespace osc {
               out << orient << " ";
           }   
           for (int i = 0; i < outputs; ++i) { // theta0 theta1 ... occlusion value
-              float deltaAO = occlusionValues[i]; // compute delta: baseOcclusion[i] - 
-              out << deltaAO;
-              (i == outputs - 1) ? out << "\n" : out << " ";
+              float ao = occlusionValues[i]; // compute delta: baseOcclusion[i] - 
+              out << ao; (i == outputs - 1) ? out << "\n" : out << " ";
           }
-          //for (int i = 0; i < outputs; ++i) { // u v theta0 theta1 ... occlusion value
-          //    //out << uvs[i].x << " " << uvs[i].y << " ";
-          //    for (float theta : thetas) {
-          //        out << theta << " ";
-          //    }
-          //    out << occlusionValues[i] << std::endl;
-          //}
+          renderer.reset();
+          delete model;
       }
       // total data points = sample count * pose count
       out.close();

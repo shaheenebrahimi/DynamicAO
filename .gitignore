@@ -13,4 +13,4 @@ build
 Session.vim
 /models/*
 *.swp
-
+data/

@@ -147,7 +147,7 @@ namespace osc {
           for (auto vtx : mesh->vertex)
               model->bounds.extend(vtx);
 
-      std::cout << "created a total of " << model->meshes.size() << " meshes" << std::endl;
+      //std::cout << "created a total of " << model->meshes.size() << " meshes" << std::endl;
       return model;
   }
   

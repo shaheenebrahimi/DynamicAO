@@ -120,31 +120,17 @@ void generateTrainingMeshes(const string &meshname) {
 
 }
 
-void generateAnimatedMeshes(const string& meshname) {
+void generateAnimatedMeshes(const string& meshname, int step=1) {
 
 	// TODO: get orientations from animation files
 	Mesh mesh;
-	float to_rad = 3.1415 / 180.0;
-	float to_deg = 180 / 3.1415;
 	mesh.loader(RES_DIR + "models/", meshname);
-
-	/*
-	string animPath = RES_DIR + "models/" + meshname + "/animations/";
-	mesh.setAnimation(animPath + "anim_0.txt");
-
-	glm::vec3 b = mesh.getRotationData(12, 0); // 11 is arm
-	cout << b.x * to_deg << " " << b.y * to_deg << " " << b.z * to_deg << endl;
-
-	mesh.setBone(0, glm::vec3(0,0,0));
-	
-	mesh.dumpMesh(RES_DIR + "data/" + meshname + "_test.obj");
-
-	*/
 	
 	string animPath = RES_DIR + "models/" + meshname + "/animations/";
-	int animCount = 1;
+	int animCount = 11;
 
 	// iterate through animations
+	int sample = 0;
 	for (int i = 0; i < animCount; ++i) {
 		mesh.setAnimation(animPath + "anim_" + to_string(i) + ".txt");
 
@@ -152,7 +138,7 @@ void generateAnimatedMeshes(const string& meshname) {
 		//cout << b.x << " " << b.y << " " << b.z << endl;
 
 		// iterate through frames
-		for (int j = 0; j < mesh.getFrameCount(); ++j) {
+		for (int j = 0; j < mesh.getFrameCount(); j+=step) {
 			// get comment header
 			vector<float> rotations = mesh.getFlattenedRotations();
 			string values = "";
@@ -160,14 +146,15 @@ void generateAnimatedMeshes(const string& meshname) {
 				values += to_string(rotations[r]) + " ";
 			}
 			vector<string> header = {
-				"The next comment says how many bones and their orientations (qw, qx, qy, qz)",
+				"The next comment says how many bones and their orientations in Euler angles (rx, ry, rz)",
 				to_string(mesh.getBoneCount()),
 				values
 			};
 
 			// dump mesh
-			mesh.dumpMesh(RES_DIR + "data/" + meshname + to_string(i) + "_" + to_string(j) + ".obj", header);
-			mesh.stepAnimation();
+			mesh.dumpMesh(RES_DIR + "data/" + meshname + to_string(sample) + ".obj", header);
+			mesh.setFrame(j);
+			sample++; // since j != sample if step != 1
 		}
 	}
 	
@@ -187,7 +174,8 @@ int main(int argc, char **argv) {
 	//raster.init();
 	//raster.run();
 
-	generateAnimatedMeshes(name); // go to 100 degrees with 1 degree increments
+	int step = 2;
+	generateAnimatedMeshes(name, step); // go to 100 degrees with 1 degree increments
 	
 	return 0;
 }
