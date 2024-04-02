@@ -44,6 +44,8 @@ Mesh::~Mesh() { }
 void Mesh::updateMesh()
 {
 	// update frame and pose
+	setBone(12, glm::vec3(0, 0, 50.0 * DEG_TO_RAD));
+	updateBuffers(); // send to updated mesh gpu
 	computeOcclusion();
 }
 
@@ -413,13 +415,13 @@ void Mesh::loadBuffers() {
 	// Send the position array to the GPU
 	glGenBuffers(1, &posBufID);
 	glBindBuffer(GL_ARRAY_BUFFER, posBufID);
-	glBufferData(GL_ARRAY_BUFFER, posBuf.size() * sizeof(float), &posBuf[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, skPosBuf.size() * sizeof(float), &skPosBuf[0], GL_STATIC_DRAW);
 
 	// Send the normal array to the GPU
 	if (!norBuf.empty()) {
 		glGenBuffers(1, &norBufID);
 		glBindBuffer(GL_ARRAY_BUFFER, norBufID);
-		glBufferData(GL_ARRAY_BUFFER, norBuf.size() * sizeof(float), &norBuf[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, skNorBuf.size() * sizeof(float), &skNorBuf[0], GL_STATIC_DRAW);
 	}
 
 	// Send the texture array to the GPU
@@ -442,6 +444,24 @@ void Mesh::loadBuffers() {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	GLSL::checkError(GET_FILE_LINE);
+}
+
+void Mesh::updateBuffers() {
+	// Send the position array to the GPU
+	glGenBuffers(1, &posBufID);
+	glBindBuffer(GL_ARRAY_BUFFER, posBufID);
+	glBufferData(GL_ARRAY_BUFFER, skPosBuf.size() * sizeof(float), &skPosBuf[0], GL_STATIC_DRAW);
+
+	// Send the normal array to the GPU
+	if (!norBuf.empty()) {
+		glGenBuffers(1, &norBufID);
+		glBindBuffer(GL_ARRAY_BUFFER, norBufID);
+		glBufferData(GL_ARRAY_BUFFER, skNorBuf.size() * sizeof(float), &skNorBuf[0], GL_STATIC_DRAW);
+	}
+
+	// Unbind the arrays
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 

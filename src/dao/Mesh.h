@@ -41,6 +41,7 @@ public:
     void loadHierarchy(const std::string& fileName);
     void loadEvaluator(const std::string& fileName);
     void loadBuffers(); // only for rasterization
+    void updateBuffers(); // only for rasterization
 
     void setAnimation(const std::string& fileName);
     void setPose(const std::vector<glm::vec3>& orientations);
@@ -76,7 +77,7 @@ private:
     std::vector<float> skPosBuf;
     std::vector<float> skNorBuf;
 
-    int boneCount, frameCount, influences, currFrame;
+    int vertexCount, boneCount, frameCount, influences, currFrame;
     std::vector<std::vector<glm::mat4>> boneTransforms;     // local bone transforms
     std::vector<std::vector<glm::vec3>> frameData;      // poses of each bone for each frame
     std::vector<glm::mat4> pose;                        // matrix transforms to get to pose
