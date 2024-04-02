@@ -30,35 +30,10 @@ const std::string RES_DIR =
 	#endif
 ;
 
-std::uniform_real_distribution<float> randomFloats(-1.0, 1.0); // random floats between [0.0, 1.0]
+std::uniform_real_distribution<float> randomFloats(0.0, 1.0); // random floats between [0.0, 1.0)
 std::default_random_engine generator;
 
 /* HELPERS */
-
-glm::quat eulerToQuaternion(float roll, float pitch, float yaw) { // roll (x), pitch (y), yaw (z), angles are in radians
-	float cr = cos(roll * 0.5);
-	float sr = sin(roll * 0.5);
-	float cp = cos(pitch * 0.5);
-	float sp = sin(pitch * 0.5);
-	float cy = cos(yaw * 0.5);
-	float sy = sin(yaw * 0.5);
-
-	glm::quat q;
-	q.w = cr * cp * cy + sr * sp * sy;
-	q.x = sr * cp * cy - cr * sp * sy;
-	q.y = cr * sp * cy + sr * cp * sy;
-	q.z = cr * cp * sy - sr * sp * cy;
-
-	return q;
-}
-
-glm::quat getRandomQuaternion() {
-	double x, y, z, u, v, w, s;
-	do { x = randomFloats(generator); y = randomFloats(generator); z = x * x + y * y; } while (z > 1);
-	do { u = randomFloats(generator); v = randomFloats(generator); w = u * u + v * v; } while (w > 1);
-	s = sqrt((1 - z) / w);
-	return glm::quat(x, y, s * u, s * v);
-}
 
 /* INITIALIZER */
 
@@ -73,32 +48,37 @@ Scene createScene(const string &name) {
 	shared_ptr<Object> obj = make_shared<Object>();
 	obj->addMesh(RES_DIR + "models/", name);
 	obj->addTexture(RES_DIR + "textures/" + name + ".png");
-	//obj->addEvaluator(RES_DIR + "evaluators/" + name + ".txt");
+	obj->addEvaluator(RES_DIR + "evaluators/" + name + ".txt");
 	obj->setMaterial(glm::vec3(0.2, 0.2, 0.2), glm::vec3(0.1, 0.1, 0.1), glm::vec3(0.1, 0.1, 0.1), 100);
 	scn.addObject(obj); // Add to scene
 
 	return scn;
 }
 
-/* DATA GENERATORS */
+//#define _ALL_BONES_
 
-void generateTrainingMeshes(const string &meshname) {
+/* DATA GENERATORS */
+void generateDatasetMeshes(const string &meshname) {
 	Mesh mesh;
 	mesh.loader(RES_DIR + "models/", meshname);
 
 	// iterate through all bones
-	float lowerBound = -50.0, upperBound = 50.0, increment = 20.0; // in degrees
+	float lowerBound = -50.0 * DEG_TO_RAD, upperBound = 50.0 * DEG_TO_RAD, increment = 20.0 * DEG_TO_RAD; // in rad
 
 	// samples = boneCount * ((upperBound - lowerBound) / increment) ^ 3
-	long counter = 0;
-	for (int bone = 1; bone < mesh.getBoneCount(); ++bone) { // ignore first bone since root
-		for (float yaw = lowerBound; yaw < upperBound; yaw += increment) {
-			for (float roll = lowerBound; roll < upperBound; roll += increment) {
-				for (float pitch = lowerBound; pitch < upperBound; pitch += increment) {
+	long train_counter = 0;
+	long test_counter = 0;
 
-					// get quaternion and set orientation
-					glm::quat orientation = eulerToQuaternion(yaw * DEG_TO_RAD, roll * DEG_TO_RAD, pitch * DEG_TO_RAD);
-					//mesh.setBone(bone, orientation);
+	int bone = 12;
+#ifdef _ALL_BONES
+	for (bone = 1; bone < mesh.getBoneCount(); ++bone) { // ignore first bone since root
+#endif
+		for (float x = lowerBound; x < upperBound; x += increment) {
+			for (float y = lowerBound; y < upperBound; y += increment) {
+				for (float z = lowerBound; z < upperBound; z += increment) {
+					bool is_train = (randomFloats(generator) <= 0.8); // 80% train, 20% test
+
+					mesh.setBone(bone, glm::vec3(x, y, z)); // relative euler angle x, y, z
 
 					// convert to printable string
 					vector<float> buffer = mesh.getFlattenedRotations();
@@ -106,17 +86,19 @@ void generateTrainingMeshes(const string &meshname) {
 					for (int i = 0; i < buffer.size(); ++i) {
 						values += to_string(buffer[i]) + " ";
 					}
-
 					vector<string> header = {
 						"The next comment says how many bones and their orientations",
 						to_string(mesh.getBoneCount()),
 						values
 					};
-					mesh.dumpMesh(RES_DIR + "data/" + meshname + to_string(counter++) + ".obj", header);
+
+					mesh.dumpMesh(RES_DIR + "data/_" + meshname + (is_train ? "_train_" + to_string(train_counter++) : "_test_" + to_string(test_counter++)) + ".obj", header);
 				}
 			}
 		}
+#ifdef _ALL_BONES
 	}
+#endif
 
 }
 
@@ -131,7 +113,7 @@ void generateAnimatedMeshes(const string& meshname, int step=1) {
 	int animCount = 7;
 
 	// iterate through animations
-	int sample = 0;
+	int counter = 0;
 	for (int i = 0; i < animCount; ++i) {
 
 		mesh.setAnimation(animPath + "anim" + (is_train ? "_train_" : "_test_") + to_string(i) + ".txt");
@@ -154,9 +136,8 @@ void generateAnimatedMeshes(const string& meshname, int step=1) {
 			};
 
 			// dump mesh
-			mesh.dumpMesh(RES_DIR + "data/" + meshname + (is_train ? "_train_" : "_test_") + to_string(sample) + ".obj", header);
+			mesh.dumpMesh(RES_DIR + "data/" + meshname + (is_train ? "_train_" : "_test_") + to_string(counter++) + ".obj", header);
 			mesh.setFrame(j);
-			sample++; // since j != sample if step != 1
 		}
 	}
 	
@@ -171,19 +152,20 @@ int main(int argc, char **argv) {
 	Scene scn = createScene(name);
 
 	// viewer
-	//Rasterizer raster; // Initialize Rasterizer
-	//raster.setScene(scn);
-	//raster.init();
-	//raster.run();
+	Rasterizer raster; // Initialize Rasterizer
+	raster.setScene(scn);
+	raster.init();
+	raster.run();
 
-	int step = 2;
-	generateAnimatedMeshes(name, step); // go to 100 degrees with 1 degree increments
-	
+	//int step = 2;
+	//generateAnimatedMeshes(name, step); // go to 100 degrees with 1 degree increments
+	//generateDatasetMeshes(name);
+
 	return 0;
 }
 
 // TODO:
 // Reduce to 1 joint space
-// Rotate each join to create augmented data
+// Rotate each joint to create augmented data
 // Fix visualizer
 // ML stuff: tensorboard, adam optimizer, adjust learning rate

@@ -89,7 +89,7 @@ namespace osc {
       // Define consts
       const std::string name = "warrior";
       const int rayCount = 250;
-      const int poseCount = 181; // TODO: read all of poses in folder
+      const int poseCount = 31; // TODO: read all of poses in folder
       const bool is_train = false;
 
       // Read in base occlusion values
@@ -98,7 +98,7 @@ namespace osc {
       int bones = dim.first, verts = dim.second;
       
       // Open export file
-      const std::string outputFilename = RES_DIR + "occlusion/" + name + ((is_train) ? "_train_" : "_test_") + "data.txt";
+      const std::string outputFilename = RES_DIR + "occlusion/_" + name + ((is_train) ? "_train_" : "_test_") + "data.txt";
       std::ofstream out;
       out.open(outputFilename);
       out << bones << " " << verts << std::endl; // first two lines num inputs, num len data
@@ -108,7 +108,7 @@ namespace osc {
 
       // Iterate through distinct random poses
       for (int i = 0; i < poseCount; ++i) {
-          std::string filename = RES_DIR + "data/" + name + ((is_train) ? "_train_" : "_test_") + std::to_string(i) + ".obj";
+          std::string filename = RES_DIR + "data/_" + name + ((is_train) ? "_train_" : "_test_") + std::to_string(i) + ".obj";
 
           std::vector<float> orientations = parseHeader(filename);
 

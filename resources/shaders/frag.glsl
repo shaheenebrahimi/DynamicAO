@@ -23,14 +23,12 @@ void main()
 	vec3 h_hat = normalize(l_hat + e_hat);
 	vec3 n_hat = normalize(vNor);
 
-	vec3 ambient = vec3(vOcc, vOcc, vOcc); // ka
+	float ambientFactor = 1.0 - vOcc; // turn to color
+	vec3 ambient = vec3(ambientFactor, ambientFactor, ambientFactor); // ka
 	vec3 diffuse = kd * max(0, dot(l_hat, n_hat));
 	vec3 specular = ks * pow(max(0, dot(h_hat, n_hat)), s);
 	vec3 color = ambient + diffuse + specular; 
 
-// check sending proper theta value to cuda
-// add all of the bones to ml model
-// ml cannot parameterize
-// add togglable phong shading
+	// add togglable phong shading
 	gl_FragColor.rgb = ambient;
 }
