@@ -44,7 +44,6 @@ Mesh::~Mesh() { }
 void Mesh::updateMesh()
 {
 	// update frame and pose
-	setBone(12, glm::vec3(0, 0, 50.0 * DEG_TO_RAD));
 	updateBuffers(); // send to updated mesh gpu
 	computeOcclusion();
 }

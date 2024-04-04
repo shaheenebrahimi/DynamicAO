@@ -3,7 +3,7 @@
 #define SCENE_H
 
 #define GLM_FORCE_RADIANS
-#define DEG_TO_RAD M_PI / 180.0f
+//#define DEG_TO_RAD M_PI / 180.0f
 
 #include <glm/glm.hpp>
 #include <vector>

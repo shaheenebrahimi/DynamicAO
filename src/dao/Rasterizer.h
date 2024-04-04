@@ -41,6 +41,8 @@ public:
     
 private:
     void render();
+    void renderUI();
+    void clear();
     
     const std::string RES_DIR =
         #ifdef _WIN32

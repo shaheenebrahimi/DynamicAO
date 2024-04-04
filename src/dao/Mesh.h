@@ -60,6 +60,7 @@ public:
     int getBoneCount() { return boneCount; }
     int getFrameCount() { return frameCount; }
     glm::vec3 getRotationData(int frame, int boneInd) { return frameData[frame][boneInd]; }
+    glm::vec3 getBoneRotation(int boneInd) { return relativeRotations[boneInd]; }
     std::vector<float> getFlattenedRotations();
     int getBoneIndex(const std::string& name) { return boneMap[name]; }
 private:

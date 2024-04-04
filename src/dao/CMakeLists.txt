@@ -23,6 +23,11 @@ TARGET_LINK_LIBRARIES(DAO
 	${CUDA_CUDA_LIBRARY}
 )
 
+# LINK IMGUI
+#TARGET_LINK_LIBRARIES(DAO
+#	imgui
+#)
+
 # Get the GLM environment variable. Since GLM is a header-only library, we
 # just need to add it to the include directory.
 SET(GLM_INCLUDE_DIR "$ENV{GLM_INCLUDE_DIR}")
