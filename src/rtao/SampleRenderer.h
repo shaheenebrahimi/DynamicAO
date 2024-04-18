@@ -19,6 +19,7 @@
 // our own classes, partly shared between host and device
 #include "CUDABuffer.h"
 #include "LaunchParams.h"
+#include "Image.h"
 #include "Model.h"
 
 /*! \namespace osc - Optix Siggraph Course */
@@ -28,6 +29,12 @@ namespace osc {
     /*! Vertex pos and nor in world */
     vec3f position;
     vec3f normal;
+  };
+
+  enum class Mode {
+      Vertex,
+      Random,
+      Texture
   };
   
   /*! a sample OptiX-7 renderer that demonstrates how to set up
@@ -51,7 +58,9 @@ namespace osc {
       void reset();
 
       /*! render one frame */
-      void render(const int rayCount);
+      void render(const int rayCount, const Mode mode = Mode::Random);
+
+      void renderImage(const int rayCount, std::shared_ptr<Image> img);
 
       /*! resize frame buffer to given resolution */
       //void resize(const vec2i &newSize);
@@ -59,7 +68,12 @@ namespace osc {
       /*! download the rendered color buffer */
       void downloadBuffer(std::vector<float>& occlusions);
 
+      /*! get input uv values */
       std::vector<vec2f> getUVs();
+
+      std::string getInfo() {
+          return "UVs: " + std::to_string(inputs.size()) + ", Verts: " + std::to_string(launchParams.origins.samples);
+      }
 
     /*! set camera to render with */
     //void setCamera(const Camera &camera);
@@ -99,17 +113,17 @@ namespace osc {
     void genHemisphere(int radius = 1, bool seeded = false);
 
     /*! generate occlusion sample points */
-    void sampleOcclusionPoints();
+    void getRandomSamples();
 
     /*! generate occlusion sample points */
     void getVertexSamples();
 
-    void sampleAllOcclusionPoints(int resolution);
+    void getTextureSamples(int resolution);
 
     /*! build an acceleration structure for the given triangle mesh */
     OptixTraversableHandle buildAccel();
 
-  protected:
+  private:
     /*! @{ CUDA device context and stream that optix pipeline will run
         on, as well as device properties for this device */
     CUcontext          cudaContext;

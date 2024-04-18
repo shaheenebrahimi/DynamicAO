@@ -58,44 +58,69 @@ Scene createScene(const string &name) {
 //#define _ALL_BONES_
 
 /* DATA GENERATORS */
-void generateDatasetMeshes(const string &meshname) {
+void generateDatasetMeshes(const string& meshname, const int numSamples) {
 	Mesh mesh;
 	mesh.loader(RES_DIR + "models/", meshname);
 
 	// iterate through all bones
-	float lowerBound = -50.0 * DEG_TO_RAD, upperBound = 50.0 * DEG_TO_RAD, increment = 20.0 * DEG_TO_RAD; // in rad
+	float lowerBound = -80.0 * DEG_TO_RAD, upperBound = 80.0 * DEG_TO_RAD;
+	long train_counter = 246;
+	long test_counter = 54;
 
-	// samples = boneCount * ((upperBound - lowerBound) / increment) ^ 3
-	long train_counter = 0;
-	long test_counter = 0;
-
-	int bone = 12;
+	
 #ifdef _ALL_BONES
 	for (bone = 1; bone < mesh.getBoneCount(); ++bone) { // ignore first bone since root
+#else
+	int bone = 12;
 #endif
-		for (float x = lowerBound; x < upperBound; x += increment) {
-			for (float y = lowerBound; y < upperBound; y += increment) {
-				for (float z = lowerBound; z < upperBound; z += increment) {
-					bool is_train = (randomFloats(generator) <= 0.8); // 80% train, 20% test
+		for (int sample = 0; sample < numSamples; ++sample) {
 
-					mesh.setBone(bone, glm::vec3(x, y, z)); // relative euler angle x, y, z
+			bool is_train = (randomFloats(generator) <= 0.8); // 80% train, 20% test
+			float x = lowerBound + randomFloats(generator) * (upperBound - lowerBound);
+			float y = lowerBound + randomFloats(generator) * (upperBound - lowerBound);
+			float z = lowerBound + randomFloats(generator) * (upperBound - lowerBound);
+			mesh.setBone(bone, glm::vec3(x, y, z)); // relative euler angle x, y, z
 
-					// convert to printable string
-					vector<float> buffer = mesh.getFlattenedRotations();
-					string values = "";
-					for (int i = 0; i < buffer.size(); ++i) {
-						values += to_string(buffer[i]) + " ";
-					}
-					vector<string> header = {
-						"The next comment says how many bones and their orientations",
-						to_string(mesh.getBoneCount()),
-						values
-					};
-
-					mesh.dumpMesh(RES_DIR + "data/_" + meshname + (is_train ? "_train_" + to_string(train_counter++) : "_test_" + to_string(test_counter++)) + ".obj", header);
-				}
+			// convert to printable string
+			vector<float> buffer = mesh.getFlattenedRotations();
+			string values = "";
+			for (int i = 0; i < buffer.size(); ++i) {
+				values += to_string(buffer[i]) + " ";
 			}
+			vector<string> header = {
+				"The next comment says how many bones and their orientations",
+				to_string(mesh.getBoneCount()),
+				values
+			};
+
+			mesh.dumpMesh(RES_DIR + "data/_" + meshname + (is_train ? "_train_" + to_string(train_counter++) : "_test_" + to_string(test_counter++)) + ".obj", header);
 		}
+//#ifdef _ALL_BONES
+//	for (bone = 1; bone < mesh.getBoneCount(); ++bone) { // ignore first bone since root
+//#endif
+//		for (float x = lowerBound; x < upperBound; x += increment) {
+//			for (float y = lowerBound; y < upperBound; y += increment) {
+//				for (float z = lowerBound; z < upperBound; z += increment) {
+//					bool is_train = (randomFloats(generator) <= 0.8); // 80% train, 20% test
+//
+//					mesh.setBone(bone, glm::vec3(x, y, z)); // relative euler angle x, y, z
+//
+//					// convert to printable string
+//					vector<float> buffer = mesh.getFlattenedRotations();
+//					string values = "";
+//					for (int i = 0; i < buffer.size(); ++i) {
+//						values += to_string(buffer[i]) + " ";
+//					}
+//					vector<string> header = {
+//						"The next comment says how many bones and their orientations",
+//						to_string(mesh.getBoneCount()),
+//						values
+//					};
+//
+//					mesh.dumpMesh(RES_DIR + "data/_" + meshname + (is_train ? "_train_" + to_string(train_counter++) : "_test_" + to_string(test_counter++)) + ".obj", header);
+//				}
+//			}
+//		}
 #ifdef _ALL_BONES
 	}
 #endif
@@ -159,7 +184,7 @@ int main(int argc, char **argv) {
 
 	//int step = 2;
 	//generateAnimatedMeshes(name, step); // go to 100 degrees with 1 degree increments
-	//generateDatasetMeshes(name);
+	//generateDatasetMeshes(name, 900);
 
 	return 0;
 }

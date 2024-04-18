@@ -80,14 +80,14 @@ private:
 
     int vertexCount, boneCount, frameCount, influences, currFrame;
     std::vector<std::vector<glm::mat4>> boneTransforms;     // local bone transforms
-    std::vector<std::vector<glm::vec3>> frameData;      // poses of each bone for each frame
-    std::vector<glm::mat4> pose;                        // matrix transforms to get to pose
-    std::vector<glm::mat4> bindPose;                    // position for each bone
-    std::vector<glm::vec3> jointPositions;              // absolute positions - size of (bones,)
-    std::vector<glm::vec3> relativeTranslations;        // bone translation with respect to parent
-    std::vector<glm::vec3> relativeRotations;           // bone rotation with respect to parent
-    std::vector<int> boneHierarchy;                     // hierarchy of bones
-    std::unordered_map<std::string, int> boneMap;       // bone name to index
+    std::vector<std::vector<glm::vec3>> frameData;          // poses of each bone for each frame
+    std::vector<glm::mat4> pose;                            // matrix transforms to get to pose
+    std::vector<glm::mat4> bindPose;                        // position for each bone
+    std::vector<glm::vec3> jointPositions;                  // absolute positions - size of (bones,)
+    std::vector<glm::vec3> relativeTranslations;            // bone translation with respect to parent
+    std::vector<glm::vec3> relativeRotations;               // bone rotation with respect to parent
+    std::vector<int> boneHierarchy;                         // hierarchy of bones
+    std::unordered_map<std::string, int> boneMap;           // bone name to index
 
     unsigned elemBufID;
     unsigned posBufID;

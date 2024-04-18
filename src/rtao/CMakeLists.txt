@@ -29,6 +29,9 @@ add_executable(RTAO
   SampleRenderer.cpp
   Model.h
   Model.cpp
+  Image.h
+  Image.cpp
+  stb_image_write.h
   main.cpp
   )
 

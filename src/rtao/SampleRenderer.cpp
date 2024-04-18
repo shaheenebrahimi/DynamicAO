@@ -22,6 +22,7 @@
 #include <random>
 #include <chrono>
 #include <cmath>
+#include <unordered_set>
 
 
 /*! \namespace osc - Optix Siggraph Course */
@@ -91,6 +92,7 @@ namespace osc {
   }
 
   void SampleRenderer::reset() {
+      inputs.clear();
       occlusionBuffer.free();
       samplePoints.free();
       for (int i = 0; i < vertexBuffer.size(); ++i) {
@@ -129,15 +131,16 @@ namespace osc {
       launchParams.result.occlusionBuffer = (int*)occlusionBuffer.d_ptr;
   }
 
+  void SampleRenderer::getRandomSamples() {
+      const int totalSamples = 100000;
 
-  void SampleRenderer::sampleOcclusionPoints() {
       unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
       std::uniform_real_distribution<float> randomFloats(0.0, 1.0); // random floats between [0.0, 1.0]
       std::default_random_engine generator(seed);
       std::vector<vec3f> pos;
       std::vector<vec3f> nor;
       std::vector<float> areas;
-      float areaSum = 0;
+      float areaSum = 0.0;
 
       // Compute areas
       for (auto mesh : this->model->meshes) {
@@ -176,8 +179,7 @@ namespace osc {
 
               // randomly sample in triangle
               const float alpha = areas[triCount] / areaSum; // compute weighted sample count ratio
-              const int triSampleGoal = round(alpha * this->sampleCount); // how many to sample within triangle
-              // TODO: ceil vs round
+              const int triSampleGoal = ceil(alpha * totalSamples); // how many to sample within triangle
 
               int sampled = 0;
               while (sampled < triSampleGoal) {
@@ -225,11 +227,16 @@ namespace osc {
       launchParams.result.occlusionBuffer = (int*)occlusionBuffer.d_ptr;
   }
 
+  float dot(const vec2f & a, const vec2f & b) {
+      return a.x * b.x + a.y * b.y;
+  }
 
-  void SampleRenderer::sampleAllOcclusionPoints(int resolution) {
+  void SampleRenderer::getTextureSamples(int resolution) {
+      const float epsilon = 0.0001;
       std::vector<vec3f> pos;
       std::vector<vec3f> nor;
       std::vector<vec2f> tex;
+      std::unordered_set<std::string> cache; // no duplicate coords
       float texelStep = 1.0 / (float)resolution;
       for (auto mesh : this->model->meshes) {
           for (vec3i i : mesh->index) { // iter through triangles
@@ -249,36 +256,54 @@ namespace osc {
               vec3f norB = mesh->normal[i.y];
               vec3f norC = mesh->normal[i.z];
 
+              // get bounding box
               vec2f minBound = vec2f(min(min(texA.x, texB.x), texC.x), min(min(texA.y, texB.y), texC.y));
               vec2f maxBound = vec2f(max(max(texA.x, texB.x), texC.x), max(max(texA.y, texB.y), texC.y));
 
+              // define constants
+              vec2f v0 = texB - texA, v1 = texC - texA;
+              float d00 = dot(v0, v0), d01 = dot(v0, v1), d11 = dot(v1, v1);
+ 
+              // iter through texels in bounding box
               for (float y = minBound.y; y <= maxBound.y; y += texelStep) {
                   for (float x = minBound.x; x <= maxBound.x; x += texelStep) {
-                      // TODO: FINISH THIS
-                      // assert valid 
-                      //if (!(a >= 0 && a <= 1 && b >= 0 && b <= 1 && c >= 0 && c <= 1)) continue;
+                      vec2f texCoord = vec2f(x, y);
 
-                      //// sampled vertex
-                      //float px = posA.x * a + posB.x * b + posC.x * c;
-                      //float py = posA.y * a + posB.y * b + posC.y * c;
-                      //float pz = posA.z * a + posB.z * b + posC.z * c;
-                      //float nx = norA.x * a + norB.x * b + norC.x * c;
-                      //float ny = norA.y * a + norB.y * b + norC.y * c;
-                      //float nz = norA.z * a + norB.z * b + norC.z * c;
-                      //float u = texA.x * a + texB.x * b + texC.x * c;
-                      //float v = texA.y * a + texB.y * b + texC.y * c;
+                      // get barycentric - Cramer's rule
+                      vec2f v2 = vec2f(x, y) - texA;
+                      float d20 = dot(v2, v0), d21 = dot(v2, v1);
+                      float denom = d00 * d11 - d01 * d01;
+                      float b = (d11 * d20 - d01 * d21) / denom;
+                      float c = (d00 * d21 - d01 * d20) / denom;
+                      float a = 1.0f - b - c;
 
-                      //// store data
-                      //pos.push_back(vec3f(px, py, pz));
-                      //nor.push_back(normalize(vec3f(nx, ny, nz)));
+                      // assert valid
+                      if (!(a >= 0 && a <= 1 && b >= 0 && b <= 1 && c >= 0 && c <= 1)) continue;
+                      float u = texA.x * a + texB.x * b + texC.x * c;
+                      float v = texA.y * a + texB.y * b + texC.y * c;
+                      assert(abs(texCoord.x - u) < epsilon && abs(texCoord.y - v) < epsilon); // should be about same value
 
-                      //// save input
-                      //Input in;
-                      //in.uv = vec2f(u, v);
-                      //this->inputs.push_back(in);
+                      // sampled vertex
+                      float px = posA.x * a + posB.x * b + posC.x * c;
+                      float py = posA.y * a + posB.y * b + posC.y * c;
+                      float pz = posA.z * a + posB.z * b + posC.z * c;
+                      float nx = norA.x * a + norB.x * b + norC.x * c;
+                      float ny = norA.y * a + norB.y * b + norC.y * c;
+                      float nz = norA.z * a + norB.z * b + norC.z * c;
 
-                      //// increment number of sample
-                      //sampled++;
+                      // add to cache
+                      std::string texStr = std::to_string(x) + " " + std::to_string(y);
+                      if (cache.find(texStr) != cache.end())
+                          continue;
+                      else 
+                          cache.insert(texStr);
+
+                      // store data
+                      pos.push_back(vec3f(px, py, pz));
+                      nor.push_back(normalize(vec3f(nx, ny, nz)));
+
+                      // save input
+                      this->inputs.push_back(texCoord);
                   }
               }
                   
@@ -298,7 +323,6 @@ namespace osc {
   OptixTraversableHandle SampleRenderer::buildAccel()
   {
     //PING;
-    //PRINT(model->meshes.size());
     
     vertexBuffer.resize(model->meshes.size());
     indexBuffer.resize(model->meshes.size());
@@ -704,9 +728,43 @@ namespace osc {
     sbt.hitgroupRecordCount         = (int)hitgroupRecords.size();
   }
 
+  void SampleRenderer::renderImage(const int rayCount, std::shared_ptr<Image> img) {
+      std::cout << "#osc: rendering ... ";
+
+      this->rayCount = rayCount;
+      // generate rays for occlusion hemisphere
+      //std::cout << "#osc: generating hemisphere ..." << std::endl;
+      genHemisphere();
+      
+      // send in batches
+
+      getTextureSamples(256);
+
+      //std::cout << "#osc: total samples " << launchParams.origins.samples << std::endl;
+      launchParamsBuffer.upload(&launchParams, 1);
+
+
+      OPTIX_CHECK(optixLaunch(/*! pipeline we're launching launch: */
+          pipeline, stream,
+          /*! parameters and SBT */
+          launchParamsBuffer.d_pointer(),
+          launchParamsBuffer.sizeInBytes,
+          &sbt,
+          /*! dimensions of the launch: */
+          launchParams.origins.samples, // number of points to compute occlusion
+          launchParams.hemisphere.samples, // number of rays to compute per point
+          1
+      ));
+      std::cout << "done" << std::endl;
+      // sync - make sure the frame is rendered before we download and
+      // display (obviously, for a high-performance application you
+      // want to use streams and double-buffering, but for this simple
+      // example, this will have to do)
+      CUDA_SYNC_CHECK();
+  }
 
   /*! render one frame */
-  void SampleRenderer::render(const int rayCount)
+  void SampleRenderer::render(const int rayCount, const Mode mode)
   {
     std::cout << "#osc: rendering ... ";
 
@@ -718,7 +776,11 @@ namespace osc {
     // generate points for occlusion computations
     //std::cout << "#osc: generating samples to raytrace ..." << std::endl;
     //(all) ? sampleAllOcclusionPoints(256) : sampleOcclusionPoints(); // sample randomly or go through every texel (at resolution)
-    getVertexSamples();
+    switch (mode) {
+    case Mode::Random: getRandomSamples(); break;
+    case Mode::Texture: getTextureSamples(512); break;
+    case Mode::Vertex: getVertexSamples(); break;
+    }
 
     //std::cout << "#osc: total samples " << launchParams.origins.samples << std::endl;
     launchParamsBuffer.upload(&launchParams, 1);

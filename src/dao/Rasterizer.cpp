@@ -111,7 +111,7 @@ int Rasterizer::init() {
 
     // // Initialize GL
 	glfwSetTime(0.0); // Initialize time.
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // Set background color.
+	glClearColor(0.5f, 0.5f, 0.5f, 1.0f); // Set background color.
 	glEnable(GL_DEPTH_TEST); // Enable z-buffer test.
 
 	// Initialize ImGUI
@@ -139,6 +139,7 @@ int Rasterizer::init() {
 	prog->addUniform("ks");
 	prog->addUniform("s");
 	prog->addUniform("aoTexture");
+	prog->addUniform("groundTruth");
 	prog->setVerbose(false);
 
 	// Initialize Camera
@@ -249,6 +250,7 @@ void Rasterizer::render() {
 	
 	// Draw scene
 	prog->bind();
+		glUniform1i(prog->getUniform("groundTruth"), keyToggles[(unsigned)'t']);
 		std::shared_ptr<Light> light = scn.lights[0]; // TODO: more lights
 		glUniform3f(prog->getUniform("lightPos"), light->position.x, light->position.y, light->position.z); // send light position to GPU
 		for (std::shared_ptr<Object> obj : scn.objects) {
