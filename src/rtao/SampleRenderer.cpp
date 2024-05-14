@@ -23,6 +23,7 @@
 #include <chrono>
 #include <cmath>
 #include <unordered_set>
+#include <fstream>
 
 
 /*! \namespace osc - Optix Siggraph Course */
@@ -60,7 +61,7 @@ namespace osc {
   /*! constructor - performs all setup, including initializing
     optix, creates module, pipeline, programs, SBT, etc. */
   SampleRenderer::SampleRenderer()
-    : model(nullptr), sampleCount(1000), rayCount(250) // TODO: Fix sample count
+    : model(nullptr), sampleCount(1000), rayCount(256) // TODO: Fix sample count
   {
       initOptix();
 
@@ -123,17 +124,10 @@ namespace osc {
       }
 
       // send data to GPU for raytracing
-      launchParams.origins.positions.alloc_and_upload(pos);
-      launchParams.origins.normals.alloc_and_upload(nor);
-      launchParams.origins.samples = pos.size(); // number of faces * sample per tri count
-
-      occlusionBuffer.resize(launchParams.origins.samples * launchParams.hemisphere.samples * sizeof(int));
-      launchParams.result.occlusionBuffer = (int*)occlusionBuffer.d_ptr;
+      sendSamplesToGPU(pos, nor);
   }
 
-  void SampleRenderer::getRandomSamples() {
-      const int totalSamples = 100000;
-
+  void SampleRenderer::getRandomSamples(const int totalSamples) {
       unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
       std::uniform_real_distribution<float> randomFloats(0.0, 1.0); // random floats between [0.0, 1.0]
       std::default_random_engine generator(seed);
@@ -219,12 +213,7 @@ namespace osc {
       }
 
       // send data to GPU for raytracing
-      launchParams.origins.positions.alloc_and_upload(pos);
-      launchParams.origins.normals.alloc_and_upload(nor);
-      launchParams.origins.samples = pos.size(); // number of faces * sample per tri count
-
-      occlusionBuffer.resize(launchParams.origins.samples * launchParams.hemisphere.samples * sizeof(int));
-      launchParams.result.occlusionBuffer = (int*)occlusionBuffer.d_ptr;
+      sendSamplesToGPU(pos, nor);
   }
 
   float dot(const vec2f & a, const vec2f & b) {
@@ -279,8 +268,8 @@ namespace osc {
 
                       // assert valid
                       if (!(a >= 0 && a <= 1 && b >= 0 && b <= 1 && c >= 0 && c <= 1)) continue;
-                      float u = texA.x * a + texB.x * b + texC.x * c;
-                      float v = texA.y * a + texB.y * b + texC.y * c;
+                      float u = texA.u * a + texB.u * b + texC.u * c;
+                      float v = texA.v * a + texB.v * b + texC.v * c;;
                       assert(abs(texCoord.x - u) < epsilon && abs(texCoord.y - v) < epsilon); // should be about same value
 
                       // sampled vertex
@@ -303,7 +292,7 @@ namespace osc {
                       nor.push_back(normalize(vec3f(nx, ny, nz)));
 
                       // save input
-                      this->inputs.push_back(texCoord);
+                      this->inputs.push_back(vec2f(u,v)); // use the reconstruct for more accurate
                   }
               }
                   
@@ -311,13 +300,18 @@ namespace osc {
       }
 
       // send data to GPU for raytracing
+      sendSamplesToGPU(pos, nor);
+  }
+
+  void SampleRenderer::sendSamplesToGPU(const std::vector<vec3f>& pos, const std::vector<vec3f>& nor) {
       launchParams.origins.positions.alloc_and_upload(pos);
       launchParams.origins.normals.alloc_and_upload(nor);
       launchParams.origins.samples = pos.size(); // number of faces * sample per tri count
 
-      occlusionBuffer.resize(launchParams.origins.samples * launchParams.hemisphere.samples * sizeof(int));
+      occlusionBuffer.resize(launchParams.origins.samples * this->rayCount * sizeof(int));
       launchParams.result.occlusionBuffer = (int*)occlusionBuffer.d_ptr;
   }
+
 
 
   OptixTraversableHandle SampleRenderer::buildAccel()
@@ -728,17 +722,14 @@ namespace osc {
     sbt.hitgroupRecordCount         = (int)hitgroupRecords.size();
   }
 
-  void SampleRenderer::renderImage(const int rayCount, std::shared_ptr<Image> img) {
+  /*! render one frame */
+  void SampleRenderer::render(const int rayCount, const Mode mode, const int data)
+  {
       std::cout << "#osc: rendering ... ";
 
-      this->rayCount = rayCount;
       // generate rays for occlusion hemisphere
       //std::cout << "#osc: generating hemisphere ..." << std::endl;
       genHemisphere();
-      
-      // send in batches
-
-      getTextureSamples(256);
 
       //std::cout << "#osc: total samples " << launchParams.origins.samples << std::endl;
       launchParamsBuffer.upload(&launchParams, 1);
@@ -757,55 +748,127 @@ namespace osc {
       ));
       std::cout << "done" << std::endl;
       // sync - make sure the frame is rendered before we download and
-      // display (obviously, for a high-performance application you
-      // want to use streams and double-buffering, but for this simple
-      // example, this will have to do)
       CUDA_SYNC_CHECK();
   }
 
-  /*! render one frame */
-  void SampleRenderer::render(const int rayCount, const Mode mode)
-  {
-    std::cout << "#osc: rendering ... ";
+  void SampleRenderer::renderToTexture(const int rayCount, std::shared_ptr<Image> img, const std::string& filename) {
+      const int accumulations = 60;
+      const int resolution = img->getHeight();
+      this->rayCount = rayCount;
 
-    this->rayCount = rayCount;
-    // generate rays for occlusion hemisphere
-    //std::cout << "#osc: generating hemisphere ..." << std::endl;
-    genHemisphere();
+      // Sample data points
+      getTextureSamples();
 
-    // generate points for occlusion computations
-    //std::cout << "#osc: generating samples to raytrace ..." << std::endl;
-    //(all) ? sampleAllOcclusionPoints(256) : sampleOcclusionPoints(); // sample randomly or go through every texel (at resolution)
-    switch (mode) {
-    case Mode::Random: getRandomSamples(); break;
-    case Mode::Texture: getTextureSamples(512); break;
-    case Mode::Vertex: getVertexSamples(); break;
-    }
+      /*switch (mode) {
+      case Mode::Random: getRandomSamples(data); break;
+      case Mode::Texture: getTextureSamples(data); break;
+      case Mode::Vertex: getVertexSamples(); break;
+      }*/
 
-    //std::cout << "#osc: total samples " << launchParams.origins.samples << std::endl;
-    launchParamsBuffer.upload(&launchParams, 1);
-      
+      std::vector<float> accumulator(launchParams.origins.samples, 0); // initiailize to zeros
+      for (int acc = 0; acc < accumulations; ++acc) {
 
-    OPTIX_CHECK(optixLaunch(/*! pipeline we're launching launch: */
-                            pipeline,stream,
-                            /*! parameters and SBT */
-                            launchParamsBuffer.d_pointer(),
-                            launchParamsBuffer.sizeInBytes,
-                            &sbt,
-                            /*! dimensions of the launch: */
-                            launchParams.origins.samples, // number of points to compute occlusion
-                            launchParams.hemisphere.samples, // number of rays to compute per point
-                            1
-                            ));
-    std::cout << "done" << std::endl;
-    // sync - make sure the frame is rendered before we download and
-    // display (obviously, for a high-performance application you
-    // want to use streams and double-buffering, but for this simple
-    // example, this will have to do)
-    CUDA_SYNC_CHECK();
+          // Compute occlusion for all samples
+          render(rayCount, Mode::Texture, resolution);
+
+          // Output to image
+          std::vector<float> occlusionValues;
+          downloadBuffer(occlusionValues); // download from buffer
+
+          // Add to accumulator
+          for (int i = 0; i < accumulator.size(); ++i) {
+              accumulator[i] += occlusionValues[i];
+          }
+          std::cout << accumulator[0] << " " << occlusionValues[0] << std::endl;
+
+
+          //assert(this->inputs.size() == occlusionValues.size());
+      }
+
+      // Get average
+      for (int i = 0; i < accumulator.size(); ++i) accumulator[i] /= accumulations;
+
+      // Write to image
+      for (int index = 0; index < accumulator.size(); ++index) {
+          vec2f uv = inputs[index];
+          int ao = (int)(255 * (1.0 - accumulator[index]));
+          img->setPixel((int)(uv.x * resolution), (int)(uv.y * resolution), ao, ao, ao);
+          //std::cout << std::to_string((int)(uv.x * resolution)) << ", " << std::to_string((int)(uv.y * resolution)) << " " << std::to_string(ao) << std::endl;
+
+      }
+      img->writeToFile(filename);
   }
 
-  void SampleRenderer::genHemisphere(int radius, bool seeded) {
+
+  void SampleRenderer::renderToFile(const int rayCount, const int sampleCount, const std::string& orientations, std::ofstream& out) {
+      // Compute occlusion for all samples
+      render(rayCount, Mode::Random, sampleCount);
+
+      // Get occlusion values from GPU
+      std::vector<float> occlusionValues;
+      downloadBuffer(occlusionValues); // download from buffer
+
+      // Write values to output file: u0, v0, rx0, ry0, rz0, ..., ... aoN
+      std::string ln = "";
+      for (int i = 0; i < this->inputs.size(); ++i) {
+          //out << uvs[i].u << " " << uvs[i].v << " " << orientations << " ";
+          //out << occlusionValues[i] << "\n"; // output
+          ln += (std::to_string(this->inputs[i].u) + " " + std::to_string(this->inputs[i].v) + " " + orientations + " " + std::to_string(occlusionValues[i]) + "\n");
+      }
+      out << ln;
+
+      // Write values to output file: rx0, ry0, rz0, ..., ... aoN
+      //out << orientations << " ";
+      ////int outputs = occlusionValues.size();
+      //for (int i = 0; i < outputs; ++i) {
+      //    float ao = occlusionValues[i];
+      //    out << ao; (i == outputs - 1) ? out << "\n" : out << " ";
+      //}
+  }
+
+  /*
+  
+  
+  def random_concentric(u, v):
+    x = []
+    y = []
+
+    # Correct range [-1;1]
+    u = 2 * u - 1
+    v = 2 * v - 1
+
+    for i, val in enumerate(u):
+        a = u[i]
+        b = v[i]
+
+        if a > -b:
+            if a > b:  # Region 1
+                r = a
+                phi = (np.pi / 4) * (b / a)
+            else:  # Region 2
+                r = b
+                phi = (np.pi / 4) * (2 - (a / b))
+        else:
+            if a < b:  # Region 3
+                r = -a
+                phi = (np.pi / 4) * (4 + (b / a))
+            else:  # Region 4
+                r = -b
+                if b != 0:
+                    phi = (np.pi / 4) * (6 - (a / b))
+                else:
+                    phi = 0
+
+        x.append(r * np.cos(phi))
+        y.append(r * np.sin(phi))
+
+    return x, y
+  
+  
+  
+  */
+
+  void SampleRenderer::genHemisphere(float radius, bool seeded) {
     std::vector<vec3f> kernel(this->rayCount);
     std::vector<vec3f> noise(this->rayCount);
 
@@ -815,6 +878,7 @@ namespace osc {
 
     for (int i = 0; i < this->rayCount; ++i) {
         // sample random vectors in unit hemisphere
+
         vec3f dirSample(
             randomFloats(generator) * 2.0 - 1.0, // set range: [-1, 1]
             randomFloats(generator) * 2.0 - 1.0,

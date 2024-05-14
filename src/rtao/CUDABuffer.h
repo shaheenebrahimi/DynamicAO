@@ -36,13 +36,15 @@ namespace osc {
       if (d_ptr) free();
       alloc(size);
     }
+
+    bool allocated() { return d_ptr != nullptr; }
     
     //! allocate to given number of bytes
     void alloc(size_t size)
     {
       assert(d_ptr == nullptr);
       this->sizeInBytes = size;
-      CUDA_CHECK(Malloc( (void**)&d_ptr, sizeInBytes));
+      CUDA_CHECK(Malloc((void**)&d_ptr, sizeInBytes));
     }
 
     //! free allocated memory
@@ -56,6 +58,8 @@ namespace osc {
     template<typename T>
     void alloc_and_upload(const std::vector<T> &vt)
     {
+      if (allocated()) free();
+        //assert(d_ptr == nullptr);
       alloc(vt.size()*sizeof(T));
       upload((const T*)vt.data(),vt.size());
     }

@@ -223,6 +223,9 @@ void Rasterizer::renderUI() {
 	if (rotated)
 		target->mesh->setBone(bone, glm::vec3(Ex * DEG_TO_RAD, Ey * DEG_TO_RAD, Ez * DEG_TO_RAD));
 
+	// Mode
+	ImGui::Checkbox("Use Texture", &keyToggles[(unsigned)' ']);
+
 	//ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
 	ImGui::End();
 
@@ -250,7 +253,7 @@ void Rasterizer::render() {
 	
 	// Draw scene
 	prog->bind();
-		glUniform1i(prog->getUniform("groundTruth"), keyToggles[(unsigned)'t']);
+		glUniform1i(prog->getUniform("groundTruth"), keyToggles[(unsigned)' ']);
 		std::shared_ptr<Light> light = scn.lights[0]; // TODO: more lights
 		glUniform3f(prog->getUniform("lightPos"), light->position.x, light->position.y, light->position.z); // send light position to GPU
 		for (std::shared_ptr<Object> obj : scn.objects) {

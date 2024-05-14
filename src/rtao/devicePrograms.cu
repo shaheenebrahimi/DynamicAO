@@ -114,8 +114,8 @@ namespace osc {
   //------------------------------------------------------------------------------
   extern "C" __global__ void __raygen__occlusion()
   {
-    const int ix = optixGetLaunchIndex().x; // index of the point
-    const int iy = optixGetLaunchIndex().y; // index of the ray
+    const int point_index = optixGetLaunchIndex().x; // index of the point
+    const int ray_index = optixGetLaunchIndex().y; // index of the ray
 
     auto &hemisphere = optixLaunchParams.hemisphere;
     auto &origins = optixLaunchParams.origins;
@@ -130,12 +130,26 @@ namespace osc {
     packPointer(&occlusionPRD, u0, u1);
    
     // transform ray direction
-    vec3f sampledRay = ((vec3f*) hemisphere.kernel.d_ptr)[iy];
-    vec3f normal = ((vec3f*) origins.normals.d_ptr)[ix];
-    vec3f binormal = normalize(cross(normal, vec3f(0.0f, 0.0f, 1.0f)));
-    vec3f tangent = normalize(cross(binormal, normal));
-    vec3f rayDir = normalize(sampledRay.x * binormal + sampledRay.y * tangent + sampledRay.z * normal);
-    vec3f origin = ((vec3f*) origins.positions.d_ptr)[ix];
+
+
+    vec3f sampledRay = ((vec3f*) hemisphere.kernel.d_ptr)[ray_index];
+    vec3f normal = normalize(((vec3f*) origins.normals.d_ptr)[point_index]);
+
+    vec3f binormal;
+    if ((normal.x < 0 ? -normal.x : normal.x) > 0.1) // abs undefined for extern C
+        binormal = normalize(cross(normal, vec3f(0.0f, 1.0f, 0.0f)));
+    else
+        binormal = normalize(cross(normal, vec3f(1.0f, 0.0f, 0.0f)));
+
+    vec3f tangent = cross(binormal, normal);
+    vec3f rayDir = normalize(sampledRay.x * tangent + sampledRay.y * binormal + sampledRay.z * normal);
+    vec3f origin = ((vec3f*) origins.positions.d_ptr)[point_index];
+
+    // change of basis
+    // rotate axes from world to normal
+    // binormal = normal x 0, 0, 1
+    // tangent = normal x binormal
+    // [ normal, binormal, tangent ]
 
     optixTrace(optixLaunchParams.traversable,
                origin,
@@ -152,7 +166,7 @@ namespace osc {
 
     //printf("sample point: %d and ray: %d was occluded %d\n", ix, iy, occlusionPRD);
     // and write to frame buffer ...
-    optixLaunchParams.result.occlusionBuffer[optixLaunchParams.hemisphere.samples * ix + iy] = (uint32_t)occlusionPRD; // number of occlusions per vertex
+    optixLaunchParams.result.occlusionBuffer[optixLaunchParams.hemisphere.samples * point_index + ray_index] = (uint32_t)occlusionPRD; // number of occlusions per vertex
   }
   
 } // ::osc

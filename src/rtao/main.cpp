@@ -24,7 +24,7 @@
 /*! \namespace osc - Optix Siggraph Course */
 /* Generates ray traced ambient occlusion training samples for neural network */
 
-#define USE_UV
+#define RENDER_TEXTURE
 
 const std::string RES_DIR =
     #ifdef _WIN32
@@ -104,15 +104,13 @@ namespace osc {
 
         // Iterate through distinct random poses
         for (int i = 0; i < poseCount; ++i) {
-            //std::string filename = RES_DIR + "data/_" + name + ((is_train) ? "_train_" : "_test_") + std::to_string(i) + ".obj";
-            std::string filename = RES_DIR + "data/_warrior.obj";
-
-            std::string orientations = parseHeader(filename);
+            std::string objFilename = RES_DIR + "data/_warrior.obj";
+            std::string orientations = parseHeader(objFilename);
 
             // Load model
             const Model* model;
             try {
-                model = loadOBJ(filename);
+                model = loadOBJ(objFilename);
               
             }
             catch (std::runtime_error& e) {
@@ -121,52 +119,19 @@ namespace osc {
                 exit(1);
             }
 
-
-            // Create renderer and render model
+            // Set target and render model
             renderer.set(model);
-            renderer.render(rayCount, Mode::Texture); // only need to render the frame once
-            //std::cout << renderer.getInfo() << std::endl;
-            //Retrieve occlusion values from GPU
-            std::vector<float> occlusionValues;
-            renderer.downloadBuffer(occlusionValues); // download from buffer
 
-            int resolution = 512; // DOESN'T UPDATE ON RT OCCLUSION SIDE
+            // Render and output
+#ifdef RENDER_TEXTURE
+            int resolution = 1024;
             std::shared_ptr<Image> img = std::make_shared<Image>(resolution, resolution);
             img->setWhite();
-
-            #ifdef USE_UV
-            std::vector<vec2f> uvs = renderer.getUVs();
-            assert(uvs.size() == occlusionValues.size());
-
-            for (int index = 0; index < occlusionValues.size(); ++index) {
-                vec2f uv = uvs[index];
-                int ao = (int)(255 * (1.0 - occlusionValues[index]));
-                img->setPixel((int)(uv.x * resolution), (int)(uv.y * resolution), ao, ao, ao);
-                //std::cout << std::to_string((int)(uv.x * resolution)) << ", " << std::to_string((int)(uv.y * resolution)) << " " << std::to_string(ao) << std::endl;
-
-            }
-            img->writeToFile(RES_DIR + "occlusion/img.png");
-
-            
-            // Write values to output file: u0, v0, rx0, ry0, rz0, ..., ... aoN
-            std::string ln = "";
-            for (int i = 0; i < uvs.size(); ++i) {
-                //out << uvs[i].u << " " << uvs[i].v << " " << orientations << " ";
-                //out << occlusionValues[i] << "\n"; // output
-                ln += (std::to_string(uvs[i].u) + " " + std::to_string(uvs[i].v) + " " + orientations + " " + std::to_string(occlusionValues[i]) + "\n");
-            }
-            //std::cout << ln << std::endl;
-            out << ln;
-            #else
-            // Write values to output file: rx0, ry0, rz0, ..., ... aoN
-            //int inputs = orientations.size();
-            out << orientations << " ";
-            //int outputs = occlusionValues.size();
-            for (int i = 0; i < outputs; ++i) {
-                float ao = occlusionValues[i];
-                out << ao; (i == outputs - 1) ? out << "\n" : out << " ";
-            }
-            #endif
+            renderer.renderToTexture(rayCount, img, RES_DIR + "textures/" + name + ".png");
+#else
+            int sampleCount = 10000;
+            renderer.renderToFile(rayCount, sampleCount, orientations, out); // only need to render the frame once
+#endif
 
             renderer.reset();
             delete model;

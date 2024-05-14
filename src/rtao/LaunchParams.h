@@ -45,7 +45,7 @@ namespace osc {
         CUDABuffer kernel; // hemisphere rays
         CUDABuffer noise; // hemisphere noise
         int samples; // number of rays sampled in hemishpere
-        int radius;
+        float radius;
     } hemisphere;
 
     OptixTraversableHandle traversable;

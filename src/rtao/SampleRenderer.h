@@ -36,6 +36,14 @@ namespace osc {
       Random,
       Texture
   };
+
+  class Sampler {
+      std::vector<vec3f> pos;
+      std::vector<vec3f> nor;
+      Sampler() { }
+      void get();
+      void sendToGPU();
+  };
   
   /*! a sample OptiX-7 renderer that demonstrates how to set up
       context, module, programs, pipeline, SBT, etc, and perform a
@@ -58,9 +66,13 @@ namespace osc {
       void reset();
 
       /*! render one frame */
-      void render(const int rayCount, const Mode mode = Mode::Random);
+      void render(const int rayCount, const Mode mode = Mode::Random, const int data = 0);
 
-      void renderImage(const int rayCount, std::shared_ptr<Image> img);
+      /*! render one frame to texture */
+      void renderToTexture(const int rayCount, std::shared_ptr<Image> img, const std::string& filename);
+
+      /*! render one frame and write data to output file */
+      void renderToFile(const int rayCount, const int sampleCount, const std::string& orientations, std::ofstream& out);
 
       /*! resize frame buffer to given resolution */
       //void resize(const vec2i &newSize);
@@ -110,15 +122,19 @@ namespace osc {
     void buildSBT();
 
     /*! constructs occlusion hemisphere with radius */
-    void genHemisphere(int radius = 1, bool seeded = false);
+    void genHemisphere(float radius = 5.0, bool seeded = true);
 
     /*! generate occlusion sample points */
-    void getRandomSamples();
+    void getRandomSamples(const int totalSamples = 100000);
 
     /*! generate occlusion sample points */
     void getVertexSamples();
 
-    void getTextureSamples(int resolution);
+    /*! generate occlusion sample points */
+    void getTextureSamples(int resolution = 1024);
+
+    /*! generate occlusion sample points */
+    void sendSamplesToGPU(const std::vector<vec3f>& pos, const std::vector<vec3f>& nor);
 
     /*! build an acceleration structure for the given triangle mesh */
     OptixTraversableHandle buildAccel();
@@ -164,7 +180,8 @@ namespace osc {
     CUDABuffer occlusionBuffer;
     
     /*! the model we are going to trace rays against */
-    std::vector<vec2f> inputs; // texcoord inputs
+    std::vector<vec2f> inputs; // uvs texcoord inputs
+    std::vector<vec2f> indices; // texcoord inputs
     const Model *model;
     int sampleCount; // number of points sampled per triangle
     int rayCount; // number of sampled in hemisphere rays per point
