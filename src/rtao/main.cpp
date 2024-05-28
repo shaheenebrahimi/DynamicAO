@@ -20,11 +20,10 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <random>
 
 /*! \namespace osc - Optix Siggraph Course */
 /* Generates ray traced ambient occlusion training samples for neural network */
-
-#define RENDER_TEXTURE
 
 const std::string RES_DIR =
     #ifdef _WIN32
@@ -46,22 +45,24 @@ namespace osc {
             std::cout << "Cannot read " << filename << std::endl;
         }
 
-        // skip instruction line
-        char comment;
+        // skip lines
+        getline(in, line);
         getline(in, line);
 
         // theta count line
+        char comment;
         int bones;
         getline(in, line);
         std::stringstream ssd(line);
-        ssd >> comment;
+        ssd >> comment; // #
         ssd >> bones;
 
         // theta value line
-        std::vector<vec3f> orientations(3*bones); // euler angles
         getline(in, line);
+        replace(line.begin(), line.end(), ' ', ',');
+        if (line.back() == ',') line.pop_back();
 
-        return line.substr(2); // ignore "# "
+        return line.substr(2); // ignore "# " rather "#," now
     }
 
     std::pair<int,int> getDimensions(const std::string& filename) {
@@ -80,38 +81,58 @@ namespace osc {
         return { bones, verts };
     }
 
+//#define TRAIN_TEST
+#define RENDER_TEXTURE
+
+
     extern "C" int main(int ac, char **av)
     {
+
         // Define consts
-        const std::string name = "warrior";
-        const int rayCount = 250;
-        const int poseCount = 1; // TODO: read all of poses in folder
+        const std::string name = "research";
+        const int accumulations = 20;
+        const int rayCount = 4096; // 8192
+        const int sampleCount = 1000; // samples per mesh - doesn't really matter if < tri count
+        const int poseCount = 0; // TODO: read all of poses in folder 79 for 1
         const bool is_train = true;
 
         // Read in base occlusion values
-        const std::string baseFilename = RES_DIR + "occlusion/base.txt";
+        const std::string baseFilename = RES_DIR + "occlusion/" + name + "_base.txt";
         std::pair<int, int> dim = getDimensions(baseFilename);
         int bones = dim.first, verts = dim.second;
       
         // Open export file
+#ifdef TRAIN_TEST
         const std::string outputFilename = RES_DIR + "occlusion/uv_" + name + ((is_train) ? "_train_" : "_test_") + "data.txt";
+#else
+        const std::string outputFilename = RES_DIR + "occlusion/" + name + "_data.csv";
+#endif
+
+
         std::ofstream out;
-        out.open(outputFilename);
-        out << bones << " " << verts << std::endl; // first two lines num inputs, num len data
+        out.open(outputFilename, std::ios_base::app);
+        //out << bones << " " << verts << std::endl; // first two lines num inputs, num len data
+
+        const Model* base;
+        base = loadOBJ(RES_DIR + "data/" + name + ".obj");
 
         // Initialize renderer
-        SampleRenderer renderer;
+        SampleRenderer renderer(rayCount);
 
         // Iterate through distinct random poses
-        for (int i = 0; i < poseCount; ++i) {
-            std::string objFilename = RES_DIR + "data/_warrior.obj";
+        for (int i = -1; i < poseCount; ++i) {
+#ifdef TRAIN_TEST
+            std::string tail = (i == -1) ? "" : ((is_train ? "_train_" : "_test_") + std::to_string(i));
+#else
+            std::string tail = (i == -1) ? "" : ("_" + std::to_string(i));
+#endif
+            std::string objFilename = RES_DIR + "data/" + name + tail + ".obj";
             std::string orientations = parseHeader(objFilename);
 
             // Load model
             const Model* model;
             try {
                 model = loadOBJ(objFilename);
-              
             }
             catch (std::runtime_error& e) {
                 std::cout << GDT_TERMINAL_RED << "FATAL ERROR: " << e.what() << GDT_TERMINAL_DEFAULT << std::endl;
@@ -119,25 +140,73 @@ namespace osc {
                 exit(1);
             }
 
-            // Set target and render model
-            renderer.set(model);
-
             // Render and output
 #ifdef RENDER_TEXTURE
-            int resolution = 1024;
+            int resolution = 256;
             std::shared_ptr<Image> img = std::make_shared<Image>(resolution, resolution);
-            img->setWhite();
+            // Set target and render model
+            renderer.set(model);
+            renderer.sampleData(Mode::Texture, resolution);
             renderer.renderToTexture(rayCount, img, RES_DIR + "textures/" + name + ".png");
 #else
-            int sampleCount = 10000;
-            renderer.renderToFile(rayCount, sampleCount, orientations, out); // only need to render the frame once
+            
+            // Set target and render model
+            renderer.set(model);
+            renderer.sampleData(Mode::Random, sampleCount);
+            for (int f = 0; f < accumulations; ++f) {
+                renderer.render();
+                renderer.downloadBuffer();
+            }
+            std::vector<float> skinned = renderer.getAccumulation();
+            for (int x = 0; x < skinned.size(); ++x) {
+                skinned[x] /= accumulations;
+            }
+
+            // Set base model and render
+            std::vector<float> tpose;
+            if (i == -1) {
+                tpose = skinned;
+            }
+            else {
+                renderer.set(base);
+                renderer.lookupUVs();
+                for (int f = 0; f < accumulations; ++f) {
+                    renderer.render();
+                    renderer.downloadBuffer();
+                }
+                tpose = renderer.getAccumulation();
+                for (int x = 0; x < tpose.size(); ++x) {
+                    tpose[x] /= accumulations;
+                }
+            }
+            
+
+            // Write to file
+            std::vector<vec2f> uvs = renderer.getUVs();
+            
+            // Write values to output file: u0, v0, rx0, ry0, rz0, ..., ... aoN
+            std::string ln = "";
+            for (int i = 0; i < uvs.size(); ++i) {
+                if (uvs[i].x < 0) uvs[i].x = 1.0f - (float)(abs(uvs[i].x) - (int)abs(uvs[i].x));
+                if (uvs[i].y < 0) uvs[i].y = 1.0f - (float)(abs(uvs[i].y) - (int)abs(uvs[i].y));
+                ln += (std::to_string(uvs[i].u) + "," + std::to_string(uvs[i].v) + "," + orientations + "," + std::to_string(tpose[i]) + "," + std::to_string(skinned[i]) + "\n");
+            }
+            out << ln;
+            // NOTE: computes occlusion not color
+
+            std::cout << "Traced pose " << i << std::endl;
+            //renderer.renderToFile(rayCount, sampleCount, orientations, out); // only need to render the frame once
 #endif
 
             renderer.reset();
             delete model;
         }
         // total data points = sample count * pose count
+        delete base;
         out.close();
+#ifndef RENDER_TEXTURE
+        std::cout << "Wrote to " << outputFilename << std::endl;
+#endif
     return 0;
     }
   

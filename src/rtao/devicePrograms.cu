@@ -88,6 +88,9 @@ namespace osc {
     const vec3f rayDir = optixGetWorldRayDirection();
     const float rayDist = gdt::length(t * rayDir);
     prd = (rayDist < optixLaunchParams.hemisphere.radius); // occlusion if within radius
+    //if (prd) {
+    //    std::printf("Hit!! t = %f, dist = %f, dir = (%f,%f,%f)\n", t, rayDist, rayDir.x, rayDir.y, rayDir.z);
+    //}
   }
   
   extern "C" __global__ void __anyhit__radiance()
@@ -129,32 +132,53 @@ namespace osc {
     uint32_t u0, u1;
     packPointer(&occlusionPRD, u0, u1);
    
+    // retrieve origin
+    vec3f origin = ((vec3f*)origins.positions.d_ptr)[point_index];
+
     // transform ray direction
+    vec3f ray = ((vec3f*) hemisphere.kernel.d_ptr)[ray_index];
+    vec3f normal = normalize(((vec3f*) origins.normals.d_ptr)[point_index]); // target
+    
+    // axis angle
+    float angle = acos(dot(normal, vec3f(0, 0, 1)));
+    vec3f axis = normalize(cross(normal, vec3f(0, 0, 1)));
+    float c = cos(angle);
+    float s = sin(angle);
+    float t = 1.0 - c;
 
+    // Rotation Matrix (column vectors)
+    vec3f R0, R1, R2;
 
-    vec3f sampledRay = ((vec3f*) hemisphere.kernel.d_ptr)[ray_index];
-    vec3f normal = normalize(((vec3f*) origins.normals.d_ptr)[point_index]);
+    if (normal == vec3f(0, 0, 1)) {
+        R0 = vec3f(1, 0, 0);
+        R1 = vec3f(0, 1, 0);
+        R2 = vec3f(0, 0, 1);
+    }
+    else if (normal == vec3f(0, 0, -1)) {
+        R0 = vec3f(1, 0, 0);
+        R1 = vec3f(0, 1, 0);
+        R2 = vec3f(0, 0, -1);
+    }
+    else {
+        R0 = vec3f(axis.x * axis.x * t + c,
+            axis.x * axis.y * t - axis.z * s,
+            axis.x * axis.z * t + axis.y * s);
+        R1 = vec3f(
+            axis.x * axis.y * t + axis.z * s,
+            axis.y * axis.y * t + c,
+            axis.y * axis.z * t - axis.x * s);
+        R2 = vec3f(
+            axis.x * axis.z * t - axis.y * s,
+            axis.y * axis.z * t + axis.x * s,
+            axis.z * axis.z * t + c);
+    }
 
-    vec3f binormal;
-    if ((normal.x < 0 ? -normal.x : normal.x) > 0.1) // abs undefined for extern C
-        binormal = normalize(cross(normal, vec3f(0.0f, 1.0f, 0.0f)));
-    else
-        binormal = normalize(cross(normal, vec3f(1.0f, 0.0f, 0.0f)));
-
-    vec3f tangent = cross(binormal, normal);
-    vec3f rayDir = normalize(sampledRay.x * tangent + sampledRay.y * binormal + sampledRay.z * normal);
-    vec3f origin = ((vec3f*) origins.positions.d_ptr)[point_index];
-
-    // change of basis
-    // rotate axes from world to normal
-    // binormal = normal x 0, 0, 1
-    // tangent = normal x binormal
-    // [ normal, binormal, tangent ]
+    vec3f rayDir = normalize(ray.x * R0 + ray.y * R1 + ray.z * R2);
 
     optixTrace(optixLaunchParams.traversable,
                origin,
                rayDir,
-               0.001f, // tmin, epsilon for self intersections
+               1e-3f, // tmin, epsilon for self intersections
                1e20f,  // tmax
                0.0f,   // rayTime
                OptixVisibilityMask(255),

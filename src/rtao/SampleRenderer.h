@@ -37,14 +37,14 @@ namespace osc {
       Texture
   };
 
-  class Sampler {
-      std::vector<vec3f> pos;
-      std::vector<vec3f> nor;
-      Sampler() { }
-      void get();
-      void sendToGPU();
-  };
-  
+  //class Sampler {
+  //    std::vector<vec3f> pos;
+  //    std::vector<vec3f> nor;
+  //    Sampler() { }
+  //    void get();
+  //    void sendToGPU();
+  //};
+  //
   /*! a sample OptiX-7 renderer that demonstrates how to set up
       context, module, programs, pipeline, SBT, etc, and perform a
       valid launch that renders some pixel (using a simple test
@@ -58,6 +58,7 @@ namespace osc {
       /*! constructor - performs all setup, including initializing
         optix, creates module, pipeline, programs, SBT, etc. */
       SampleRenderer();
+      SampleRenderer(const int rayCount);
 
       /*! set object to be rendered */
       void set(const Model* model);
@@ -66,7 +67,7 @@ namespace osc {
       void reset();
 
       /*! render one frame */
-      void render(const int rayCount, const Mode mode = Mode::Random, const int data = 0);
+      void render();
 
       /*! render one frame to texture */
       void renderToTexture(const int rayCount, std::shared_ptr<Image> img, const std::string& filename);
@@ -77,8 +78,16 @@ namespace osc {
       /*! resize frame buffer to given resolution */
       //void resize(const vec2i &newSize);
 
+      //float randomify(float x);
+
       /*! download the rendered color buffer */
-      void downloadBuffer(std::vector<float>& occlusions);
+      void downloadBuffer();
+
+      void sampleData(Mode mode, const int data = 0);
+
+      void lookupUVs();
+
+      std::vector<float> getAccumulation() { return accumulator; }
 
       /*! get input uv values */
       std::vector<vec2f> getUVs();
@@ -122,7 +131,9 @@ namespace osc {
     void buildSBT();
 
     /*! constructs occlusion hemisphere with radius */
-    void genHemisphere(float radius = 5.0, bool seeded = true);
+    void genHemisphere(float radius = 1.0, bool seeded = true);
+
+    vec3f sampleHemisphere(float x0, float x1);
 
     /*! generate occlusion sample points */
     void getRandomSamples(const int totalSamples = 100000);
@@ -134,7 +145,7 @@ namespace osc {
     void getTextureSamples(int resolution = 1024);
 
     /*! generate occlusion sample points */
-    void sendSamplesToGPU(const std::vector<vec3f>& pos, const std::vector<vec3f>& nor);
+    void sendSamplesToGPU(const std::vector<vec3f>& pos, const std::vector<vec3f>& nor, const std::vector<vec3f>& tan);
 
     /*! build an acceleration structure for the given triangle mesh */
     OptixTraversableHandle buildAccel();
@@ -178,10 +189,11 @@ namespace osc {
     /*! @} */
 
     CUDABuffer occlusionBuffer;
+    std::vector<float> accumulator;
     
     /*! the model we are going to trace rays against */
     std::vector<vec2f> inputs; // uvs texcoord inputs
-    std::vector<vec2f> indices; // texcoord inputs
+    std::vector<vec3i> correspondences; // which triangle each uv belongs to
     const Model *model;
     int sampleCount; // number of points sampled per triangle
     int rayCount; // number of sampled in hemisphere rays per point

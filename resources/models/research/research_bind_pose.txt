@@ -1,0 +1,6 @@
+# 1st line : frameCount boneCount
+# Next line is the "boneCount" sets of Euler angles for binding pose.
+# The root joint contains Euler angles and positions, while all other joints contain just Euler angles.
+# So, each line has 3 + 3 * boneCount numbers.
+2 2
+0.000000 -1.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000

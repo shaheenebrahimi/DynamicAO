@@ -93,7 +93,7 @@ namespace osc {
       if (!readOK) {
           throw std::runtime_error("Could not read OBJ model from " + objFile + " : " + err);
       }
-      std::cout << "Done loading obj file." << std::endl;
+      //std::cout << "Done loading obj file." << std::endl;
 
       TriangleMesh* mesh = new TriangleMesh;
 

@@ -37,13 +37,12 @@ namespace osc {
     struct {
         CUDABuffer positions; // buffer of positions
         CUDABuffer normals; // buffer of normals
-        CUDABuffer textures; // buffer of texture coords
+        CUDABuffer tangents;
         int samples; // number of points sampled on mesh
     } origins;
     
     struct {
         CUDABuffer kernel; // hemisphere rays
-        CUDABuffer noise; // hemisphere noise
         int samples; // number of rays sampled in hemishpere
         float radius;
     } hemisphere;

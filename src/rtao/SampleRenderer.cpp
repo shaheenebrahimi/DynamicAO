@@ -61,7 +61,7 @@ namespace osc {
   /*! constructor - performs all setup, including initializing
     optix, creates module, pipeline, programs, SBT, etc. */
   SampleRenderer::SampleRenderer()
-    : model(nullptr), sampleCount(1000), rayCount(256) // TODO: Fix sample count
+    : model(nullptr), sampleCount(5000), rayCount(1024) // TODO: Fix sample count
   {
       initOptix();
 
@@ -82,40 +82,49 @@ namespace osc {
       std::cout << GDT_TERMINAL_DEFAULT;
   }
 
+  osc::SampleRenderer::SampleRenderer(const int rayCount) : SampleRenderer()
+  {
+      this->rayCount = rayCount;
+  }
+
   void SampleRenderer::set(const Model* model) {
       this->model = model;
 
+      if (asBuffer.allocated()) asBuffer.free();
       launchParams.traversable = buildAccel();
 
       buildSBT();
 
+      if (launchParamsBuffer.allocated()) launchParamsBuffer.free();
       launchParamsBuffer.alloc(sizeof(launchParams));
+
+      accumulator.clear();
   }
 
   void SampleRenderer::reset() {
       inputs.clear();
+      accumulator.clear();
+
+      correspondences.clear();
       occlusionBuffer.free();
       samplePoints.free();
-      for (int i = 0; i < vertexBuffer.size(); ++i) {
-          vertexBuffer[i].free();
-      }
-      for (int i = 0; i < indexBuffer.size(); ++i) {
-          indexBuffer[i].free();
-      }
+      for (int i = 0; i < vertexBuffer.size(); ++i) vertexBuffer[i].free();
+      for (int i = 0; i < indexBuffer.size(); ++i) indexBuffer[i].free();
       raygenRecordsBuffer.free();
       missRecordsBuffer.free();
       hitgroupRecordsBuffer.free();
       asBuffer.free();
       launchParams.origins.positions.free();
       launchParams.origins.normals.free();
+      launchParams.origins.tangents.free();
       launchParams.hemisphere.kernel.free();
-      launchParams.hemisphere.noise.free();
       launchParamsBuffer.free();
   }
 
   void SampleRenderer::getVertexSamples() {
       std::vector<vec3f> pos;
       std::vector<vec3f> nor;
+      std::vector<vec3f> tan;
 
       // Sample points
       for (auto mesh : this->model->meshes) { // iter through meshes
@@ -123,8 +132,9 @@ namespace osc {
           nor.insert(nor.end(), mesh->normal.begin(), mesh->normal.end());
       }
 
+      // TODO: compute tan for vertices
       // send data to GPU for raytracing
-      sendSamplesToGPU(pos, nor);
+      sendSamplesToGPU(pos, nor, tan);
   }
 
   void SampleRenderer::getRandomSamples(const int totalSamples) {
@@ -133,6 +143,7 @@ namespace osc {
       std::default_random_engine generator(seed);
       std::vector<vec3f> pos;
       std::vector<vec3f> nor;
+      std::vector<vec3f> tan;
       std::vector<float> areas;
       float areaSum = 0.0;
 
@@ -161,14 +172,29 @@ namespace osc {
               vec2f texA = mesh->texcoord[i.x];
               vec2f texB = mesh->texcoord[i.y];
               vec2f texC = mesh->texcoord[i.z];
+
               // get position of vertices of triangle
               vec3f posA = mesh->vertex[i.x];
               vec3f posB = mesh->vertex[i.y];
               vec3f posC = mesh->vertex[i.z];
+
               // get position of vertices of triangle
               vec3f norA = mesh->normal[i.x];
               vec3f norB = mesh->normal[i.y];
               vec3f norC = mesh->normal[i.z];
+
+              // define constants
+              vec3f e0 = posB - posA;
+              vec3f e1 = posC - posA;
+              vec2f v0 = texB - texA;
+              vec2f v1 = texC - texA;
+              float f = 1.0f / (v0.x * v1.y - v1.x * v0.y);
+
+              // compute tangent of triangle
+              vec3f tangent;
+              tangent.x = f * (v1.y * e0.x - v0.y * e1.x);
+              tangent.y = f * (v1.y * e0.y - v0.y * e1.y);
+              tangent.z = f * (v1.y * e0.z - v0.y * e1.z);
 
 
               // randomly sample in triangle
@@ -201,9 +227,11 @@ namespace osc {
                   // store data
                   pos.push_back(vec3f(px, py, pz));
                   nor.push_back(normalize(vec3f(nx, ny, nz)));
+                  tan.push_back(normalize(tangent));
 
                   // save input
                   this->inputs.push_back(vec2f(u, v));
+                  this->correspondences.push_back(i);
 
                   // increment number of sample
                   sampled++;
@@ -213,7 +241,7 @@ namespace osc {
       }
 
       // send data to GPU for raytracing
-      sendSamplesToGPU(pos, nor);
+      sendSamplesToGPU(pos, nor, tan);
   }
 
   float dot(const vec2f & a, const vec2f & b) {
@@ -224,9 +252,10 @@ namespace osc {
       const float epsilon = 0.0001;
       std::vector<vec3f> pos;
       std::vector<vec3f> nor;
+      std::vector<vec3f> tan;
       std::vector<vec2f> tex;
-      std::unordered_set<std::string> cache; // no duplicate coords
       float texelStep = 1.0 / (float)resolution;
+      // TODO: make ground truth a lil better
       for (auto mesh : this->model->meshes) {
           for (vec3i i : mesh->index) { // iter through triangles
 
@@ -240,59 +269,100 @@ namespace osc {
               vec3f posB = mesh->vertex[i.y];
               vec3f posC = mesh->vertex[i.z];
 
-              // get position of vertices of triangle
+              // get normal of vertices of triangle
               vec3f norA = mesh->normal[i.x];
               vec3f norB = mesh->normal[i.y];
               vec3f norC = mesh->normal[i.z];
 
-              // get bounding box
-              vec2f minBound = vec2f(min(min(texA.x, texB.x), texC.x), min(min(texA.y, texB.y), texC.y));
-              vec2f maxBound = vec2f(max(max(texA.x, texB.x), texC.x), max(max(texA.y, texB.y), texC.y));
-
               // define constants
-              vec2f v0 = texB - texA, v1 = texC - texA;
+              vec3f e0 = posB - posA;
+              vec3f e1 = posC - posA;
+              vec2f v0 = texB - texA;
+              vec2f v1 = texC - texA;
               float d00 = dot(v0, v0), d01 = dot(v0, v1), d11 = dot(v1, v1);
- 
+              float f = 1.0f / (v0.x * v1.y - v1.x * v0.y);
+
+              // compute surface normal
+              vec3f surfaceNor = cross(e0, e1);
+
+              // compute tangent
+              vec3f tangent;
+              tangent.x = f * (v1.y * e0.x - v0.y * e1.x);
+              tangent.y = f * (v1.y * e0.y - v0.y * e1.y);
+              tangent.z = f * (v1.y * e0.z - v0.y * e1.z);
+
+              // convert uv to pixelspace
+              vec2i pixA = vec2i((int)(texA.x * resolution), (int)(texA.y * resolution));
+              vec2i pixB = vec2i((int)(texB.x * resolution), (int)(texB.y * resolution));
+              vec2i pixC = vec2i((int)(texC.x * resolution), (int)(texC.y * resolution));
+
+              // get bounding box pixelspace
+              vec2f minBound = vec2f(min(min(pixA.x, pixB.x), pixC.x), min(min(pixA.y, pixB.y), pixC.y));
+              vec2f maxBound = vec2f(max(max(pixA.x, pixB.x), pixC.x), max(max(pixA.y, pixB.y), pixC.y));
+
               // iter through texels in bounding box
-              for (float y = minBound.y; y <= maxBound.y; y += texelStep) {
-                  for (float x = minBound.x; x <= maxBound.x; x += texelStep) {
-                      vec2f texCoord = vec2f(x, y);
+              for (int y = minBound.y; y <= maxBound.y; ++y) {
+                  for (int x = minBound.x; x <= maxBound.x; ++x) {
+                      // multisample
+                      int sampleCount = 0;
+                      vec2f midOffset = vec2f(0, 0);
+                      vec2f sample = vec2f((float)x * texelStep, (float)y * texelStep); // base pixel uv
+                      for (int m = 0; m < 4; ++m) {
+                          vec2f offset;
+                          switch (m) {
+                          case 0: offset = vec2f(texelStep / 4, texelStep / 4.0); break;
+                          case 1: offset = vec2f(texelStep * (3.0 / 4.0), texelStep / 4.0); break;
+                          case 2: offset = vec2f(texelStep / 4.0, texelStep * (3.0 / 4.0)); break;
+                          case 3: offset = vec2f(texelStep * (3.0 / 4.0), texelStep * (3.0 / 4.0)); break;
+                          default: break;
+                          }
+                          vec2f msample = sample + offset;
 
-                      // get barycentric - Cramer's rule
-                      vec2f v2 = vec2f(x, y) - texA;
-                      float d20 = dot(v2, v0), d21 = dot(v2, v1);
-                      float denom = d00 * d11 - d01 * d01;
-                      float b = (d11 * d20 - d01 * d21) / denom;
-                      float c = (d00 * d21 - d01 * d20) / denom;
-                      float a = 1.0f - b - c;
+                          // get barycentric - Cramer's rule
+                          vec2f v2 = msample - texA;
+                          float d20 = dot(v2, v0), d21 = dot(v2, v1);
+                          float denom = d00 * d11 - d01 * d01;
+                          float b = (d11 * d20 - d01 * d21) / denom;
+                          float c = (d00 * d21 - d01 * d20) / denom;
+                          float a = 1.0f - b - c;
 
-                      // assert valid
-                      if (!(a >= 0 && a <= 1 && b >= 0 && b <= 1 && c >= 0 && c <= 1)) continue;
-                      float u = texA.u * a + texB.u * b + texC.u * c;
-                      float v = texA.v * a + texB.v * b + texC.v * c;;
-                      assert(abs(texCoord.x - u) < epsilon && abs(texCoord.y - v) < epsilon); // should be about same value
+                          // sample is a valid portion of pixel
+                          if (a >= 0 && a <= 1 && b >= 0 && b <= 1 && c >= 0 && c <= 1) {
+                              sampleCount++;
+                              midOffset += offset;
+                          }
+                      }
 
-                      // sampled vertex
-                      float px = posA.x * a + posB.x * b + posC.x * c;
-                      float py = posA.y * a + posB.y * b + posC.y * c;
-                      float pz = posA.z * a + posB.z * b + posC.z * c;
-                      float nx = norA.x * a + norB.x * b + norC.x * c;
-                      float ny = norA.y * a + norB.y * b + norC.y * c;
-                      float nz = norA.z * a + norB.z * b + norC.z * c;
+                      // trace average of multisample cluster
+                      if (sampleCount > 0) {
+                          midOffset /= sampleCount; // average -- avoid div by 0
+                          sample += midOffset;
+                          vec2f v2 = sample - texA;
+                          float d20 = dot(v2, v0), d21 = dot(v2, v1);
+                          float denom = d00 * d11 - d01 * d01;
+                          float b = (d11 * d20 - d01 * d21) / denom;
+                          float c = (d00 * d21 - d01 * d20) / denom;
+                          float a = 1.0f - b - c;
 
-                      // add to cache
-                      std::string texStr = std::to_string(x) + " " + std::to_string(y);
-                      if (cache.find(texStr) != cache.end())
-                          continue;
-                      else 
-                          cache.insert(texStr);
+                          // interpolated attributes
+                          float u = texA.u * a + texB.u * b + texC.u * c;
+                          float v = texA.v * a + texB.v * b + texC.v * c;;
+                          float px = posA.x * a + posB.x * b + posC.x * c;
+                          float py = posA.y * a + posB.y * b + posC.y * c;
+                          float pz = posA.z * a + posB.z * b + posC.z * c;
+                          float nx = norA.x * a + norB.x * b + norC.x * c;
+                          float ny = norA.y * a + norB.y * b + norC.y * c;
+                          float nz = norA.z * a + norB.z * b + norC.z * c;
 
-                      // store data
-                      pos.push_back(vec3f(px, py, pz));
-                      nor.push_back(normalize(vec3f(nx, ny, nz)));
+                          // store data
+                          pos.push_back(vec3f(px, py, pz));
+                          nor.push_back(normalize(surfaceNor));
+                          tan.push_back(normalize(tangent));
 
-                      // save input
-                      this->inputs.push_back(vec2f(u,v)); // use the reconstruct for more accurate
+                          // save input
+                          this->inputs.push_back(vec2f(u,v)); // use the reconstruct for more accurate
+                      }
+
                   }
               }
                   
@@ -300,12 +370,13 @@ namespace osc {
       }
 
       // send data to GPU for raytracing
-      sendSamplesToGPU(pos, nor);
+      sendSamplesToGPU(pos, nor, tan);
   }
 
-  void SampleRenderer::sendSamplesToGPU(const std::vector<vec3f>& pos, const std::vector<vec3f>& nor) {
+  void SampleRenderer::sendSamplesToGPU(const std::vector<vec3f>& pos, const std::vector<vec3f>& nor, const std::vector<vec3f>& tan) {
       launchParams.origins.positions.alloc_and_upload(pos);
       launchParams.origins.normals.alloc_and_upload(nor);
+      launchParams.origins.tangents.alloc_and_upload(tan);
       launchParams.origins.samples = pos.size(); // number of faces * sample per tri count
 
       occlusionBuffer.resize(launchParams.origins.samples * this->rayCount * sizeof(int));
@@ -723,9 +794,9 @@ namespace osc {
   }
 
   /*! render one frame */
-  void SampleRenderer::render(const int rayCount, const Mode mode, const int data)
+  void SampleRenderer::render()
   {
-      std::cout << "#osc: rendering ... ";
+      //std::cout << "#osc: rendering ... ";
 
       // generate rays for occlusion hemisphere
       //std::cout << "#osc: generating hemisphere ..." << std::endl;
@@ -746,52 +817,43 @@ namespace osc {
           launchParams.hemisphere.samples, // number of rays to compute per point
           1
       ));
-      std::cout << "done" << std::endl;
+      //std::cout << "done" << std::endl;
       // sync - make sure the frame is rendered before we download and
       CUDA_SYNC_CHECK();
   }
 
   void SampleRenderer::renderToTexture(const int rayCount, std::shared_ptr<Image> img, const std::string& filename) {
-      const int accumulations = 60;
+      const int accumulations = 5;
       const int resolution = img->getHeight();
       this->rayCount = rayCount;
 
       // Sample data points
-      getTextureSamples();
+      //getTextureSamples();
 
-      /*switch (mode) {
-      case Mode::Random: getRandomSamples(data); break;
-      case Mode::Texture: getTextureSamples(data); break;
-      case Mode::Vertex: getVertexSamples(); break;
-      }*/
-
-      std::vector<float> accumulator(launchParams.origins.samples, 0); // initiailize to zeros
       for (int acc = 0; acc < accumulations; ++acc) {
-
           // Compute occlusion for all samples
-          render(rayCount, Mode::Texture, resolution);
+          render();
 
           // Output to image
-          std::vector<float> occlusionValues;
-          downloadBuffer(occlusionValues); // download from buffer
-
-          // Add to accumulator
-          for (int i = 0; i < accumulator.size(); ++i) {
-              accumulator[i] += occlusionValues[i];
-          }
-          std::cout << accumulator[0] << " " << occlusionValues[0] << std::endl;
-
+          downloadBuffer(); // download from buffer to accum
 
           //assert(this->inputs.size() == occlusionValues.size());
       }
 
       // Get average
+      std::vector<float> accumulator = getAccumulation();
       for (int i = 0; i < accumulator.size(); ++i) accumulator[i] /= accumulations;
 
       // Write to image
       for (int index = 0; index < accumulator.size(); ++index) {
           vec2f uv = inputs[index];
           int ao = (int)(255 * (1.0 - accumulator[index]));
+          if (uv.x < 0){
+              uv.x = 1.0f - (float)(abs(uv.x) - (int)abs(uv.x));
+          }
+          if (uv.y < 0) {
+              uv.y = 1.0f - (float)(abs(uv.y) - (int)abs(uv.y));
+          }
           img->setPixel((int)(uv.x * resolution), (int)(uv.y * resolution), ao, ao, ao);
           //std::cout << std::to_string((int)(uv.x * resolution)) << ", " << std::to_string((int)(uv.y * resolution)) << " " << std::to_string(ao) << std::endl;
 
@@ -802,18 +864,33 @@ namespace osc {
 
   void SampleRenderer::renderToFile(const int rayCount, const int sampleCount, const std::string& orientations, std::ofstream& out) {
       // Compute occlusion for all samples
-      render(rayCount, Mode::Random, sampleCount);
+      const int accumulations = 5;
+      this->rayCount = rayCount;
 
-      // Get occlusion values from GPU
-      std::vector<float> occlusionValues;
-      downloadBuffer(occlusionValues); // download from buffer
+      //getRandomSamples(sampleCount);
+
+      for (int acc = 0; acc < accumulations; ++acc) {
+
+          // Compute occlusion for all samples
+          render();
+
+          // Output to image
+          downloadBuffer(); // download from buffer to accum
+
+          //assert(this->inputs.size() == occlusionValues.size());
+      }
+
+      // Get average
+      std::vector<float> accumulator = getAccumulation();
+      for (int i = 0; i < accumulator.size(); ++i) accumulator[i] /= accumulations;
+
 
       // Write values to output file: u0, v0, rx0, ry0, rz0, ..., ... aoN
       std::string ln = "";
       for (int i = 0; i < this->inputs.size(); ++i) {
           //out << uvs[i].u << " " << uvs[i].v << " " << orientations << " ";
           //out << occlusionValues[i] << "\n"; // output
-          ln += (std::to_string(this->inputs[i].u) + " " + std::to_string(this->inputs[i].v) + " " + orientations + " " + std::to_string(occlusionValues[i]) + "\n");
+          ln += (std::to_string(this->inputs[i].u) + " " + std::to_string(this->inputs[i].v) + " " + orientations + " " + std::to_string(accumulator[i]) + "\n");
       }
       out << ln;
 
@@ -870,41 +947,33 @@ namespace osc {
 
   void SampleRenderer::genHemisphere(float radius, bool seeded) {
     std::vector<vec3f> kernel(this->rayCount);
-    std::vector<vec3f> noise(this->rayCount);
 
     unsigned seed = (seeded) ? std::chrono::system_clock::now().time_since_epoch().count() : 0;
     std::uniform_real_distribution<float> randomFloats(0.0, 1.0); // random floats between [0.0, 1.0]
     std::default_random_engine generator(seed);
 
+    // (0,0,1) orientation
     for (int i = 0; i < this->rayCount; ++i) {
         // sample random vectors in unit hemisphere
-
-        vec3f dirSample(
-            randomFloats(generator) * 2.0 - 1.0, // set range: [-1, 1]
-            randomFloats(generator) * 2.0 - 1.0,
-            randomFloats(generator) // ignore bottom half since not sphere
-        );
-        dirSample = normalize(dirSample);
-        kernel[i] = dirSample;
-
-        // generate noise
-        vec3f noiseSample(
-            randomFloats(generator) * 2.0 - 1.0,
-            randomFloats(generator) * 2.0 - 1.0,
-            0.0f // rotate along z
-        );
-        noise[i] = noiseSample;
+        kernel[i] = sampleHemisphere(randomFloats(generator), randomFloats(generator));
     }
     // Save data to device
     launchParams.hemisphere.kernel.alloc_and_upload(kernel);
-    launchParams.hemisphere.noise.alloc_and_upload(noise);
     launchParams.hemisphere.radius = radius;
     launchParams.hemisphere.samples = this->rayCount;
   }
 
+  vec3f osc::SampleRenderer::sampleHemisphere(float x0, float x1)
+  {
+      return vec3f(sqrt(x0) * cos(2 * M_PI * x1),
+                   sqrt(x0) * sin(2 * M_PI * x1),
+                   1 - sqrt(x0)
+      );
+  }
+
 
   /*! download the rendered color buffer */
-  void SampleRenderer::downloadBuffer(std::vector<float>& occlusions)
+  void SampleRenderer::downloadBuffer()
   {
       // device to host
       std::vector<int> occlusionTable;
@@ -912,7 +981,7 @@ namespace osc {
       occlusionBuffer.download(occlusionTable.data(), launchParams.origins.samples * launchParams.hemisphere.samples);
 
       // count number of occlusions per point
-      occlusions.resize(launchParams.origins.samples);
+      std::vector<float> occlusions(launchParams.origins.samples);
       for (int i = 0; i < occlusionTable.size(); ++i) {
           int index = i / launchParams.hemisphere.samples;
           occlusions[index] += occlusionTable[i];
@@ -922,7 +991,99 @@ namespace osc {
       for (int i = 0; i < occlusions.size(); ++i) {
           occlusions[i] /= (float)launchParams.hemisphere.samples;
       }
+
+      // add to accumulator
+      if (accumulator.empty()) {
+          accumulator = std::vector<float>(launchParams.origins.samples, 0);
+      }
+      for (int i = 0; i < accumulator.size(); ++i) {
+          accumulator[i] += occlusions[i];
+      }
   }
+
+  void osc::SampleRenderer::sampleData(Mode mode, const int data)
+  {
+      //std::cout << "sampling ... ";
+      correspondences.clear();
+      switch (mode) {
+        case Mode::Random: getRandomSamples(data); break;
+        case Mode::Texture: getTextureSamples(data); break;
+        case Mode::Vertex: getVertexSamples(); break;
+      }
+      //std::cout << "done" << std::endl;
+  }
+
+  void osc::SampleRenderer::lookupUVs()
+  {
+      //std::cout << "finding correspondences ... ";
+      std::vector<vec3f> pos;
+      std::vector<vec3f> nor;
+      std::vector<vec3f> tan;
+
+      // Sample points
+      for (int i = 0; i < inputs.size(); ++i) {
+          vec2f uv = inputs[i];
+          vec3i tri = correspondences[i];
+          auto mesh = this->model->meshes[0]; // assume one mesh
+          vec2f texA = mesh->texcoord[tri.x];
+          vec2f texB = mesh->texcoord[tri.y];
+          vec2f texC = mesh->texcoord[tri.z];
+
+          // get position of vertices of triangle
+          vec3f posA = mesh->vertex[tri.x];
+          vec3f posB = mesh->vertex[tri.y];
+          vec3f posC = mesh->vertex[tri.z];
+
+          // get normal of vertices of triangle
+          vec3f norA = mesh->normal[tri.x];
+          vec3f norB = mesh->normal[tri.y];
+          vec3f norC = mesh->normal[tri.z];
+
+          // define constants
+          vec3f e0 = posB - posA;
+          vec3f e1 = posC - posA;
+          vec2f v0 = texB - texA;
+          vec2f v1 = texC - texA;
+          float f = 1.0f / (v0.x * v1.y - v1.x * v0.y);
+
+          // compute tangent of triangle
+          vec3f tangent;
+          tangent.x = f * (v1.y * e0.x - v0.y * e1.x);
+          tangent.y = f * (v1.y * e0.y - v0.y * e1.y);
+          tangent.z = f * (v1.y * e0.z - v0.y * e1.z);
+
+          // get barycentric
+          vec2f v2 = uv - texA;
+          float d00 = dot(v0, v0), d01 = dot(v0, v1), d11 = dot(v1, v1);
+          float d20 = dot(v2, v0), d21 = dot(v2, v1);
+          float denom = d00 * d11 - d01 * d01;
+          float b = (d11 * d20 - d01 * d21) / denom;
+          float c = (d00 * d21 - d01 * d20) / denom;
+          float a = 1.0f - b - c;
+
+          // sampled vertex
+          float px = posA.x * a + posB.x * b + posC.x * c;
+          float py = posA.y * a + posB.y * b + posC.y * c;
+          float pz = posA.z * a + posB.z * b + posC.z * c;
+          float nx = norA.x * a + norB.x * b + norC.x * c;
+          float ny = norA.y * a + norB.y * b + norC.y * c;
+          float nz = norA.z * a + norB.z * b + norC.z * c;
+
+          // store data
+          pos.push_back(vec3f(px, py, pz));
+          nor.push_back(normalize(vec3f(nx, ny, nz)));
+          tan.push_back(normalize(tangent));
+      }
+      // send data to GPU for raytracing
+      launchParams.origins.positions.free();
+      launchParams.origins.normals.free();
+      launchParams.origins.tangents.free();
+
+      sendSamplesToGPU(pos, nor, tan);
+      //std::cout << "done" << std::endl;
+  }
+
+      
 
   std::vector<vec2f> osc::SampleRenderer::getUVs()
   {

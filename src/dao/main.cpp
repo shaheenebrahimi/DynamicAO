@@ -45,6 +45,13 @@ Scene createScene(const string &name) {
 	scn.addLight(l1);
 
 	// Objects
+	//shared_ptr<Object> floor = make_shared<Object>();
+	//floor->addMesh(RES_DIR + "models/", "square");
+	//floor->addTexture(RES_DIR + "textures/square.png");
+	//floor->addEvaluator(RES_DIR + "evaluators/square.txt");
+	//floor->setMaterial(glm::vec3(0.2, 0.2, 0.2), glm::vec3(0.1, 0.1, 0.1), glm::vec3(0.1, 0.1, 0.1), 100);
+	//scn.addObject(floor); // Add to scene
+
 	shared_ptr<Object> obj = make_shared<Object>();
 	obj->addMesh(RES_DIR + "models/", name);
 	obj->addTexture(RES_DIR + "textures/" + name + ".png");
@@ -55,24 +62,27 @@ Scene createScene(const string &name) {
 	return scn;
 }
 
-//#define _ALL_BONES_
+//#define ALL_BONES
+//#define RANDOM_SAMPLE
 
 /* DATA GENERATORS */
-void generateDatasetMeshes(const string& meshname, const int numSamples) {
+void generateDatasetMeshes(const string& name, const int numSamples) {
 	Mesh mesh;
-	mesh.loader(RES_DIR + "models/", meshname);
+	mesh.loader(RES_DIR + "models/", name);
 
 	// iterate through all bones
-	float lowerBound = -80.0 * DEG_TO_RAD, upperBound = 80.0 * DEG_TO_RAD;
-	long train_counter = 246;
-	long test_counter = 54;
-
+	float lowerBound = -90.0 * DEG_TO_RAD, upperBound = 90.0 * DEG_TO_RAD;
+	long train_counter = 0;
+	long test_counter = 0;
 	
-#ifdef _ALL_BONES
-	for (bone = 1; bone < mesh.getBoneCount(); ++bone) { // ignore first bone since root
+#ifndef ALL_BONES
+	int bone = 1;
 #else
-	int bone = 12;
+	for (int bone = 1; bone < mesh.getBoneCount(); ++bone) { // ignore first bone since root
 #endif
+
+#ifdef RANDOM_SAMPLE
+		std::cout << "Rotating bone " << bone << "..." << std::endl;
 		for (int sample = 0; sample < numSamples; ++sample) {
 
 			bool is_train = (randomFloats(generator) <= 0.8); // 80% train, 20% test
@@ -85,16 +95,44 @@ void generateDatasetMeshes(const string& meshname, const int numSamples) {
 			vector<float> buffer = mesh.getFlattenedRotations();
 			string values = "";
 			for (int i = 0; i < buffer.size(); ++i) {
-				values += to_string(buffer[i]) + " ";
+				values += to_string(buffer[i]) + ((i == buffer.size() - 1) ? "" : " ");
 			}
 			vector<string> header = {
+				"Rotated bone: " + std::to_string(bone),
 				"The next comment says how many bones and their orientations",
 				to_string(mesh.getBoneCount()),
 				values
 			};
 
-			mesh.dumpMesh(RES_DIR + "data/_" + meshname + (is_train ? "_train_" + to_string(train_counter++) : "_test_" + to_string(test_counter++)) + ".obj", header);
+			string meshname = RES_DIR + "data/_" + name + (is_train ? "_train_" + to_string(train_counter++) : "_test_" + to_string(test_counter++)) + ".obj";
+			mesh.dumpMesh(meshname, header);
 		}
+#else
+		float increment = (upperBound - lowerBound) / numSamples;
+		float y = 0.0; // keep y constant
+		for (float x = lowerBound; x <= upperBound; x += increment) {
+			for (float z = lowerBound; z <= upperBound; z += increment) {
+				mesh.setBone(bone, glm::vec3(x, y, z)); // relative euler angle x, y, z
+
+				// convert to printable string
+				vector<float> buffer = mesh.getFlattenedRotations();
+				string values = "";
+				for (int i = 0; i < buffer.size(); ++i) {
+					values += to_string(buffer[i]) + ((i == buffer.size() - 1) ? "" : " ");
+				}
+				vector<string> header = {
+					"Rotated bone: " + std::to_string(bone),
+					"The next comment says how many bones and their orientations",
+					to_string(mesh.getBoneCount()),
+					values
+				};
+
+				std::cout << "Mesh " << test_counter << " obj dumped" << std::endl;
+				string meshname = RES_DIR + "data/" + name + "_" + to_string(test_counter++) + ".obj";
+				mesh.dumpMesh(meshname, header);
+			}
+		}
+#endif
 //#ifdef _ALL_BONES
 //	for (bone = 1; bone < mesh.getBoneCount(); ++bone) { // ignore first bone since root
 //#endif
@@ -121,7 +159,7 @@ void generateDatasetMeshes(const string& meshname, const int numSamples) {
 //				}
 //			}
 //		}
-#ifdef _ALL_BONES
+#ifdef ALL_BONES
 	}
 #endif
 
@@ -173,7 +211,7 @@ void generateAnimatedMeshes(const string& meshname, int step=1) {
 int main(int argc, char **argv) {
 	// TODO: fix so that doesn't need texture to run
 	///* Initializations */
-	string name = "warrior";
+	string name = "research";
 	Scene scn = createScene(name);
 
 	// viewer
@@ -184,13 +222,7 @@ int main(int argc, char **argv) {
 
 	//int step = 2;
 	//generateAnimatedMeshes(name, step); // go to 100 degrees with 1 degree increments
-	//generateDatasetMeshes(name, 900);
+	//generateDatasetMeshes(name, 45);
 
 	return 0;
 }
-
-// TODO:
-// Reduce to 1 joint space
-// Rotate each joint to create augmented data
-// Fix visualizer
-// ML stuff: tensorboard, adam optimizer, adjust learning rate

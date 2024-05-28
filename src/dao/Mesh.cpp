@@ -339,7 +339,7 @@ void Mesh::loadSkinWeights(const std::string& filename)
 	while (line.empty() || line.at(0) == '#') {
 		getline(in, line);
 	}
-
+	
 	// Get meta data
 	int verts, bones;
 	ss = stringstream(line);
@@ -532,7 +532,6 @@ void Mesh::setBone(const int boneInd, glm::vec3 relOrientation) {
 	// set matrix representation of pose
 	//traverseHierarchy();
 	computeBoneTransforms();
-
 
 	// deform mesh with skinning
 	applySkinning();
