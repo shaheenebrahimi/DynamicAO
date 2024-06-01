@@ -63,7 +63,7 @@ Scene createScene(const string &name) {
 }
 
 //#define ALL_BONES
-//#define RANDOM_SAMPLE
+#define RANDOM_SAMPLE
 
 /* DATA GENERATORS */
 void generateDatasetMeshes(const string& name, const int numSamples) {
@@ -85,9 +85,9 @@ void generateDatasetMeshes(const string& name, const int numSamples) {
 		std::cout << "Rotating bone " << bone << "..." << std::endl;
 		for (int sample = 0; sample < numSamples; ++sample) {
 
-			bool is_train = (randomFloats(generator) <= 0.8); // 80% train, 20% test
+			bool is_train = false; // 80% train, 20% test
 			float x = lowerBound + randomFloats(generator) * (upperBound - lowerBound);
-			float y = lowerBound + randomFloats(generator) * (upperBound - lowerBound);
+			float y = 0.0f;
 			float z = lowerBound + randomFloats(generator) * (upperBound - lowerBound);
 			mesh.setBone(bone, glm::vec3(x, y, z)); // relative euler angle x, y, z
 
@@ -104,7 +104,7 @@ void generateDatasetMeshes(const string& name, const int numSamples) {
 				values
 			};
 
-			string meshname = RES_DIR + "data/_" + name + (is_train ? "_train_" + to_string(train_counter++) : "_test_" + to_string(test_counter++)) + ".obj";
+			string meshname = RES_DIR + "data/" + name + (is_train ? "_train_" + to_string(train_counter++) : "_test_" + to_string(test_counter++)) + ".obj";
 			mesh.dumpMesh(meshname, header);
 		}
 #else
@@ -222,7 +222,7 @@ int main(int argc, char **argv) {
 
 	//int step = 2;
 	//generateAnimatedMeshes(name, step); // go to 100 degrees with 1 degree increments
-	//generateDatasetMeshes(name, 45);
+	//generateDatasetMeshes(name, 1500);
 
 	return 0;
 }

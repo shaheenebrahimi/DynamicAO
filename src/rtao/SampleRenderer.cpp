@@ -190,6 +190,9 @@ namespace osc {
               vec2f v1 = texC - texA;
               float f = 1.0f / (v0.x * v1.y - v1.x * v0.y);
 
+              // compute surface normal
+              vec3f surfaceNor = cross(e0, e1);
+
               // compute tangent of triangle
               vec3f tangent;
               tangent.x = f * (v1.y * e0.x - v0.y * e1.x);
@@ -226,7 +229,7 @@ namespace osc {
 
                   // store data
                   pos.push_back(vec3f(px, py, pz));
-                  nor.push_back(normalize(vec3f(nx, ny, nz)));
+                  nor.push_back(normalize(surfaceNor));
                   tan.push_back(normalize(tangent));
 
                   // save input
