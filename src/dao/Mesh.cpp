@@ -45,7 +45,7 @@ void Mesh::updateMesh()
 {
 	// update frame and pose
 	updateBuffers(); // send to updated mesh gpu
-	computeOcclusion();
+	//computeOcclusion();
 }
 
 void Mesh::dumpMesh(const std::string &filename, const std::vector<std::string> &header)
@@ -149,6 +149,7 @@ void Mesh::loader(const std::string& dir, const std::string& name)
 {
 	// load all data and set bind pose as initial pose
 	loadMesh(dir + name + "/" + name + ".obj");
+	loadOcclusionBuffer(dir + name + "/" + name + "_vocc.txt");
 	loadSkeleton(dir + name + "/" + name + "_skeleton.txt");
 	loadHierarchy(dir + name + "/" + name + "_hierarchy.txt");
 	loadLocalTransforms(dir + name + "/" + name + "_static_transforms.txt");
@@ -197,7 +198,9 @@ void Mesh::loadMesh(const string& meshName) {
 		skPosBuf.resize(posBuf.size());
 		skNorBuf.resize(norBuf.size());
 	}
+	this->vertexCount = posBuf.size() / 3;
 }
+
 
 void Mesh::loadSkeleton(const std::string& filename)
 {
@@ -409,6 +412,25 @@ void Mesh::loadEvaluator(const string& modelName) {
 	eval = std::make_shared<Evaluator>(modelName);
 }
 
+void Mesh::loadOcclusionBuffer(const std::string& filename)
+{
+	ifstream in;
+	in.open(filename);
+	if (!in.good()) {
+		cout << "Cannot read " << filename << endl;
+		return;
+	}
+	string line;
+	stringstream ss;
+	getline(in, line);
+	occBuf.resize(this->vertexCount);
+	for (int i = 0; i < this->vertexCount; ++i) {
+		//ss >> occBuf[i];
+		occBuf[i] = 0.0f;
+	}
+	in.close();
+}
+
 void Mesh::loadBuffers() {
 
 	// Send the position array to the GPU
@@ -436,7 +458,10 @@ void Mesh::loadBuffers() {
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, elemBuf.size() * sizeof(unsigned int), &elemBuf[0], GL_STATIC_DRAW);
 
 	// Send occlusion array to GPU
-	createCudaVBO(&occBufID, &cudaOccResource, cudaGraphicsMapFlagsWriteDiscard, posBuf.size() / 3);
+	//createCudaVBO(&occBufID, &cudaOccResource, cudaGraphicsMapFlagsWriteDiscard, posBuf.size() / 3);	glGenBuffers(1, &elemBufID);
+	glGenBuffers(1, &occBufID);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, occBufID);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, occBuf.size() * sizeof(float), &occBuf[0], GL_STATIC_DRAW);
 
 	// Unbind the arrays
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

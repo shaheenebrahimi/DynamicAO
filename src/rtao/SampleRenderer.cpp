@@ -116,7 +116,7 @@ namespace osc {
       asBuffer.free();
       launchParams.origins.positions.free();
       launchParams.origins.normals.free();
-      launchParams.origins.tangents.free();
+      //launchParams.origins.tangents.free();
       launchParams.hemisphere.kernel.free();
       launchParamsBuffer.free();
   }
@@ -124,7 +124,6 @@ namespace osc {
   void SampleRenderer::getVertexSamples() {
       std::vector<vec3f> pos;
       std::vector<vec3f> nor;
-      std::vector<vec3f> tan;
 
       // Sample points
       for (auto mesh : this->model->meshes) { // iter through meshes
@@ -134,7 +133,7 @@ namespace osc {
 
       // TODO: compute tan for vertices
       // send data to GPU for raytracing
-      sendSamplesToGPU(pos, nor, tan);
+      sendSamplesToGPU(pos, nor);
   }
 
   void SampleRenderer::getRandomSamples(const int totalSamples) {
@@ -143,7 +142,6 @@ namespace osc {
       std::default_random_engine generator(seed);
       std::vector<vec3f> pos;
       std::vector<vec3f> nor;
-      std::vector<vec3f> tan;
       std::vector<float> areas;
       float areaSum = 0.0;
 
@@ -194,10 +192,10 @@ namespace osc {
               vec3f surfaceNor = cross(e0, e1);
 
               // compute tangent of triangle
-              vec3f tangent;
-              tangent.x = f * (v1.y * e0.x - v0.y * e1.x);
-              tangent.y = f * (v1.y * e0.y - v0.y * e1.y);
-              tangent.z = f * (v1.y * e0.z - v0.y * e1.z);
+              //vec3f tangent;
+              //tangent.x = f * (v1.y * e0.x - v0.y * e1.x);
+              //tangent.y = f * (v1.y * e0.y - v0.y * e1.y);
+              //tangent.z = f * (v1.y * e0.z - v0.y * e1.z);
 
 
               // randomly sample in triangle
@@ -230,7 +228,7 @@ namespace osc {
                   // store data
                   pos.push_back(vec3f(px, py, pz));
                   nor.push_back(normalize(surfaceNor));
-                  tan.push_back(normalize(tangent));
+                  //tan.push_back(normalize(tangent));
 
                   // save input
                   this->inputs.push_back(vec2f(u, v));
@@ -244,7 +242,7 @@ namespace osc {
       }
 
       // send data to GPU for raytracing
-      sendSamplesToGPU(pos, nor, tan);
+      sendSamplesToGPU(pos, nor);
   }
 
   float dot(const vec2f & a, const vec2f & b) {
@@ -255,7 +253,7 @@ namespace osc {
       const float epsilon = 0.0001;
       std::vector<vec3f> pos;
       std::vector<vec3f> nor;
-      std::vector<vec3f> tan;
+      //std::vector<vec3f> tan;
       std::vector<vec2f> tex;
       float texelStep = 1.0 / (float)resolution;
       // TODO: make ground truth a lil better
@@ -289,10 +287,10 @@ namespace osc {
               vec3f surfaceNor = cross(e0, e1);
 
               // compute tangent
-              vec3f tangent;
-              tangent.x = f * (v1.y * e0.x - v0.y * e1.x);
-              tangent.y = f * (v1.y * e0.y - v0.y * e1.y);
-              tangent.z = f * (v1.y * e0.z - v0.y * e1.z);
+              //vec3f tangent;
+              //tangent.x = f * (v1.y * e0.x - v0.y * e1.x);
+              //tangent.y = f * (v1.y * e0.y - v0.y * e1.y);
+              //tangent.z = f * (v1.y * e0.z - v0.y * e1.z);
 
               // convert uv to pixelspace
               vec2i pixA = vec2i((int)(texA.x * resolution), (int)(texA.y * resolution));
@@ -360,7 +358,7 @@ namespace osc {
                           // store data
                           pos.push_back(vec3f(px, py, pz));
                           nor.push_back(normalize(surfaceNor));
-                          tan.push_back(normalize(tangent));
+                          //tan.push_back(normalize(tangent));
 
                           // save input
                           this->inputs.push_back(vec2f(u,v)); // use the reconstruct for more accurate
@@ -373,13 +371,13 @@ namespace osc {
       }
 
       // send data to GPU for raytracing
-      sendSamplesToGPU(pos, nor, tan);
+      sendSamplesToGPU(pos, nor);
   }
 
-  void SampleRenderer::sendSamplesToGPU(const std::vector<vec3f>& pos, const std::vector<vec3f>& nor, const std::vector<vec3f>& tan) {
+  void SampleRenderer::sendSamplesToGPU(const std::vector<vec3f>& pos, const std::vector<vec3f>& nor) {
       launchParams.origins.positions.alloc_and_upload(pos);
       launchParams.origins.normals.alloc_and_upload(nor);
-      launchParams.origins.tangents.alloc_and_upload(tan);
+      //launchParams.origins.tangents.alloc_and_upload(tan);
       launchParams.origins.samples = pos.size(); // number of faces * sample per tri count
 
       occlusionBuffer.resize(launchParams.origins.samples * this->rayCount * sizeof(int));
@@ -865,7 +863,7 @@ namespace osc {
   }
 
 
-  void SampleRenderer::renderToFile(const int rayCount, const int sampleCount, const std::string& orientations, std::ofstream& out) {
+  void SampleRenderer::renderToFile(const int rayCount, const std::string& orientations, std::ofstream& out) {
       // Compute occlusion for all samples
       const int accumulations = 5;
       this->rayCount = rayCount;
@@ -890,11 +888,17 @@ namespace osc {
 
       // Write values to output file: u0, v0, rx0, ry0, rz0, ..., ... aoN
       std::string ln = "";
-      for (int i = 0; i < this->inputs.size(); ++i) {
+      for (int i = 0; i < accumulator.size(); ++i) {
           //out << uvs[i].u << " " << uvs[i].v << " " << orientations << " ";
           //out << occlusionValues[i] << "\n"; // output
-          ln += (std::to_string(this->inputs[i].u) + " " + std::to_string(this->inputs[i].v) + " " + orientations + " " + std::to_string(accumulator[i]) + "\n");
+          if (this->inputs.size() == 0) {
+              ln += (std::to_string(accumulator[i]) + " ");
+          }
+          else {
+              ln += (std::to_string(this->inputs[i].u) + " " + std::to_string(this->inputs[i].v) + " " + orientations + " " + std::to_string(accumulator[i]) + "\n");
+          }
       }
+ 
       out << ln;
 
       // Write values to output file: rx0, ry0, rz0, ..., ... aoN
@@ -1021,7 +1025,7 @@ namespace osc {
       //std::cout << "finding correspondences ... ";
       std::vector<vec3f> pos;
       std::vector<vec3f> nor;
-      std::vector<vec3f> tan;
+      //std::vector<vec3f> tan;
 
       // Sample points
       for (int i = 0; i < inputs.size(); ++i) {
@@ -1050,10 +1054,10 @@ namespace osc {
           float f = 1.0f / (v0.x * v1.y - v1.x * v0.y);
 
           // compute tangent of triangle
-          vec3f tangent;
-          tangent.x = f * (v1.y * e0.x - v0.y * e1.x);
-          tangent.y = f * (v1.y * e0.y - v0.y * e1.y);
-          tangent.z = f * (v1.y * e0.z - v0.y * e1.z);
+          //vec3f tangent;
+          //tangent.x = f * (v1.y * e0.x - v0.y * e1.x);
+          //tangent.y = f * (v1.y * e0.y - v0.y * e1.y);
+          //tangent.z = f * (v1.y * e0.z - v0.y * e1.z);
 
           // get barycentric
           vec2f v2 = uv - texA;
@@ -1075,14 +1079,14 @@ namespace osc {
           // store data
           pos.push_back(vec3f(px, py, pz));
           nor.push_back(normalize(vec3f(nx, ny, nz)));
-          tan.push_back(normalize(tangent));
+          //tan.push_back(normalize(tangent));
       }
       // send data to GPU for raytracing
       launchParams.origins.positions.free();
       launchParams.origins.normals.free();
-      launchParams.origins.tangents.free();
+      //launchParams.origins.tangents.free();
 
-      sendSamplesToGPU(pos, nor, tan);
+      sendSamplesToGPU(pos, nor);
       //std::cout << "done" << std::endl;
   }
 

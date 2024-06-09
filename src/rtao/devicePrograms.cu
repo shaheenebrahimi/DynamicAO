@@ -132,49 +132,82 @@ namespace osc {
     uint32_t u0, u1;
     packPointer(&occlusionPRD, u0, u1);
    
+    //// retrieve origin
+    //vec3f origin = ((vec3f*)origins.positions.d_ptr)[point_index];
+
+    //// transform ray direction
+    //vec3f ray = ((vec3f*) hemisphere.kernel.d_ptr)[ray_index];
+    //vec3f normal = normalize(((vec3f*) origins.normals.d_ptr)[point_index]); // target
+    //
+    //// axis angle
+    //float angle = acos(dot(normal, vec3f(0, 0, 1)));
+    //vec3f axis = normalize(cross(normal, vec3f(0, 0, 1)));
+    //float c = cos(angle);
+    //float s = sin(angle);
+    //float t = 1.0 - c;
+
+    //// Rotation Matrix (column vectors)
+    //vec3f R0, R1, R2;
+
+    //if (normal == vec3f(0, 0, 1)) {
+    //    R0 = vec3f(1, 0, 0);
+    //    R1 = vec3f(0, 1, 0);
+    //    R2 = vec3f(0, 0, 1);
+    //}
+    //else if (normal == vec3f(0, 0, -1)) {
+    //    R0 = vec3f(1, 0, 0);
+    //    R1 = vec3f(0, 1, 0);
+    //    R2 = vec3f(0, 0, -1);
+    //}
+    //else {
+    //    R0 = vec3f(axis.x * axis.x * t + c,
+    //        axis.x * axis.y * t - axis.z * s,
+    //        axis.x * axis.z * t + axis.y * s);
+    //    R1 = vec3f(
+    //        axis.x * axis.y * t + axis.z * s,
+    //        axis.y * axis.y * t + c,
+    //        axis.y * axis.z * t - axis.x * s);
+    //    R2 = vec3f(
+    //        axis.x * axis.z * t - axis.y * s,
+    //        axis.y * axis.z * t + axis.x * s,
+    //        axis.z * axis.z * t + c);
+    //}
+
+    //vec3f rayDir = normalize(ray.x * R0 + ray.y * R1 + ray.z * R2);
     // retrieve origin
     vec3f origin = ((vec3f*)origins.positions.d_ptr)[point_index];
 
     // transform ray direction
-    vec3f ray = ((vec3f*) hemisphere.kernel.d_ptr)[ray_index];
-    vec3f normal = normalize(((vec3f*) origins.normals.d_ptr)[point_index]); // target
-    
-    // axis angle
-    float angle = acos(dot(normal, vec3f(0, 0, 1)));
-    vec3f axis = normalize(cross(normal, vec3f(0, 0, 1)));
-    float c = cos(angle);
-    float s = sin(angle);
-    float t = 1.0 - c;
+    vec3f ray = ((vec3f*)hemisphere.kernel.d_ptr)[ray_index];
+    vec3f normal = normalize(((vec3f*)origins.normals.d_ptr)[point_index]); // target
 
-    // Rotation Matrix (column vectors)
-    vec3f R0, R1, R2;
-
-    if (normal == vec3f(0, 0, 1)) {
-        R0 = vec3f(1, 0, 0);
-        R1 = vec3f(0, 1, 0);
-        R2 = vec3f(0, 0, 1);
+    // Check if normal is approximately (0, 0, 1)
+    vec3f rayDir;
+    if (dot(normal, vec3f(0, 0, 1)) > 0.9999f) {
+        // If the normal is almost (0, 0, 1), no transformation is needed
+        rayDir = normalize(ray);
     }
-    else if (normal == vec3f(0, 0, -1)) {
-        R0 = vec3f(1, 0, 0);
-        R1 = vec3f(0, 1, 0);
-        R2 = vec3f(0, 0, -1);
+    else if (dot(normal, vec3f(0, 0, -1)) > 0.9999f) {
+        // If the normal is almost (0, 0, -1), invert the z-component of the ray
+        rayDir = normalize(vec3f(ray.x, ray.y, -ray.z));
     }
     else {
-        R0 = vec3f(axis.x * axis.x * t + c,
-            axis.x * axis.y * t - axis.z * s,
-            axis.x * axis.z * t + axis.y * s);
-        R1 = vec3f(
-            axis.x * axis.y * t + axis.z * s,
-            axis.y * axis.y * t + c,
-            axis.y * axis.z * t - axis.x * s);
-        R2 = vec3f(
-            axis.x * axis.z * t - axis.y * s,
-            axis.y * axis.z * t + axis.x * s,
-            axis.z * axis.z * t + c);
+        // axis angle
+        float angle = acos(dot(normal, vec3f(0, 0, 1)));
+        vec3f axis = normalize(cross(normal, vec3f(0, 0, 1)));
+
+        // Rotation matrix using Rodrigues' rotation formula
+        float c = cos(angle);
+        float s = sin(angle);
+        float t = 1.0f - c;
+
+        // Rotation Matrix (column vectors)
+        vec3f R0 = vec3f(t * axis.x * axis.x + c, t * axis.x * axis.y - s * axis.z, t * axis.x * axis.z + s * axis.y);
+        vec3f R1 = vec3f(t * axis.x * axis.y + s * axis.z, t * axis.y * axis.y + c, t * axis.y * axis.z - s * axis.x);
+        vec3f R2 = vec3f(t * axis.x * axis.z - s * axis.y, t * axis.y * axis.z + s * axis.x, t * axis.z * axis.z + c);
+
+        rayDir = normalize(ray.x * R0 + ray.y * R1 + ray.z * R2);
     }
-
-    vec3f rayDir = normalize(ray.x * R0 + ray.y * R1 + ray.z * R2);
-
     optixTrace(optixLaunchParams.traversable,
                origin,
                rayDir,

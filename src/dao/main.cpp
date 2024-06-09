@@ -55,7 +55,7 @@ Scene createScene(const string &name) {
 	shared_ptr<Object> obj = make_shared<Object>();
 	obj->addMesh(RES_DIR + "models/", name);
 	obj->addTexture(RES_DIR + "textures/" + name + ".png");
-	obj->addEvaluator(RES_DIR + "evaluators/" + name + ".txt");
+	//obj->addEvaluator(RES_DIR + "evaluators/" + name + ".txt");
 	obj->setMaterial(glm::vec3(0.2, 0.2, 0.2), glm::vec3(0.1, 0.1, 0.1), glm::vec3(0.1, 0.1, 0.1), 100);
 	scn.addObject(obj); // Add to scene
 
@@ -71,7 +71,7 @@ void generateDatasetMeshes(const string& name, const int numSamples) {
 	mesh.loader(RES_DIR + "models/", name);
 
 	// iterate through all bones
-	float lowerBound = -90.0 * DEG_TO_RAD, upperBound = 90.0 * DEG_TO_RAD;
+	float lowerBound = -70.0 * DEG_TO_RAD, upperBound = 70.0 * DEG_TO_RAD;
 	long train_counter = 0;
 	long test_counter = 0;
 	
@@ -85,10 +85,10 @@ void generateDatasetMeshes(const string& name, const int numSamples) {
 		std::cout << "Rotating bone " << bone << "..." << std::endl;
 		for (int sample = 0; sample < numSamples; ++sample) {
 
-			bool is_train = false; // 80% train, 20% test
-			float x = lowerBound + randomFloats(generator) * (upperBound - lowerBound);
+			bool is_train = true; // 80% train, 20% test
+			float x = lowerBound + (randomFloats(generator) * (upperBound - lowerBound));
 			float y = 0.0f;
-			float z = lowerBound + randomFloats(generator) * (upperBound - lowerBound);
+			float z = lowerBound + (randomFloats(generator) * (upperBound - lowerBound));
 			mesh.setBone(bone, glm::vec3(x, y, z)); // relative euler angle x, y, z
 
 			// convert to printable string
@@ -222,7 +222,7 @@ int main(int argc, char **argv) {
 
 	//int step = 2;
 	//generateAnimatedMeshes(name, step); // go to 100 degrees with 1 degree increments
-	//generateDatasetMeshes(name, 1500);
+	//generateDatasetMeshes(name, 200);
 
 	return 0;
 }

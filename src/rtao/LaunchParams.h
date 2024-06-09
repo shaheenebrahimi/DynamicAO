@@ -37,7 +37,7 @@ namespace osc {
     struct {
         CUDABuffer positions; // buffer of positions
         CUDABuffer normals; // buffer of normals
-        CUDABuffer tangents;
+        //CUDABuffer tangents;
         int samples; // number of points sampled on mesh
     } origins;
     

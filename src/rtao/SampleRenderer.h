@@ -73,7 +73,7 @@ namespace osc {
       void renderToTexture(const int rayCount, std::shared_ptr<Image> img, const std::string& filename);
 
       /*! render one frame and write data to output file */
-      void renderToFile(const int rayCount, const int sampleCount, const std::string& orientations, std::ofstream& out);
+      void renderToFile(const int rayCount, const std::string& orientations, std::ofstream& out);
 
       /*! resize frame buffer to given resolution */
       //void resize(const vec2i &newSize);
@@ -131,7 +131,7 @@ namespace osc {
     void buildSBT();
 
     /*! constructs occlusion hemisphere with radius */
-    void genHemisphere(float radius = 1.0, bool seeded = true);
+    void genHemisphere(float radius = 0.5, bool seeded = true);
 
     vec3f sampleHemisphere(float x0, float x1);
 
@@ -145,7 +145,7 @@ namespace osc {
     void getTextureSamples(int resolution = 1024);
 
     /*! generate occlusion sample points */
-    void sendSamplesToGPU(const std::vector<vec3f>& pos, const std::vector<vec3f>& nor, const std::vector<vec3f>& tan);
+    void sendSamplesToGPU(const std::vector<vec3f>& pos, const std::vector<vec3f>& nor);
 
     /*! build an acceleration structure for the given triangle mesh */
     OptixTraversableHandle buildAccel();

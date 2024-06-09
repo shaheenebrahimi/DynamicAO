@@ -60,7 +60,6 @@ namespace osc {
         getline(in, line);
         replace(line.begin(), line.end(), ' ', ',');
         if (line.back() == ',') line.pop_back();
-
         return line.substr(2); // ignore "# " rather "#," now
     }
 
@@ -81,7 +80,7 @@ namespace osc {
     }
 
 //#define TRAIN_TEST
-//#define RENDER_TEXTURE
+#define RENDER_TEXTURE
 
     extern "C" int main(int ac, char **av)
     {
@@ -89,27 +88,56 @@ namespace osc {
         // Define consts
         const std::string name = "research";
         const int accumulations = 10;
-        const int rayCount = 4096; // 8192
-        const int sampleCount = 10000; // samples per mesh - doesn't really matter if < tri count
-        const int poseCount = 0; // TODO: read all poses
+        const int rayCount = 512; // 8192
+        const int sampleCount = 50000; // samples per mesh - doesn't really matter if < tri count
+        const int resolution = 1024; // either sample count or resolution
+        const int poseCount = 1500; // TODO: read all poses
         const bool is_train = false;
 
         // Read in base occlusion values
         const std::string baseFilename = RES_DIR + "occlusion/" + name + "_base.txt";
         std::pair<int, int> dim = getDimensions(baseFilename);
         int bones = dim.first, verts = dim.second;
-      
-        // Open export file
-#ifdef TRAIN_TEST
-        const std::string outputFilename = RES_DIR + "occlusion/" + name + ((is_train) ? "_train_" : "_test_") + "data.csv";
-#else
-        const std::string outputFilename = RES_DIR + "occlusion/" + name + "_data.csv";
-#endif
+
+        std::shared_ptr<Image> im = std::make_shared<Image>(resolution, resolution);
+        // Set target and render model
+        SampleRenderer r(rayCount);
+        // Load model
+        const Model* m;
+        try {
+            m = loadOBJ(RES_DIR + "data/research_37.obj");
+        }
+        catch (std::runtime_error& e) {
+            std::cout << GDT_TERMINAL_RED << "FATAL ERROR: " << e.what() << GDT_TERMINAL_DEFAULT << std::endl;
+            std::cout << "Could not load obj file" << std::endl;
+            exit(1);
+        }
+        std::cout << "OBJ read" << std::endl;
+        std::ofstream of;
+        of.open(RES_DIR+"occlusion/file.txt");
+        r.set(m);
+        r.sampleData(Mode::Vertex);
+        r.renderToFile(rayCount, "", of);
+        of.close();
+        exit(0);
 
 #ifndef RENDER_TEXTURE
+
+        // Open export file
+    #ifdef TRAIN_TEST
+        //const std::string outputFilename = RES_DIR + "occlusion/" + name + ((is_train) ? "_train_" : "_test_") + "data.csv";
+        const std::string outputFilename = RES_DIR + "occlusion/" + name + "_random_data.csv";
+
+    #else
+        const std::string outputFilename = RES_DIR + "occlusion/" + name + "_data.csv";
+    #endif
         std::ofstream out;
         out.open(outputFilename, std::ios_base::app);
         //out << bones << " " << verts << std::endl; // first two lines num inputs, num len data
+#else
+        const std::string angleFilename = RES_DIR + "occlusion/X_data.csv";
+        std::ofstream out;
+        out.open(angleFilename, std::ios_base::app);
 #endif
 
         const Model* base;
@@ -117,11 +145,18 @@ namespace osc {
 
         // Initialize renderer
         SampleRenderer renderer(rayCount);
-
+        int j = 0;
         // Iterate through distinct random poses
-        for (int i = -1; i < poseCount; ++i) {
-            std::string tail = (i == -1) ? "" : ("_" + std::to_string(i));
-            std::string objFilename = RES_DIR + "data/" + name + tail + ".obj";
+        for (int i = 0; i < poseCount; ++i) {
+#ifdef TRAIN_TEST // TODO: MAKE BETTER
+            std::string in_tail = (i == -1) ? "" : (((is_train) ? "_train_" : "_test_") + std::to_string(i));
+            std::string out_tail = (i == -1) ? "" : ("_" + std::to_string(j));
+#else
+            std::string in_tail = (i == -1) ? "" : ("_" + std::to_string(i));
+            std::string out_tail = (i == -1) ? "" : ("_" + std::to_string(j));
+#endif
+            std::string objFilename = RES_DIR + "data/" + name + in_tail + ".obj";
+
             std::string orientations = parseHeader(objFilename);
 
             // Load model
@@ -137,18 +172,21 @@ namespace osc {
 
             // Render and output
 #ifdef RENDER_TEXTURE
-#ifdef TRAIN_TEST
-            std::string imgPath = RES_DIR + "occlusion/" + (is_train ? "train/" : "test/") + name + tail + ".png";
-#else
+    #ifdef TRAIN_TEST
+            //std::string imgPath = RES_DIR + "occlusion/" + (is_train ? "train/" : "test/") + name + out_tail + ".png";
+            std::string imgPath = RES_DIR + "occlusion/what/" + name + out_tail + ".png";
+    #else
             std::string imgPath = RES_DIR + "textures/" + name + ".png";
 
-#endif
-            int resolution = 512;
+    #endif
             std::shared_ptr<Image> img = std::make_shared<Image>(resolution, resolution);
             // Set target and render model
             renderer.set(model);
             renderer.sampleData(Mode::Texture, resolution);
             renderer.renderToTexture(rayCount, img, imgPath);
+            std::string ln = std::to_string(j) + "," + orientations + "\n"; // index, orientations
+            out << ln;
+            j++;
 #else
             
             // Set target and render model
@@ -199,14 +237,17 @@ namespace osc {
             //renderer.renderToFile(rayCount, sampleCount, orientations, out); // only need to render the frame once
 #endif
 
-            renderer.reset();
-            delete model;
+            //renderer.reset();
+            //delete model;
         }
         // total data points = sample count * pose count
         delete base;
 #ifndef RENDER_TEXTURE
         out.close();
         std::cout << "Wrote to " << outputFilename << std::endl;
+#else
+        out.close();
+        std::cout << "Wrote to " << angleFilename << std::endl;
 #endif
     return 0;
     }

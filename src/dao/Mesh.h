@@ -40,6 +40,7 @@ public:
     void loadSkinWeights(const std::string& fileName);
     void loadHierarchy(const std::string& fileName);
     void loadEvaluator(const std::string& fileName);
+    void loadOcclusionBuffer(const std::string& fileName);
     void loadBuffers(); // only for rasterization
     void updateBuffers(); // only for rasterization
 

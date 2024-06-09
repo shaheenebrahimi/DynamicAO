@@ -123,7 +123,7 @@ int Rasterizer::init() {
 
 	// // Initialize Shaders
 	prog = std::make_shared<Program>();
-	prog->setShaderNames(RES_DIR + "shaders/vert.glsl", RES_DIR + "shaders/frag.glsl"); // TODO: make dynamic?
+	prog->setShaderNames(RES_DIR + "shaders/vert.glsl", RES_DIR + "shaders/frag.glsl");
 	prog->setVerbose(true);
 	prog->init();
 	prog->addAttribute("aPos");
