@@ -31,7 +31,7 @@ namespace osc {
   struct LaunchParams
   {
     struct {
-      int *occlusionBuffer; // how many occlusions per vertex
+      float *occlusionBuffer; // how many occlusions per vertex
     } result;
 
     struct {

@@ -223,7 +223,9 @@ namespace osc {
 
     //printf("sample point: %d and ray: %d was occluded %d\n", ix, iy, occlusionPRD);
     // and write to frame buffer ...
-    optixLaunchParams.result.occlusionBuffer[optixLaunchParams.hemisphere.samples * point_index + ray_index] = (uint32_t)occlusionPRD; // number of occlusions per vertex
+    //float occlusion_factor = (occlusionPRD) ? 1.0f : 0.0f;
+    float occlusion_factor = (occlusionPRD) ? gdt::dot(rayDir, normal) : 0.0f;
+    optixLaunchParams.result.occlusionBuffer[optixLaunchParams.hemisphere.samples * point_index + ray_index] = occlusion_factor; // number of occlusions per vertex
   }
   
 } // ::osc

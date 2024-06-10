@@ -131,7 +131,7 @@ namespace osc {
     void buildSBT();
 
     /*! constructs occlusion hemisphere with radius */
-    void genHemisphere(float radius = 0.5, bool seeded = true);
+    void genHemisphere(float radius = 1.0, bool seeded = true);
 
     vec3f sampleHemisphere(float x0, float x1);
 

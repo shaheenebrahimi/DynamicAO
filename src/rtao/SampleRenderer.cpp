@@ -380,8 +380,8 @@ namespace osc {
       //launchParams.origins.tangents.alloc_and_upload(tan);
       launchParams.origins.samples = pos.size(); // number of faces * sample per tri count
 
-      occlusionBuffer.resize(launchParams.origins.samples * this->rayCount * sizeof(int));
-      launchParams.result.occlusionBuffer = (int*)occlusionBuffer.d_ptr;
+      occlusionBuffer.resize(launchParams.origins.samples * this->rayCount * sizeof(float));
+      launchParams.result.occlusionBuffer = (float*)occlusionBuffer.d_ptr;
   }
 
 
@@ -983,7 +983,7 @@ namespace osc {
   void SampleRenderer::downloadBuffer()
   {
       // device to host
-      std::vector<int> occlusionTable;
+      std::vector<float> occlusionTable;
       occlusionTable.resize(launchParams.origins.samples * launchParams.hemisphere.samples);
       occlusionBuffer.download(occlusionTable.data(), launchParams.origins.samples * launchParams.hemisphere.samples);
 
@@ -996,7 +996,7 @@ namespace osc {
 
       // compute occlusion factor
       for (int i = 0; i < occlusions.size(); ++i) {
-          occlusions[i] /= (float)launchParams.hemisphere.samples;
+          occlusions[i] /= ((float)launchParams.hemisphere.samples / M_PI);
       }
 
       // add to accumulator

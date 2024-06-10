@@ -88,9 +88,9 @@ namespace osc {
         // Define consts
         const std::string name = "research";
         const int accumulations = 10;
-        const int rayCount = 512; // 8192
+        const int rayCount = 1024; // 8192
         const int sampleCount = 50000; // samples per mesh - doesn't really matter if < tri count
-        const int resolution = 1024; // either sample count or resolution
+        const int resolution = 512; // either sample count or resolution
         const int poseCount = 1500; // TODO: read all poses
         const bool is_train = false;
 
@@ -105,20 +105,24 @@ namespace osc {
         // Load model
         const Model* m;
         try {
-            m = loadOBJ(RES_DIR + "data/research_37.obj");
+            m = loadOBJ(RES_DIR + "data/research_540.obj");
         }
         catch (std::runtime_error& e) {
             std::cout << GDT_TERMINAL_RED << "FATAL ERROR: " << e.what() << GDT_TERMINAL_DEFAULT << std::endl;
             std::cout << "Could not load obj file" << std::endl;
             exit(1);
         }
-        std::cout << "OBJ read" << std::endl;
-        std::ofstream of;
-        of.open(RES_DIR+"occlusion/file.txt");
+        //std::cout << "OBJ read" << std::endl;
+        //std::ofstream of;
+        //of.open(RES_DIR+"occlusion/file.txt");
+        //r.set(m);
+        //r.sampleData(Mode::Vertex);
+        //r.renderToFile(rayCount, "", of);
+        //of.close();
         r.set(m);
-        r.sampleData(Mode::Vertex);
-        r.renderToFile(rayCount, "", of);
-        of.close();
+        r.sampleData(Mode::Texture, resolution);
+        r.renderToTexture(rayCount, im, RES_DIR+"textures/research_revamp.png");
+
         exit(0);
 
 #ifndef RENDER_TEXTURE
