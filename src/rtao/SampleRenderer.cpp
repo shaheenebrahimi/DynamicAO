@@ -996,7 +996,7 @@ namespace osc {
 
       // compute occlusion factor
       for (int i = 0; i < occlusions.size(); ++i) {
-          occlusions[i] /= ((float)launchParams.hemisphere.samples * M_PI);
+          occlusions[i] /= ((float)launchParams.hemisphere.samples);
       }
 
       // add to accumulator
