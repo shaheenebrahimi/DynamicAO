@@ -9,10 +9,13 @@ FILE(GLOB EVAL_CUDA "*.cu")
 FILE(GLOB EVAL_CUDA_H "*.cuh")
 FILE(GLOB EVAL_HEADERS "*.h")
 
+FILE(GLOB CPPFLOW_HEADERS "cppflow/*.h")
+
 # Set the executable.
 ADD_EXECUTABLE(DAO
 	${MAIN_SOURCES} ${MAIN_HEADERS}# ${GLSL}
 	${EVAL_CUDA} ${EVAL_CUDA_H} ${EVAL_HEADERS}
+	${CPPFLOW_HEADERS}
 )
 
 set(CMAKE_CUDA_ARCHITECTURES "native")
@@ -23,11 +26,24 @@ TARGET_LINK_LIBRARIES(DAO
 	${CUDA_CUDA_LIBRARY}
 )
 
-# LINK IMGUI
-#TARGET_LINK_LIBRARIES(DAO
-#	imgui
-#)
+# ------------------------------------------------------------------
+# add tensorflow c
+# ------------------------------------------------------------------
+set(TENSORFLOW_LIB_PATH "C:/Users/shaheenebrahimi/Documents/Packages/tensorflowc-2.10/lib")
+set(TENSORFLOW_INCLUDE_PATH "C:/Users/shaheenebrahimi/Documents/Packages/tensorflowc-2.10/include")
 
+# Find TensorFlow library
+find_library(TENSORFLOW_LIB tensorflow PATHS ${TENSORFLOW_LIB_PATH})
+
+# Include TensorFlow headers
+target_include_directories(DAO PRIVATE ${TENSORFLOW_INCLUDE_PATH})
+
+# Link TensorFlow library
+target_link_libraries(DAO PRIVATE ${TENSORFLOW_LIB})
+
+# ------------------------------------------------------------------
+# glm
+# ------------------------------------------------------------------
 # Get the GLM environment variable. Since GLM is a header-only library, we
 # just need to add it to the include directory.
 SET(GLM_INCLUDE_DIR "$ENV{GLM_INCLUDE_DIR}")
@@ -49,6 +65,9 @@ IF(NOT GLM_INCLUDE_DIR)
 ENDIF()
 INCLUDE_DIRECTORIES(${GLM_INCLUDE_DIR})
 
+# ------------------------------------------------------------------
+# glew
+# ------------------------------------------------------------------
 # Get the GLEW environment variable.
 SET(GLEW_DIR "$ENV{GLEW_DIR}")
 IF(NOT GLEW_DIR)
@@ -69,6 +88,9 @@ IF(NOT GLEW_DIR)
 ENDIF()
 INCLUDE_DIRECTORIES(${GLEW_DIR})
 
+# ------------------------------------------------------------------
+# glfw
+# ------------------------------------------------------------------
 # Get the GLFW environment variable. There should be a CMakeLists.txt in the 
 # specified directory.
 SET(GLFW_DIR "$ENV{GLFW_DIR}")

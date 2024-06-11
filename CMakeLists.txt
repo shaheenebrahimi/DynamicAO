@@ -66,6 +66,9 @@ add_subdirectory(${gdt_dir} EXCLUDE_FROM_ALL)
 include_directories(common)
 # add_subdirectory(common/glfWindow EXCLUDE_FROM_ALL)
 
+# Set the TensorFlow library and include paths
+
+
 # ------------------------------------------------------------------
 # and final build rules for the project
 # ------------------------------------------------------------------

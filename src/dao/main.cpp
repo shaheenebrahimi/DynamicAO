@@ -15,12 +15,19 @@
 #include <vector>
 #include <random>
 #include <chrono>
+#include "tensorflow/c/c_api.h"
+#include "cppflow/ops.h"
+#include "cppflow/model.h"
+#include <chrono>
+
+// C++ headers
+#include <iostream>
 
 #define DEG_TO_RAD 3.1415/180.0
 
 using namespace std;
 
-const std::string RES_DIR =
+std::string RES_DIR =
 	#ifdef _WIN32
 	// on windows, visual studio creates _two_ levels of build dir
 	"../../../resources/"
@@ -208,21 +215,57 @@ void generateAnimatedMeshes(const string& meshname, int step=1) {
 
 /* MAIN */
 
+
+
 int main(int argc, char **argv) {
 	// TODO: fix so that doesn't need texture to run
 	///* Initializations */
-	string name = "research";
-	Scene scn = createScene(name);
+	//string name = "research";
+	//Scene scn = createScene(name);
 
-	// viewer
-	Rasterizer raster; // Initialize Rasterizer
-	raster.setScene(scn);
-	raster.init();
-	raster.run();
+	//// viewer
+	//Rasterizer raster; // Initialize Rasterizer
+	//raster.setScene(scn);
+	//raster.init();
+	//raster.run();
 
 	//int step = 2;
 	//generateAnimatedMeshes(name, step); // go to 100 degrees with 1 degree increments
 	//generateDatasetMeshes(name, 200);
+
+	// ---- TENSORFLOW ---- //
+
+	std::chrono::time_point<std::chrono::system_clock> start, end;
+
+	std::string modelPath = RES_DIR + "evaluators/research_256x256_function";
+	cppflow::model model(modelPath);
+
+	start = std::chrono::system_clock::now();
+	for (int i = 0; i < 60; ++i) {
+		//auto input_angle = cppflow::fill({ 1, 3 }, 0.0f);
+		auto input_angle = cppflow::tensor(std::vector<float>{0.0f,0.0f,0.0f}, {1,3});
+		auto output_buffer = model({ {"serving_default_input:0", input_angle} }, { "StatefulPartitionedCall_1:0" })[0];
+
+		vector<float> values = output_buffer.get_data<float>();
+	}
+	end = std::chrono::system_clock::now();
+
+	std::chrono::duration<double> elapsed_seconds = end - start;
+	std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+
+	std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+
+	/*int index = 0;
+	int resolution = 256;
+	std::shared_ptr<Image> img = std::make_shared<Image>(resolution, resolution);
+	for (int y = resolution-1; y >= 0; --y) {
+		for (int x = 0; x < resolution; ++x) {
+			float value = 255.0f * std::clamp(values[index], 0.0f, 1.0f);
+			img->setPixel(x, y, (unsigned char)value, (unsigned char)value, (unsigned char)value);
+			index++;
+		}
+	}*/
+	//img->writeToFile(RES_DIR + "textures/research_output.png");
 
 	return 0;
 }

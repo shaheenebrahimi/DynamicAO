@@ -88,10 +88,10 @@ namespace osc {
         // Define consts
         const std::string name = "research";
         const int accumulations = 10;
-        const int rayCount = 1024; // 8192
+        const int rayCount = 2048; // 8192
         const int sampleCount = 50000; // samples per mesh - doesn't really matter if < tri count
-        const int resolution = 512; // either sample count or resolution
-        const int poseCount = 1500; // TODO: read all poses
+        const int resolution = 256; // either sample count or resolution
+        const int poseCount = 2116; // TODO: read all poses
         const bool is_train = false;
 
         // Read in base occlusion values
@@ -99,31 +99,31 @@ namespace osc {
         std::pair<int, int> dim = getDimensions(baseFilename);
         int bones = dim.first, verts = dim.second;
 
-        std::shared_ptr<Image> im = std::make_shared<Image>(resolution, resolution);
-        // Set target and render model
-        SampleRenderer r(rayCount);
-        // Load model
-        const Model* m;
-        try {
-            m = loadOBJ(RES_DIR + "data/research_540.obj");
-        }
-        catch (std::runtime_error& e) {
-            std::cout << GDT_TERMINAL_RED << "FATAL ERROR: " << e.what() << GDT_TERMINAL_DEFAULT << std::endl;
-            std::cout << "Could not load obj file" << std::endl;
-            exit(1);
-        }
-        //std::cout << "OBJ read" << std::endl;
-        //std::ofstream of;
-        //of.open(RES_DIR+"occlusion/file.txt");
+        //std::shared_ptr<Image> im = std::make_shared<Image>(resolution, resolution);
+        //// Set target and render model
+        //SampleRenderer r(rayCount);
+        //// Load model
+        //const Model* m;
+        //try {
+        //    m = loadOBJ(RES_DIR + "data/research_540.obj");
+        //}
+        //catch (std::runtime_error& e) {
+        //    std::cout << GDT_TERMINAL_RED << "FATAL ERROR: " << e.what() << GDT_TERMINAL_DEFAULT << std::endl;
+        //    std::cout << "Could not load obj file" << std::endl;
+        //    exit(1);
+        //}
+        ////std::cout << "OBJ read" << std::endl;
+        ////std::ofstream of;
+        ////of.open(RES_DIR+"occlusion/file.txt");
+        ////r.set(m);
+        ////r.sampleData(Mode::Vertex);
+        ////r.renderToFile(rayCount, "", of);
+        ////of.close();
         //r.set(m);
-        //r.sampleData(Mode::Vertex);
-        //r.renderToFile(rayCount, "", of);
-        //of.close();
-        r.set(m);
-        r.sampleData(Mode::Texture, resolution);
-        r.renderToTexture(rayCount, im, RES_DIR+"textures/research_revamp.png");
+        //r.sampleData(Mode::Texture, resolution);
+        //r.renderToTexture(rayCount, im, RES_DIR+"textures/research_revamp.png");
 
-        exit(0);
+        //exit(0);
 
 #ifndef RENDER_TEXTURE
 
@@ -151,7 +151,7 @@ namespace osc {
         SampleRenderer renderer(rayCount);
         int j = 0;
         // Iterate through distinct random poses
-        for (int i = 0; i < poseCount; ++i) {
+        for (int i = -1; i < poseCount; i+=2) {
 #ifdef TRAIN_TEST // TODO: MAKE BETTER
             std::string in_tail = (i == -1) ? "" : (((is_train) ? "_train_" : "_test_") + std::to_string(i));
             std::string out_tail = (i == -1) ? "" : ("_" + std::to_string(j));
@@ -180,7 +180,7 @@ namespace osc {
             //std::string imgPath = RES_DIR + "occlusion/" + (is_train ? "train/" : "test/") + name + out_tail + ".png";
             std::string imgPath = RES_DIR + "occlusion/what/" + name + out_tail + ".png";
     #else
-            std::string imgPath = RES_DIR + "textures/" + name + ".png";
+            std::string imgPath = RES_DIR + "occlusion/data/" + name + "_" + std::to_string(j) + ".png";
 
     #endif
             std::shared_ptr<Image> img = std::make_shared<Image>(resolution, resolution);
