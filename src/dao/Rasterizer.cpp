@@ -139,6 +139,7 @@ int Rasterizer::init() {
 	prog->addUniform("ks");
 	prog->addUniform("s");
 	prog->addUniform("aoTexture");
+	prog->addUniform("genTexture");
 	prog->addUniform("groundTruth");
 	prog->setVerbose(false);
 

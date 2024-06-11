@@ -86,6 +86,11 @@ void Object::addEvaluator(const std::string &modelPath)
     mesh->loadEvaluator(modelPath);
 }
 
+void Object::addGenerator(const std::string& modelPath)
+{
+    mesh->loadGenerator(modelPath);
+}
+
 //void Object::setAnimation(const std::string& animPath) {
 //
 //}
@@ -109,6 +114,8 @@ void Object::draw(std::shared_ptr<Program> prog, std::shared_ptr<MatrixStack> P,
     glUniform3f(prog->getUniform("ks"), mat->ks.x, mat->ks.y, mat->ks.z);
     glUniform1f(prog->getUniform("s"), mat->s);
     tex->bind(prog->getUniform("aoTexture"));
+    mesh->bindTexture(prog->getUniform("genTexture"));
     mesh->drawMesh(prog);
+    mesh->unbindTexture(prog->getUniform("genTexture"));
     tex->unbind();
 }

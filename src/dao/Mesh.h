@@ -23,6 +23,10 @@
 #include "Program.h"
 #include "Evaluator.cuh"
 
+#include "tensorflow/c/c_api.h"
+#include "cppflow/ops.h"
+#include "cppflow/model.h"
+
 #define NO_ROTATION glm::vec4(0.0f, 1.0f, 0.0f, 0.0f);
 
 class Mesh {
@@ -40,6 +44,7 @@ public:
     void loadSkinWeights(const std::string& fileName);
     void loadHierarchy(const std::string& fileName);
     void loadEvaluator(const std::string& fileName);
+    void loadGenerator(const std::string& modelPath);
     void loadOcclusionBuffer(const std::string& fileName);
     void loadBuffers(); // only for rasterization
     void updateBuffers(); // only for rasterization
@@ -64,14 +69,19 @@ public:
     glm::vec3 getBoneRotation(int boneInd) { return relativeRotations[boneInd]; }
     std::vector<float> getFlattenedRotations();
     int getBoneIndex(const std::string& name) { return boneMap[name]; }
+
+    void bindTexture(GLint handle);
+    void unbindTexture(GLint handle);
 private:
     std::shared_ptr<Evaluator> eval;
+    std::shared_ptr<cppflow::model> model;
 
     std::vector<unsigned int> elemBuf;
     std::vector<float> posBuf;
     std::vector<float> norBuf;
     std::vector<float> texBuf;
     std::vector<float> occBuf;
+    std::vector<float> genBuf;
 
     std::vector<float> skBoneInds;
     std::vector<float> skWeights;
@@ -95,10 +105,12 @@ private:
 	unsigned norBufID;
     unsigned texBufID;
     unsigned occBufID;
+    unsigned genBufID;
 
     struct cudaGraphicsResource* cudaOccResource;
     
     void computeOcclusion();
+    void generateTexture();
     //void computeRelativeRotations(const std::vector<glm::quat>& orientations);
 
     Batch getBatch();

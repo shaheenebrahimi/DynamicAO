@@ -15,12 +15,6 @@
 #include <vector>
 #include <random>
 #include <chrono>
-#include "tensorflow/c/c_api.h"
-#include "cppflow/ops.h"
-#include "cppflow/model.h"
-#include <chrono>
-
-// C++ headers
 #include <iostream>
 
 #define DEG_TO_RAD 3.1415/180.0
@@ -63,6 +57,7 @@ Scene createScene(const string &name) {
 	obj->addMesh(RES_DIR + "models/", name);
 	obj->addTexture(RES_DIR + "textures/" + name + ".png");
 	//obj->addEvaluator(RES_DIR + "evaluators/" + name + ".txt");
+	obj->addGenerator(RES_DIR + "generators/research_256x256");
 	obj->setMaterial(glm::vec3(0.2, 0.2, 0.2), glm::vec3(0.1, 0.1, 0.1), glm::vec3(0.1, 0.1, 0.1), 100);
 	scn.addObject(obj); // Add to scene
 
@@ -220,14 +215,14 @@ void generateAnimatedMeshes(const string& meshname, int step=1) {
 int main(int argc, char **argv) {
 	// TODO: fix so that doesn't need texture to run
 	///* Initializations */
-	//string name = "research";
-	//Scene scn = createScene(name);
+	string name = "research";
+	Scene scn = createScene(name);
 
 	//// viewer
-	//Rasterizer raster; // Initialize Rasterizer
-	//raster.setScene(scn);
-	//raster.init();
-	//raster.run();
+	Rasterizer raster; // Initialize Rasterizer
+	raster.setScene(scn);
+	raster.init();
+	raster.run();
 
 	//int step = 2;
 	//generateAnimatedMeshes(name, step); // go to 100 degrees with 1 degree increments
@@ -235,25 +230,24 @@ int main(int argc, char **argv) {
 
 	// ---- TENSORFLOW ---- //
 
-	std::chrono::time_point<std::chrono::system_clock> start, end;
+	//std::chrono::time_point<std::chrono::system_clock> start, end;
 
-	std::string modelPath = RES_DIR + "evaluators/research_256x256_function";
-	cppflow::model model(modelPath);
+	//cppflow::model model(modelPath);
 
-	start = std::chrono::system_clock::now();
-	for (int i = 0; i < 60; ++i) {
-		//auto input_angle = cppflow::fill({ 1, 3 }, 0.0f);
-		auto input_angle = cppflow::tensor(std::vector<float>{0.0f,0.0f,0.0f}, {1,3});
-		auto output_buffer = model({ {"serving_default_input:0", input_angle} }, { "StatefulPartitionedCall_1:0" })[0];
+	//start = std::chrono::system_clock::now();
+	//for (int i = 0; i < 60; ++i) {
+	//	//auto input_angle = cppflow::fill({ 1, 3 }, 0.0f);
+	//	auto input_angle = cppflow::tensor(std::vector<float>{0.0f,0.0f,0.0f}, {1,3});
+	//	auto output_buffer = model({ {"serving_default_input:0", input_angle} }, { "StatefulPartitionedCall_1:0" })[0];
 
-		vector<float> values = output_buffer.get_data<float>();
-	}
-	end = std::chrono::system_clock::now();
+	//	vector<float> values = output_buffer.get_data<float>();
+	//}
+	//end = std::chrono::system_clock::now();
 
-	std::chrono::duration<double> elapsed_seconds = end - start;
-	std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+	//std::chrono::duration<double> elapsed_seconds = end - start;
+	//std::time_t end_time = std::chrono::system_clock::to_time_t(end);
 
-	std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+	//std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
 
 	/*int index = 0;
 	int resolution = 256;

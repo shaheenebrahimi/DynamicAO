@@ -1,13 +1,18 @@
 #include "Mesh.h"
 
 #define TINYOBJLOADER_IMPLEMENTATION
-#define DEG_TO_RAD 3.1415/180.0
+#define DEG_TO_RAD (3.1415926 / 180.0)
+#define NORM (3.1415926f / 2.0f)
+
 
 #include "tiny_obj_loader.h"
 #include <cuda_gl_interop.h>
 #include <glm/gtx/euler_angles.hpp>
 #include <cuda_runtime.h>
 #include <iostream>
+
+#include "Image.h"
+
 
 using namespace std;
 
@@ -19,6 +24,7 @@ Mesh::Mesh() {
 	this->norBufID = 0;
 	this->texBufID = 0;
 	this->occBufID = 0;
+	this->genBufID = 0;
 	this->boneCount = 0;
 	this->influences = 0;
 	this->currFrame = 0;
@@ -31,6 +37,7 @@ Mesh::Mesh(const std::string name) {
 	this->norBufID = 0;
 	this->texBufID = 0;
 	this->occBufID = 0;
+	this->genBufID = 0;
 	this->boneCount = 0;
 	this->influences = 0;
 	this->currFrame = 0;
@@ -46,6 +53,7 @@ void Mesh::updateMesh()
 	// update frame and pose
 	updateBuffers(); // send to updated mesh gpu
 	//computeOcclusion();
+	generateTexture();
 }
 
 void Mesh::dumpMesh(const std::string &filename, const std::vector<std::string> &header)
@@ -412,6 +420,11 @@ void Mesh::loadEvaluator(const string& modelName) {
 	eval = std::make_shared<Evaluator>(modelName);
 }
 
+void Mesh::loadGenerator(const std::string& modelPath)
+{
+	this->model = std::make_shared<cppflow::model>(modelPath);
+}
+
 void Mesh::loadOcclusionBuffer(const std::string& filename)
 {
 	ifstream in;
@@ -462,6 +475,21 @@ void Mesh::loadBuffers() {
 	glGenBuffers(1, &occBufID);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, occBufID);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, occBuf.size() * sizeof(float), &occBuf[0], GL_STATIC_DRAW);
+
+	// Initialize generated texture id
+	glGenTextures(1, &genBufID);
+
+	// Bind the texture
+	glBindTexture(GL_TEXTURE_2D, genBufID);
+
+	// Set texture parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Unbind the texture
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 	// Unbind the arrays
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -673,6 +701,63 @@ void Mesh::computeOcclusion()
 {
 	Batch inputs = getBatch();
 	eval->sharedBatchCompute(inputs, &cudaOccResource);
+}
+
+void Mesh::generateTexture()
+{
+	const int width = 256, height = 256, components = 3, bone = 1;
+	glm::vec3 angle = relativeRotations[bone];
+	auto input_angle = cppflow::tensor(std::vector<float>{angle.x / NORM, angle.y / NORM, angle.z / NORM}, { 1,3 });
+	auto output_buffer = (*model)({ {"serving_default_input:0", input_angle} }, { "StatefulPartitionedCall_1:0" })[0];
+	genBuf = output_buffer.get_data<float>();
+
+	glBindTexture(GL_TEXTURE_2D, genBufID);
+
+	// Check if it's the first time uploading the texture
+	static bool firstUpload = true;
+	if (firstUpload) {
+		// First upload, define the texture storage
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RED, GL_FLOAT, genBuf.data());
+		firstUpload = false;
+	}
+	else {
+		// Subsequent uploads, update texture data
+		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RED, GL_FLOAT, genBuf.data());
+	}
+
+	// Generate mipmaps
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	// Unbind the texture
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+	//int index = 0;
+	//int resolution = 256;
+	//std::shared_ptr<Image> img = std::make_shared<Image>(resolution, resolution);
+	////for (int y = resolution-1; y >= 0; --y) {
+	//for (int y = 0; y < resolution; ++y) {
+	//	for (int x = 0; x < resolution; ++x)  {
+	//		float value = 255.0f * std::clamp(genBuf[index], 0.0f, 1.0f);
+	//		img->setPixel(255-x, 255-y, (unsigned char)value, (unsigned char)value, (unsigned char)value);
+	//		index++;
+	//	}
+	//}
+	//img->writeToFile("../../../resources/textures/research_output.png");
+	//exit(0);
+}
+
+void Mesh::bindTexture(GLint handle)
+{
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, genBufID);
+	glUniform1i(handle, (GLint)1);
+}
+
+void Mesh::unbindTexture(GLint handle)
+{
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void Mesh::createCudaVBO(GLuint* vbo, cudaGraphicsResource** vboRes, unsigned int vboResFlags, unsigned int size)
